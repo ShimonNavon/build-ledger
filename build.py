@@ -20,6 +20,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 TEMPLATE = HERE / "template.html"
 DATA = HERE / "versions.json"
+PROJECTS = HERE / "projects.json"
 DEFAULT_OUT = HERE / "dist" / "index.html"
 
 
@@ -50,7 +51,7 @@ def prod_card(data: dict) -> str:
     return f'''<div class="prod-card" title="Live on production ({html.escape(prod["tag"])})">
         <span class="prod-dot"></span>
         <div>
-          <div class="prod-label">Production</div>
+          <div class="prod-label">Production · {html.escape((prod.get("name") or "").split(" · ")[0] or "app")}</div>
           <div class="prod-ver">{name}</div>
           <div class="prod-meta">{date}, {clock} build · {meta}</div>
         </div>
@@ -68,6 +69,7 @@ def render(template: str, data: dict) -> str:
         "__COMMITMETA__": json.dumps(meta, ensure_ascii=False),
         "__ROLLEDBACK__": json.dumps(rolled, ensure_ascii=False),
         "__PROD_CARD__": prod_card(data),
+        "__PROJECTS__": json.dumps(json.loads(PROJECTS.read_text(encoding="utf-8"))["projects"], ensure_ascii=False),
     }
     out = template
     for key, value in values.items():

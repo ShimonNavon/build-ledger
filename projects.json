@@ -1,0 +1,840 @@
+{
+  "projects": [
+    {
+      "slug": "my-projects",
+      "name": "My projects",
+      "ledgerName": "Projects",
+      "blurb": "The portfolio behind projects.navonsimon.com: every project, its story and how to reach it, kept in step with this ledger.",
+      "category": "personal",
+      "status": "live",
+      "img": "",
+      "emoji": "🗂️",
+      "tags": [
+        "Portfolio",
+        "Ledger"
+      ],
+      "links": [
+        {
+          "label": "Open portfolio",
+          "url": "https://projects.navonsimon.com/"
+        }
+      ],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "bulkbuy",
+      "name": "BulkBuy",
+      "ledgerName": "BulkBuy",
+      "blurb": "A Hebrew salon-distribution website with a media gallery and one-click photo and video uploads. Editors work in integration; the owner reviews and publishes to production, with persistent storage and rollback on my Kubernetes cluster.",
+      "category": "biz",
+      "status": "live",
+      "img": "img/bulkbuy.jpg",
+      "emoji": "",
+      "tags": [
+        "Hebrew RTL",
+        "Media uploads",
+        "Staging → production",
+        "Kubernetes"
+      ],
+      "links": [
+        {
+          "label": "Open BulkBuy",
+          "url": "https://bulkbuy.navonsimon.com/"
+        },
+        {
+          "label": "Documentation",
+          "url": "https://projects.navonsimon.com/bulkbuy.html"
+        }
+      ],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "shorts-studio",
+      "name": "Shorts Studio",
+      "ledgerName": "Shorts Studio",
+      "blurb": "Turns a voice memo into a finished short video. An AI writes a real story arc, generates pictures with a consistent main character, narrates it in my own cloned voice, then renders it with transitions, captions and music. It has a hard monthly spend limit.",
+      "category": "ai",
+      "status": "live",
+      "img": "img/shorts.jpg",
+      "emoji": "",
+      "tags": [
+        "FLUX",
+        "Voice cloning",
+        "Llama 3.3",
+        "ffmpeg",
+        "Kubernetes"
+      ],
+      "links": [
+        {
+          "label": "Open studio",
+          "url": "https://shorts.navonsimon.com/"
+        }
+      ],
+      "note": "Sign-in required",
+      "year": 2026
+    },
+    {
+      "slug": "aurelia-hair",
+      "name": "Aurelia Hair",
+      "ledgerName": "Aurelia Hair",
+      "blurb": "My brand: premium Romanian human hair for US distributors. It includes the website, its own CRM, and a design workspace that turns HTML templates into on-brand posters, social cards and decks.",
+      "category": "biz",
+      "status": "live",
+      "img": "img/aurelia.jpg",
+      "emoji": "",
+      "tags": [
+        "Brand",
+        "CRM",
+        "Design system"
+      ],
+      "links": [
+        {
+          "label": "Visit site",
+          "url": "https://aureliahair.navonsimon.com/"
+        }
+      ],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "cutpoint-the-craft",
+      "name": "CUTPOINT · The Craft",
+      "ledgerName": "CUTPOINT · The Craft",
+      "blurb": "A Hebrew-first, vetted community platform for Israeli barbers and beauty professionals, covering safe, certified and responsible hair care.",
+      "category": "web",
+      "status": "live",
+      "img": "img/cutpoint.jpg",
+      "emoji": "",
+      "tags": [
+        "Django",
+        "DRF",
+        "Postgres",
+        "Valkey",
+        "Next.js"
+      ],
+      "links": [
+        {
+          "label": "Visit site",
+          "url": "https://barbers.navonsimon.com/"
+        },
+        {
+          "label": "Code",
+          "url": "https://github.com/ShimonNavon/barbers"
+        }
+      ],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "turbo-studio",
+      "name": "Turbo Studio",
+      "ledgerName": "Turbo Studio",
+      "blurb": "Generates images and short videos from text on your own Mac. It runs SDXL-Turbo and AnimateDiff-Lightning in a native app, and you can drag in an image for inspiration.",
+      "category": "tools",
+      "status": "code",
+      "img": "img/turbo.jpg",
+      "emoji": "",
+      "tags": [
+        "macOS",
+        "SDXL-Turbo",
+        "AnimateDiff"
+      ],
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://shimonnavon.github.io/turbo-studio/"
+        },
+        {
+          "label": "Code",
+          "url": "https://github.com/ShimonNavon/turbo-studio"
+        }
+      ],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "terminal-first",
+      "name": "Terminal First",
+      "ledgerName": "Terminal First",
+      "blurb": "A tiny macOS menu-bar app that makes Command–1 always bring up Terminal.",
+      "category": "tools",
+      "status": "code",
+      "img": "img/terminal.jpg",
+      "emoji": "",
+      "tags": [
+        "macOS",
+        "Swift"
+      ],
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://shimonnavon.github.io/terminal-first/"
+        },
+        {
+          "label": "Code",
+          "url": "https://github.com/ShimonNavon/terminal-first"
+        }
+      ],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "build-ledger",
+      "name": "Build Ledger",
+      "ledgerName": "Build Ledger",
+      "blurb": "A one-page ledger for the clinic recorder’s builds. Every build gets a human name — Carpal through Dexterity — with its date, one change score and where it runs, so “which version is live?” never needs a git hash. Notes pin themselves to a build, and a small MCP server lets my agents answer the same question.",
+      "category": "tools",
+      "status": "live",
+      "img": "img/builds.jpg",
+      "emoji": "",
+      "tags": [
+        "MCP",
+        "Single-file HTML",
+        "Kubernetes"
+      ],
+      "links": [
+        {
+          "label": "Open ledger",
+          "url": "https://builds.navonsimon.com/"
+        },
+        {
+          "label": "Docs",
+          "url": "https://ledger.navonsimon.com/"
+        },
+        {
+          "label": "Code",
+          "url": "https://github.com/ShimonNavon/build-ledger"
+        }
+      ],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "screen-pointer",
+      "name": "Screen Pointer",
+      "ledgerName": "Screen Pointer",
+      "blurb": "A visual brief for your coding agent: record a Mac walkthrough, draw a mark, and add timestamped notes while moving between apps. The preview prepares review frames for OpenCode and other MCP agents.",
+      "category": "tools",
+      "status": "live",
+      "img": "https://screen-pointer.navonsimon.com/media/promo-recording.jpg",
+      "emoji": "",
+      "tags": [
+        "macOS",
+        "Screen recording",
+        "Visual notes",
+        "MCP"
+      ],
+      "links": [
+        {
+          "label": "App & guide",
+          "url": "https://projects.navonsimon.com/screen-pointer.html"
+        },
+        {
+          "label": "Code",
+          "url": "https://github.com/ShimonNavon/screen-pointer/tree/agent-pointing"
+        }
+      ],
+      "note": "Preview · recording verification pending",
+      "year": 2026
+    },
+    {
+      "slug": "thermal-monitor",
+      "name": "Thermal Monitor",
+      "ledgerName": "Thermal Monitor",
+      "blurb": "A Rust service that shows how hot my MacBook Pro and home server are running. A launchd agent on the Mac samples the sensors with macmon and pushes readings over Tailscale; a small server keeps the history and serves a dark dashboard with temperatures, fan speeds and thermal zones.",
+      "category": "tools",
+      "status": "code",
+      "img": "img/thermal.jpg",
+      "emoji": "",
+      "tags": [
+        "Rust",
+        "axum",
+        "macmon",
+        "Kubernetes"
+      ],
+      "links": [
+        {
+          "label": "Code",
+          "url": "https://github.com/ShimonNavon/thermal-monitor"
+        }
+      ],
+      "note": "Dashboard on my tailnet",
+      "year": 2026
+    },
+    {
+      "slug": "meeting-recorder",
+      "name": "Meeting Recorder · מקליט ביקורים",
+      "ledgerName": "Meeting recorder",
+      "blurb": "A visit recorder for a doctor’s clinic. One button starts it. The conversation is transcribed live, the patient is recognised from what is said, and the doctor gets an AI-written clinical summary plus a plain-language letter for the patient.",
+      "category": "ai",
+      "status": "private",
+      "img": "img/meeting-recorder.jpg",
+      "emoji": "🩺",
+      "tags": [
+        "Hebrew STT",
+        "LLM",
+        "Django",
+        "Postgres"
+      ],
+      "links": [],
+      "note": "In daily use at a clinic",
+      "year": 2026
+    },
+    {
+      "slug": "noa",
+      "name": "Noa · נועה",
+      "ledgerName": "Noa · נועה",
+      "blurb": "A phone-first Hebrew voice companion. You send voice notes and she answers in her own voice, remembers what you tell her, and the conversation builds over time.",
+      "category": "ai",
+      "status": "private",
+      "img": "img/noa.jpg",
+      "emoji": "🎙️",
+      "tags": [
+        "FastAPI",
+        "ElevenLabs",
+        "Memory"
+      ],
+      "links": [],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "agent-memory-platform",
+      "name": "Agent Memory Platform",
+      "ledgerName": "Agent Memory Platform",
+      "blurb": "A private shared memory service that any AI agent (Codex, Claude Code and others) can use. It stores versioned decisions, project state, tasks and session summaries in Postgres behind an authenticated MCP interface.",
+      "category": "ai",
+      "status": "private",
+      "img": "img/agent-memory.jpg",
+      "emoji": "🧠",
+      "tags": [
+        "MCP",
+        "Postgres",
+        "Agents"
+      ],
+      "links": [],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "claude-telegram-bridge",
+      "name": "Claude Telegram Bridge",
+      "ledgerName": "Claude Telegram Bridge",
+      "blurb": "Control the Claude Code sessions on my Mac from anywhere by texting a Telegram bot, while the Mac stays at home.",
+      "category": "ai",
+      "status": "private",
+      "img": "img/telegram-bridge.jpg",
+      "emoji": "🌉",
+      "tags": [
+        "Telegram",
+        "Claude Code",
+        "Node"
+      ],
+      "links": [],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "whatsapp-mcp",
+      "name": "WhatsApp MCP",
+      "ledgerName": "WhatsApp MCP",
+      "blurb": "An MCP server that lets an AI assistant search and read my WhatsApp messages and contacts, including media, and send messages to people or groups.",
+      "category": "ai",
+      "status": "private",
+      "img": "img/whatsapp-mcp.jpg",
+      "emoji": "💬",
+      "tags": [
+        "MCP",
+        "WhatsApp"
+      ],
+      "links": [],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "personal-brand-agent",
+      "name": "Personal Brand Agent",
+      "ledgerName": "Personal Brand Agent",
+      "blurb": "A self-hosted agent that scans my GitHub, drafts portfolio updates and LinkedIn posts, and asks for my approval on Telegram before anything is published.",
+      "category": "ai",
+      "status": "private",
+      "img": "img/personal-brand.jpg",
+      "emoji": "📣",
+      "tags": [
+        "Agents",
+        "Telegram",
+        "LinkedIn"
+      ],
+      "links": [],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "ai-office-memory",
+      "name": "AI Office Memory",
+      "ledgerName": "AI Office Memory",
+      "blurb": "A chat-first memory for an interior architect’s office. You ask about any client, project or decision and get the answer with its source.",
+      "category": "ai",
+      "status": "private",
+      "img": "img/office-memory.jpg",
+      "emoji": "📐",
+      "tags": [
+        "RAG",
+        "Python"
+      ],
+      "links": [],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "natural-language-sql-agent",
+      "name": "Natural-language → SQL Agent",
+      "ledgerName": "Natural-language → SQL Agent",
+      "blurb": "Ask a database a question in plain English or Hebrew. The agent turns it into SQL, checks the query is safe, runs it on Postgres and shows the results.",
+      "category": "ai",
+      "status": "private",
+      "img": "img/sql-agent.jpg",
+      "emoji": "🗄️",
+      "tags": [
+        "LangChain",
+        "Postgres",
+        "Streamlit"
+      ],
+      "links": [],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "knesset-insights",
+      "name": "Knesset Insights",
+      "ledgerName": "Knesset Insights",
+      "blurb": "Ingests public Knesset committee protocols, organises them, and serves insights about what was said and decided.",
+      "category": "ai",
+      "status": "private",
+      "img": "img/knesset-insights.jpg",
+      "emoji": "🏛️",
+      "tags": [
+        "Data pipeline",
+        "Hebrew NLP"
+      ],
+      "links": [],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "land-finder-land-simulator",
+      "name": "Land Finder & Land Simulator",
+      "ledgerName": "Land Finder & Land Simulator",
+      "blurb": "An agent that hunts for affordable rural land (≤ 1 acre, ≤ $10k cash), paired with a 3D map where you pick any patch of ground, see its terrain, rivers and sun direction, draw your area and jump to listings nearby.",
+      "category": "ai",
+      "status": "private",
+      "img": "img/land-finder.jpg",
+      "emoji": "🌲",
+      "tags": [
+        "Agents",
+        "3D maps",
+        "Geo"
+      ],
+      "links": [],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "data-visualization-agent",
+      "name": "Data Visualization Agent",
+      "ledgerName": "Data Visualization Agent",
+      "blurb": "A small LangGraph project that loads a CSV, inspects the data, chooses a suitable chart and generates the visualisation.",
+      "category": "ai",
+      "status": "code",
+      "img": "img/data-viz.jpg",
+      "emoji": "📊",
+      "tags": [
+        "LangGraph",
+        "Python"
+      ],
+      "links": [
+        {
+          "label": "Code",
+          "url": "https://github.com/ShimonNavon/data-viz-agent"
+        }
+      ],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "israel-air-quality-assistant",
+      "name": "Israel Air Quality Assistant",
+      "ledgerName": "Israel Air Quality Assistant",
+      "blurb": "A LangGraph assistant that shows manual tool calling and structured outputs, answering questions about air quality across Israel.",
+      "category": "ai",
+      "status": "code",
+      "img": "img/air-quality.jpg",
+      "emoji": "🌬️",
+      "tags": [
+        "LangGraph",
+        "Tools"
+      ],
+      "links": [
+        {
+          "label": "Code",
+          "url": "https://github.com/ShimonNavon/israel-air-quality-assistant"
+        }
+      ],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "rented-gpu-video-generation",
+      "name": "Rented-GPU Video Generation",
+      "ledgerName": "Rented-GPU Video Generation",
+      "blurb": "Rents an RTX 5090 only while it’s generating video and keeps nothing on the rented machine. Finished videos come straight home.",
+      "category": "ai",
+      "status": "private",
+      "img": "img/gpu-rental.jpg",
+      "emoji": "🎞️",
+      "tags": [
+        "Vast.ai",
+        "Wan",
+        "Shell"
+      ],
+      "links": [],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "bama",
+      "name": "Bama · במה",
+      "ledgerName": "Bama · במה",
+      "blurb": "A Hebrew webinar marketplace with three roles (hosts, attendees, moderators) and a moderated lifecycle from submission to live session.",
+      "category": "web",
+      "status": "code",
+      "img": "img/bama.jpg",
+      "emoji": "🎤",
+      "tags": [
+        "Django",
+        "DRF",
+        "React"
+      ],
+      "links": [
+        {
+          "label": "Code",
+          "url": "https://github.com/ShimonNavon/webinars"
+        }
+      ],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "simon-host",
+      "name": "Simon Host",
+      "ledgerName": "Simon Host",
+      "blurb": "Websites-as-a-service for small businesses: a React + TypeScript front end with a Django lead engine behind it.",
+      "category": "web",
+      "status": "code",
+      "img": "img/simon-host.jpg",
+      "emoji": "🏠",
+      "tags": [
+        "React",
+        "TypeScript",
+        "Django"
+      ],
+      "links": [
+        {
+          "label": "Code",
+          "url": "https://github.com/ShimonNavon/simon-host"
+        }
+      ],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "rescue-alert-system",
+      "name": "Rescue Alert System",
+      "ledgerName": "Rescue Alert System",
+      "blurb": "An open-source (MIT), real-time, location-based alert system for Malachim Badrachim (מלאכים בדרכים). When an incident happens, the nearest available volunteers are alerted.",
+      "category": "web",
+      "status": "code",
+      "img": "img/rescue-alert.jpg",
+      "emoji": "🚨",
+      "tags": [
+        "Real-time",
+        "Geo",
+        "Open source"
+      ],
+      "links": [
+        {
+          "label": "Code",
+          "url": "https://github.com/ShimonNavon/rescue-alert-system"
+        }
+      ],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "kehila-budget-manager",
+      "name": "Kehila Budget Manager",
+      "ledgerName": "Kehila Budget Manager",
+      "blurb": "Budget management for a Chabad community. The rabbi sees every department’s spending at a glance, and each department head gets a focused workspace.",
+      "category": "web",
+      "status": "private",
+      "img": "img/kehila-budget.jpg",
+      "emoji": "🕍",
+      "tags": [
+        "Full-stack",
+        "JavaScript"
+      ],
+      "links": [],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "chikchak-learning-academy",
+      "name": "ChikChak Learning Academy",
+      "ledgerName": "ChikChak Learning Academy",
+      "blurb": "An interactive course site with 9 sequential modules, quizzes, interactive diagrams and a final exam, teaching a team the ChikChak stack.",
+      "category": "web",
+      "status": "private",
+      "img": "img/chikchak.jpg",
+      "emoji": "🎓",
+      "tags": [
+        "Education",
+        "Hebrew"
+      ],
+      "links": [],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "video-library",
+      "name": "Video Library",
+      "ledgerName": "Video Library",
+      "blurb": "A self-hosted video library in a single Go binary. It lists a media folder and streams with HTTP Range, with the front end embedded.",
+      "category": "web",
+      "status": "private",
+      "img": "img/video-library.jpg",
+      "emoji": "📼",
+      "tags": [
+        "Go",
+        "Streaming"
+      ],
+      "links": [],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "vivian-nfc",
+      "name": "Vivian NFC",
+      "ledgerName": "Vivian NFC",
+      "blurb": "An investor-facing site for a startup making premium NFC collectible cards for celebrities. Fans buy a card at a live event and tap it to unlock exclusive content.",
+      "category": "sites",
+      "status": "private",
+      "img": "img/vivian-nfc.jpg",
+      "emoji": "💳",
+      "tags": [
+        "TypeScript",
+        "Startup"
+      ],
+      "links": [],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "panim",
+      "name": "Panim · פנים אל פנים",
+      "ledgerName": "Panim · פנים אל פנים",
+      "blurb": "A Hebrew beta-signup landing page for a video-dating app, built to land its first 50 signups.",
+      "category": "sites",
+      "status": "private",
+      "img": "img/panim.jpg",
+      "emoji": "💞",
+      "tags": [
+        "Landing page",
+        "Hebrew RTL"
+      ],
+      "links": [],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "systems-consultancy",
+      "name": "Systems Consultancy",
+      "ledgerName": "Systems Consultancy",
+      "blurb": "My consultancy site for AI and LLM integration, back-end work and delivery.",
+      "category": "sites",
+      "status": "code",
+      "img": "img/systems-consultancy.jpg",
+      "emoji": "🧭",
+      "tags": [
+        "HTML",
+        "Docker"
+      ],
+      "links": [
+        {
+          "label": "Code",
+          "url": "https://github.com/ShimonNavon/consulting"
+        }
+      ],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "inner-form",
+      "name": "Inner Form",
+      "ledgerName": "Inner Form",
+      "blurb": "A Hebrew RTL editorial one-page site for a mind-body coach.",
+      "category": "sites",
+      "status": "code",
+      "img": "img/inner-form.jpg",
+      "emoji": "🧘",
+      "tags": [
+        "Hebrew RTL",
+        "Editorial"
+      ],
+      "links": [
+        {
+          "label": "Code",
+          "url": "https://github.com/ShimonNavon/inner-form"
+        }
+      ],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "mia-dynamics",
+      "name": "Mia Dynamics",
+      "ledgerName": "Mia Dynamics",
+      "blurb": "A concept redesign demo for an electric tilting-quad vehicle platform.",
+      "category": "sites",
+      "status": "code",
+      "img": "img/mia-dynamics.jpg",
+      "emoji": "🛵",
+      "tags": [
+        "Concept",
+        "HTML"
+      ],
+      "links": [
+        {
+          "label": "Code",
+          "url": "https://github.com/ShimonNavon/mia-dynamics"
+        }
+      ],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "benny-fluman-consulting",
+      "name": "Benny Fluman Consulting",
+      "ledgerName": "Benny Fluman Consulting",
+      "blurb": "A Hebrew RTL site for a business consultant, served with Docker and nginx behind a Cloudflare Tunnel.",
+      "category": "sites",
+      "status": "code",
+      "img": "img/benny-fluman.jpg",
+      "emoji": "📈",
+      "tags": [
+        "Hebrew RTL",
+        "nginx"
+      ],
+      "links": [
+        {
+          "label": "Code",
+          "url": "https://github.com/ShimonNavon/benny-fluman"
+        }
+      ],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "keygarden",
+      "name": "Keygarden",
+      "ledgerName": "Keygarden",
+      "blurb": "A touch-typing workout studio with a garden mascot, synthesised key clicks, 20 progressive lessons, timed workouts, streaks, XP and per-key feedback.",
+      "category": "tools",
+      "status": "private",
+      "img": "img/keygarden.jpg",
+      "emoji": "⌨️",
+      "tags": [
+        "Game",
+        "Kubernetes"
+      ],
+      "links": [],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "my-first-real-quantum-computing-project",
+      "name": "My First Real Quantum Computing Project",
+      "ledgerName": "My First Real Quantum Computing Project",
+      "blurb": "A beginner-friendly project on sending quantum circuits from ordinary software to real quantum hardware, built around Shor’s algorithm.",
+      "category": "tools",
+      "status": "code",
+      "img": "img/quantum.jpg",
+      "emoji": "⚛️",
+      "tags": [
+        "Quantum",
+        "Python"
+      ],
+      "links": [
+        {
+          "label": "Code",
+          "url": "https://github.com/ShimonNavon/my-first-real-quantum-computing-project"
+        }
+      ],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "coffee-punch-card",
+      "name": "Coffee Punch Card",
+      "ledgerName": "Coffee Punch Card",
+      "blurb": "A simple loyalty app that gives a free cup after nine purchases. I made it as a gift for a coffee shop I loved.",
+      "category": "tools",
+      "status": "private",
+      "img": "img/coffee-punch.jpg",
+      "emoji": "☕",
+      "tags": [
+        "Mobile web"
+      ],
+      "links": [],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "home-kubernetes-cloud",
+      "name": "Home Kubernetes Cloud",
+      "ledgerName": "Home Kubernetes Cloud",
+      "blurb": "My own small cloud on four mini-PCs, linked by Tailscale and exposed through Cloudflare Tunnels. Most of the apps on this page run here.",
+      "category": "tools",
+      "status": "private",
+      "img": "img/home-k8s.jpg",
+      "emoji": "☸️",
+      "tags": [
+        "kubeadm",
+        "Tailscale",
+        "Cloudflare"
+      ],
+      "links": [],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "early-projects",
+      "name": "Early projects",
+      "ledgerName": "Early projects",
+      "blurb": "Where it started: an A* pathfinding visualiser, a Sudoku solver, a two-player space shooter, a COVID-19 voice assistant built on web scraping, and a business card in Flutter.",
+      "category": "tools",
+      "status": "private",
+      "img": "img/early-projects.jpg",
+      "emoji": "🕹️",
+      "tags": [
+        "Python",
+        "Flutter",
+        "Algorithms"
+      ],
+      "links": [],
+      "note": "",
+      "year": 2022
+    }
+  ]
+}

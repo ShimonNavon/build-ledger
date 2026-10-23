@@ -5,6 +5,8 @@ Tools
   list_versions   the ledger, newest first; optional filter by deployment or env
   get_version     one build by name ("Dexterity") or image tag
   production      which build production is serving right now
+  list_projects   the portfolio: every active project, with its production build and counters
+  get_project     one project by slug or name: links, production build, its builds, notes
   render_page     rebuild dist/index.html from versions.json
 
 Run standalone to smoke-test:  echo '{"jsonrpc":"2.0","id":1,"method":"initialize"}' | python3 tools/ledger_mcp.py
@@ -18,6 +20,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "versions.json"
+PROJECTS = ROOT / "projects.json"
 PROTOCOL = "2024-11-05"
 
 TOOLS = [
@@ -49,6 +52,28 @@ TOOLS = [
         "inputSchema": {"type": "object", "properties": {}},
     },
     {
+        "name": "list_projects",
+        "description": "The portfolio dashboard as data: every project Simon works on, with status "
+                       "(live/code/private), links, production build and build count. Pair with get_project.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "query": {"type": "string", "description": "case-insensitive filter over name, blurb and tags"},
+                "status": {"type": "string", "description": "only projects with this status: live, code, private"},
+            },
+        },
+    },
+    {
+        "name": "get_project",
+        "description": "One project by slug or name: description, links (site, repo), production build "
+                       "and the full build list. Same data the dashboard shows when you open a project.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {"project": {"type": "string", "description": "slug ('screen-pointer') or name ('Screen Pointer')"}},
+            "required": ["project"],
+        },
+    },
+    {
         "name": "render_page",
         "description": "Rebuild dist/index.html from versions.json (the single-file page).",
         "inputSchema": {"type": "object", "properties": {}},
@@ -58,6 +83,51 @@ TOOLS = [
 
 def load() -> dict:
     return json.loads(DATA.read_text(encoding="utf-8"))
+
+
+def load_projects() -> list[dict]:
+    return json.loads(PROJECTS.read_text(encoding="utf-8"))["projects"]
+
+
+LEDGER_ALIASES = {"meeting recorder": "Meeting recorder", "projects": "Projects"}
+
+
+def ledger_name(p: dict) -> str:
+    return LEDGER_ALIASES.get(p["name"].lower(), p.get("ledgerName") or p["name"])
+
+
+def project_of(v: dict) -> str:
+    name = v.get("name") or ""
+    return name.split(" · ")[0].strip() if " · " in name else "Meeting recorder"
+
+
+def builds_for(data: dict, p: dict) -> list[dict]:
+    target = ledger_name(p).lower()
+    return [v for v in data["versions"] if project_of(v).lower() == target]
+
+
+def project_summary(data: dict, p: dict) -> dict:
+    builds = builds_for(data, p)
+    prod = next((b for b in builds if "prod" in (b.get("deployed") or [])), None)
+    return {
+        "slug": p["slug"],
+        "name": p["name"],
+        "blurb": p.get("blurb"),
+        "status": p.get("status"),
+        "category": p.get("category"),
+        "links": p.get("links") or [],
+        "production": prod.get("name") if prod else None,
+        "builds": len(builds),
+        "last_build": builds[-1].get("built") if builds else None,
+    }
+
+
+def project_by_ref(projects: list[dict], ref: str) -> dict | None:
+    ref = ref.strip().lower()
+    for p in projects:
+        if ref in (p["slug"].lower(), p["name"].lower(), ledger_name(p).lower()):
+            return p
+    return None
 
 
 def summary(v: dict) -> dict:
@@ -111,6 +181,27 @@ def call(name: str, args: dict) -> dict:
     if name == "production":
         v = next((v for v in data["versions"] if "prod" in (v.get("deployed") or [])), None)
         return text(summary(v) if v else "nothing is marked as deployed to prod")
+    if name == "list_projects":
+        q = (args.get("query") or "").lower()
+        status = (args.get("status") or "").lower()
+        out = []
+        for p in load_projects():
+            if status and (p.get("status") or "").lower() != status:
+                continue
+            hay = f"{p['name']} {p.get('blurb','')} {' '.join(p.get('tags') or [])} {p.get('category','')}".lower()
+            if q and q not in hay:
+                continue
+            out.append(project_summary(data, p))
+        return text(out)
+    if name == "get_project":
+        p = project_by_ref(load_projects(), str(args.get("project") or ""))
+        if not p:
+            return text(f"no project called {args.get('project')!r}")
+        builds = builds_for(data, p)
+        return text({**project_summary(data, p),
+                     "note": p.get("note"),
+                     "year": p.get("year"),
+                     "builds_detail": [summary(v) for v in reversed(builds)]})
     if name == "render_page":
         out = subprocess.run([sys.executable, str(ROOT / "build.py")], capture_output=True, text=True)
         return text((out.stdout or out.stderr).strip())

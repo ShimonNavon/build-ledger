@@ -233,32 +233,6 @@
   .b-roll::before { display: none; }
   .dash { color: var(--faint); }
 
-  .project-bar {
-    display: flex; align-items: center; gap: 6px;
-    padding: 10px 18px; border-bottom: 1px solid var(--line);
-    background: color-mix(in srgb, var(--bg) 42%, var(--card));
-    overflow-x: auto; scrollbar-width: none;
-  }
-  .project-bar::-webkit-scrollbar { display: none; }
-  .project-tab {
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 5px 10px; border: 1px solid var(--line); border-radius: 999px;
-    background: var(--card); color: var(--muted);
-    font: inherit; font-size: 11.5px; font-weight: 600; white-space: nowrap; cursor: pointer;
-    transition: color .15s ease, border-color .15s ease, background-color .15s ease;
-  }
-  .project-tab:hover { color: var(--ink); border-color: var(--line-strong); }
-  .project-tab[aria-pressed="true"] {
-    color: var(--p, var(--accent));
-    border-color: color-mix(in srgb, var(--p, var(--accent)) 38%, var(--line));
-    background: color-mix(in srgb, var(--p, var(--accent)) 10%, var(--card));
-  }
-  .project-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-  .project-count {
-    font-size: 10px; font-weight: 600; color: var(--faint);
-    font-variant-numeric: tabular-nums; padding: 0 1px;
-  }
-  .project-tab[aria-pressed="true"] .project-count { color: inherit; opacity: .72; }
   .project-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--p, var(--muted)); flex: none; }
   .project-label {
     display: inline-flex; align-items: center; gap: 5px;
@@ -430,7 +404,6 @@
     .card-head { align-items: flex-start; flex-direction: column; gap: 12px; }
     .toolbar { width: 100%; }
     .search { width: 100%; flex: 1; }
-    .project-bar { flex-wrap: wrap; padding: 10px 16px; }
 
     .builds .table-scroll { max-height: 62vh; }
     .builds table, .branches table { min-width: 0; display: block; }
@@ -475,12 +448,119 @@
     .branches .when small { display: inline; margin-left: 5px; font-size: 10px; }
     .branches .branch-subject { max-width: none; }
   }
+  @media (max-width: 620px) {
+    .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .pcard-body { padding: 10px 11px 11px; gap: 6px; }
+    .pcard-title { font-size: 12.5px; }
+    .pcard-blurb { font-size: 11px; }
+    .pcard-links { display: none; }
+    .pcard-foot { font-size: 10.5px; }
+    .home-tools { width: 100%; }
+    .home-tools .search { width: 100%; flex: 1; }
+  }
   @media (max-width: 520px) {
     .top-right { flex-direction: column; }
     .prod-card { flex: 0 0 auto; }
     .stats { width: 100%; }
     .stat { flex: 1; min-width: 0; padding: 7px 9px; }
   }
+
+    .project-bar {
+    display: flex; align-items: center; gap: 6px;
+    padding: 10px 18px; border-bottom: 1px solid var(--line);
+    background: color-mix(in srgb, var(--bg) 42%, var(--card));
+    overflow-x: auto; scrollbar-width: none;
+  }
+  .project-bar::-webkit-scrollbar { display: none; }
+  .project-tab {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 10px; border: 1px solid var(--line); border-radius: 999px;
+    background: var(--card); color: var(--muted);
+    font: inherit; font-size: 11.5px; font-weight: 600; white-space: nowrap; cursor: pointer;
+    transition: color .15s ease, border-color .15s ease, background-color .15s ease;
+  }
+  .project-tab:hover { color: var(--ink); border-color: var(--line-strong); }
+  .project-tab[aria-pressed="true"] {
+    color: var(--p, var(--accent));
+    border-color: color-mix(in srgb, var(--p, var(--accent)) 38%, var(--line));
+    background: color-mix(in srgb, var(--p, var(--accent)) 10%, var(--card));
+  }
+  .project-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .project-count {
+    font-size: 10px; font-weight: 600; color: var(--faint);
+    font-variant-numeric: tabular-nums; padding: 0 1px;
+  }
+  .project-tab[aria-pressed="true"] .project-count { color: inherit; opacity: .72; }
+  .project-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--p, var(--muted)); flex: none; }
+  .project-label {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 10.5px; font-weight: 600; color: var(--muted);
+  }
+  .p-all { --p: var(--accent); }
+  .p-meeting { --p: var(--p-meeting); }
+  .p-bulkbuy { --p: var(--p-bulkbuy); }
+  .p-projects { --p: var(--p-projects); }
+  .p-ledger { --p: var(--p-ledger); }
+  .p-screen { --p: var(--p-screen); }
+  .p-other { --p: var(--muted); }
+  .project-bar { flex-wrap: wrap; padding: 10px 16px; }
+
+  /* ---- projects dashboard */
+  .section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin: 22px 2px 12px; flex-wrap: wrap; }
+  .section-head h2 { font-size: 17px; margin: 0 0 3px; }
+  .section-head p { margin: 0; color: var(--muted); font-size: 12.5px; }
+  .home-tools { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .home-tools .search { width: 240px; }
+  .all-builds-link {
+    display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+    padding: 7px 12px; border: 1px solid var(--line); border-radius: 999px;
+    background: var(--card); color: var(--muted); font-size: 11.5px; font-weight: 600;
+    text-decoration: none; transition: color .15s ease, border-color .15s ease, background-color .15s ease;
+  }
+  .all-builds-link:hover { color: var(--accent); border-color: var(--line-strong); background: color-mix(in srgb, var(--accent) 6%, var(--card)); }
+  .all-builds-link span { font-size: 10px; color: var(--faint); font-variant-numeric: tabular-nums; }
+  .home-portfolio { margin-top: 5px !important; font-size: 11.5px !important; }
+  .home-portfolio a { color: var(--accent); text-decoration: none; }
+  .home-portfolio a:hover { text-decoration: underline; }
+  .project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 14px; }
+  .pcard {
+    display: flex; flex-direction: column; gap: 0; text-decoration: none; color: inherit;
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0,0,0,.05); transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+  }
+  .pcard:hover { transform: translateY(-2px); border-color: var(--line-strong); box-shadow: 0 14px 30px rgba(0,0,0,.12); text-decoration: none; }
+  .pcard-media { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: color-mix(in srgb, var(--accent) 7%, var(--bg)); }
+  .pcard-emoji { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 34px; opacity: .55; }
+  .pcard-media img { position: relative; z-index: 1; display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform .3s ease; }
+  .pcard:hover .pcard-media img { transform: scale(1.03); }
+  .pcard-mosaic { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 1px; background: var(--line); }
+  .pcard-mosaic img { min-width: 0; min-height: 0; }
+  .pcard-fallback { display: flex; align-items: center; justify-content: center; font-size: 30px; background: color-mix(in srgb, var(--accent) 8%, var(--bg)); }
+  .pcard-body { display: flex; flex-direction: column; gap: 9px; padding: 13px 16px 13px; flex: 1; min-width: 0; }
+  .pcard-top { display: flex; align-items: center; gap: 9px; min-width: 0; }
+  .pcard-title { font-weight: 650; font-size: 14.5px; letter-spacing: -.01em; min-width: 0; overflow-wrap: anywhere; }
+  .pcard-dot { width: 7px; height: 7px; border-radius: 50%; flex: none; background: var(--muted); }
+  .pcard-dot.live { background: var(--prod); }
+  .pcard-dot.code { background: var(--accent); }
+  .pcard-dot.private { background: var(--test); }
+  .pcard-blurb { color: var(--muted); font-size: 12.5px; line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .pcard-foot { display: flex; align-items: center; gap: 8px; margin-top: auto; font-size: 11.5px; color: var(--muted); }
+  .pcard-prod { color: var(--prod); font-weight: 600; }
+  .pcard-builds { margin-left: auto; white-space: nowrap; }
+  .detail-head { display: flex; flex-direction: column; gap: 10px; margin: 20px 2px 16px; }
+  .back { color: var(--muted); font-size: 12.5px; text-decoration: none; width: fit-content; }
+  .back:hover { color: var(--ink); }
+  .detail-title h2 { margin: 0 0 4px; font-size: 22px; letter-spacing: -.02em; }
+  .detail-title p { margin: 0; color: var(--muted); font-size: 13px; max-width: 82ch; }
+  .detail-links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+  .detail-links a { font-size: 12px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--ink); text-decoration: none; }
+  .detail-links a:hover { border-color: var(--line-strong); background: color-mix(in srgb, var(--accent) 6%, transparent); }
+  .pcard-title { color: inherit; text-decoration: none; }
+  .pcard-title:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .pcard-links { display: flex; gap: 6px; flex-wrap: wrap; }
+  .chip { font-size: 10.5px; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); text-decoration: none; white-space: nowrap; }
+  .chip:hover { color: var(--ink); border-color: var(--line-strong); background: color-mix(in srgb, var(--accent) 7%, transparent); text-decoration: none; }
+  .empty-home { color: var(--muted); font-size: 13px; padding: 18px 2px; }
 </style>
 </head>
 <body>
@@ -489,7 +569,7 @@
     <div class="identity">
       <span class="mark" aria-hidden="true"><span></span><span></span><span></span></span>
       <div>
-        <div class="eyebrow">ubuntu04:5000/meeting-recorder</div>
+        <div class="eyebrow">Projects · builds · deployments</div>
         <h1>Build Ledger</h1>
         <p class="sub">Every build, what changed, and where it runs.</p>
       </div>
@@ -498,12 +578,37 @@
       __PROD_CARD__
       <div class="stats">
         <div class="stat" title="Builds recorded in the ledger"><b id="s-total">0</b><span>builds</span></div>
-        <div class="stat" title="Projects represented in the ledger"><b id="s-projects">0</b><span>projects</span></div>
+        <div class="stat" title="Projects in the catalogue"><b id="s-projects">0</b><span>projects</span></div>
         <div class="stat" title="Distinct deploy targets across all builds"><b id="s-targets">0</b><span>targets</span></div>
         <div class="stat" title="Builds rolled back after deployment"><b id="s-rollbacks">0</b><span id="s-rollbacks-label">rollbacks</span></div>
       </div>
     </div>
   </header>
+
+  <section id="home" aria-labelledby="home-title">
+    <div class="section-head">
+      <div>
+        <h2 id="home-title">Projects</h2>
+        <p id="home-sub">Every project I keep an eye on. Open one for its builds, production state and notes.</p>
+        <p class="home-portfolio"><a href="https://projects.navonsimon.com/" target="_blank" rel="noopener">Portfolio: projects.navonsimon.com ↗</a></p>
+      </div>
+      <div class="home-tools">
+        <input id="pq" class="search" type="search" aria-label="Filter projects" placeholder="Filter projects…" autocomplete="off" spellcheck="false">
+        <a class="all-builds-link" href="#/builds">All builds <span id="home-build-count">0</span> →</a>
+      </div>
+    </div>
+    <div id="project-grid" class="project-grid"></div>
+  </section>
+
+  <div id="project-view" hidden>
+    <div class="detail-head">
+      <a class="back" href="#/" id="back-link">← All projects</a>
+      <div class="detail-title">
+        <h2 id="detail-name"></h2>
+        <p id="detail-blurb"></p>
+        <div class="detail-links" id="detail-links"></div>
+      </div>
+    </div>
 
   <section class="card builds" aria-labelledby="builds-title">
     <div class="card-head">
@@ -516,7 +621,6 @@
         <span class="count" id="count"></span>
       </div>
     </div>
-    <div class="project-bar" id="project-tabs" role="group" aria-label="Filter builds by project"></div>
     <div class="table-scroll">
       <table>
         <thead>
@@ -569,7 +673,9 @@
       </div>
     </div>
 
-    <div class="sign" id="sign" title="the ledger says hello">
+    </div>
+
+  <div class="sign" id="sign" title="the ledger says hello">
       <span class="sign-hand">🖐️</span>
       <span id="sign-line"></span>
     </div>
@@ -578,6 +684,7 @@
 
 <script>
 const rows = __ROWS__;
+const projects = __PROJECTS__;
 
 const HL_KEY = "mr-highlights";
 const quips = __QUIPS__;
@@ -653,26 +760,124 @@ const badgeClass = { prod: "b-prod", test: "b-test", integration: "b-int" };
 let selectedProject = (() => {
   try { return localStorage.getItem("mr-project") || "all"; } catch (e) { return "all"; }
 })();
-let projectList = [];
 function collectProjects() {
   const counts = new Map();
   for (const r of rows) {
     const p = projectOfTag[r.tag];
     counts.set(p, (counts.get(p) || 0) + 1);
   }
-  projectList = [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
   if (selectedProject !== "all" && !counts.has(selectedProject)) selectedProject = "all";
-  document.getElementById("s-projects").textContent = projectList.length;
-}
-function renderProjectTabs() {
-  const el = document.getElementById("project-tabs");
-  const tabs = [
-    { project: "all", label: "All builds", count: rows.length, cls: "p-all" },
-    ...projectList.map(([p, count]) => ({ project: p, label: projectLabelOf(p), count, cls: projectClassOf(p) })),
-  ];
-  el.innerHTML = tabs.map(t => `<button class="project-tab ${t.cls}" data-project="${esc(t.project)}" aria-pressed="${selectedProject === t.project}">${t.project === "all" ? "" : '<span class="project-dot"></span>'}<span>${esc(t.label)}</span><span class="project-count">${t.count}</span></button>`).join("");
+  document.getElementById("s-projects").textContent = projects.length;
 }
 const buildCount = (n) => `${n} build${n === 1 ? "" : "s"}`;
+
+// ---------------------------------------------------------------- projects dashboard
+const ledgerNameOf = (p) => p.ledgerName || p.name;
+const buildsOf = (p) => rows.filter(r => projectOfTag[r.tag] === ledgerNameOf(p));
+const STATIC_STATUS = { live: "live", code: "code", private: "private" };
+const GALLERY_BASE = "https://projects.navonsimon.com/";
+const imageUrl = (img) => {
+  if (!img) return "";
+  return /^https?:\/\//i.test(img) ? img : GALLERY_BASE + String(img).replace(/^\/+/, "");
+};
+const GALLERY_MOSAIC = ["img/bulkbuy.jpg", "img/meeting-recorder.jpg", "img/builds.jpg", "img/screen-pointer.jpg"];
+
+function projectMedia(p) {
+  if (p.slug === "my-projects") {
+    return `<div class="pcard-media pcard-mosaic">${GALLERY_MOSAIC.map(src =>
+      `<img src="${esc(imageUrl(src))}" alt="" loading="lazy" decoding="async" onerror="this.remove()">`).join("")}</div>`;
+  }
+  if (p.img) {
+    return `<div class="pcard-media"><span class="pcard-emoji" aria-hidden="true">${esc(p.emoji || "▦")}</span><img src="${esc(imageUrl(p.img))}" alt="" loading="lazy" decoding="async" onerror="this.remove()"></div>`;
+  }
+  return `<div class="pcard-media pcard-fallback" aria-hidden="true">${esc(p.emoji || "▦")}</div>`;
+}
+
+function projectCard(p) {
+  const builds = buildsOf(p);
+  const prod = builds.find(r => r.deployed.includes("prod"));
+  const newest = builds.slice().sort((a, b) => b.built.localeCompare(a.built))[0];
+  const foot = prod
+    ? `<span class="pcard-prod" title="Live on production">● ${esc(splitVersionName(nameOf[prod.tag])[1])}</span>`
+    : (builds.length ? `<span>no prod build</span>` : `<span class="dash">—</span>`);
+  const meta = builds.length ? `${builds.length} build${builds.length === 1 ? "" : "s"}` : "no builds yet";
+  const chips = (p.links || []).slice(0, 2)
+    .map(l => `<a class="chip" href="${esc(l.url)}" target="_blank" rel="noopener" title="${esc(l.url)}">${esc(l.label)} ↗</a>`).join("");
+  return `<div class="pcard" data-slug="${esc(p.slug)}" tabindex="0" role="link" aria-label="${esc(p.name)}">
+    ${projectMedia(p)}
+    <div class="pcard-body">
+      <div class="pcard-top">
+        <span class="pcard-dot ${esc(STATIC_STATUS[p.status] || "")}"></span>
+        <a class="pcard-title" href="#/p/${esc(p.slug)}">${esc(p.name)}</a>
+      </div>
+      <div class="pcard-blurb">${esc(p.blurb || "")}</div>
+      ${chips ? `<div class="pcard-links">${chips}</div>` : ""}
+      <div class="pcard-foot">${foot}<span class="pcard-builds">${newest ? esc(newest.built.slice(0, 10)) + " · " : ""}${meta}</span></div>
+    </div>
+  </div>`;
+}
+
+function renderHome() {
+  const q = (document.getElementById("pq").value || "").trim().toLowerCase();
+  const list = projects
+    .filter(p => !q || `${p.name} ${p.blurb} ${(p.tags || []).join(" ")} ${p.category}`.toLowerCase().includes(q))
+    .sort((a, b) => {
+      const ba = buildsOf(a), bb = buildsOf(b);
+      const pa = ba.some(r => r.deployed.includes("prod")) ? 1 : 0;
+      const pb = bb.some(r => r.deployed.includes("prod")) ? 1 : 0;
+      if (pb !== pa) return pb - pa;
+      if (bb.length !== ba.length) return bb.length - ba.length;
+      return a.name.localeCompare(b.name, "en");
+    });
+  const grid = document.getElementById("project-grid");
+  grid.innerHTML = list.length ? list.map(projectCard).join("") : `<div class="empty-home">No project matches that.</div>`;
+  document.getElementById("home-build-count").textContent = rows.length;
+  document.getElementById("home-build-count").textContent = rows.length;
+  document.getElementById("home-sub").textContent =
+    `${projects.length} projects · ${rows.length} builds recorded · open one for production state, builds and notes.`;
+}
+
+function setView(name) {
+  document.getElementById("home").hidden = name !== "home";
+  document.getElementById("project-view").hidden = name === "home";
+  document.querySelector(".sign")?.toggleAttribute("hidden", name === "home");
+}
+
+function openProject(slug) {
+  const p = projects.find(x => x.slug === slug);
+  if (!p) { location.hash = "#/builds"; return; }
+  setView("project");
+  document.getElementById("detail-name").textContent = p.name;
+  document.getElementById("detail-blurb").textContent = p.blurb || "";
+  document.getElementById("detail-links").innerHTML = (p.links || [])
+    .map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`).join("");
+  const prodCard = document.querySelector(".prod-card");
+  if (prodCard) prodCard.hidden = !buildsOf(p).some(r => r.deployed.includes("prod"));
+  selectedProject = ledgerNameOf(p);
+  collectProjects();
+  render();
+  document.querySelector(".builds h2").textContent = "Builds & deployments";
+}
+
+function showAllBuilds() {
+  setView("project");
+  document.getElementById("detail-name").textContent = "All builds";
+  document.getElementById("detail-blurb").textContent = "Every build across every project, newest first.";
+  document.getElementById("detail-links").innerHTML = "";
+  document.querySelector(".prod-card")?.removeAttribute("hidden");
+  selectedProject = "all";
+  collectProjects();
+  render();
+}
+
+function route() {
+  const h = location.hash || "#/";
+  if (h.startsWith("#/p/")) openProject(decodeURIComponent(h.slice(4)));
+  else if (h === "#/builds") showAllBuilds();
+  else { document.querySelector(".prod-card")?.removeAttribute("hidden"); setView("home"); collectProjects(); renderHome(); }
+}
+
+
 let sortKey = "built", sortDir = -1;
 const q = document.getElementById("q");
 const tbody = document.getElementById("rows");
@@ -760,15 +965,6 @@ document.querySelectorAll("thead th[data-key]").forEach(th => {
     else { sortKey = k; sortDir = k === "built" || k === "commit" || k === "lines" || k === "ver" ? -1 : 1; }
     render();
   });
-});
-
-document.getElementById("project-tabs").addEventListener("click", (e) => {
-  const tab = e.target.closest(".project-tab");
-  if (!tab) return;
-  selectedProject = tab.dataset.project;
-  try { localStorage.setItem("mr-project", selectedProject); } catch (err) {}
-  renderProjectTabs();
-  render();
 });
 
 let toastTimer;
@@ -1020,9 +1216,22 @@ function updateFades() {
 for (const s of scrollers) s.addEventListener('scroll', updateFades, { passive: true });
 window.addEventListener('resize', updateFades);
 collectProjects();
-renderProjectTabs();
 render();
 updateFades();
+// Routing lives last: openProject() calls render(), which needs every const above in scope.
+document.getElementById("pq").addEventListener("input", renderHome);
+document.getElementById("project-grid").addEventListener("click", (e) => {
+  if (e.target.closest("a,button")) return;
+  const card = e.target.closest(".pcard");
+  if (card) location.hash = "#/p/" + card.dataset.slug;
+});
+document.getElementById("project-grid").addEventListener("keydown", (e) => {
+  if (e.key !== "Enter" && e.key !== " ") return;
+  const card = e.target.closest(".pcard");
+  if (card && !e.target.closest("a")) { e.preventDefault(); location.hash = "#/p/" + card.dataset.slug; }
+});
+window.addEventListener("hashchange", route);
+route();
 </script>
 </body>
 </html>
