@@ -584,7 +584,27 @@ const quips = __QUIPS__;
 
 const versionNames = __VERSIONNAMES__;
 
-const versionOf = Object.fromEntries(rows.map((r, i) => [r.tag, i + 1]));
+const PROJECT_LABELS = { "Projects": "My projects" };
+const projectOfName = (full) => String(full).includes(" · ") ? String(full).split(" · ")[0].trim() : "Meeting recorder";
+const projectClassOf = (p) => ({ "Meeting recorder": "p-meeting", "BulkBuy": "p-bulkbuy", "Projects": "p-projects", "Build Ledger": "p-ledger", "Screen Pointer": "p-screen" }[p] || "p-other");
+const projectLabelOf = (p) => PROJECT_LABELS[p] || p;
+const projectOfTag = Object.fromEntries(rows.map((r, i) => [r.tag, projectOfName(versionNames[i] || r.tag)]));
+
+// Version numbers count within a project: the first Meeting recorder build is v1, the first Build Ledger
+// entry is v1 too. Mixing them in one series (v50 for a docs change) told the reader nothing.
+const nameOf = Object.fromEntries(rows.map((r, i) => [r.tag, versionNames[i] || r.tag]));
+
+const versionOf = (() => {
+  const seen = new Map();
+  const out = {};
+  for (const r of rows) {
+    const p = projectOfTag[r.tag];
+    const n = (seen.get(p) || 0) + 1;
+    seen.set(p, n);
+    out[r.tag] = n;
+  }
+  return out;
+})();
 
 const rolledBack = __ROLLEDBACK__;
 
@@ -608,6 +628,10 @@ const splitVersionName = (full) => {
   return /\p{Extended_Pictographic}/u.test(parts[0]) ? [parts[0], parts.slice(1).join(" ")] : ["", full];
 };
 
+// The card already shows the project and the built date, so a name like
+// "Build Ledger · 2026-10-23 16:57 project filters" only needs to say "project filters".
+const displayName = (full) => String(full).replace(/^[^·]+ · \d{4}-\d{2}-\d{2} \d{2}:\d{2} /, "").trim() || String(full);
+
 const hlOrder = ["yellow", "blue"];
 const highlights = (() => {
   try { return JSON.parse(sessionStorage.getItem(HL_KEY)) || {}; } catch (e) { return {}; }
@@ -626,11 +650,6 @@ function cycleHighlight(tag) {
 const commitMeta = __COMMITMETA__;
 
 const badgeClass = { prod: "b-prod", test: "b-test", integration: "b-int" };
-const PROJECT_LABELS = { "Projects": "My projects" };
-const projectOfName = (full) => String(full).includes(" · ") ? String(full).split(" · ")[0].trim() : "Meeting recorder";
-const projectClassOf = (p) => ({ "Meeting recorder": "p-meeting", "BulkBuy": "p-bulkbuy", "Projects": "p-projects", "Build Ledger": "p-ledger", "Screen Pointer": "p-screen" }[p] || "p-other");
-const projectLabelOf = (p) => PROJECT_LABELS[p] || p;
-const projectOfTag = Object.fromEntries(rows.map(r => [r.tag, projectOfName(versionNames[versionOf[r.tag] - 1] || r.tag)]));
 let selectedProject = (() => {
   try { return localStorage.getItem("mr-project") || "all"; } catch (e) { return "all"; }
 })();
@@ -670,7 +689,7 @@ function render() {
   const needle = q.value.trim().toLowerCase();
   const base = rows.filter(r => selectedProject === "all" || projectOfTag[r.tag] === selectedProject);
   const list = base
-    .filter(r => !needle || [r.tag, r.built, r.commit, r.subject, r.deployed.join(" "), versionNames[versionOf[r.tag] - 1] || "", projectOfTag[r.tag], projectLabelOf(projectOfTag[r.tag])].join(" ").toLowerCase().includes(needle))
+    .filter(r => !needle || [r.tag, r.built, r.commit, r.subject, r.deployed.join(" "), nameOf[r.tag] || "", projectOfTag[r.tag], projectLabelOf(projectOfTag[r.tag])].join(" ").toLowerCase().includes(needle))
     .sort((a, b) => {
       const av = a[sortKey], bv = b[sortKey];
       const cmp = sortKey === "deployed"
@@ -685,8 +704,9 @@ function render() {
 
   tbody.innerHTML = list.length ? list.map(r => {
     const n = versionOf[r.tag];
-    const fullName = versionNames[n - 1] || r.tag;
-    const [icon, label] = splitVersionName(fullName);
+    const fullName = nameOf[r.tag] || r.tag;
+    const [icon, rawLabel] = splitVersionName(fullName);
+    const label = displayName(rawLabel);
     const project = projectOfTag[r.tag];
     const m = commitMeta[r.tag];
     const note = notes[r.tag];
@@ -792,7 +812,7 @@ function copyLine(tr) {
   const row = rows.find(r => r.tag === tag);
   if (!row) return;
   const n = versionOf[tag];
-  const line = `v${n} ${versionNames[n - 1]} · ${row.subject} (${row.built})`;
+  const line = `v${n} ${nameOf[tag]} · ${row.subject} (${row.built})`;
   showToast(line.length > 48 ? line.slice(0, 46) + "…" : line);
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(line).catch(() => legacyCopy(line));
@@ -817,7 +837,7 @@ function openNoteEditor(tag) {
   tagEl.title = tag;
   const name = document.createElement("span");
   name.className = "who-name";
-  name.textContent = versionNames[n - 1] + " · " + rows.find(r => r.tag === tag).subject;
+  name.textContent = nameOf[tag] + " · " + rows.find(r => r.tag === tag).subject;
   who.append(tagEl, name);
 
   const ta = document.createElement("textarea");
@@ -892,7 +912,7 @@ q.addEventListener("input", render);
   const newest = handNames[handNames.length - 1] || "Dexterity";
   const oldest = handNames[0] || "Carpal";
   const prodRow = rows.find(r => r.deployed.includes("prod"));
-  const prod = prodRow ? splitVersionName(versionNames[rows.indexOf(prodRow)])[1] : newest;
+  const prod = prodRow ? splitVersionName(nameOf[prodRow.tag])[1] : newest;
   const lines = [
     `${rows.length} builds, every one named — <b>${oldest}</b> to <b>${newest}</b>, knuckle by knuckle.`,
     `A hand has ${rows.length} parts if you count them all. So does this ledger.`,

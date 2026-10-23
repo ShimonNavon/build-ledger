@@ -591,7 +591,27 @@ const quips = ["hi there", "glad you looked", "still holding up", "all thumbs, n
 
 const versionNames = ["🦴 Carpal", "🦴 Metacarpal", "🦴 Phalanx", "🧵 Tendon", "🪢 Ligament", "✊ Knuckle", "🖐️ Palm", "⌚ Wrist", "👍 Thumb", "☝️ Index", "✋ Middle", "💍 Ring", "🤏 Pinky", "🦴 Scaphoid", "🌙 Lunate", "🔺 Triquetrum", "🫘 Pisiform", "🧩 Trapezium", "🔷 Trapezoid", "🗿 Capitate", "🪝 Hamate", "📏 Radius", "📐 Ulna", "🪝 Flexor", "🦾 Extensor", "⚡ Median nerve", "⚡ Ulnar nerve", "🩹 Splint", "🧤 Cast", "🧵 Suture", "🔪 Scalpel", "🩺 Stethoscope", "🩸 Tourniquet", "🩹 Graft", "💪 Rehab", "🤹 Dexterity", "BulkBuy · 2026-10-23 13:17 launch", "Projects · 2026-10-23 13:17 launch", "BulkBuy · 2026-10-23 13:24 Hebrew", "Projects · 2026-10-23 13:24 Hebrew", "✊ Grip", "BulkBuy · 2026-10-23 14:10 media publishing", "Projects · 2026-10-23 14:10 BulkBuy publishing", "BulkBuy · 2026-10-23 16:08 cinematic mobile preview", "Projects · 2026-10-23 16:08 BulkBuy editorial preview", "Build Ledger · 2026-10-23 16:23 Tailscale-only access", "Build Ledger · 2026-10-23 16:33 automatic branches", "Build Ledger · 2026-10-23 16:46 visual refresh", "Screen Pointer · 2026-10-23 16:52 agent pointing preview", "Build Ledger · 2026-10-23 16:57 project filters"];
 
-const versionOf = Object.fromEntries(rows.map((r, i) => [r.tag, i + 1]));
+const PROJECT_LABELS = { "Projects": "My projects" };
+const projectOfName = (full) => String(full).includes(" · ") ? String(full).split(" · ")[0].trim() : "Meeting recorder";
+const projectClassOf = (p) => ({ "Meeting recorder": "p-meeting", "BulkBuy": "p-bulkbuy", "Projects": "p-projects", "Build Ledger": "p-ledger", "Screen Pointer": "p-screen" }[p] || "p-other");
+const projectLabelOf = (p) => PROJECT_LABELS[p] || p;
+const projectOfTag = Object.fromEntries(rows.map((r, i) => [r.tag, projectOfName(versionNames[i] || r.tag)]));
+
+// Version numbers count within a project: the first Meeting recorder build is v1, the first Build Ledger
+// entry is v1 too. Mixing them in one series (v50 for a docs change) told the reader nothing.
+const nameOf = Object.fromEntries(rows.map((r, i) => [r.tag, versionNames[i] || r.tag]));
+
+const versionOf = (() => {
+  const seen = new Map();
+  const out = {};
+  for (const r of rows) {
+    const p = projectOfTag[r.tag];
+    const n = (seen.get(p) || 0) + 1;
+    seen.set(p, n);
+    out[r.tag] = n;
+  }
+  return out;
+})();
 
 const rolledBack = {"db76047": "🩹 Graft · Oct 20, 23:27"};
 
@@ -615,6 +635,10 @@ const splitVersionName = (full) => {
   return /\p{Extended_Pictographic}/u.test(parts[0]) ? [parts[0], parts.slice(1).join(" ")] : ["", full];
 };
 
+// The card already shows the project and the built date, so a name like
+// "Build Ledger · 2026-10-23 16:57 project filters" only needs to say "project filters".
+const displayName = (full) => String(full).replace(/^[^·]+ · \d{4}-\d{2}-\d{2} \d{2}:\d{2} /, "").trim() || String(full);
+
 const hlOrder = ["yellow", "blue"];
 const highlights = (() => {
   try { return JSON.parse(sessionStorage.getItem(HL_KEY)) || {}; } catch (e) { return {}; }
@@ -633,11 +657,6 @@ function cycleHighlight(tag) {
 const commitMeta = {"4dd897c": {"files": 11, "ins": 293, "del": 365, "author": "Simon"}, "8240868": {"files": 2, "ins": 2, "del": 1, "author": "Simon"}, "ae0b0c8": {"files": 18, "ins": 477, "del": 156, "author": "Simon"}, "dd58106": {"files": 2, "ins": 66, "del": 4, "author": "Simon"}, "fa5b2d1": {"files": 6, "ins": 171, "del": 10, "author": "Simon"}, "90a52d8": {"files": 1, "ins": 11, "del": 1, "author": "Simon"}, "d10eb63": {"files": 1, "ins": 7, "del": 0, "author": "Simon"}, "caca783": {"files": 2, "ins": 18, "del": 4, "author": "Simon"}, "18eb12b": {"files": 3, "ins": 27, "del": 14, "author": "Simon"}, "142aed4": {"files": 2, "ins": 29, "del": 2, "author": "Simon"}, "a58929a": {"files": 7, "ins": 155, "del": 9, "author": "Simon"}, "b653c00": {"files": 11, "ins": 208, "del": 54, "author": "Simon"}, "3352d8a": {"files": 4, "ins": 26, "del": 3, "author": "Simon"}, "4841ab3": {"files": 2, "ins": 20, "del": 15, "author": "Simon"}, "b431cd1": {"files": 10, "ins": 135, "del": 31, "author": "Simon"}, "910049f": {"files": 6, "ins": 513, "del": 5, "author": "Simon"}, "e47d1e8": {"files": 7, "ins": 150, "del": 65, "author": "Simon"}, "fc93c57": {"files": 3, "ins": 24, "del": 3, "author": "Simon"}, "5b78440": {"files": 14, "ins": 400, "del": 34, "author": "Simon"}, "300b461": {"files": 1, "ins": 10, "del": 2, "author": "Simon"}, "50acd75": {"files": 3, "ins": 27, "del": 10, "author": "Simon"}, "eaedf0d": {"files": 9, "ins": 64, "del": 20, "author": "Simon"}, "dc31c1c": {"files": 3, "ins": 51, "del": 2, "author": "Simon"}, "4e6baa3": {"files": 11, "ins": 383, "del": 53, "author": "Simon"}, "90ccbc8": {"files": 23, "ins": 598, "del": 297, "author": "Simon"}, "d0ddbb4": {"files": 2, "ins": 5, "del": 1, "author": "Simon"}, "1233436": {"files": 3, "ins": 28, "del": 5, "author": "Simon"}, "3608da0": {"files": 5, "ins": 11, "del": 12, "author": "Simon"}, "39fb294": {"files": 8, "ins": 166, "del": 19, "author": "Simon"}, "a57b44c": {"files": 4, "ins": 255, "del": 66, "author": "Simon"}, "9631a1e": {"files": 5, "ins": 244, "del": 13, "author": "Simon"}, "97bf810": {"files": 10, "ins": 335, "del": 7, "author": "Simon"}, "c9fa92d": {"files": 7, "ins": 136, "del": 8, "author": "Simon"}, "81c12a9": {"files": 1, "ins": 5, "del": 3, "author": "Simon"}, "d86378a": {"files": 4, "ins": 14, "del": 14, "author": "Simon"}, "db76047": {"files": 9, "ins": 3020, "del": 647, "author": "Simon"}, "38e1c84": {"files": 5, "ins": 31, "del": 2, "author": "Simon"}, "87198de": {"files": 27, "ins": 1085, "del": 0, "author": "Simon"}, "43896bb": {"files": 12, "ins": 78, "del": 10, "author": "Simon"}, "e7ddb6e": {"files": 8, "ins": 254, "del": 11, "author": "Simon"}, "ledger-visual-refresh-20261023": {"files": 1, "ins": 544, "del": 238, "author": "Simon"}, "4c061e5": {"files": 8, "ins": 275, "del": 3, "author": "Simon"}, "ledger-projects-20261023": {"files": 1, "ins": 108, "del": 4, "author": "Simon"}};
 
 const badgeClass = { prod: "b-prod", test: "b-test", integration: "b-int" };
-const PROJECT_LABELS = { "Projects": "My projects" };
-const projectOfName = (full) => String(full).includes(" · ") ? String(full).split(" · ")[0].trim() : "Meeting recorder";
-const projectClassOf = (p) => ({ "Meeting recorder": "p-meeting", "BulkBuy": "p-bulkbuy", "Projects": "p-projects", "Build Ledger": "p-ledger", "Screen Pointer": "p-screen" }[p] || "p-other");
-const projectLabelOf = (p) => PROJECT_LABELS[p] || p;
-const projectOfTag = Object.fromEntries(rows.map(r => [r.tag, projectOfName(versionNames[versionOf[r.tag] - 1] || r.tag)]));
 let selectedProject = (() => {
   try { return localStorage.getItem("mr-project") || "all"; } catch (e) { return "all"; }
 })();
@@ -677,7 +696,7 @@ function render() {
   const needle = q.value.trim().toLowerCase();
   const base = rows.filter(r => selectedProject === "all" || projectOfTag[r.tag] === selectedProject);
   const list = base
-    .filter(r => !needle || [r.tag, r.built, r.commit, r.subject, r.deployed.join(" "), versionNames[versionOf[r.tag] - 1] || "", projectOfTag[r.tag], projectLabelOf(projectOfTag[r.tag])].join(" ").toLowerCase().includes(needle))
+    .filter(r => !needle || [r.tag, r.built, r.commit, r.subject, r.deployed.join(" "), nameOf[r.tag] || "", projectOfTag[r.tag], projectLabelOf(projectOfTag[r.tag])].join(" ").toLowerCase().includes(needle))
     .sort((a, b) => {
       const av = a[sortKey], bv = b[sortKey];
       const cmp = sortKey === "deployed"
@@ -692,8 +711,9 @@ function render() {
 
   tbody.innerHTML = list.length ? list.map(r => {
     const n = versionOf[r.tag];
-    const fullName = versionNames[n - 1] || r.tag;
-    const [icon, label] = splitVersionName(fullName);
+    const fullName = nameOf[r.tag] || r.tag;
+    const [icon, rawLabel] = splitVersionName(fullName);
+    const label = displayName(rawLabel);
     const project = projectOfTag[r.tag];
     const m = commitMeta[r.tag];
     const note = notes[r.tag];
@@ -799,7 +819,7 @@ function copyLine(tr) {
   const row = rows.find(r => r.tag === tag);
   if (!row) return;
   const n = versionOf[tag];
-  const line = `v${n} ${versionNames[n - 1]} · ${row.subject} (${row.built})`;
+  const line = `v${n} ${nameOf[tag]} · ${row.subject} (${row.built})`;
   showToast(line.length > 48 ? line.slice(0, 46) + "…" : line);
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(line).catch(() => legacyCopy(line));
@@ -824,7 +844,7 @@ function openNoteEditor(tag) {
   tagEl.title = tag;
   const name = document.createElement("span");
   name.className = "who-name";
-  name.textContent = versionNames[n - 1] + " · " + rows.find(r => r.tag === tag).subject;
+  name.textContent = nameOf[tag] + " · " + rows.find(r => r.tag === tag).subject;
   who.append(tagEl, name);
 
   const ta = document.createElement("textarea");
@@ -899,7 +919,7 @@ q.addEventListener("input", render);
   const newest = handNames[handNames.length - 1] || "Dexterity";
   const oldest = handNames[0] || "Carpal";
   const prodRow = rows.find(r => r.deployed.includes("prod"));
-  const prod = prodRow ? splitVersionName(versionNames[rows.indexOf(prodRow)])[1] : newest;
+  const prod = prodRow ? splitVersionName(nameOf[prodRow.tag])[1] : newest;
   const lines = [
     `${rows.length} builds, every one named — <b>${oldest}</b> to <b>${newest}</b>, knuckle by knuckle.`,
     `A hand has ${rows.length} parts if you count them all. So does this ledger.`,
