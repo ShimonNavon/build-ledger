@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meeting Recorder · Versions</title>
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --card: #ffffff;
+    --ink: #16181d;
+    --muted: #6b7280;
+    --line: #e6e8ec;
+    --accent: #2f6feb;
+    --prod: #0f7b4f;
+    --prod-bg: #e7f6ee;
+    --test: #9a5b00;
+    --test-bg: #fff3df;
+    --int: #6b3fc4;
+    --int-bg: #f0eafd;
+    --del: #b42318;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1115;
+      --card: #161920;
+      --ink: #e8eaee;
+      --muted: #9aa1ad;
+      --line: #262b34;
+      --accent: #6ea0ff;
+      --prod: #6ee7b7; --prod-bg: #12352a;
+      --test: #fcd34d; --test-bg: #3a2c0c;
+      --int: #c4b5fd; --int-bg: #2a2140;
+      --del: #fca5a5;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 14px/1.5 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    padding: 32px 24px 64px;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+  header { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
+  h1 { font-size: 22px; font-weight: 650; letter-spacing: -0.02em; margin: 0 0 4px; }
+  .sub { color: var(--muted); font-size: 13px; }
+  .stats { display: flex; gap: 8px; flex-wrap: wrap; }
+  .stat {
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    padding: 7px 12px; font-size: 12px; color: var(--muted);
+  }
+  .stat b { color: var(--ink); font-weight: 600; font-size: 14px; }
+  .prod-card {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--card); border-radius: 10px; padding: 7px 12px 7px 10px;
+    border: 1px solid color-mix(in srgb, var(--prod) 30%, var(--line));
+    box-shadow: 0 1px 2px rgba(0,0,0,.04);
+  }
+  .prod-dot {
+    width: 7px; height: 7px; border-radius: 50%; flex: none;
+    background: var(--prod);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--prod) 22%, transparent);
+  }
+  .prod-label {
+    font-size: 10px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+    color: var(--prod); line-height: 1.2;
+  }
+  .prod-ver { font-size: 13.5px; font-weight: 600; line-height: 1.25; }
+  .prod-meta { font-size: 11px; color: var(--muted); line-height: 1.3; }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 12px 32px rgba(0,0,0,.05);
+  }
+  .toolbar {
+    display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .search {
+    flex: 1; min-width: 180px; background: var(--bg); color: var(--ink);
+    border: 1px solid var(--line); border-radius: 8px; padding: 8px 11px;
+    font: inherit; font-size: 13px; outline: none;
+  }
+  .search:focus { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent); }
+  .count { color: var(--muted); font-size: 12px; white-space: nowrap; }
+  .table-scroll { max-height: calc(100vh - 230px); overflow: auto; }
+  table { border-collapse: separate; border-spacing: 0; width: 100%; }
+  th, td { text-align: left; padding: 10px 16px; vertical-align: top; }
+  thead th {
+    position: sticky; top: 0; z-index: 2;
+    background: var(--card); border-bottom: 1px solid var(--line);
+    font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--muted); font-weight: 600; cursor: pointer; user-select: none;
+    white-space: nowrap;
+  }
+  thead th:hover { color: var(--ink); }
+  thead th .arrow { opacity: .35; margin-left: 4px; font-size: 10px; }
+  thead th.sorted .arrow { opacity: 1; color: var(--accent); }
+  tbody tr { border-bottom: 1px solid var(--line); cursor: pointer; }
+  tbody tr:last-child td { border-bottom: 0; }
+  tbody tr:hover { background: color-mix(in srgb, var(--accent) 4%, transparent); }
+  .tag {
+    cursor: copy;
+    display: inline-block; font-family: "SF Mono", ui-monospace, Menlo, monospace;
+    font-size: 12px; padding: 2px 7px; border-radius: 6px;
+    background: color-mix(in srgb, var(--ink) 6%, transparent);
+    border: 1px solid var(--line); letter-spacing: .01em; white-space: nowrap;
+  }
+  .when { font-variant-numeric: tabular-nums; white-space: nowrap; font-size: 13px; }
+  .when small { display: block; color: var(--muted); font-size: 11px; }
+  .subject { min-width: 420px; }
+  .meta { color: var(--muted); font-size: 11.5px; margin-top: 2px; font-variant-numeric: tabular-nums; }
+  .vname { font-weight: 550; }
+  .vlabel.copy { cursor: copy; border-radius: 5px; padding: 1px 3px; margin-left: -3px; }
+  .vlabel.copy:hover { background: color-mix(in srgb, var(--accent) 12%, transparent); }
+  .vsub { color: var(--muted); font-size: 12.5px; margin-top: 1px; }
+  .note-item {
+    display: flex; gap: 6px; align-items: flex-start; margin-top: 7px;
+    max-width: 520px; padding: 6px 8px 6px 7px; border-radius: 6px;
+    background: color-mix(in srgb, #f5c518 20%, transparent);
+    border-left: 3px solid #f5c518;
+    font-size: 12.5px; font-weight: 600; color: var(--ink);
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  }
+  .note-pin { font-size: 11px; line-height: 1.65; }
+  .note-text { flex: 1; white-space: pre-wrap; }
+  .note-edit, .note-add {
+    background: none; border: 0; padding: 0; color: var(--muted); cursor: pointer;
+    font: inherit; font-size: 11.5px; opacity: 0; transition: opacity .15s ease;
+  }
+  .note-edit { font-size: 12px; }
+  .note-add { border: 1px dashed var(--line); border-radius: 6px; padding: 2px 7px; margin-top: 7px; }
+  tbody tr:hover .note-edit, tbody tr:hover .note-add { opacity: .75; }
+  .note-edit:hover, .note-add:hover { opacity: 1 !important; color: var(--ink); }
+  .note-overlay {
+    position: fixed; inset: 0; z-index: 60;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+    background: color-mix(in srgb, var(--ink) 22%, transparent);
+    backdrop-filter: blur(2px);
+    opacity: 0; transition: opacity .18s ease;
+  }
+  .note-overlay.show { opacity: 1; }
+  .note-modal {
+    width: min(560px, 92vw);
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    box-shadow: 0 24px 70px rgba(0,0,0,.28);
+    padding: 16px 16px 12px;
+    transform: scale(.92); opacity: .6;
+    transition: transform .2s cubic-bezier(.2,.9,.3,1.2), opacity .16s ease;
+  }
+  .note-overlay.show .note-modal { transform: none; opacity: 1; }
+  .note-modal .who { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .note-modal .who .tag { cursor: default; }
+  .note-modal .who-name { font-weight: 600; font-size: 13px; }
+  .note-input {
+    width: 100%; min-height: 132px; resize: vertical;
+    font: inherit; font-size: 16px; line-height: 1.55;
+    padding: 10px 12px; border-radius: 9px;
+    background: var(--bg); color: var(--ink);
+    border: 1px solid color-mix(in srgb, #f5c518 55%, var(--line));
+    outline: none;
+  }
+  .note-input:focus { box-shadow: 0 0 0 3px color-mix(in srgb, #f5c518 28%, transparent); }
+  .note-hint { color: var(--muted); font-size: 11.5px; margin-top: 7px; }
+  @media (prefers-reduced-motion: reduce) {
+    .note-overlay, .note-modal { transition: none; }
+    .note-modal { transform: none; }
+  }
+  .vicon { display: inline-block; transform-origin: 60% 80%; }
+  tbody tr:hover .vicon { animation: vwave .55s ease; }
+  @keyframes vwave {
+    0% { transform: none; }
+    25% { transform: translateY(-3px) rotate(-12deg) scale(1.12); }
+    55% { transform: translateY(0) rotate(7deg) scale(1.02); }
+    80% { transform: rotate(-2deg); }
+    100% { transform: none; }
+  }
+  .say {
+    display: inline-block; margin-left: 7px; font-size: 11.5px; font-weight: 400;
+    color: var(--muted); opacity: 0; transform: translateX(-4px);
+    transition: opacity .18s ease, transform .18s ease;
+  }
+  tbody tr:hover .say { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    tbody tr:hover .vicon { animation: none; }
+    .say { transition: none; transform: none; }
+  }
+  td.lines { white-space: nowrap; font-variant-numeric: tabular-nums; font-size: 13px; }
+  .c1 { color: var(--prod); }
+  .c2 { color: var(--ink); }
+  .c3 { color: var(--test); font-weight: 600; }
+  .c4 { color: var(--del); font-weight: 650; }
+  .badges { display: flex; gap: 6px; flex-wrap: wrap; }
+  .badge {
+    font-size: 11px; font-weight: 600; letter-spacing: .02em;
+    padding: 2px 8px; border-radius: 999px; white-space: nowrap;
+  }
+  .b-prod { color: var(--prod); background: var(--prod-bg); }
+  .b-test { color: var(--test); background: var(--test-bg); }
+  .b-int  { color: var(--int);  background: var(--int-bg); }
+  .b-roll { color: var(--del); background: color-mix(in srgb, var(--del) 12%, transparent); }
+  tbody tr.hl-yellow { background: color-mix(in srgb, #f5c518 18%, transparent); }
+  tbody tr.hl-yellow:hover { background: color-mix(in srgb, #f5c518 28%, transparent); }
+  tbody tr.hl-blue { background: color-mix(in srgb, var(--accent) 14%, transparent); }
+  tbody tr.hl-blue:hover { background: color-mix(in srgb, var(--accent) 22%, transparent); }
+  .toast {
+    position: fixed; right: 22px; bottom: 22px; z-index: 50;
+    display: flex; align-items: center; gap: 7px;
+    background: var(--ink); color: var(--card);
+    font-size: 12px; font-weight: 550; letter-spacing: .01em;
+    padding: 8px 12px; border-radius: 9px;
+    box-shadow: 0 6px 24px rgba(0,0,0,.18);
+    opacity: 0; transform: translateY(6px) scale(.98);
+    transition: opacity .16s ease, transform .16s ease;
+    pointer-events: none; max-width: 260px;
+  }
+  .toast.show { opacity: 1; transform: none; }
+  .toast .val { font-family: "SF Mono", ui-monospace, Menlo, monospace; opacity: .75; }
+  .dash { color: var(--muted); }
+  .note {
+    margin-top: 14px; color: var(--muted); font-size: 12.5px;
+    display: flex; gap: 8px; align-items: flex-start;
+  }
+  .note .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); margin-top: 6px; flex: none; }
+  .mono { font-family: "SF Mono", ui-monospace, Menlo, monospace; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Meeting Recorder · Versions</h1>
+      <div class="sub">Registry <span class="mono">ubuntu04:5000/meeting-recorder</span> · built times UTC · commit times IDT (+03:00)</div>
+    </div>
+    <div class="stats">
+      <div class="prod-card" title="Live on production (d86378a)">
+        <span class="prod-dot"></span>
+        <div>
+          <div class="prod-label">Production</div>
+          <div class="prod-ver">💪 Rehab</div>
+          <div class="prod-meta">2026-10-21, 09:09 build · Deploy checks/watcher for prod, test, integration</div>
+        </div>
+      </div>
+      <div class="stat"><b id="s-total">0</b> images</div>
+      <div class="stat"><b>3</b> deployed</div>
+      <div class="stat"><b>3</b> unbuilt commits</div>
+    </div>
+  </header>
+
+  <div class="card">
+    <div class="toolbar">
+      <input id="q" class="search" type="search" placeholder="Filter by tag, date or subject…" autocomplete="off" spellcheck="false">
+      <div class="count" id="count"></div>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th data-key="built">Built (UTC)<span class="arrow">↕</span></th>
+            <th data-key="ver">Version<span class="arrow">↕</span></th>
+            <th data-key="commit">Commit (IDT)<span class="arrow">↕</span></th>
+            <th data-key="lines">Change score<span class="arrow">↕</span></th>
+            <th data-key="deployed">Deployed<span class="arrow">↕</span></th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="note">
+    <span class="dot"></span>
+    <span><b>Rolled back on test (Oct 23):</b> 🤹 <b>Dexterity</b> (v36, Oct 21 12:34) went back to 🩹 <b>Graft</b> (v34, Oct 20 23:27).<br>Never built or pushed: <span class="tag">c9e1767</span> logo hand + waveform (10‑20 23:21) · <span class="tag">69156b5</span> simplify logo (10‑20 23:23) · <span class="tag">3c7ce3a</span> branch URLs (10‑21 11:49).</span>
+  </div>
+</div>
+
+<script>
+const rows = [["4dd897c", "2026-10-17 06:46", "2026-10-17 09:45", "Merge branch 'k8s-cicd' into test", []], ["8240868", "2026-10-17 06:59", "2026-10-17 09:44", "Find kubectl in ~/.local/bin on ubuntu02", []], ["ae0b0c8", "2026-10-17 07:20", "2026-10-17 10:05", "Merge origin/whatsapp into test", []], ["dd58106", "2026-10-17 07:28", "2026-10-17 10:26", "Live transcription: audio+text per commit, redo broken answer by batch", []], ["fa5b2d1", "2026-10-17 07:41", "2026-10-17 10:39", "QA fake visit on every test/beta deploy, rollback on miss", []], ["90a52d8", "2026-10-17 07:45", "2026-10-17 10:43", "QA visit: retry socket while old pod leaves", []], ["d10eb63", "2026-10-17 07:53", "2026-10-17 10:47", "Rollout: wait for old pod before health check/QA", []], ["caca783", "2026-10-17 08:43", "2026-10-17 11:30", "Vocabulary from trigger-thumb test visit", []], ["18eb12b", "2026-10-17 08:48", "2026-10-17 11:45", "Vocabulary: 50 words Scribe mishears; QA accepts drug spellings", []], ["142aed4", "2026-10-17 09:24", "2026-10-17 12:13", "Transcript: drop hesitations, fix visit 1002 mishearings", []], ["a58929a", "2026-10-17 09:42", "2026-10-17 12:32", "Alert Simon when site/AI/speech key down", []], ["b653c00", "2026-10-17 09:59", "2026-10-17 12:57", "Doctor feedback: headed printout sections, follow-up, injection, floating stop", []], ["3352d8a", "2026-10-17 10:11", "2026-10-17 13:09", "Printout/forms: ID, phone, DOB aligned right", []], ["4841ab3", "2026-10-17 10:17", "2026-10-17 13:14", "Summary: drug/test/structure names in English", []], ["b431cd1", "2026-10-17 11:14", "2026-10-17 14:11", "Email visit summary, signed and stamped", []], ["910049f", "2026-10-17 12:07", "2026-10-17 14:53", "Share button: summary as PDF via share menu", []], ["e47d1e8", "2026-10-17 12:44", "2026-10-17 15:41", "One Print/share button (print, PDF, email)", []], ["fc93c57", "2026-10-17 12:59", "2026-10-17 15:47", "Doctor's stamp closes the letter", []], ["5b78440", "2026-10-17 13:25", "2026-10-17 16:22", "Second round: ready-made sentences, several diagnoses, full details", []], ["300b461", "2026-10-17 13:40", "2026-10-17 16:30", "QA visit: ID as digits/words, spellings per visit part", []], ["50acd75", "2026-10-17 13:56", "2026-10-17 16:46", "No popup for missing details; quiet line instead", []], ["eaedf0d", "2026-10-17 14:19", "2026-10-17 17:08", "Speed: fast-model patient check, freed recorder, faster updates", []], ["dc31c1c", "2026-10-17 14:35", "2026-10-17 17:23", "Speed: last words cut at pauses, transcribed in parallel", []], ["4e6baa3", "2026-10-20 16:03", "2026-10-20 18:58", "Refresh resumed summaries, actions and note shortcuts", []], ["90ccbc8", "2026-10-20 16:31", "2026-10-20 19:25", "Paginated A4 Hebrew clinic PDF", []], ["d0ddbb4", "2026-10-20 16:37", "2026-10-20 19:32", "Keep apostrophes in English terms in Hebrew PDFs", []], ["1233436", "2026-10-20 16:43", "2026-10-20 19:36", "Full clinic contacts + signature on one page", []], ["3608da0", "2026-10-20 17:32", "2026-10-20 20:07", "Align diagnosis table columns, drop print timestamp", []], ["39fb294", "2026-10-20 18:16", "2026-10-20 20:52", "Remove phrase length limit, inline editing", []], ["a57b44c", "2026-10-20 19:05", "2026-10-20 21:57", "Simplify workspace, persistent controls, searchable phrases", []], ["9631a1e", "2026-10-20 19:33", "2026-10-20 22:28", "Paginated patient-history previews in parallel", []], ["97bf810", "2026-10-20 20:04", "2026-10-20 23:00", "Manual playback + seekable WAV downloads", []], ["c9fa92d", "2026-10-20 20:17", "2026-10-20 23:13", "Streamed MP3 recording downloads", []], ["81c12a9", "2026-10-21 08:43", "2026-10-20 23:27", "Versioned shared clinic logo URLs", []], ["d86378a", "2026-10-21 09:09", "2026-10-21 11:53", "Deploy checks/watcher for prod, test, integration", ["prod", "integration"]], ["db76047", "2026-10-21 09:39", "2026-10-21 12:34", "Refine workspace, patient workflows, save feedback", ["test"]]];
+
+const HL_KEY = "mr-highlights";
+const quips = ["hi there", "glad you looked", "still holding up", "all thumbs, no bugs", "handle with care", "waving back", "grip check", "you found me", "flexing", "steady hands", "that's the spot", "nice to see you"];
+
+const versionNames = ["🦴 Carpal", "🦴 Metacarpal", "🦴 Phalanx", "🧵 Tendon", "🪢 Ligament", "✊ Knuckle", "🖐️ Palm", "⌚ Wrist", "👍 Thumb", "☝️ Index", "✋ Middle", "💍 Ring", "🤏 Pinky", "🦴 Scaphoid", "🌙 Lunate", "🔺 Triquetrum", "🫘 Pisiform", "🧩 Trapezium", "🔷 Trapezoid", "🗿 Capitate", "🪝 Hamate", "📏 Radius", "📐 Ulna", "🪝 Flexor", "🦾 Extensor", "⚡ Median nerve", "⚡ Ulnar nerve", "🩹 Splint", "🧤 Cast", "🧵 Suture", "🔪 Scalpel", "🩺 Stethoscope", "🩸 Tourniquet", "🩹 Graft", "💪 Rehab", "🤹 Dexterity"];
+
+const versionOf = Object.fromEntries(rows.map((r, i) => [r.tag, i + 1]));
+
+const rolledBack = {"db76047": "🩹 Graft · Oct 20, 23:27"};
+
+const churnTier = (n) => n >= 1000 ? 4 : n >= 400 ? 3 : n >= 100 ? 2 : 1;
+
+const NOTE_KEY = "mr-notes";
+const notes = (() => {
+  try { return JSON.parse(localStorage.getItem(NOTE_KEY)) || {}; } catch (e) { return {}; }
+})();
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+const hlOrder = ["yellow", "blue"];
+const highlights = (() => {
+  try { return JSON.parse(sessionStorage.getItem(HL_KEY)) || {}; } catch (e) { return {}; }
+})();
+function saveHighlights() { sessionStorage.setItem(HL_KEY, JSON.stringify(highlights)); }
+function setHighlight(tag, color) {
+  if (color) highlights[tag] = color; else delete highlights[tag];
+  saveHighlights();
+  render();
+}
+function cycleHighlight(tag) {
+  const i = hlOrder.indexOf(highlights[tag]);
+  setHighlight(tag, i === -1 ? hlOrder[0] : (hlOrder[i + 1] || null));
+}
+
+const commitMeta = {"4dd897c": {"files": 11, "ins": 293, "del": 365, "author": "Simon"}, "8240868": {"files": 2, "ins": 2, "del": 1, "author": "Simon"}, "ae0b0c8": {"files": 18, "ins": 477, "del": 156, "author": "Simon"}, "dd58106": {"files": 2, "ins": 66, "del": 4, "author": "Simon"}, "fa5b2d1": {"files": 6, "ins": 171, "del": 10, "author": "Simon"}, "90a52d8": {"files": 1, "ins": 11, "del": 1, "author": "Simon"}, "d10eb63": {"files": 1, "ins": 7, "del": 0, "author": "Simon"}, "caca783": {"files": 2, "ins": 18, "del": 4, "author": "Simon"}, "18eb12b": {"files": 3, "ins": 27, "del": 14, "author": "Simon"}, "142aed4": {"files": 2, "ins": 29, "del": 2, "author": "Simon"}, "a58929a": {"files": 7, "ins": 155, "del": 9, "author": "Simon"}, "b653c00": {"files": 11, "ins": 208, "del": 54, "author": "Simon"}, "3352d8a": {"files": 4, "ins": 26, "del": 3, "author": "Simon"}, "4841ab3": {"files": 2, "ins": 20, "del": 15, "author": "Simon"}, "b431cd1": {"files": 10, "ins": 135, "del": 31, "author": "Simon"}, "910049f": {"files": 6, "ins": 513, "del": 5, "author": "Simon"}, "e47d1e8": {"files": 7, "ins": 150, "del": 65, "author": "Simon"}, "fc93c57": {"files": 3, "ins": 24, "del": 3, "author": "Simon"}, "5b78440": {"files": 14, "ins": 400, "del": 34, "author": "Simon"}, "300b461": {"files": 1, "ins": 10, "del": 2, "author": "Simon"}, "50acd75": {"files": 3, "ins": 27, "del": 10, "author": "Simon"}, "eaedf0d": {"files": 9, "ins": 64, "del": 20, "author": "Simon"}, "dc31c1c": {"files": 3, "ins": 51, "del": 2, "author": "Simon"}, "4e6baa3": {"files": 11, "ins": 383, "del": 53, "author": "Simon"}, "90ccbc8": {"files": 23, "ins": 598, "del": 297, "author": "Simon"}, "d0ddbb4": {"files": 2, "ins": 5, "del": 1, "author": "Simon"}, "1233436": {"files": 3, "ins": 28, "del": 5, "author": "Simon"}, "3608da0": {"files": 5, "ins": 11, "del": 12, "author": "Simon"}, "39fb294": {"files": 8, "ins": 166, "del": 19, "author": "Simon"}, "a57b44c": {"files": 4, "ins": 255, "del": 66, "author": "Simon"}, "9631a1e": {"files": 5, "ins": 244, "del": 13, "author": "Simon"}, "97bf810": {"files": 10, "ins": 335, "del": 7, "author": "Simon"}, "c9fa92d": {"files": 7, "ins": 136, "del": 8, "author": "Simon"}, "81c12a9": {"files": 1, "ins": 5, "del": 3, "author": "Simon"}, "d86378a": {"files": 4, "ins": 14, "del": 14, "author": "Simon"}, "db76047": {"files": 9, "ins": 3020, "del": 647, "author": "Simon"}};
+
+const badgeClass = { prod: "b-prod", test: "b-test", integration: "b-int" };
+let sortKey = "built", sortDir = -1;
+const q = document.getElementById("q");
+const tbody = document.getElementById("rows");
+const count = document.getElementById("count");
+const arrow = (k) => `<span class="arrow">${sortKey === k ? (sortDir === -1 ? "↓" : "↑") : "↕"}</span>`;
+
+document.getElementById("s-total").textContent = rows.length;
+
+function render() {
+  const needle = q.value.trim().toLowerCase();
+  const list = rows
+    .filter(r => !needle || [r.tag, r.built, r.commit, r.subject, r.deployed.join(" ")].join(" ").toLowerCase().includes(needle))
+    .sort((a, b) => {
+      const av = a[sortKey], bv = b[sortKey];
+      const cmp = sortKey === "deployed"
+        ? a.deployed.join(",").localeCompare(b.deployed.join(","))
+        : sortKey === "ver"
+        ? versionOf[a.tag] - versionOf[b.tag]
+        : sortKey === "lines"
+        ? (commitMeta[a.tag]?.ins + commitMeta[a.tag]?.del) - (commitMeta[b.tag]?.ins + commitMeta[b.tag]?.del)
+        : typeof av === "number" ? av - bv : String(av).localeCompare(String(bv));
+      return cmp * sortDir;
+    });
+
+  tbody.innerHTML = list.map(r => `
+    <tr data-tag="${r.tag}" class="${highlights[r.tag] ? "hl-" + highlights[r.tag] : ""}">
+      <td class="when">${r.built.slice(0, 10)}<small>${r.built.slice(11)}</small></td>
+      <td class="subject"><div><span class="tag" data-copy="${r.tag}" title="${r.tag}">v${versionOf[r.tag]}</span> ${(() => { const [icon, ...rest] = versionNames[versionOf[r.tag] - 1].split(" "); return `<span class="vlabel copy" data-copy="v${versionOf[r.tag]} ${versionNames[versionOf[r.tag] - 1]}" title="Copy version name"><span class="vicon">${icon}</span> <span class="vname">${rest.join(" ")}</span></span><span class="say">${quips[(versionOf[r.tag] - 1) % quips.length]}</span>`; })()}</div><div class="vsub">${r.subject}</div>${commitMeta[r.tag] ? `<div class="meta">${commitMeta[r.tag].author} · ${commitMeta[r.tag].files} file${commitMeta[r.tag].files === 1 ? "" : "s"}</div>` : ""}<div class="note-wrap" data-note-for="${r.tag}">${notes[r.tag] ? `<div class="note-item"><span class="note-pin">📌</span><span class="note-text">${esc(notes[r.tag])}</span><button class="note-edit" title="Edit note">✎</button></div>` : `<button class="note-add">+ note</button>`}</div></td>
+      <td class="when">${r.commit.slice(0, 10)}<small>${r.commit.slice(11)}</small></td>
+      <td class="lines ${commitMeta[r.tag] ? "c" + churnTier(commitMeta[r.tag].ins + commitMeta[r.tag].del) : ""}" title="${commitMeta[r.tag] ? `+${commitMeta[r.tag].ins} −${commitMeta[r.tag].del} across ${commitMeta[r.tag].files} file${commitMeta[r.tag].files === 1 ? "" : "s"} · ${(commitMeta[r.tag].ins + commitMeta[r.tag].del) / commitMeta[r.tag].files | 0} lines/file` : ""}">${commitMeta[r.tag] ? (commitMeta[r.tag].ins + commitMeta[r.tag].del).toLocaleString() : '<span class="dash">—</span>'}</td>
+      <td>${r.deployed.length
+        ? `<div class="badges">${r.deployed.map(d => `<span class="badge ${badgeClass[d]}">${d}</span>`).join("")}</div>`
+        : `<span class="dash">—</span>`}${rolledBack[r.tag] ? `<span class="badge b-roll" style="margin-left:6px">rolled back → ${rolledBack[r.tag]}</span>` : ""}</td>
+    </tr>`).join("");
+
+  count.textContent = `${list.length} of ${rows.length}`;
+  document.querySelectorAll("thead th").forEach(th => {
+    th.classList.toggle("sorted", th.dataset.key === sortKey);
+    th.querySelector(".arrow").outerHTML = arrow(th.dataset.key);
+  });
+}
+
+document.querySelectorAll("thead th").forEach(th => {
+  th.addEventListener("click", () => {
+    const k = th.dataset.key;
+    if (sortKey === k) sortDir *= -1;
+    else { sortKey = k; sortDir = k === "built" || k === "commit" || k === "lines" || k === "ver" ? -1 : 1; }
+    render();
+  });
+});
+
+let toastTimer;
+function showToast(value) {
+  let el = document.getElementById("copy-toast");
+  if (!el) {
+    el = document.createElement("div");
+    el.id = "copy-toast";
+    el.className = "toast";
+    document.body.appendChild(el);
+  }
+  el.innerHTML = 'Copied <span class="val"></span>';
+  el.querySelector(".val").textContent = value;
+  el.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove("show"), 1500);
+}
+
+function legacyCopy(text) {
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.setAttribute("readonly", "");
+  ta.style.cssText = "position:fixed;top:-1000px;opacity:0";
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand("copy"); } catch (err) {}
+  ta.remove();
+}
+
+function copyTag(el) {
+  const text = el.dataset.copy || el.textContent.trim();
+  showToast(text);
+  legacyCopy(text);
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).catch(() => {});
+  }
+}
+
+function copyLine(tr) {
+  const tag = tr.dataset.tag;
+  const row = rows.find(r => r.tag === tag);
+  if (!row) return;
+  const n = versionOf[tag];
+  const line = `v${n} ${versionNames[n - 1]} · ${row.subject} (${row.built})`;
+  showToast(line.length > 48 ? line.slice(0, 46) + "…" : line);
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(line).catch(() => legacyCopy(line));
+  } else {
+    legacyCopy(line);
+  }
+}
+
+function openNoteEditor(tag) {
+  const n = versionOf[tag];
+  const overlay = document.createElement("div");
+  overlay.className = "note-overlay";
+
+  const modal = document.createElement("div");
+  modal.className = "note-modal";
+
+  const who = document.createElement("div");
+  who.className = "who";
+  const tagEl = document.createElement("span");
+  tagEl.className = "tag";
+  tagEl.textContent = "v" + n;
+  tagEl.title = tag;
+  const name = document.createElement("span");
+  name.className = "who-name";
+  name.textContent = versionNames[n - 1] + " · " + rows.find(r => r.tag === tag).subject;
+  who.append(tagEl, name);
+
+  const ta = document.createElement("textarea");
+  ta.className = "note-input";
+  ta.value = notes[tag] || "";
+  ta.placeholder = "Why does this version matter?";
+
+  const hint = document.createElement("div");
+  hint.className = "note-hint";
+  hint.textContent = "⌘⏎ save · esc cancel · click outside to save";
+
+  modal.append(who, ta, hint);
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
+  requestAnimationFrame(() => overlay.classList.add("show"));
+  ta.focus();
+  ta.setSelectionRange(ta.value.length, ta.value.length);
+
+  let closed = false;
+  const close = (save) => {
+    if (closed) return;
+    closed = true;
+    if (save) {
+      const v = ta.value.trim();
+      if (v) notes[tag] = v; else delete notes[tag];
+      localStorage.setItem(NOTE_KEY, JSON.stringify(notes));
+    }
+    overlay.classList.remove("show");
+    setTimeout(() => { overlay.remove(); render(); }, 180);
+  };
+
+  ta.addEventListener("keydown", (ev) => {
+    if (ev.key === "Escape") { ev.preventDefault(); close(false); }
+    else if (ev.key === "Enter" && (ev.metaKey || ev.ctrlKey)) { ev.preventDefault(); close(true); }
+  });
+  overlay.addEventListener("mousedown", (ev) => {
+    if (ev.target === overlay) close(true);
+  });
+}
+
+tbody.addEventListener("click", (e) => {
+  if (window.getSelection().toString()) return;
+  const noteAction = e.target.closest(".note-add, .note-edit");
+  if (noteAction) {
+    e.stopPropagation();
+    openNoteEditor(noteAction.closest(".note-wrap").dataset.noteFor);
+    return;
+  }
+  if (e.target.closest(".note-wrap")) return;
+  const copyEl = e.target.closest("[data-copy]");
+  if (copyEl) { copyTag(copyEl); return; }
+  const tr = e.target.closest("tr[data-tag]");
+  if (!tr) return;
+  copyLine(tr);
+  if (highlights[tr.dataset.tag] !== "yellow") setHighlight(tr.dataset.tag, "yellow");
+});
+
+tbody.addEventListener("contextmenu", (e) => {
+  const tr = e.target.closest("tr[data-tag]");
+  if (!tr) return;
+  e.preventDefault();
+  cycleHighlight(tr.dataset.tag);
+});
+
+q.addEventListener("input", render);
+render();
+</script>
+</body>
+</html>
