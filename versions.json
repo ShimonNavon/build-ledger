@@ -569,9 +569,7 @@
       "built": "2026-10-23 13:24",
       "commit": "2026-10-23 13:24",
       "subject": "BulkBuy — Hebrew website, documentation, RTL layout and Hebrew CSV headers",
-      "deployed": [
-        "bulkbuy"
-      ],
+      "deployed": [],
       "name": "BulkBuy · 2026-10-23 13:24 Hebrew",
       "rolledBack": null
     },
@@ -580,9 +578,7 @@
       "built": "2026-10-23 13:24",
       "commit": "2026-10-23 13:24",
       "subject": "BulkBuy project — Hebrew documentation and screenshot",
-      "deployed": [
-        "my-projects"
-      ],
+      "deployed": [],
       "name": "Projects · 2026-10-23 13:24 Hebrew",
       "rolledBack": null
     },
@@ -601,6 +597,71 @@
         "del": 2,
         "author": "Simon"
       },
+      "rolledBack": null
+    },
+    {
+      "tag": "87198de",
+      "built": "2026-10-23 14:10",
+      "commit": "2026-10-23 14:10",
+      "subject": "BulkBuy — Hebrew salon website, persistent media uploads, integration preview and owner-controlled production publishing",
+      "deployed": [
+        "bulkbuy"
+      ],
+      "name": "BulkBuy · 2026-10-23 14:10 media publishing",
+      "meta": {
+        "files": 27,
+        "ins": 1085,
+        "del": 0,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "77faf3053340",
+      "built": "2026-10-23 14:10",
+      "commit": "2026-10-23 14:10",
+      "subject": "BulkBuy project — staged publishing documentation and redesigned website screenshot",
+      "deployed": [],
+      "name": "Projects · 2026-10-23 14:10 BulkBuy publishing",
+      "rolledBack": null
+    },
+    {
+      "tag": "43896bb",
+      "built": "2026-10-23 16:08",
+      "commit": "2026-10-23 16:08",
+      "subject": "BulkBuy integration — cinematic Higgsfield hair film, Hebrew editorial homepage and verified mobile layout",
+      "deployed": [
+        "bulkbuy-integration"
+      ],
+      "name": "BulkBuy · 2026-10-23 16:08 cinematic mobile preview",
+      "meta": {
+        "files": 12,
+        "ins": 78,
+        "del": 10,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "bulkbuy-editorial-docs-20261023",
+      "built": "2026-10-23 16:08",
+      "commit": "2026-10-23 16:08",
+      "subject": "BulkBuy project documentation and screenshot — cinematic integration preview",
+      "deployed": [
+        "my-projects"
+      ],
+      "name": "Projects · 2026-10-23 16:08 BulkBuy editorial preview",
+      "rolledBack": null
+    },
+    {
+      "tag": "ledger-tailnet-20261023",
+      "built": "2026-10-23 13:23",
+      "commit": "2026-10-23 16:23",
+      "subject": "Build ledger — private Tailscale HTTPS, public tunnel removed, authenticated gateway and automatic certificate renewal",
+      "deployed": [
+        "build-ledger"
+      ],
+      "name": "Build Ledger · 2026-10-23 16:23 Tailscale-only access",
       "rolledBack": null
     }
   ],

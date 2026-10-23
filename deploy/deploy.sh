@@ -1,7 +1,8 @@
 #!/bin/sh
-# Render the page, ship it to the cluster (ns build-ledger, NodePort 30093 on ubuntu04).
+# Render the page, ship it to the cluster (ns build-ledger, NodePort 30096 on ubuntu04).
 set -e
 cd "$(dirname "$0")/.."
+ssh ubuntu03 'kubectl -n build-ledger get secret access -o name >/dev/null'
 python3 build.py
 {
   cat deploy/app.yaml; echo ---

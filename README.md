@@ -60,3 +60,36 @@ echo '{"jsonrpc":"2.0","id":1,"method":"initialize"}' | python3 tools/ledger_mcp
 
 The ledger is only as true as its last edit. When a build is deployed, rolled back or renamed, update
 `versions.json` and rebuild — the page is a record, not a live query.
+
+## Private access (October 23, 2026)
+
+Open **https://builds.navonsimon.com/** while connected to Simon's Tailscale network.
+The DNS-only A record points at ubuntu01's Tailscale address. The former public
+Cloudflare Tunnel hostname route was removed; the public edge returns 403 for
+this host. Public internet clients cannot route to the private endpoint.
+
+The dedicated nginx gateway on ubuntu01 binds **only** its Tailscale address on
+443 and allows tailnet source addresses. It proxies to the existing Kubernetes
+app on ubuntu04. The cluster CNI masks remote addresses, so the backend also
+requires a random gateway header stored in Kubernetes Secret `access` and in the
+private gateway's configuration. Direct NodePort requests without it return 403.
+The unauthenticated `/healthz` endpoint exposes only `ok` for readiness checks.
+Membership and device access remain controlled by the tailnet's existing policy.
+
+Gateway files: `/home/simon/build-ledger-private` on ubuntu01. TLS is issued by
+Let's Encrypt using Cloudflare DNS validation; the certificate is renewed daily
+at 04:23 server time by `renew.sh`, followed by nginx reload. The credentials file
+is mode 0600 in a mode 0700 secrets folder, never served by nginx or committed.
+The first certificate expires January 21, 2027. Renewal failures are logged to
+`renew.log`; no external alert is configured.
+
+Repository templates: `deploy/private-edge.conf`, `deploy/backend.conf`,
+`deploy/private-compose.yml`, `deploy/renew-private-tls.sh`. Replace the gateway
+token placeholder only at deployment; `.private/` is ignored. Regular site
+publishing preserves the existing gateway Secret and fails if it is missing.
+`deploy/private_dns.py` manages the DNS-only record, removes the public tunnel
+route and purges its cached root URL using runtime Cloudflare credentials.
+
+Browsers that cached the former public endpoint can briefly show a Cloudflare
+error until DNS/connection caches expire. Do not re-enable Cloudflare proxying:
+the hostname must resolve directly to the tailnet address.
