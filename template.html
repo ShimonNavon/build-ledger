@@ -225,6 +225,21 @@
   }
   .note .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); margin-top: 6px; flex: none; }
   .mono { font-family: "SF Mono", ui-monospace, Menlo, monospace; }
+  .sign {
+    display: flex; align-items: center; gap: 9px;
+    margin-top: 22px; padding-top: 14px; border-top: 1px dashed var(--line);
+    color: var(--muted); font-size: 12.5px; cursor: default; user-select: none;
+  }
+  .sign-hand { font-size: 16px; line-height: 1; display: inline-block; transform-origin: 70% 80%; }
+  .sign:hover .sign-hand { animation: wave .7s ease; }
+  @keyframes wave {
+    0%, 100% { transform: none; }
+    20% { transform: rotate(-18deg); }
+    45% { transform: rotate(14deg); }
+    70% { transform: rotate(-8deg); }
+  }
+  .sign b { color: var(--ink); font-weight: 600; }
+  @media (prefers-reduced-motion: reduce) { .sign:hover .sign-hand { animation: none; } }
 </style>
 </head>
 <body>
@@ -261,6 +276,11 @@
         <tbody id="rows"></tbody>
       </table>
     </div>
+  </div>
+
+  <div class="sign" id="sign" title="the ledger says hello">
+    <span class="sign-hand">🖐️</span>
+    <span id="sign-line"></span>
   </div>
 
   <div class="note">
@@ -490,6 +510,25 @@ tbody.addEventListener("contextmenu", (e) => {
 });
 
 q.addEventListener("input", render);
+
+(function signLine() {
+  const newest = versionNames[versionNames.length - 1].split(" ").slice(1).join(" ");
+  const oldest = versionNames[0].split(" ").slice(1).join(" ");
+  const prodRow = rows.find(r => r.deployed.includes("prod"));
+  const prod = prodRow ? versionNames[rows.indexOf(prodRow)].split(" ").slice(1).join(" ") : newest;
+  const lines = [
+    `${rows.length} builds, every one named — <b>${oldest}</b> to <b>${newest}</b>, knuckle by knuckle.`,
+    `A hand has ${rows.length} parts if you count them all. So does this ledger.`,
+    `No hash is a name. <b>${prod}</b> is what the clinic is running today.`,
+    `Started at the carpal, still counting. <b>${rows.length}</b> builds and a hand to hold them.`,
+  ];
+  const pick = rows.length % lines.length;
+  document.getElementById("sign-line").innerHTML = lines[pick];
+  document.getElementById("sign").addEventListener("mouseenter", () => {
+    document.getElementById("sign-line").innerHTML = lines[Math.floor(Math.random() * lines.length)];
+  }, { once: false });
+})();
+
 render();
 </script>
 </body>
