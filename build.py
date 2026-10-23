@@ -33,8 +33,9 @@ def load(path: Path) -> dict:
     return data
 
 
-def rows_for_js(data: dict) -> list[list]:
-    return [[v["tag"], v["built"], v["commit"], v["subject"], v.get("deployed") or []] for v in data["versions"]]
+def rows_for_js(data: dict) -> list[dict]:
+    keys = ("tag", "built", "commit", "subject", "deployed")
+    return [{**{k: v.get(k, "") for k in keys}, "deployed": v.get("deployed") or []} for v in data["versions"]]
 
 
 def prod_card(data: dict) -> str:
