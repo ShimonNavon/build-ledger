@@ -658,10 +658,25 @@
       "built": "2026-10-23 13:23",
       "commit": "2026-10-23 16:23",
       "subject": "Build ledger — private Tailscale HTTPS, public tunnel removed, authenticated gateway and automatic certificate renewal",
+      "deployed": [],
+      "name": "Build Ledger · 2026-10-23 16:23 Tailscale-only access",
+      "rolledBack": null
+    },
+    {
+      "tag": "e7ddb6e",
+      "built": "2026-10-23 13:33",
+      "commit": "2026-10-23 16:33",
+      "subject": "Build Ledger — automatic local Git branch discovery, search and stale-data status",
       "deployed": [
         "build-ledger"
       ],
-      "name": "Build Ledger · 2026-10-23 16:23 Tailscale-only access",
+      "name": "Build Ledger · 2026-10-23 16:33 automatic branches",
+      "meta": {
+        "files": 8,
+        "ins": 254,
+        "del": 11,
+        "author": "Simon"
+      },
       "rolledBack": null
     }
   ],
