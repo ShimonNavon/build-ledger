@@ -545,6 +545,63 @@
         "author": "Simon"
       },
       "rolledBack": "🩹 Graft · Oct 20, 23:27"
+    },
+    {
+      "tag": "04b8d4b1d39d",
+      "built": "2026-10-23 13:17",
+      "commit": "2026-10-23 13:17",
+      "subject": "BulkBuy — launch operating hub, checklist, tracker templates and documentation",
+      "deployed": [],
+      "name": "BulkBuy · 2026-10-23 13:17 launch",
+      "rolledBack": null
+    },
+    {
+      "tag": "b23840228554",
+      "built": "2026-10-23 13:17",
+      "commit": "2026-10-23 13:17",
+      "subject": "Project gallery — add BulkBuy and its documentation",
+      "deployed": [],
+      "name": "Projects · 2026-10-23 13:17 launch",
+      "rolledBack": null
+    },
+    {
+      "tag": "1a28858db86e",
+      "built": "2026-10-23 13:24",
+      "commit": "2026-10-23 13:24",
+      "subject": "BulkBuy — Hebrew website, documentation, RTL layout and Hebrew CSV headers",
+      "deployed": [
+        "bulkbuy"
+      ],
+      "name": "BulkBuy · 2026-10-23 13:24 Hebrew",
+      "rolledBack": null
+    },
+    {
+      "tag": "1b68a4567612",
+      "built": "2026-10-23 13:24",
+      "commit": "2026-10-23 13:24",
+      "subject": "BulkBuy project — Hebrew documentation and screenshot",
+      "deployed": [
+        "my-projects"
+      ],
+      "name": "Projects · 2026-10-23 13:24 Hebrew",
+      "rolledBack": null
+    },
+    {
+      "tag": "38e1c84",
+      "built": "2026-10-23 10:27",
+      "commit": "2026-10-23 13:10",
+      "subject": "Integration wears a purple clinic mark, coloured site strip and named tab",
+      "deployed": [
+        "integration"
+      ],
+      "name": "✊ Grip",
+      "meta": {
+        "files": 5,
+        "ins": 31,
+        "del": 2,
+        "author": "Simon"
+      },
+      "rolledBack": null
     }
   ],
   "quips": [
