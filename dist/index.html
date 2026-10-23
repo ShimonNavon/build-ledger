@@ -92,6 +92,7 @@
   .sub { margin: 0; color: var(--muted); font-size: 13px; }
   .top-right { display: flex; flex-direction: column; align-items: flex-end; gap: 9px; }
 
+  [hidden] { display: none !important; }
   .prod-card {
     display: flex; align-items: flex-start; gap: 10px; min-width: 256px;
     background: linear-gradient(180deg, color-mix(in srgb, var(--prod) 7%, var(--card)), var(--card));
@@ -448,16 +449,6 @@
     .branches .when small { display: inline; margin-left: 5px; font-size: 10px; }
     .branches .branch-subject { max-width: none; }
   }
-  @media (max-width: 620px) {
-    .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-    .pcard-body { padding: 10px 11px 11px; gap: 6px; }
-    .pcard-title { font-size: 12.5px; }
-    .pcard-blurb { font-size: 11px; }
-    .pcard-links { display: none; }
-    .pcard-foot { font-size: 10.5px; }
-    .home-tools { width: 100%; }
-    .home-tools .search { width: 100%; flex: 1; }
-  }
   @media (max-width: 520px) {
     .top-right { flex-direction: column; }
     .prod-card { flex: 0 0 auto; }
@@ -561,6 +552,16 @@
   .chip { font-size: 10.5px; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); text-decoration: none; white-space: nowrap; }
   .chip:hover { color: var(--ink); border-color: var(--line-strong); background: color-mix(in srgb, var(--accent) 7%, transparent); text-decoration: none; }
   .empty-home { color: var(--muted); font-size: 13px; padding: 18px 2px; }
+  @media (max-width: 620px) {
+    .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .pcard-body { padding: 10px 11px 11px; gap: 6px; }
+    .pcard-title { font-size: 12.5px; }
+    .pcard-blurb { font-size: 11px; }
+    .pcard-links { display: none; }
+    .pcard-foot { font-size: 10.5px; }
+    .home-tools { width: 100%; }
+    .home-tools .search { width: 100%; flex: 1; }
+  }
 </style>
 </head>
 <body>
@@ -768,12 +769,6 @@ let selectedProject = (() => {
   try { return localStorage.getItem("mr-project") || "all"; } catch (e) { return "all"; }
 })();
 function collectProjects() {
-  const counts = new Map();
-  for (const r of rows) {
-    const p = projectOfTag[r.tag];
-    counts.set(p, (counts.get(p) || 0) + 1);
-  }
-  if (selectedProject !== "all" && !counts.has(selectedProject)) selectedProject = "all";
   document.getElementById("s-projects").textContent = projects.length;
 }
 const buildCount = (n) => `${n} build${n === 1 ? "" : "s"}`;
@@ -871,7 +866,7 @@ function showAllBuilds() {
   document.getElementById("detail-name").textContent = "All builds";
   document.getElementById("detail-blurb").textContent = "Every build across every project, newest first.";
   document.getElementById("detail-links").innerHTML = "";
-  document.querySelector(".prod-card")?.removeAttribute("hidden");
+  document.querySelector(".prod-card")?.setAttribute("hidden", "");
   selectedProject = "all";
   collectProjects();
   render();
@@ -881,7 +876,7 @@ function route() {
   const h = location.hash || "#/";
   if (h.startsWith("#/p/")) openProject(decodeURIComponent(h.slice(4)));
   else if (h === "#/builds") showAllBuilds();
-  else { document.querySelector(".prod-card")?.removeAttribute("hidden"); setView("home"); collectProjects(); renderHome(); }
+  else { document.querySelector(".prod-card")?.setAttribute("hidden", ""); setView("home"); collectProjects(); renderHome(); }
 }
 
 
