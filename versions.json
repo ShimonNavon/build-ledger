@@ -732,7 +732,6 @@
       "commit": "2026-10-23 17:32",
       "subject": "Screen Pointer — walkthrough recording preview, one-stroke marks, timestamped notes and OpenCode/MCP review; real capture remains blocked by macOS permission",
       "deployed": [
-        "screen-pointer-mac",
         "screen-pointer"
       ],
       "name": "Screen Pointer · 2026-10-23 17:32 annotated walkthrough preview",
@@ -747,6 +746,34 @@
         "my-projects"
       ],
       "name": "Projects · 2026-10-23 17:32 Screen Pointer guide",
+      "rolledBack": null
+    },
+    {
+      "tag": "ledger-project-gallery-20261023",
+      "built": "2026-10-23 17:45",
+      "commit": "2026-10-23 17:45",
+      "subject": "Build Ledger — project gallery: portfolio-backed home grid with images, per-project build pages and project-aware MCP tools",
+      "deployed": [
+        "build-ledger"
+      ],
+      "name": "Build Ledger · 2026-10-23 17:45 project gallery",
+      "meta": {
+        "files": 5,
+        "ins": 1348,
+        "del": 70,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "ea0e0cf",
+      "built": "2026-10-23 14:45",
+      "commit": "2026-10-23 17:45",
+      "subject": "Screen Pointer — open the app and click Show something to my agent; five-second marked capture, point hotkey removed; capture permission still unverified",
+      "deployed": [
+        "screen-pointer-mac"
+      ],
+      "name": "Screen Pointer · 2026-10-23 17:45 button-first agent capture",
       "rolledBack": null
     }
   ],
