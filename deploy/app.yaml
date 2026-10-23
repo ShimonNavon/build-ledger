@@ -21,8 +21,7 @@ spec:
         volumeMounts:
         - {name: site, mountPath: /usr/share/nginx/html}
         - {name: branches, mountPath: /usr/share/nginx/html/branches, readOnly: true}
-        - {name: branches, configMap: {name: branches}}
-      - {name: access, mountPath: /etc/nginx/conf.d, readOnly: true}
+        - {name: access, mountPath: /etc/nginx/conf.d, readOnly: true}
       volumes:
       - {name: site, configMap: {name: site}}
       - {name: branches, configMap: {name: branches}}
