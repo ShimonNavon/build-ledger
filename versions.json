@@ -678,6 +678,57 @@
         "author": "Simon"
       },
       "rolledBack": null
+    },
+    {
+      "tag": "ledger-visual-refresh-20261023",
+      "built": "2026-10-23 16:46",
+      "commit": "2026-10-23 16:46",
+      "subject": "Build Ledger — visual refresh: clearer hierarchy, compact build rows, responsive card layout",
+      "deployed": [
+        "build-ledger"
+      ],
+      "name": "Build Ledger · 2026-10-23 16:46 visual refresh",
+      "meta": {
+        "files": 1,
+        "ins": 544,
+        "del": 238,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "4c061e5",
+      "built": "2026-10-23 13:52",
+      "commit": "2026-10-23 16:52",
+      "subject": "Screen Pointer — installed explicit point capture and MCP reader; live capture blocked by macOS Screen Recording permission",
+      "deployed": [
+        "screen-pointer-mac"
+      ],
+      "name": "Screen Pointer · 2026-10-23 16:52 agent pointing preview",
+      "meta": {
+        "files": 8,
+        "ins": 275,
+        "del": 3,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "ledger-projects-20261023",
+      "built": "2026-10-23 16:57",
+      "commit": "2026-10-23 16:57",
+      "subject": "Build Ledger — project filters: per-project tabs, row labels and build counts",
+      "deployed": [
+        "build-ledger"
+      ],
+      "name": "Build Ledger · 2026-10-23 16:57 project filters",
+      "meta": {
+        "files": 1,
+        "ins": 108,
+        "del": 4,
+        "author": "Simon"
+      },
+      "rolledBack": null
     }
   ],
   "quips": [
