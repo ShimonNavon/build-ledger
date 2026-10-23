@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Meeting Recorder · Versions</title>
+<title>Build Ledger · Builds & branches</title>
 <style>
   :root {
     --bg: #f6f7f9;
@@ -240,13 +240,30 @@
   }
   .sign b { color: var(--ink); font-weight: 600; }
   @media (prefers-reduced-motion: reduce) { .sign:hover .sign-hand { animation: none; } }
+
+  .branches { margin-bottom:24px; }
+  .branches-head { display:flex; justify-content:space-between; align-items:center; gap:16px; padding:16px; border-bottom:1px solid var(--line); flex-wrap:wrap; }
+  .branches h2 { font-size:16px; margin:0 0 4px; letter-spacing:-.02em; }
+  .branches p { margin:0; color:var(--muted); font-size:12px; }
+  .branch-status { color:var(--muted); font-size:12px; }
+  .branch-status.stale { color:var(--test); }
+  .branches .table-scroll { max-height:340px; }
+  .branches th { cursor:default; }
+  .branches td { border-bottom:1px solid var(--line); }
+  .branches tbody tr { cursor:default; }
+  .branch-name { color:var(--ink); font:inherit; font-weight:600; background:none; border:0; padding:0; cursor:copy; text-align:left; overflow-wrap:anywhere; }
+  .branch-name:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
+  .branch-subject { color:var(--muted); font-size:12px; max-width:380px; overflow-wrap:anywhere; }
+  .branch-empty { padding:18px; color:var(--muted); }
+  .section-title { font-size:16px; margin:0 0 12px; }
+  @media(max-width:650px){body{padding:20px 12px}.branches .toolbar{flex-wrap:wrap}.branches .search{min-width:0;width:100%}.branches-head{align-items:start}.branches td,.branches th{padding:10px 12px}.branches table{min-width:640px}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
     <div>
-      <h1>Meeting Recorder · Versions</h1>
+      <h1>Build Ledger</h1>
       <div class="sub">Registry <span class="mono">ubuntu04:5000/meeting-recorder</span> · built times UTC · commit times IDT (+03:00)</div>
     </div>
     <div class="stats">
@@ -264,6 +281,13 @@
     </div>
   </header>
 
+  <section class="card branches" aria-labelledby="branches-title">
+    <div class="branches-head"><div><h2 id="branches-title">Git branches</h2><p>Local repositories in Developer · tracked independently of deployments</p></div><span class="branch-status" id="branch-status" role="status">Connecting to branch tracker…</span></div>
+    <div class="toolbar"><input class="search" id="branch-search" type="search" aria-label="Filter Git branches" placeholder="Find a repository, branch or commit…"><span class="count" id="branch-count"></span></div>
+    <div class="table-scroll"><table><thead><tr><th>Latest commit (local time)</th><th>Repository</th><th>Branch</th><th>Working copy</th></tr></thead><tbody id="branch-rows"></tbody></table></div>
+    <div id="branch-empty" class="branch-empty" hidden>No matching branches.</div>
+  </section>
+  <h2 class="section-title">Builds & deployments</h2>
   <div class="card">
     <div class="toolbar">
       <input id="q" class="search" type="search" placeholder="Filter by tag, date or subject…" autocomplete="off" spellcheck="false">
@@ -370,13 +394,13 @@ function render() {
     </tr>`).join("");
 
   count.textContent = `${list.length} of ${rows.length}`;
-  document.querySelectorAll("thead th").forEach(th => {
+  document.querySelectorAll("thead th[data-key]").forEach(th => {
     th.classList.toggle("sorted", th.dataset.key === sortKey);
     th.querySelector(".arrow").outerHTML = arrow(th.dataset.key);
   });
 }
 
-document.querySelectorAll("thead th").forEach(th => {
+document.querySelectorAll("thead th[data-key]").forEach(th => {
   th.addEventListener("click", () => {
     const k = th.dataset.key;
     if (sortKey === k) sortDir *= -1;
@@ -536,6 +560,43 @@ q.addEventListener("input", render);
   }, { once: false });
 })();
 
+let branchSnapshot=null,branchRequestFailed=false;
+const branchRows=document.getElementById('branch-rows');
+function renderBranches(){
+  const status=document.getElementById('branch-status');
+  if(!branchSnapshot){status.textContent='Branch data unavailable — waiting for the Mac sync';status.classList.add('stale');return;}
+  const age=Date.now()-Date.parse(branchSnapshot.checked_at);
+  const stale=branchRequestFailed||!Number.isFinite(age)||age>240000;
+  const problems=branchSnapshot.errors||[];
+  status.classList.toggle('stale',stale||problems.length>0);
+  status.textContent=(stale?'Updates delayed · ':problems.length?'Some repositories unavailable · ':'Auto-sync · ')+'last scan '+new Date(branchSnapshot.checked_at).toLocaleString();
+  status.title=problems.length?'Could not read: '+problems.join(', '):'Scans every minute while the Mac is awake and connected. Cluster updates can take another two minutes.';
+  const needle=document.getElementById('branch-search').value.trim().toLowerCase();
+  const list=branchSnapshot.branches.filter(b=>[b.repository,b.name,b.subject,b.commit].join(' ').toLowerCase().includes(needle)).sort((a,b)=>(Date.parse(b.date)-Date.parse(a.date))||a.repository.localeCompare(b.repository)||a.name.localeCompare(b.name));
+  branchRows.replaceChildren();
+  for(const b of list){
+    const tr=document.createElement('tr');
+    const when=document.createElement('td');when.className='when';const date=new Date(b.date);when.textContent=date.toLocaleDateString();const time=document.createElement('small');time.textContent=date.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});when.append(time);
+    const repo=document.createElement('td');repo.textContent=b.repository;
+    const branch=document.createElement('td');const name=document.createElement('button');name.className='branch-name';name.textContent=b.name;name.dataset.copy=b.name;name.title='Copy branch name';const subject=document.createElement('div');subject.className='branch-subject';subject.textContent=b.subject;subject.title=b.commit;branch.append(name,subject);
+    const state=document.createElement('td');state.textContent=b.current?'Checked out':'—';
+    tr.append(when,repo,branch,state);branchRows.append(tr);
+  }
+  document.getElementById('branch-count').textContent=list.length+' of '+branchSnapshot.branches.length;
+  document.getElementById('branch-empty').hidden=!!list.length;
+}
+async function refreshBranches(){
+  try{
+    const response=await fetch('/branches/branches.json',{cache:'no-store',signal:AbortSignal.timeout(10000)});
+    if(!response.ok)throw Error('unavailable');const data=await response.json();
+    if(data.schema!==1||!Array.isArray(data.branches)||!data.checked_at)throw Error('invalid');
+    branchSnapshot=data;branchRequestFailed=false;
+  }catch{branchRequestFailed=true;}
+  renderBranches();
+}
+document.getElementById('branch-search').addEventListener('input',renderBranches);
+branchRows.addEventListener('click',e=>{const el=e.target.closest('[data-copy]');if(el)copyTag(el);});
+refreshBranches();setInterval(refreshBranches,30000);
 render();
 </script>
 </body>

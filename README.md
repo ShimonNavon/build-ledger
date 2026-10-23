@@ -93,3 +93,19 @@ route and purges its cached root URL using runtime Cloudflare credentials.
 Browsers that cached the former public endpoint can briefly show a Cloudflare
 error until DNS/connection caches expire. Do not re-enable Cloudflare proxying:
 the hostname must resolve directly to the tailnet address.
+
+## Automatic Git branch tracking
+
+The Git branches section reads a separate live snapshot from `/branches/branches.json` every 30 seconds. The macOS LaunchAgent `com.simon.build-ledger-branches` scans Git repositories immediately under `~/Developer` every 60 seconds while the user is logged in and the Mac is awake. It reports local branch names, latest commit time/subject/ID, and the currently checked-out branch. It never fetches, pushes, changes branches, reads file contents, or publishes repository paths or remote credentials. Remote-only branches appear once checked out locally. Linked worktrees are supported.
+
+Create, rename and delete operations are picked up automatically. This does not mark a branch as deployed: build history and deployment records remain in `versions.json`. Unreadable repositories are reported by name instead of silently appearing empty. An offline Mac or failed SSH keeps the last successful snapshot; after four minutes the page marks updates as delayed. Updates typically arrive within one to three minutes, including Kubernetes volume propagation.
+
+Install/update the sync from the canonical repository, not a temporary clone:
+
+```sh
+cd ~/Developer/build-ledger
+python3 tools/sync_branches.py --publish
+python3 tools/install_branch_sync.py
+```
+
+The snapshot is a dedicated ConfigMap mounted by directory, so updates require no app restart. It inherits the existing private gateway protection. Logs and the local snapshot are under ignored `.private/`. Stop the job with `launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/com.simon.build-ledger-branches.plist`; reinstall to resume. Run the focused lifecycle test with `python3 -m unittest discover -s tests`.

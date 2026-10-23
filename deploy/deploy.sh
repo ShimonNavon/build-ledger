@@ -3,6 +3,7 @@
 set -e
 cd "$(dirname "$0")/.."
 ssh ubuntu03 'kubectl -n build-ledger get secret access -o name >/dev/null'
+python3 tools/sync_branches.py --publish
 python3 build.py
 {
   cat deploy/app.yaml; echo ---
