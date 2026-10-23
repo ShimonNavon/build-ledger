@@ -3,149 +3,328 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Meeting Recorder · Versions</title>
+<title>Build Ledger · Builds & branches</title>
 <style>
   :root {
-    --bg: #f6f7f9;
+    color-scheme: light dark;
+    --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Helvetica, Arial, sans-serif;
+    --mono: "SF Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --bg: #f3f4f6;
     --card: #ffffff;
-    --ink: #16181d;
-    --muted: #6b7280;
-    --line: #e6e8ec;
-    --accent: #2f6feb;
-    --prod: #0f7b4f;
-    --prod-bg: #e7f6ee;
-    --test: #9a5b00;
-    --test-bg: #fff3df;
+    --ink: #15171c;
+    --muted: #6a7280;
+    --faint: #8d95a1;
+    --line: #e5e7eb;
+    --line-strong: #d6dae1;
+    --accent: #315fdc;
+    --prod: #0b7a4d;
+    --prod-bg: #e6f6ee;
+    --test: #965b00;
+    --test-bg: #fff3dc;
     --int: #6b3fc4;
     --int-bg: #f0eafd;
+    --other: #4b5563;
+    --other-bg: #eef0f3;
     --del: #b42318;
+    --del-bg: #fdecea;
+    --p-meeting: #315fdc;
+    --p-bulkbuy: #b45309;
+    --p-projects: #7c3aed;
+    --p-ledger: #0e7490;
+    --p-screen: #e11d48;
+    --shadow: 0 1px 2px rgba(16,24,40,.05), 0 16px 40px -24px rgba(16,24,40,.20);
+    --shadow-lift: 0 1px 2px rgba(16,24,40,.06), 0 24px 50px -28px rgba(16,24,40,.25);
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #0f1115;
-      --card: #161920;
-      --ink: #e8eaee;
-      --muted: #9aa1ad;
-      --line: #262b34;
-      --accent: #6ea0ff;
-      --prod: #6ee7b7; --prod-bg: #12352a;
-      --test: #fcd34d; --test-bg: #3a2c0c;
-      --int: #c4b5fd; --int-bg: #2a2140;
-      --del: #fca5a5;
+      --bg: #0b0d11;
+      --card: #14171c;
+      --ink: #e9ecf1;
+      --muted: #99a2ae;
+      --faint: #7d8693;
+      --line: #242932;
+      --line-strong: #323945;
+      --accent: #7aa2ff;
+      --prod: #6ee7b7; --prod-bg: #102f25;
+      --test: #fbbf24; --test-bg: #382a0a;
+      --int: #c4b5fd; --int-bg: #271f3d;
+      --other: #cbd5e1; --other-bg: #242a33;
+      --del: #fca5a5; --del-bg: #3a1716;
+      --p-meeting: #7aa2ff;
+      --p-bulkbuy: #fbbf24;
+      --p-projects: #c4b5fd;
+      --p-ledger: #67e8f9;
+      --p-screen: #fda4af;
+      --shadow: 0 1px 2px rgba(0,0,0,.40), 0 18px 44px -24px rgba(0,0,0,.70);
+      --shadow-lift: 0 1px 2px rgba(0,0,0,.45), 0 26px 55px -26px rgba(0,0,0,.80);
     }
   }
   * { box-sizing: border-box; }
+  html { scroll-padding-top: 16px; }
   body {
     margin: 0;
-    background: var(--bg);
+    min-height: 100vh;
+    background:
+      radial-gradient(900px 420px at 18% -8%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 70%),
+      radial-gradient(700px 360px at 92% -12%, color-mix(in srgb, var(--prod) 6%, transparent), transparent 70%),
+      var(--bg);
     color: var(--ink);
-    font: 14px/1.5 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    font: 14px/1.5 var(--sans);
     -webkit-font-smoothing: antialiased;
-    padding: 32px 24px 64px;
+    padding: 30px 24px 56px;
   }
-  .wrap { max-width: 1180px; margin: 0 auto; }
-  header { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
-  h1 { font-size: 22px; font-weight: 650; letter-spacing: -0.02em; margin: 0 0 4px; }
-  .sub { color: var(--muted); font-size: 13px; }
-  .stats { display: flex; gap: 8px; flex-wrap: wrap; }
-  .stat {
-    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
-    padding: 7px 12px; font-size: 12px; color: var(--muted);
+  ::selection { background: color-mix(in srgb, var(--accent) 25%, transparent); }
+  .wrap { max-width: 1240px; margin: 0 auto; }
+
+  .masthead { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 24px; }
+  .identity { display: flex; align-items: center; gap: 14px; min-width: 0; }
+  .mark {
+    width: 40px; height: 40px; border-radius: 12px; flex: none;
+    display: grid; align-content: center; gap: 4px; padding: 0 10px;
+    background: linear-gradient(145deg, var(--accent), color-mix(in srgb, var(--accent) 58%, #000));
+    box-shadow: 0 6px 18px -8px color-mix(in srgb, var(--accent) 70%, transparent);
   }
-  .stat b { color: var(--ink); font-weight: 600; font-size: 14px; }
+  .mark span { height: 2px; border-radius: 2px; background: rgba(255,255,255,.92); }
+  .mark span:nth-child(2) { width: 72%; }
+  .mark span:nth-child(3) { width: 44%; }
+  .eyebrow { font: 10.5px/1.2 var(--mono); color: var(--muted); letter-spacing: .025em; margin-bottom: 4px; }
+  h1 { font-size: 27px; font-weight: 700; letter-spacing: -.035em; line-height: 1.08; margin: 0 0 4px; }
+  .sub { margin: 0; color: var(--muted); font-size: 13px; }
+  .top-right { display: flex; flex-direction: column; align-items: flex-end; gap: 9px; }
+
   .prod-card {
-    display: flex; align-items: center; gap: 10px;
-    background: var(--card); border-radius: 10px; padding: 7px 12px 7px 10px;
-    border: 1px solid color-mix(in srgb, var(--prod) 30%, var(--line));
-    box-shadow: 0 1px 2px rgba(0,0,0,.04);
+    display: flex; align-items: flex-start; gap: 10px; min-width: 256px;
+    background: linear-gradient(180deg, color-mix(in srgb, var(--prod) 7%, var(--card)), var(--card));
+    border: 1px solid color-mix(in srgb, var(--prod) 26%, var(--line));
+    border-radius: 12px; padding: 10px 14px;
+    box-shadow: var(--shadow);
   }
   .prod-dot {
-    width: 7px; height: 7px; border-radius: 50%; flex: none;
+    width: 8px; height: 8px; border-radius: 50%; flex: none; margin-top: 5px;
     background: var(--prod);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--prod) 22%, transparent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--prod) 20%, transparent);
   }
   .prod-label {
-    font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
     color: var(--prod); line-height: 1.2;
   }
-  .prod-ver { font-size: 13.5px; font-weight: 600; line-height: 1.25; }
-  .prod-meta { font-size: 11px; color: var(--muted); line-height: 1.3; }
-  .card {
-    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
-    overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 12px 32px rgba(0,0,0,.05);
+  .prod-ver { font-size: 15px; font-weight: 650; letter-spacing: -.012em; line-height: 1.3; margin-top: 1px; }
+  .prod-meta { font-size: 11px; color: var(--muted); line-height: 1.35; margin-top: 1px; }
+
+  .stats { display: flex; background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); }
+  .stat { display: flex; flex-direction: column; gap: 1px; padding: 7px 14px; min-width: 78px; }
+  .stat + .stat { border-left: 1px solid var(--line); }
+  .stat b { font-size: 15px; font-weight: 650; letter-spacing: -.01em; font-variant-numeric: tabular-nums; line-height: 1.25; }
+  .stat span { font-size: 10px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
+
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); }
+  .builds { margin-bottom: 24px; }
+  .card-head {
+    display: flex; align-items: flex-end; justify-content: space-between; gap: 16px;
+    padding: 16px 18px; border-bottom: 1px solid var(--line); flex-wrap: wrap;
   }
-  .toolbar {
-    display: flex; align-items: center; gap: 10px; padding: 12px 16px;
-    border-bottom: 1px solid var(--line);
-  }
+  .card-title { min-width: 0; }
+  .card-title h2 { font-size: 15px; font-weight: 650; letter-spacing: -.015em; margin: 0; line-height: 1.35; }
+  .card-title p { margin: 2px 0 0; color: var(--muted); font-size: 12px; }
+  .toolbar { display: flex; align-items: center; gap: 10px; }
   .search {
-    flex: 1; min-width: 180px; background: var(--bg); color: var(--ink);
-    border: 1px solid var(--line); border-radius: 8px; padding: 8px 11px;
-    font: inherit; font-size: 13px; outline: none;
+    width: 300px; max-width: 100%; background: var(--bg); color: var(--ink);
+    border: 1px solid var(--line); border-radius: 9px; padding: 8px 11px;
+    font: inherit; font-size: 12.5px; outline: none;
+    transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
   }
-  .search:focus { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent); }
-  .count { color: var(--muted); font-size: 12px; white-space: nowrap; }
-  .table-scroll { max-height: calc(100vh - 230px); overflow: auto; }
-  table { border-collapse: separate; border-spacing: 0; width: 100%; }
-  th, td { text-align: left; padding: 10px 16px; vertical-align: top; }
+  .search::placeholder { color: var(--faint); }
+  .search:hover { border-color: var(--line-strong); }
+  .search:focus { background: var(--card); border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 16%, transparent); }
+  .count { color: var(--muted); font-size: 11.5px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+  .table-scroll {
+    overflow: auto; overscroll-behavior: contain;
+    -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 24px), transparent);
+    mask-image: linear-gradient(to bottom, #000 calc(100% - 24px), transparent);
+  }
+  .table-scroll.at-end { -webkit-mask-image: none; mask-image: none; }
+  .builds .table-scroll { max-height: min(62vh, 640px); }
+  .branches .table-scroll { max-height: 320px; }
+  table { width: 100%; border-collapse: separate; border-spacing: 0; table-layout: fixed; }
+  th, td { text-align: left; vertical-align: top; }
   thead th {
-    position: sticky; top: 0; z-index: 2;
+    position: sticky; top: 0; z-index: 3;
     background: var(--card); border-bottom: 1px solid var(--line);
-    font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
-    color: var(--muted); font-weight: 600; cursor: pointer; user-select: none;
-    white-space: nowrap;
+    font-size: 10px; letter-spacing: .075em; text-transform: uppercase;
+    color: var(--muted); font-weight: 650; cursor: pointer; user-select: none;
+    white-space: nowrap; padding: 11px 18px;
   }
   thead th:hover { color: var(--ink); }
-  thead th .arrow { opacity: .35; margin-left: 4px; font-size: 10px; }
+  thead th .arrow { opacity: .35; margin-left: 4px; font-size: 9px; }
   thead th.sorted .arrow { opacity: 1; color: var(--accent); }
-  tbody tr { border-bottom: 1px solid var(--line); cursor: pointer; }
-  tbody tr:last-child td { border-bottom: 0; }
-  tbody tr:hover { background: color-mix(in srgb, var(--accent) 4%, transparent); }
-  .tag {
-    cursor: copy;
-    display: inline-block; font-family: "SF Mono", ui-monospace, Menlo, monospace;
-    font-size: 12px; padding: 2px 7px; border-radius: 6px;
-    background: color-mix(in srgb, var(--ink) 6%, transparent);
-    border: 1px solid var(--line); letter-spacing: .01em; white-space: nowrap;
+  tbody tr { cursor: pointer; transition: background-color .14s ease; }
+  tbody td { border-top: 1px solid var(--line); padding: 12px 18px; }
+  tbody tr:first-child td { border-top: 0; }
+  tbody tr:hover { background: color-mix(in srgb, var(--accent) 4.5%, transparent); }
+  tbody tr:hover td:first-child { box-shadow: inset 2px 0 var(--accent); }
+  tbody tr.hl-yellow { background: color-mix(in srgb, #f5c518 18%, transparent); }
+  tbody tr.hl-yellow:hover { background: color-mix(in srgb, #f5c518 28%, transparent); }
+  tbody tr.hl-blue { background: color-mix(in srgb, var(--accent) 14%, transparent); }
+  tbody tr.hl-blue:hover { background: color-mix(in srgb, var(--accent) 22%, transparent); }
+
+  .builds th:nth-child(1) { width: 116px; }
+  .builds th:nth-child(2) { width: auto; }
+  .builds th:nth-child(3) { width: 118px; }
+  .builds th:nth-child(4) { width: 116px; }
+  .builds th:nth-child(5) { width: 196px; }
+
+  .when { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .when .d { display: block; font-size: 12.5px; font-weight: 550; letter-spacing: -.005em; }
+  .when small { display: block; color: var(--muted); font-size: 10.5px; line-height: 1.4; margin-top: 1px; }
+
+  .build-head { display: flex; align-items: baseline; gap: 7px; flex-wrap: wrap; }
+  .vicon { display: inline-block; font-size: 15px; line-height: 1.2; transform-origin: 60% 80%; }
+  .vlabel {
+    font-weight: 650; font-size: 13.5px; letter-spacing: -.012em; line-height: 1.35;
+    min-width: 0; overflow-wrap: anywhere;
   }
-  .when { font-variant-numeric: tabular-nums; white-space: nowrap; font-size: 13px; }
-  .when small { display: block; color: var(--muted); font-size: 11px; }
-  .subject { min-width: 420px; }
-  .meta { color: var(--muted); font-size: 11.5px; margin-top: 2px; font-variant-numeric: tabular-nums; }
-  .vname { font-weight: 550; }
-  .vlabel.copy { cursor: copy; border-radius: 5px; padding: 1px 3px; margin-left: -3px; }
+  .vlabel.copy { cursor: copy; border-radius: 5px; margin-left: -2px; padding: 0 2px; transition: background-color .15s ease; }
   .vlabel.copy:hover { background: color-mix(in srgb, var(--accent) 12%, transparent); }
-  .vsub { color: var(--muted); font-size: 12.5px; margin-top: 1px; }
+  .vno {
+    font-family: var(--mono); font-size: 10px; color: var(--faint); opacity: .7;
+    padding: 1px 5px; border: 1px solid var(--line); border-radius: 5px;
+    letter-spacing: 0; white-space: nowrap; transition: opacity .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .vno:hover { opacity: 1; color: var(--ink); border-color: var(--line-strong); }
+  .vsub { color: var(--muted); font-size: 12px; line-height: 1.45; margin-top: 3px; max-width: 68ch; }
+  .build-foot { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 12px; margin-top: 5px; }
+  .meta { color: var(--faint); font-size: 10.5px; font-variant-numeric: tabular-nums; }
+  .say {
+    display: inline-block; font-size: 11px; font-weight: 400;
+    color: var(--faint); opacity: 0; transform: translateX(-4px);
+    transition: opacity .18s ease, transform .18s ease;
+  }
+  tbody tr:hover .say { opacity: 1; transform: none; }
+  .vicon { transition: none; }
+  tbody tr:hover .vicon { animation: vwave .55s ease; }
+  @keyframes vwave {
+    0% { transform: none; }
+    25% { transform: translateY(-3px) rotate(-12deg) scale(1.12); }
+    55% { transform: translateY(0) rotate(7deg) scale(1.02); }
+    80% { transform: rotate(-2deg); }
+    100% { transform: none; }
+  }
+
+  .lines { white-space: nowrap; font-variant-numeric: tabular-nums; font-size: 13px; font-weight: 600; }
+  .c1 { color: var(--prod); }
+  .c2 { color: var(--ink); }
+  .c3 { color: var(--test); }
+  .c4 { color: var(--del); }
+
+  .deploy-cell { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+  .badges { display: flex; gap: 5px; flex-wrap: wrap; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 10.5px; font-weight: 600; letter-spacing: .005em; line-height: 1.6;
+    padding: 2px 8px; border-radius: 999px; white-space: nowrap;
+  }
+  .badge::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: currentColor; opacity: .75; }
+  .b-prod { color: var(--prod); background: var(--prod-bg); }
+  .b-test { color: var(--test); background: var(--test-bg); }
+  .b-int  { color: var(--int);  background: var(--int-bg); }
+  .b-other { color: var(--other); background: var(--other-bg); }
+  .b-roll { color: var(--del); background: var(--del-bg); white-space: normal; border-radius: 7px; line-height: 1.4; }
+  .b-roll::before { display: none; }
+  .dash { color: var(--faint); }
+
+  .project-bar {
+    display: flex; align-items: center; gap: 6px;
+    padding: 10px 18px; border-bottom: 1px solid var(--line);
+    background: color-mix(in srgb, var(--bg) 42%, var(--card));
+    overflow-x: auto; scrollbar-width: none;
+  }
+  .project-bar::-webkit-scrollbar { display: none; }
+  .project-tab {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 10px; border: 1px solid var(--line); border-radius: 999px;
+    background: var(--card); color: var(--muted);
+    font: inherit; font-size: 11.5px; font-weight: 600; white-space: nowrap; cursor: pointer;
+    transition: color .15s ease, border-color .15s ease, background-color .15s ease;
+  }
+  .project-tab:hover { color: var(--ink); border-color: var(--line-strong); }
+  .project-tab[aria-pressed="true"] {
+    color: var(--p, var(--accent));
+    border-color: color-mix(in srgb, var(--p, var(--accent)) 38%, var(--line));
+    background: color-mix(in srgb, var(--p, var(--accent)) 10%, var(--card));
+  }
+  .project-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .project-count {
+    font-size: 10px; font-weight: 600; color: var(--faint);
+    font-variant-numeric: tabular-nums; padding: 0 1px;
+  }
+  .project-tab[aria-pressed="true"] .project-count { color: inherit; opacity: .72; }
+  .project-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--p, var(--muted)); flex: none; }
+  .project-label {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 10.5px; font-weight: 600; color: var(--muted);
+  }
+  .p-all { --p: var(--accent); }
+  .p-meeting { --p: var(--p-meeting); }
+  .p-bulkbuy { --p: var(--p-bulkbuy); }
+  .p-projects { --p: var(--p-projects); }
+  .p-ledger { --p: var(--p-ledger); }
+  .p-screen { --p: var(--p-screen); }
+  .p-other { --p: var(--muted); }
+
+  .empty-row { cursor: default; }
+  .empty-row:hover { background: none; }
+  .empty-row td {
+    padding: 30px 18px; text-align: center; border-top: 0;
+    color: var(--muted); font-size: 12.5px;
+  }
+  .empty-row:hover td:first-child { box-shadow: none; }
+
+  .tag {
+    display: inline-block; font-family: var(--mono); font-size: 10.5px;
+    padding: 1px 5px; border-radius: 5px; color: var(--ink);
+    background: color-mix(in srgb, var(--ink) 5%, transparent);
+    border: 1px solid var(--line); cursor: copy; white-space: nowrap;
+  }
+
+  .note-wrap { min-height: 0; display: flex; align-items: center; }
+  .note-wrap.has-note { flex: 1 1 100%; margin-top: 4px; }
   .note-item {
-    display: flex; gap: 6px; align-items: flex-start; margin-top: 7px;
-    max-width: 520px; padding: 6px 8px 6px 7px; border-radius: 6px;
-    background: color-mix(in srgb, #f5c518 20%, transparent);
+    display: flex; gap: 6px; align-items: flex-start;
+    width: 100%; max-width: 560px; padding: 6px 8px; border-radius: 7px;
+    background: color-mix(in srgb, #f5c518 18%, transparent);
+    border: 1px solid color-mix(in srgb, #f5c518 32%, transparent);
     border-left: 3px solid #f5c518;
-    font-size: 12.5px; font-weight: 600; color: var(--ink);
+    font-size: 12px; font-weight: 550; color: var(--ink);
     box-shadow: 0 1px 2px rgba(0,0,0,.05);
   }
-  .note-pin { font-size: 11px; line-height: 1.65; }
+  .note-pin { font-size: 11px; line-height: 1.6; }
   .note-text { flex: 1; white-space: pre-wrap; }
   .note-edit, .note-add {
     background: none; border: 0; padding: 0; color: var(--muted); cursor: pointer;
     font: inherit; font-size: 11.5px; opacity: 0; transition: opacity .15s ease;
   }
   .note-edit { font-size: 12px; }
-  .note-add { border: 1px dashed var(--line); border-radius: 6px; padding: 2px 7px; margin-top: 7px; }
-  tbody tr:hover .note-edit, tbody tr:hover .note-add { opacity: .75; }
+  .note-add {
+    border: 1px dashed var(--line-strong); border-radius: 6px;
+    padding: 1px 6px; display: inline-flex; align-items: center; line-height: 1.5;
+  }
+  tbody tr:hover .note-edit, tbody tr:hover .note-add,
+  .note-edit:focus-visible, .note-add:focus-visible { opacity: .8; }
   .note-edit:hover, .note-add:hover { opacity: 1 !important; color: var(--ink); }
+
   .note-overlay {
     position: fixed; inset: 0; z-index: 60;
     display: flex; align-items: center; justify-content: center; padding: 24px;
     background: color-mix(in srgb, var(--ink) 22%, transparent);
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(3px);
     opacity: 0; transition: opacity .18s ease;
   }
   .note-overlay.show { opacity: 1; }
   .note-modal {
     width: min(560px, 92vw);
-    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
-    box-shadow: 0 24px 70px rgba(0,0,0,.28);
+    background: var(--card); border: 1px solid var(--line); border-radius: 15px;
+    box-shadow: 0 28px 80px rgba(0,0,0,.30);
     padding: 16px 16px 12px;
     transform: scale(.92); opacity: .6;
     transition: transform .2s cubic-bezier(.2,.9,.3,1.2), opacity .16s ease;
@@ -153,7 +332,7 @@
   .note-overlay.show .note-modal { transform: none; opacity: 1; }
   .note-modal .who { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
   .note-modal .who .tag { cursor: default; }
-  .note-modal .who-name { font-weight: 600; font-size: 13px; }
+  .note-modal .who-name { font-weight: 600; font-size: 13px; min-width: 0; overflow-wrap: anywhere; }
   .note-input {
     width: 100%; min-height: 132px; resize: vertical;
     font: inherit; font-size: 16px; line-height: 1.55;
@@ -164,71 +343,64 @@
   }
   .note-input:focus { box-shadow: 0 0 0 3px color-mix(in srgb, #f5c518 28%, transparent); }
   .note-hint { color: var(--muted); font-size: 11.5px; margin-top: 7px; }
-  @media (prefers-reduced-motion: reduce) {
-    .note-overlay, .note-modal { transition: none; }
-    .note-modal { transform: none; }
-  }
-  .vicon { display: inline-block; transform-origin: 60% 80%; }
-  tbody tr:hover .vicon { animation: vwave .55s ease; }
-  @keyframes vwave {
-    0% { transform: none; }
-    25% { transform: translateY(-3px) rotate(-12deg) scale(1.12); }
-    55% { transform: translateY(0) rotate(7deg) scale(1.02); }
-    80% { transform: rotate(-2deg); }
-    100% { transform: none; }
-  }
-  .say {
-    display: inline-block; margin-left: 7px; font-size: 11.5px; font-weight: 400;
-    color: var(--muted); opacity: 0; transform: translateX(-4px);
-    transition: opacity .18s ease, transform .18s ease;
-  }
-  tbody tr:hover .say { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) {
-    tbody tr:hover .vicon { animation: none; }
-    .say { transition: none; transform: none; }
-  }
-  td.lines { white-space: nowrap; font-variant-numeric: tabular-nums; font-size: 13px; }
-  .c1 { color: var(--prod); }
-  .c2 { color: var(--ink); }
-  .c3 { color: var(--test); font-weight: 600; }
-  .c4 { color: var(--del); font-weight: 650; }
-  .badges { display: flex; gap: 6px; flex-wrap: wrap; }
-  .badge {
-    font-size: 11px; font-weight: 600; letter-spacing: .02em;
-    padding: 2px 8px; border-radius: 999px; white-space: nowrap;
-  }
-  .b-prod { color: var(--prod); background: var(--prod-bg); }
-  .b-test { color: var(--test); background: var(--test-bg); }
-  .b-int  { color: var(--int);  background: var(--int-bg); }
-  .b-roll { color: var(--del); background: color-mix(in srgb, var(--del) 12%, transparent); }
-  tbody tr.hl-yellow { background: color-mix(in srgb, #f5c518 18%, transparent); }
-  tbody tr.hl-yellow:hover { background: color-mix(in srgb, #f5c518 28%, transparent); }
-  tbody tr.hl-blue { background: color-mix(in srgb, var(--accent) 14%, transparent); }
-  tbody tr.hl-blue:hover { background: color-mix(in srgb, var(--accent) 22%, transparent); }
+
   .toast {
     position: fixed; right: 22px; bottom: 22px; z-index: 50;
     display: flex; align-items: center; gap: 7px;
     background: var(--ink); color: var(--card);
     font-size: 12px; font-weight: 550; letter-spacing: .01em;
     padding: 8px 12px; border-radius: 9px;
-    box-shadow: 0 6px 24px rgba(0,0,0,.18);
+    box-shadow: 0 8px 28px rgba(0,0,0,.22);
     opacity: 0; transform: translateY(6px) scale(.98);
     transition: opacity .16s ease, transform .16s ease;
-    pointer-events: none; max-width: 260px;
+    pointer-events: none; max-width: 280px;
   }
   .toast.show { opacity: 1; transform: none; }
-  .toast .val { font-family: "SF Mono", ui-monospace, Menlo, monospace; opacity: .75; }
-  .dash { color: var(--muted); }
-  .note {
-    margin-top: 14px; color: var(--muted); font-size: 12.5px;
-    display: flex; gap: 8px; align-items: flex-start;
+  .toast .val { font-family: var(--mono); opacity: .75; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .branches .card-head { align-items: center; }
+  .branches th { cursor: default; }
+  .branches th:nth-child(1) { width: 118px; }
+  .branches th:nth-child(2) { width: 150px; }
+  .branches th:nth-child(3) { width: auto; }
+  .branches th:nth-child(4) { width: 120px; }
+  .branches tbody tr { cursor: default; }
+  .branches tbody tr:hover { background: color-mix(in srgb, var(--accent) 3%, transparent); }
+  .branches tbody tr:hover td:first-child { box-shadow: none; }
+  .branches td { border-top: 1px solid var(--line); padding: 9px 18px; font-size: 12.5px; }
+  .branches tbody tr:first-child td { border-top: 0; }
+  .repo { font-size: 12px; font-weight: 500; color: var(--ink); overflow-wrap: anywhere; }
+  .branch-name {
+    font-family: var(--mono); font-size: 11.5px; font-weight: 600; color: var(--ink);
+    background: none; border: 0; padding: 0; cursor: copy; text-align: left;
+    overflow-wrap: anywhere; line-height: 1.5; transition: color .15s ease;
   }
-  .note .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); margin-top: 6px; flex: none; }
-  .mono { font-family: "SF Mono", ui-monospace, Menlo, monospace; }
+  .branch-name:hover { color: var(--accent); }
+  .branch-name:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+  .branch-subject { color: var(--muted); font-size: 11px; max-width: 540px; overflow-wrap: anywhere; margin-top: 1px; line-height: 1.45; }
+  .copy-state { display: inline-flex; align-items: center; gap: 5px; font-size: 10.5px; font-weight: 600; color: var(--prod); }
+  .copy-state::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+  .branch-status { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+  .branch-status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--prod); box-shadow: 0 0 0 3px color-mix(in srgb, var(--prod) 18%, transparent); flex: none; }
+  .branch-status.stale { color: var(--test); }
+  .branch-status.stale::before { background: var(--test); box-shadow: 0 0 0 3px color-mix(in srgb, var(--test) 18%, transparent); }
+  .branch-empty { padding: 22px 18px; color: var(--muted); font-size: 12.5px; }
+
+  .foot { margin-top: 24px; }
+  .notes-panel {
+    display: flex; gap: 11px; align-items: flex-start;
+    padding: 14px 16px; border: 1px dashed var(--line-strong); border-radius: 12px;
+    color: var(--muted); font-size: 12px; line-height: 1.65;
+  }
+  .notes-label { font-size: 10px; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); margin-bottom: 3px; }
+  .notes-panel p { margin: 0; }
+  .notes-panel b { color: var(--ink); font-weight: 600; }
+  .notes-panel .tag { color: var(--muted); }
+
   .sign {
     display: flex; align-items: center; gap: 9px;
-    margin-top: 22px; padding-top: 14px; border-top: 1px dashed var(--line);
-    color: var(--muted); font-size: 12.5px; cursor: default; user-select: none;
+    margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line);
+    color: var(--muted); font-size: 12px; cursor: default; user-select: none;
   }
   .sign-hand { font-size: 16px; line-height: 1; display: inline-block; transform-origin: 70% 80%; }
   .sign:hover .sign-hand { animation: wave .7s ease; }
@@ -239,17 +411,90 @@
     70% { transform: rotate(-8deg); }
   }
   .sign b { color: var(--ink); font-weight: 600; }
-  @media (prefers-reduced-motion: reduce) { .sign:hover .sign-hand { animation: none; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+  @media (max-width: 820px), (hover: none) {
+    .note-add, .note-edit { opacity: .65; }
+  }
+  @media (max-width: 820px) {
+    body { padding: 20px 12px 40px; }
+    .masthead { align-items: flex-start; gap: 18px; }
+    .identity { gap: 11px; }
+    h1 { font-size: 23px; }
+    .mark { width: 36px; height: 36px; border-radius: 11px; }
+    .top-right { width: 100%; align-items: stretch; flex-direction: row; flex-wrap: wrap; }
+    .prod-card { flex: 1 1 240px; }
+    .stats { flex: 1 1 auto; }
+    .card-head { align-items: flex-start; flex-direction: column; gap: 12px; }
+    .toolbar { width: 100%; }
+    .search { width: 100%; flex: 1; }
+    .project-bar { flex-wrap: wrap; padding: 10px 16px; }
+
+    .builds .table-scroll { max-height: 62vh; }
+    .builds table, .branches table { min-width: 0; display: block; }
+    .builds thead, .branches thead { display: none; }
+    .builds tbody, .branches tbody { display: block; }
+    .builds tr {
+      display: grid; grid-template-columns: 1fr auto;
+      grid-template-areas: "date score" "build build" "deploy deploy";
+      gap: 4px 12px; padding: 14px 16px; border-top: 1px solid var(--line);
+    }
+    .builds tbody tr:first-child { border-top: 0; }
+    .builds td { display: block; border: 0; padding: 0; }
+    .builds td:nth-child(1) { grid-area: date; }
+    .builds td:nth-child(2) { grid-area: build; }
+    .builds td:nth-child(3) { display: none; }
+    .builds td:nth-child(4) { grid-area: score; text-align: right; font-size: 12.5px; }
+    .builds td:nth-child(4)::before { content: "Δ "; color: var(--faint); font-weight: 500; }
+    .builds td:nth-child(5) { grid-area: deploy; margin-top: 8px; }
+    .builds tbody tr:hover td:first-child { box-shadow: none; }
+    .builds .when .d { display: inline; font-size: 11.5px; font-weight: 500; color: var(--muted); }
+    .builds .when small { display: inline; margin-left: 6px; font-size: 10px; }
+    .builds .build-head { display: block; }
+    .builds .vno { margin-left: 5px; }
+    .builds .say { display: none; }
+    .builds .vlabel { font-size: 13px; }
+    .builds .vsub { font-size: 11.5px; }
+    .builds .note-item, .builds .note-add { max-width: 100%; }
+
+    .branches .table-scroll { max-height: 320px; }
+    .branches tr {
+      display: grid; grid-template-columns: 1fr auto;
+      grid-template-areas: "date state" "repo repo" "branch branch";
+      gap: 2px 10px; padding: 11px 16px; border-top: 1px solid var(--line);
+    }
+    .branches tbody tr:first-child { border-top: 0; }
+    .branches td { display: block; border: 0; padding: 0; }
+    .branches td:nth-child(1) { grid-area: date; }
+    .branches td:nth-child(2) { grid-area: repo; font-size: 11px; color: var(--muted); }
+    .branches td:nth-child(3) { grid-area: branch; margin-top: 1px; }
+    .branches td:nth-child(4) { grid-area: state; justify-self: end; }
+    .branches .when .d { display: inline; font-size: 11.5px; font-weight: 500; color: var(--muted); }
+    .branches .when small { display: inline; margin-left: 5px; font-size: 10px; }
+    .branches .branch-subject { max-width: none; }
+  }
+  @media (max-width: 520px) {
+    .top-right { flex-direction: column; }
+    .prod-card { flex: 0 0 auto; }
+    .stats { width: 100%; }
+    .stat { flex: 1; min-width: 0; padding: 7px 9px; }
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header>
-    <div>
-      <h1>Meeting Recorder · Versions</h1>
-      <div class="sub">Registry <span class="mono">ubuntu04:5000/meeting-recorder</span> · built times UTC · commit times IDT (+03:00)</div>
+  <header class="masthead">
+    <div class="identity">
+      <span class="mark" aria-hidden="true"><span></span><span></span><span></span></span>
+      <div>
+        <div class="eyebrow">ubuntu04:5000/meeting-recorder</div>
+        <h1>Build Ledger</h1>
+        <p class="sub">Every build, what changed, and where it runs.</p>
+      </div>
     </div>
-    <div class="stats">
+    <div class="top-right">
       <div class="prod-card" title="Live on production (d86378a)">
         <span class="prod-dot"></span>
         <div>
@@ -258,24 +503,34 @@
           <div class="prod-meta">2026-10-21, 09:09 build · Deploy checks/watcher for prod, test, integration</div>
         </div>
       </div>
-      <div class="stat"><b id="s-total">0</b> images</div>
-      <div class="stat"><b>3</b> deployed</div>
-      <div class="stat"><b>3</b> unbuilt commits</div>
+      <div class="stats">
+        <div class="stat" title="Builds recorded in the ledger"><b id="s-total">0</b><span>builds</span></div>
+        <div class="stat" title="Projects represented in the ledger"><b id="s-projects">0</b><span>projects</span></div>
+        <div class="stat" title="Distinct deploy targets across all builds"><b id="s-targets">0</b><span>targets</span></div>
+        <div class="stat" title="Builds rolled back after deployment"><b id="s-rollbacks">0</b><span id="s-rollbacks-label">rollbacks</span></div>
+      </div>
     </div>
   </header>
 
-  <div class="card">
-    <div class="toolbar">
-      <input id="q" class="search" type="search" placeholder="Filter by tag, date or subject…" autocomplete="off" spellcheck="false">
-      <div class="count" id="count"></div>
+  <section class="card builds" aria-labelledby="builds-title">
+    <div class="card-head">
+      <div class="card-title">
+        <h2 id="builds-title">Builds &amp; deployments</h2>
+        <p>Newest first · build times UTC, commit times IDT</p>
+      </div>
+      <div class="toolbar">
+        <input id="q" class="search" type="search" aria-label="Filter builds" placeholder="Filter by name, tag, date or subject…" autocomplete="off" spellcheck="false">
+        <span class="count" id="count"></span>
+      </div>
     </div>
+    <div class="project-bar" id="project-tabs" role="group" aria-label="Filter builds by project"></div>
     <div class="table-scroll">
       <table>
         <thead>
           <tr>
             <th data-key="built">Built (UTC)<span class="arrow">↕</span></th>
-            <th data-key="ver">Version<span class="arrow">↕</span></th>
-            <th data-key="commit">Commit (IDT)<span class="arrow">↕</span></th>
+            <th data-key="ver">Build<span class="arrow">↕</span></th>
+            <th data-key="commit">Committed (IDT)<span class="arrow">↕</span></th>
             <th data-key="lines">Change score<span class="arrow">↕</span></th>
             <th data-key="deployed">Deployed<span class="arrow">↕</span></th>
           </tr>
@@ -283,28 +538,80 @@
         <tbody id="rows"></tbody>
       </table>
     </div>
-  </div>
+  </section>
 
-  <div class="sign" id="sign" title="the ledger says hello">
-    <span class="sign-hand">🖐️</span>
-    <span id="sign-line"></span>
-  </div>
+  <section class="card branches" aria-labelledby="branches-title">
+    <div class="card-head">
+      <div class="card-title">
+        <h2 id="branches-title">Git branches</h2>
+        <p>Local repositories in Developer · <span class="branch-status" id="branch-status" role="status">Connecting to branch tracker…</span></p>
+      </div>
+      <div class="toolbar">
+        <input class="search" id="branch-search" type="search" aria-label="Filter Git branches" placeholder="Find a repository, branch or commit…">
+        <span class="count" id="branch-count"></span>
+      </div>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Latest commit (local)</th>
+            <th>Repository</th>
+            <th>Branch</th>
+            <th>Working copy</th>
+          </tr>
+        </thead>
+        <tbody id="branch-rows"></tbody>
+      </table>
+    </div>
+    <div id="branch-empty" class="branch-empty" hidden>No matching branches.</div>
+  </section>
 
-  <div class="note">
-    <span class="dot"></span>
-    <span><b>Rolled back on test (Oct 23):</b> 🤹 <b>Dexterity</b> (v36, Oct 21 12:34) went back to 🩹 <b>Graft</b> (v34, Oct 20 23:27).<br>Never built or pushed: <span class="tag">c9e1767</span> logo hand + waveform (10‑20 23:21) · <span class="tag">69156b5</span> simplify logo (10‑20 23:23) · <span class="tag">3c7ce3a</span> branch URLs (10‑21 11:49).</span>
-  </div>
+  <footer class="foot">
+    <div class="notes-panel">
+      <div>
+        <div class="notes-label">Ledger notes</div>
+        <p><b>🤹 Dexterity</b> (built Oct 21, 12:34) was rolled back on test to <b>🩹 Graft</b> (built Oct 20, 23:27).
+        Never built or pushed: <span class="tag">c9e1767</span> logo hand + waveform · <span class="tag">69156b5</span> simplify logo · <span class="tag">3c7ce3a</span> branch URLs.</p>
+      </div>
+    </div>
+
+    <div class="sign" id="sign" title="the ledger says hello">
+      <span class="sign-hand">🖐️</span>
+      <span id="sign-line"></span>
+    </div>
+  </footer>
 </div>
 
 <script>
-const rows = [{"tag": "4dd897c", "built": "2026-10-17 06:46", "commit": "2026-10-17 09:45", "subject": "Merge branch 'k8s-cicd' into test", "deployed": []}, {"tag": "8240868", "built": "2026-10-17 06:59", "commit": "2026-10-17 09:44", "subject": "Find kubectl in ~/.local/bin on ubuntu02", "deployed": []}, {"tag": "ae0b0c8", "built": "2026-10-17 07:20", "commit": "2026-10-17 10:05", "subject": "Merge origin/whatsapp into test", "deployed": []}, {"tag": "dd58106", "built": "2026-10-17 07:28", "commit": "2026-10-17 10:26", "subject": "Live transcription: audio+text per commit, redo broken answer by batch", "deployed": []}, {"tag": "fa5b2d1", "built": "2026-10-17 07:41", "commit": "2026-10-17 10:39", "subject": "QA fake visit on every test/beta deploy, rollback on miss", "deployed": []}, {"tag": "90a52d8", "built": "2026-10-17 07:45", "commit": "2026-10-17 10:43", "subject": "QA visit: retry socket while old pod leaves", "deployed": []}, {"tag": "d10eb63", "built": "2026-10-17 07:53", "commit": "2026-10-17 10:47", "subject": "Rollout: wait for old pod before health check/QA", "deployed": []}, {"tag": "caca783", "built": "2026-10-17 08:43", "commit": "2026-10-17 11:30", "subject": "Vocabulary from trigger-thumb test visit", "deployed": []}, {"tag": "18eb12b", "built": "2026-10-17 08:48", "commit": "2026-10-17 11:45", "subject": "Vocabulary: 50 words Scribe mishears; QA accepts drug spellings", "deployed": []}, {"tag": "142aed4", "built": "2026-10-17 09:24", "commit": "2026-10-17 12:13", "subject": "Transcript: drop hesitations, fix visit 1002 mishearings", "deployed": []}, {"tag": "a58929a", "built": "2026-10-17 09:42", "commit": "2026-10-17 12:32", "subject": "Alert Simon when site/AI/speech key down", "deployed": []}, {"tag": "b653c00", "built": "2026-10-17 09:59", "commit": "2026-10-17 12:57", "subject": "Doctor feedback: headed printout sections, follow-up, injection, floating stop", "deployed": []}, {"tag": "3352d8a", "built": "2026-10-17 10:11", "commit": "2026-10-17 13:09", "subject": "Printout/forms: ID, phone, DOB aligned right", "deployed": []}, {"tag": "4841ab3", "built": "2026-10-17 10:17", "commit": "2026-10-17 13:14", "subject": "Summary: drug/test/structure names in English", "deployed": []}, {"tag": "b431cd1", "built": "2026-10-17 11:14", "commit": "2026-10-17 14:11", "subject": "Email visit summary, signed and stamped", "deployed": []}, {"tag": "910049f", "built": "2026-10-17 12:07", "commit": "2026-10-17 14:53", "subject": "Share button: summary as PDF via share menu", "deployed": []}, {"tag": "e47d1e8", "built": "2026-10-17 12:44", "commit": "2026-10-17 15:41", "subject": "One Print/share button (print, PDF, email)", "deployed": []}, {"tag": "fc93c57", "built": "2026-10-17 12:59", "commit": "2026-10-17 15:47", "subject": "Doctor's stamp closes the letter", "deployed": []}, {"tag": "5b78440", "built": "2026-10-17 13:25", "commit": "2026-10-17 16:22", "subject": "Second round: ready-made sentences, several diagnoses, full details", "deployed": []}, {"tag": "300b461", "built": "2026-10-17 13:40", "commit": "2026-10-17 16:30", "subject": "QA visit: ID as digits/words, spellings per visit part", "deployed": []}, {"tag": "50acd75", "built": "2026-10-17 13:56", "commit": "2026-10-17 16:46", "subject": "No popup for missing details; quiet line instead", "deployed": []}, {"tag": "eaedf0d", "built": "2026-10-17 14:19", "commit": "2026-10-17 17:08", "subject": "Speed: fast-model patient check, freed recorder, faster updates", "deployed": []}, {"tag": "dc31c1c", "built": "2026-10-17 14:35", "commit": "2026-10-17 17:23", "subject": "Speed: last words cut at pauses, transcribed in parallel", "deployed": []}, {"tag": "4e6baa3", "built": "2026-10-20 16:03", "commit": "2026-10-20 18:58", "subject": "Refresh resumed summaries, actions and note shortcuts", "deployed": []}, {"tag": "90ccbc8", "built": "2026-10-20 16:31", "commit": "2026-10-20 19:25", "subject": "Paginated A4 Hebrew clinic PDF", "deployed": []}, {"tag": "d0ddbb4", "built": "2026-10-20 16:37", "commit": "2026-10-20 19:32", "subject": "Keep apostrophes in English terms in Hebrew PDFs", "deployed": []}, {"tag": "1233436", "built": "2026-10-20 16:43", "commit": "2026-10-20 19:36", "subject": "Full clinic contacts + signature on one page", "deployed": []}, {"tag": "3608da0", "built": "2026-10-20 17:32", "commit": "2026-10-20 20:07", "subject": "Align diagnosis table columns, drop print timestamp", "deployed": []}, {"tag": "39fb294", "built": "2026-10-20 18:16", "commit": "2026-10-20 20:52", "subject": "Remove phrase length limit, inline editing", "deployed": []}, {"tag": "a57b44c", "built": "2026-10-20 19:05", "commit": "2026-10-20 21:57", "subject": "Simplify workspace, persistent controls, searchable phrases", "deployed": []}, {"tag": "9631a1e", "built": "2026-10-20 19:33", "commit": "2026-10-20 22:28", "subject": "Paginated patient-history previews in parallel", "deployed": []}, {"tag": "97bf810", "built": "2026-10-20 20:04", "commit": "2026-10-20 23:00", "subject": "Manual playback + seekable WAV downloads", "deployed": []}, {"tag": "c9fa92d", "built": "2026-10-20 20:17", "commit": "2026-10-20 23:13", "subject": "Streamed MP3 recording downloads", "deployed": []}, {"tag": "81c12a9", "built": "2026-10-21 08:43", "commit": "2026-10-20 23:27", "subject": "Versioned shared clinic logo URLs", "deployed": []}, {"tag": "d86378a", "built": "2026-10-21 09:09", "commit": "2026-10-21 11:53", "subject": "Deploy checks/watcher for prod, test, integration", "deployed": ["prod", "integration"]}, {"tag": "db76047", "built": "2026-10-21 09:39", "commit": "2026-10-21 12:34", "subject": "Refine workspace, patient workflows, save feedback", "deployed": ["test"]}, {"tag": "04b8d4b1d39d", "built": "2026-10-23 13:17", "commit": "2026-10-23 13:17", "subject": "BulkBuy — launch operating hub, checklist, tracker templates and documentation", "deployed": []}, {"tag": "b23840228554", "built": "2026-10-23 13:17", "commit": "2026-10-23 13:17", "subject": "Project gallery — add BulkBuy and its documentation", "deployed": []}, {"tag": "1a28858db86e", "built": "2026-10-23 13:24", "commit": "2026-10-23 13:24", "subject": "BulkBuy — Hebrew website, documentation, RTL layout and Hebrew CSV headers", "deployed": []}, {"tag": "1b68a4567612", "built": "2026-10-23 13:24", "commit": "2026-10-23 13:24", "subject": "BulkBuy project — Hebrew documentation and screenshot", "deployed": []}, {"tag": "38e1c84", "built": "2026-10-23 10:27", "commit": "2026-10-23 13:10", "subject": "Integration wears a purple clinic mark, coloured site strip and named tab", "deployed": ["integration"]}, {"tag": "87198de", "built": "2026-10-23 14:10", "commit": "2026-10-23 14:10", "subject": "BulkBuy — Hebrew salon website, persistent media uploads, integration preview and owner-controlled production publishing", "deployed": ["bulkbuy"]}, {"tag": "77faf3053340", "built": "2026-10-23 14:10", "commit": "2026-10-23 14:10", "subject": "BulkBuy project — staged publishing documentation and redesigned website screenshot", "deployed": []}, {"tag": "43896bb", "built": "2026-10-23 16:08", "commit": "2026-10-23 16:08", "subject": "BulkBuy integration — cinematic Higgsfield hair film, Hebrew editorial homepage and verified mobile layout", "deployed": ["bulkbuy-integration"]}, {"tag": "bulkbuy-editorial-docs-20261023", "built": "2026-10-23 16:08", "commit": "2026-10-23 16:08", "subject": "BulkBuy project documentation and screenshot — cinematic integration preview", "deployed": ["my-projects"]}];
+const rows = [{"tag": "4dd897c", "built": "2026-10-17 06:46", "commit": "2026-10-17 09:45", "subject": "Merge branch 'k8s-cicd' into test", "deployed": []}, {"tag": "8240868", "built": "2026-10-17 06:59", "commit": "2026-10-17 09:44", "subject": "Find kubectl in ~/.local/bin on ubuntu02", "deployed": []}, {"tag": "ae0b0c8", "built": "2026-10-17 07:20", "commit": "2026-10-17 10:05", "subject": "Merge origin/whatsapp into test", "deployed": []}, {"tag": "dd58106", "built": "2026-10-17 07:28", "commit": "2026-10-17 10:26", "subject": "Live transcription: audio+text per commit, redo broken answer by batch", "deployed": []}, {"tag": "fa5b2d1", "built": "2026-10-17 07:41", "commit": "2026-10-17 10:39", "subject": "QA fake visit on every test/beta deploy, rollback on miss", "deployed": []}, {"tag": "90a52d8", "built": "2026-10-17 07:45", "commit": "2026-10-17 10:43", "subject": "QA visit: retry socket while old pod leaves", "deployed": []}, {"tag": "d10eb63", "built": "2026-10-17 07:53", "commit": "2026-10-17 10:47", "subject": "Rollout: wait for old pod before health check/QA", "deployed": []}, {"tag": "caca783", "built": "2026-10-17 08:43", "commit": "2026-10-17 11:30", "subject": "Vocabulary from trigger-thumb test visit", "deployed": []}, {"tag": "18eb12b", "built": "2026-10-17 08:48", "commit": "2026-10-17 11:45", "subject": "Vocabulary: 50 words Scribe mishears; QA accepts drug spellings", "deployed": []}, {"tag": "142aed4", "built": "2026-10-17 09:24", "commit": "2026-10-17 12:13", "subject": "Transcript: drop hesitations, fix visit 1002 mishearings", "deployed": []}, {"tag": "a58929a", "built": "2026-10-17 09:42", "commit": "2026-10-17 12:32", "subject": "Alert Simon when site/AI/speech key down", "deployed": []}, {"tag": "b653c00", "built": "2026-10-17 09:59", "commit": "2026-10-17 12:57", "subject": "Doctor feedback: headed printout sections, follow-up, injection, floating stop", "deployed": []}, {"tag": "3352d8a", "built": "2026-10-17 10:11", "commit": "2026-10-17 13:09", "subject": "Printout/forms: ID, phone, DOB aligned right", "deployed": []}, {"tag": "4841ab3", "built": "2026-10-17 10:17", "commit": "2026-10-17 13:14", "subject": "Summary: drug/test/structure names in English", "deployed": []}, {"tag": "b431cd1", "built": "2026-10-17 11:14", "commit": "2026-10-17 14:11", "subject": "Email visit summary, signed and stamped", "deployed": []}, {"tag": "910049f", "built": "2026-10-17 12:07", "commit": "2026-10-17 14:53", "subject": "Share button: summary as PDF via share menu", "deployed": []}, {"tag": "e47d1e8", "built": "2026-10-17 12:44", "commit": "2026-10-17 15:41", "subject": "One Print/share button (print, PDF, email)", "deployed": []}, {"tag": "fc93c57", "built": "2026-10-17 12:59", "commit": "2026-10-17 15:47", "subject": "Doctor's stamp closes the letter", "deployed": []}, {"tag": "5b78440", "built": "2026-10-17 13:25", "commit": "2026-10-17 16:22", "subject": "Second round: ready-made sentences, several diagnoses, full details", "deployed": []}, {"tag": "300b461", "built": "2026-10-17 13:40", "commit": "2026-10-17 16:30", "subject": "QA visit: ID as digits/words, spellings per visit part", "deployed": []}, {"tag": "50acd75", "built": "2026-10-17 13:56", "commit": "2026-10-17 16:46", "subject": "No popup for missing details; quiet line instead", "deployed": []}, {"tag": "eaedf0d", "built": "2026-10-17 14:19", "commit": "2026-10-17 17:08", "subject": "Speed: fast-model patient check, freed recorder, faster updates", "deployed": []}, {"tag": "dc31c1c", "built": "2026-10-17 14:35", "commit": "2026-10-17 17:23", "subject": "Speed: last words cut at pauses, transcribed in parallel", "deployed": []}, {"tag": "4e6baa3", "built": "2026-10-20 16:03", "commit": "2026-10-20 18:58", "subject": "Refresh resumed summaries, actions and note shortcuts", "deployed": []}, {"tag": "90ccbc8", "built": "2026-10-20 16:31", "commit": "2026-10-20 19:25", "subject": "Paginated A4 Hebrew clinic PDF", "deployed": []}, {"tag": "d0ddbb4", "built": "2026-10-20 16:37", "commit": "2026-10-20 19:32", "subject": "Keep apostrophes in English terms in Hebrew PDFs", "deployed": []}, {"tag": "1233436", "built": "2026-10-20 16:43", "commit": "2026-10-20 19:36", "subject": "Full clinic contacts + signature on one page", "deployed": []}, {"tag": "3608da0", "built": "2026-10-20 17:32", "commit": "2026-10-20 20:07", "subject": "Align diagnosis table columns, drop print timestamp", "deployed": []}, {"tag": "39fb294", "built": "2026-10-20 18:16", "commit": "2026-10-20 20:52", "subject": "Remove phrase length limit, inline editing", "deployed": []}, {"tag": "a57b44c", "built": "2026-10-20 19:05", "commit": "2026-10-20 21:57", "subject": "Simplify workspace, persistent controls, searchable phrases", "deployed": []}, {"tag": "9631a1e", "built": "2026-10-20 19:33", "commit": "2026-10-20 22:28", "subject": "Paginated patient-history previews in parallel", "deployed": []}, {"tag": "97bf810", "built": "2026-10-20 20:04", "commit": "2026-10-20 23:00", "subject": "Manual playback + seekable WAV downloads", "deployed": []}, {"tag": "c9fa92d", "built": "2026-10-20 20:17", "commit": "2026-10-20 23:13", "subject": "Streamed MP3 recording downloads", "deployed": []}, {"tag": "81c12a9", "built": "2026-10-21 08:43", "commit": "2026-10-20 23:27", "subject": "Versioned shared clinic logo URLs", "deployed": []}, {"tag": "d86378a", "built": "2026-10-21 09:09", "commit": "2026-10-21 11:53", "subject": "Deploy checks/watcher for prod, test, integration", "deployed": ["prod", "integration"]}, {"tag": "db76047", "built": "2026-10-21 09:39", "commit": "2026-10-21 12:34", "subject": "Refine workspace, patient workflows, save feedback", "deployed": ["test"]}, {"tag": "04b8d4b1d39d", "built": "2026-10-23 13:17", "commit": "2026-10-23 13:17", "subject": "BulkBuy — launch operating hub, checklist, tracker templates and documentation", "deployed": []}, {"tag": "b23840228554", "built": "2026-10-23 13:17", "commit": "2026-10-23 13:17", "subject": "Project gallery — add BulkBuy and its documentation", "deployed": []}, {"tag": "1a28858db86e", "built": "2026-10-23 13:24", "commit": "2026-10-23 13:24", "subject": "BulkBuy — Hebrew website, documentation, RTL layout and Hebrew CSV headers", "deployed": []}, {"tag": "1b68a4567612", "built": "2026-10-23 13:24", "commit": "2026-10-23 13:24", "subject": "BulkBuy project — Hebrew documentation and screenshot", "deployed": []}, {"tag": "38e1c84", "built": "2026-10-23 10:27", "commit": "2026-10-23 13:10", "subject": "Integration wears a purple clinic mark, coloured site strip and named tab", "deployed": ["integration"]}, {"tag": "87198de", "built": "2026-10-23 14:10", "commit": "2026-10-23 14:10", "subject": "BulkBuy — Hebrew salon website, persistent media uploads, integration preview and owner-controlled production publishing", "deployed": ["bulkbuy"]}, {"tag": "77faf3053340", "built": "2026-10-23 14:10", "commit": "2026-10-23 14:10", "subject": "BulkBuy project — staged publishing documentation and redesigned website screenshot", "deployed": []}, {"tag": "43896bb", "built": "2026-10-23 16:08", "commit": "2026-10-23 16:08", "subject": "BulkBuy integration — cinematic Higgsfield hair film, Hebrew editorial homepage and verified mobile layout", "deployed": ["bulkbuy-integration"]}, {"tag": "bulkbuy-editorial-docs-20261023", "built": "2026-10-23 16:08", "commit": "2026-10-23 16:08", "subject": "BulkBuy project documentation and screenshot — cinematic integration preview", "deployed": ["my-projects"]}, {"tag": "ledger-tailnet-20261023", "built": "2026-10-23 13:23", "commit": "2026-10-23 16:23", "subject": "Build ledger — private Tailscale HTTPS, public tunnel removed, authenticated gateway and automatic certificate renewal", "deployed": []}, {"tag": "e7ddb6e", "built": "2026-10-23 13:33", "commit": "2026-10-23 16:33", "subject": "Build Ledger — automatic local Git branch discovery, search and stale-data status", "deployed": ["build-ledger"]}, {"tag": "ledger-visual-refresh-20261023", "built": "2026-10-23 16:46", "commit": "2026-10-23 16:46", "subject": "Build Ledger — visual refresh: clearer hierarchy, compact build rows, responsive card layout", "deployed": ["build-ledger"]}, {"tag": "4c061e5", "built": "2026-10-23 13:52", "commit": "2026-10-23 16:52", "subject": "Screen Pointer — installed explicit point capture and MCP reader; live capture blocked by macOS Screen Recording permission", "deployed": ["screen-pointer-mac"]}, {"tag": "ledger-projects-20261023", "built": "2026-10-23 16:57", "commit": "2026-10-23 16:57", "subject": "Build Ledger — project filters: per-project tabs, row labels and build counts", "deployed": ["build-ledger"]}];
 
 const HL_KEY = "mr-highlights";
 const quips = ["hi there", "glad you looked", "still holding up", "all thumbs, no bugs", "handle with care", "waving back", "grip check", "you found me", "flexing", "steady hands", "that's the spot", "nice to see you"];
 
-const versionNames = ["🦴 Carpal", "🦴 Metacarpal", "🦴 Phalanx", "🧵 Tendon", "🪢 Ligament", "✊ Knuckle", "🖐️ Palm", "⌚ Wrist", "👍 Thumb", "☝️ Index", "✋ Middle", "💍 Ring", "🤏 Pinky", "🦴 Scaphoid", "🌙 Lunate", "🔺 Triquetrum", "🫘 Pisiform", "🧩 Trapezium", "🔷 Trapezoid", "🗿 Capitate", "🪝 Hamate", "📏 Radius", "📐 Ulna", "🪝 Flexor", "🦾 Extensor", "⚡ Median nerve", "⚡ Ulnar nerve", "🩹 Splint", "🧤 Cast", "🧵 Suture", "🔪 Scalpel", "🩺 Stethoscope", "🩸 Tourniquet", "🩹 Graft", "💪 Rehab", "🤹 Dexterity", "BulkBuy · 2026-10-23 13:17 launch", "Projects · 2026-10-23 13:17 launch", "BulkBuy · 2026-10-23 13:24 Hebrew", "Projects · 2026-10-23 13:24 Hebrew", "✊ Grip", "BulkBuy · 2026-10-23 14:10 media publishing", "Projects · 2026-10-23 14:10 BulkBuy publishing", "BulkBuy · 2026-10-23 16:08 cinematic mobile preview", "Projects · 2026-10-23 16:08 BulkBuy editorial preview"];
+const versionNames = ["🦴 Carpal", "🦴 Metacarpal", "🦴 Phalanx", "🧵 Tendon", "🪢 Ligament", "✊ Knuckle", "🖐️ Palm", "⌚ Wrist", "👍 Thumb", "☝️ Index", "✋ Middle", "💍 Ring", "🤏 Pinky", "🦴 Scaphoid", "🌙 Lunate", "🔺 Triquetrum", "🫘 Pisiform", "🧩 Trapezium", "🔷 Trapezoid", "🗿 Capitate", "🪝 Hamate", "📏 Radius", "📐 Ulna", "🪝 Flexor", "🦾 Extensor", "⚡ Median nerve", "⚡ Ulnar nerve", "🩹 Splint", "🧤 Cast", "🧵 Suture", "🔪 Scalpel", "🩺 Stethoscope", "🩸 Tourniquet", "🩹 Graft", "💪 Rehab", "🤹 Dexterity", "BulkBuy · 2026-10-23 13:17 launch", "Projects · 2026-10-23 13:17 launch", "BulkBuy · 2026-10-23 13:24 Hebrew", "Projects · 2026-10-23 13:24 Hebrew", "✊ Grip", "BulkBuy · 2026-10-23 14:10 media publishing", "Projects · 2026-10-23 14:10 BulkBuy publishing", "BulkBuy · 2026-10-23 16:08 cinematic mobile preview", "Projects · 2026-10-23 16:08 BulkBuy editorial preview", "Build Ledger · 2026-10-23 16:23 Tailscale-only access", "Build Ledger · 2026-10-23 16:33 automatic branches", "Build Ledger · 2026-10-23 16:46 visual refresh", "Screen Pointer · 2026-10-23 16:52 agent pointing preview", "Build Ledger · 2026-10-23 16:57 project filters"];
 
-const versionOf = Object.fromEntries(rows.map((r, i) => [r.tag, i + 1]));
+const PROJECT_LABELS = { "Projects": "My projects" };
+const projectOfName = (full) => String(full).includes(" · ") ? String(full).split(" · ")[0].trim() : "Meeting recorder";
+const projectClassOf = (p) => ({ "Meeting recorder": "p-meeting", "BulkBuy": "p-bulkbuy", "Projects": "p-projects", "Build Ledger": "p-ledger", "Screen Pointer": "p-screen" }[p] || "p-other");
+const projectLabelOf = (p) => PROJECT_LABELS[p] || p;
+const projectOfTag = Object.fromEntries(rows.map((r, i) => [r.tag, projectOfName(versionNames[i] || r.tag)]));
+
+// Version numbers count within a project: the first Meeting recorder build is v1, the first Build Ledger
+// entry is v1 too. Mixing them in one series (v50 for a docs change) told the reader nothing.
+const nameOf = Object.fromEntries(rows.map((r, i) => [r.tag, versionNames[i] || r.tag]));
+
+const versionOf = (() => {
+  const seen = new Map();
+  const out = {};
+  for (const r of rows) {
+    const p = projectOfTag[r.tag];
+    const n = (seen.get(p) || 0) + 1;
+    seen.set(p, n);
+    out[r.tag] = n;
+  }
+  return out;
+})();
 
 const rolledBack = {"db76047": "🩹 Graft · Oct 20, 23:27"};
 
@@ -315,6 +622,22 @@ const notes = (() => {
   try { return JSON.parse(localStorage.getItem(NOTE_KEY)) || {}; } catch (e) { return {}; }
 })();
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+const pad2 = (n) => String(n).padStart(2, "0");
+const stamp = (date) => {
+  const d = date instanceof Date ? date : new Date(date);
+  if (Number.isNaN(d.getTime())) return "unknown";
+  return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())} ${pad2(d.getHours())}:${pad2(d.getMinutes())}`;
+};
+
+const splitVersionName = (full) => {
+  const parts = String(full).split(" ");
+  return /\p{Extended_Pictographic}/u.test(parts[0]) ? [parts[0], parts.slice(1).join(" ")] : ["", full];
+};
+
+// The card already shows the project and the built date, so a name like
+// "Build Ledger · 2026-10-23 16:57 project filters" only needs to say "project filters".
+const displayName = (full) => String(full).replace(/^[^·]+ · \d{4}-\d{2}-\d{2} \d{2}:\d{2} /, "").trim() || String(full);
 
 const hlOrder = ["yellow", "blue"];
 const highlights = (() => {
@@ -331,9 +654,32 @@ function cycleHighlight(tag) {
   setHighlight(tag, i === -1 ? hlOrder[0] : (hlOrder[i + 1] || null));
 }
 
-const commitMeta = {"4dd897c": {"files": 11, "ins": 293, "del": 365, "author": "Simon"}, "8240868": {"files": 2, "ins": 2, "del": 1, "author": "Simon"}, "ae0b0c8": {"files": 18, "ins": 477, "del": 156, "author": "Simon"}, "dd58106": {"files": 2, "ins": 66, "del": 4, "author": "Simon"}, "fa5b2d1": {"files": 6, "ins": 171, "del": 10, "author": "Simon"}, "90a52d8": {"files": 1, "ins": 11, "del": 1, "author": "Simon"}, "d10eb63": {"files": 1, "ins": 7, "del": 0, "author": "Simon"}, "caca783": {"files": 2, "ins": 18, "del": 4, "author": "Simon"}, "18eb12b": {"files": 3, "ins": 27, "del": 14, "author": "Simon"}, "142aed4": {"files": 2, "ins": 29, "del": 2, "author": "Simon"}, "a58929a": {"files": 7, "ins": 155, "del": 9, "author": "Simon"}, "b653c00": {"files": 11, "ins": 208, "del": 54, "author": "Simon"}, "3352d8a": {"files": 4, "ins": 26, "del": 3, "author": "Simon"}, "4841ab3": {"files": 2, "ins": 20, "del": 15, "author": "Simon"}, "b431cd1": {"files": 10, "ins": 135, "del": 31, "author": "Simon"}, "910049f": {"files": 6, "ins": 513, "del": 5, "author": "Simon"}, "e47d1e8": {"files": 7, "ins": 150, "del": 65, "author": "Simon"}, "fc93c57": {"files": 3, "ins": 24, "del": 3, "author": "Simon"}, "5b78440": {"files": 14, "ins": 400, "del": 34, "author": "Simon"}, "300b461": {"files": 1, "ins": 10, "del": 2, "author": "Simon"}, "50acd75": {"files": 3, "ins": 27, "del": 10, "author": "Simon"}, "eaedf0d": {"files": 9, "ins": 64, "del": 20, "author": "Simon"}, "dc31c1c": {"files": 3, "ins": 51, "del": 2, "author": "Simon"}, "4e6baa3": {"files": 11, "ins": 383, "del": 53, "author": "Simon"}, "90ccbc8": {"files": 23, "ins": 598, "del": 297, "author": "Simon"}, "d0ddbb4": {"files": 2, "ins": 5, "del": 1, "author": "Simon"}, "1233436": {"files": 3, "ins": 28, "del": 5, "author": "Simon"}, "3608da0": {"files": 5, "ins": 11, "del": 12, "author": "Simon"}, "39fb294": {"files": 8, "ins": 166, "del": 19, "author": "Simon"}, "a57b44c": {"files": 4, "ins": 255, "del": 66, "author": "Simon"}, "9631a1e": {"files": 5, "ins": 244, "del": 13, "author": "Simon"}, "97bf810": {"files": 10, "ins": 335, "del": 7, "author": "Simon"}, "c9fa92d": {"files": 7, "ins": 136, "del": 8, "author": "Simon"}, "81c12a9": {"files": 1, "ins": 5, "del": 3, "author": "Simon"}, "d86378a": {"files": 4, "ins": 14, "del": 14, "author": "Simon"}, "db76047": {"files": 9, "ins": 3020, "del": 647, "author": "Simon"}, "38e1c84": {"files": 5, "ins": 31, "del": 2, "author": "Simon"}, "87198de": {"files": 27, "ins": 1085, "del": 0, "author": "Simon"}, "43896bb": {"files": 12, "ins": 78, "del": 10, "author": "Simon"}};
+const commitMeta = {"4dd897c": {"files": 11, "ins": 293, "del": 365, "author": "Simon"}, "8240868": {"files": 2, "ins": 2, "del": 1, "author": "Simon"}, "ae0b0c8": {"files": 18, "ins": 477, "del": 156, "author": "Simon"}, "dd58106": {"files": 2, "ins": 66, "del": 4, "author": "Simon"}, "fa5b2d1": {"files": 6, "ins": 171, "del": 10, "author": "Simon"}, "90a52d8": {"files": 1, "ins": 11, "del": 1, "author": "Simon"}, "d10eb63": {"files": 1, "ins": 7, "del": 0, "author": "Simon"}, "caca783": {"files": 2, "ins": 18, "del": 4, "author": "Simon"}, "18eb12b": {"files": 3, "ins": 27, "del": 14, "author": "Simon"}, "142aed4": {"files": 2, "ins": 29, "del": 2, "author": "Simon"}, "a58929a": {"files": 7, "ins": 155, "del": 9, "author": "Simon"}, "b653c00": {"files": 11, "ins": 208, "del": 54, "author": "Simon"}, "3352d8a": {"files": 4, "ins": 26, "del": 3, "author": "Simon"}, "4841ab3": {"files": 2, "ins": 20, "del": 15, "author": "Simon"}, "b431cd1": {"files": 10, "ins": 135, "del": 31, "author": "Simon"}, "910049f": {"files": 6, "ins": 513, "del": 5, "author": "Simon"}, "e47d1e8": {"files": 7, "ins": 150, "del": 65, "author": "Simon"}, "fc93c57": {"files": 3, "ins": 24, "del": 3, "author": "Simon"}, "5b78440": {"files": 14, "ins": 400, "del": 34, "author": "Simon"}, "300b461": {"files": 1, "ins": 10, "del": 2, "author": "Simon"}, "50acd75": {"files": 3, "ins": 27, "del": 10, "author": "Simon"}, "eaedf0d": {"files": 9, "ins": 64, "del": 20, "author": "Simon"}, "dc31c1c": {"files": 3, "ins": 51, "del": 2, "author": "Simon"}, "4e6baa3": {"files": 11, "ins": 383, "del": 53, "author": "Simon"}, "90ccbc8": {"files": 23, "ins": 598, "del": 297, "author": "Simon"}, "d0ddbb4": {"files": 2, "ins": 5, "del": 1, "author": "Simon"}, "1233436": {"files": 3, "ins": 28, "del": 5, "author": "Simon"}, "3608da0": {"files": 5, "ins": 11, "del": 12, "author": "Simon"}, "39fb294": {"files": 8, "ins": 166, "del": 19, "author": "Simon"}, "a57b44c": {"files": 4, "ins": 255, "del": 66, "author": "Simon"}, "9631a1e": {"files": 5, "ins": 244, "del": 13, "author": "Simon"}, "97bf810": {"files": 10, "ins": 335, "del": 7, "author": "Simon"}, "c9fa92d": {"files": 7, "ins": 136, "del": 8, "author": "Simon"}, "81c12a9": {"files": 1, "ins": 5, "del": 3, "author": "Simon"}, "d86378a": {"files": 4, "ins": 14, "del": 14, "author": "Simon"}, "db76047": {"files": 9, "ins": 3020, "del": 647, "author": "Simon"}, "38e1c84": {"files": 5, "ins": 31, "del": 2, "author": "Simon"}, "87198de": {"files": 27, "ins": 1085, "del": 0, "author": "Simon"}, "43896bb": {"files": 12, "ins": 78, "del": 10, "author": "Simon"}, "e7ddb6e": {"files": 8, "ins": 254, "del": 11, "author": "Simon"}, "ledger-visual-refresh-20261023": {"files": 1, "ins": 544, "del": 238, "author": "Simon"}, "4c061e5": {"files": 8, "ins": 275, "del": 3, "author": "Simon"}, "ledger-projects-20261023": {"files": 1, "ins": 108, "del": 4, "author": "Simon"}};
 
 const badgeClass = { prod: "b-prod", test: "b-test", integration: "b-int" };
+let selectedProject = (() => {
+  try { return localStorage.getItem("mr-project") || "all"; } catch (e) { return "all"; }
+})();
+let projectList = [];
+function collectProjects() {
+  const counts = new Map();
+  for (const r of rows) {
+    const p = projectOfTag[r.tag];
+    counts.set(p, (counts.get(p) || 0) + 1);
+  }
+  projectList = [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  if (selectedProject !== "all" && !counts.has(selectedProject)) selectedProject = "all";
+  document.getElementById("s-projects").textContent = projectList.length;
+}
+function renderProjectTabs() {
+  const el = document.getElementById("project-tabs");
+  const tabs = [
+    { project: "all", label: "All builds", count: rows.length, cls: "p-all" },
+    ...projectList.map(([p, count]) => ({ project: p, label: projectLabelOf(p), count, cls: projectClassOf(p) })),
+  ];
+  el.innerHTML = tabs.map(t => `<button class="project-tab ${t.cls}" data-project="${esc(t.project)}" aria-pressed="${selectedProject === t.project}">${t.project === "all" ? "" : '<span class="project-dot"></span>'}<span>${esc(t.label)}</span><span class="project-count">${t.count}</span></button>`).join("");
+}
+const buildCount = (n) => `${n} build${n === 1 ? "" : "s"}`;
 let sortKey = "built", sortDir = -1;
 const q = document.getElementById("q");
 const tbody = document.getElementById("rows");
@@ -341,11 +687,16 @@ const count = document.getElementById("count");
 const arrow = (k) => `<span class="arrow">${sortKey === k ? (sortDir === -1 ? "↓" : "↑") : "↕"}</span>`;
 
 document.getElementById("s-total").textContent = rows.length;
+document.getElementById("s-targets").textContent = new Set(rows.flatMap(r => r.deployed)).size;
+const rollbackCount = Object.keys(rolledBack).length;
+document.getElementById("s-rollbacks").textContent = rollbackCount;
+document.getElementById("s-rollbacks-label").textContent = rollbackCount === 1 ? "rollback" : "rollbacks";
 
 function render() {
   const needle = q.value.trim().toLowerCase();
-  const list = rows
-    .filter(r => !needle || [r.tag, r.built, r.commit, r.subject, r.deployed.join(" ")].join(" ").toLowerCase().includes(needle))
+  const base = rows.filter(r => selectedProject === "all" || projectOfTag[r.tag] === selectedProject);
+  const list = base
+    .filter(r => !needle || [r.tag, r.built, r.commit, r.subject, r.deployed.join(" "), nameOf[r.tag] || "", projectOfTag[r.tag], projectLabelOf(projectOfTag[r.tag])].join(" ").toLowerCase().includes(needle))
     .sort((a, b) => {
       const av = a[sortKey], bv = b[sortKey];
       const cmp = sortKey === "deployed"
@@ -358,31 +709,73 @@ function render() {
       return cmp * sortDir;
     });
 
-  tbody.innerHTML = list.map(r => `
-    <tr data-tag="${r.tag}" class="${highlights[r.tag] ? "hl-" + highlights[r.tag] : ""}">
-      <td class="when">${r.built.slice(0, 10)}<small>${r.built.slice(11)}</small></td>
-      <td class="subject"><div><span class="tag" data-copy="${r.tag}" title="${r.tag}">v${versionOf[r.tag]}</span> ${(() => { const [icon, ...rest] = versionNames[versionOf[r.tag] - 1].split(" "); return `<span class="vlabel copy" data-copy="v${versionOf[r.tag]} ${versionNames[versionOf[r.tag] - 1]}" title="Copy version name"><span class="vicon">${icon}</span> <span class="vname">${rest.join(" ")}</span></span><span class="say">${quips[(versionOf[r.tag] - 1) % quips.length]}</span>`; })()}</div><div class="vsub">${r.subject}</div>${commitMeta[r.tag] ? `<div class="meta">${commitMeta[r.tag].author} · ${commitMeta[r.tag].files} file${commitMeta[r.tag].files === 1 ? "" : "s"}</div>` : ""}<div class="note-wrap" data-note-for="${r.tag}">${notes[r.tag] ? `<div class="note-item"><span class="note-pin">📌</span><span class="note-text">${esc(notes[r.tag])}</span><button class="note-edit" title="Edit note">✎</button></div>` : `<button class="note-add">+ note</button>`}</div></td>
-      <td class="when">${r.commit.slice(0, 10)}<small>${r.commit.slice(11)}</small></td>
-      <td class="lines ${commitMeta[r.tag] ? "c" + churnTier(commitMeta[r.tag].ins + commitMeta[r.tag].del) : ""}" title="${commitMeta[r.tag] ? `+${commitMeta[r.tag].ins} −${commitMeta[r.tag].del} across ${commitMeta[r.tag].files} file${commitMeta[r.tag].files === 1 ? "" : "s"} · ${(commitMeta[r.tag].ins + commitMeta[r.tag].del) / commitMeta[r.tag].files | 0} lines/file` : ""}">${commitMeta[r.tag] ? (commitMeta[r.tag].ins + commitMeta[r.tag].del).toLocaleString() : '<span class="dash">—</span>'}</td>
-      <td>${r.deployed.length
-        ? `<div class="badges">${r.deployed.map(d => `<span class="badge ${badgeClass[d]}">${d}</span>`).join("")}</div>`
-        : `<span class="dash">—</span>`}${rolledBack[r.tag] ? `<span class="badge b-roll" style="margin-left:6px">rolled back → ${rolledBack[r.tag]}</span>` : ""}</td>
-    </tr>`).join("");
+  tbody.innerHTML = list.length ? list.map(r => {
+    const n = versionOf[r.tag];
+    const fullName = nameOf[r.tag] || r.tag;
+    const [icon, rawLabel] = splitVersionName(fullName);
+    const label = displayName(rawLabel);
+    const project = projectOfTag[r.tag];
+    const m = commitMeta[r.tag];
+    const note = notes[r.tag];
+    const rb = rolledBack[r.tag];
+    const quip = quips.length ? quips[(n - 1) % quips.length] : "";
+    const total = m ? m.ins + m.del : null;
+    return `
+    <tr data-tag="${esc(r.tag)}" class="${highlights[r.tag] ? "hl-" + highlights[r.tag] : ""}">
+      <td class="when"><span class="d">${esc(r.built.slice(0, 10))}</span><small>${esc(r.built.slice(11))}</small></td>
+      <td>
+        <div class="build-head">
+          ${icon ? `<span class="vicon">${icon}</span>` : ""}
+          <span class="vlabel copy" data-copy="${esc(fullName)}" title="Copy version name">${esc(label)}</span>
+          <span class="vno tag" data-copy="${esc(r.tag)}" title="${esc(r.tag)}">v${n}</span>
+          <span class="say">${esc(quip)}</span>
+        </div>
+        <div class="vsub">${esc(r.subject)}</div>
+        <div class="build-foot">
+          <span class="project-label ${projectClassOf(project)}"><span class="project-dot"></span>${esc(projectLabelOf(project))}</span>
+          ${m ? `<span class="meta">${esc(m.author)} · ${m.files} file${m.files === 1 ? "" : "s"}</span>` : ""}
+          <div class="note-wrap${note ? " has-note" : ""}" data-note-for="${esc(r.tag)}">${note
+            ? `<div class="note-item"><span class="note-pin">📌</span><span class="note-text">${esc(note)}</span><button class="note-edit" title="Edit note" aria-label="Edit note">✎</button></div>`
+            : `<button class="note-add">+ note</button>`}</div>
+        </div>
+      </td>
+      <td class="when"><span class="d">${esc(r.commit.slice(0, 10))}</span><small>${esc(r.commit.slice(11))}</small></td>
+      <td class="lines ${m ? "c" + churnTier(total) : ""}" title="${m ? `+${m.ins} −${m.del} across ${m.files} file${m.files === 1 ? "" : "s"} · ${Math.floor(total / m.files)} lines/file` : ""}">${m ? total.toLocaleString() : '<span class="dash">—</span>'}</td>
+      <td>
+        <div class="deploy-cell">
+          ${r.deployed.length
+            ? `<div class="badges">${r.deployed.map(d => `<span class="badge ${badgeClass[d] || "b-other"}">${esc(d)}</span>`).join("")}</div>`
+            : `<span class="dash">—</span>`}
+          ${rb ? `<span class="badge b-roll" title="Rolled back to ${esc(rb)}">↩ ${esc(rb)}</span>` : ""}
+        </div>
+      </td>
+    </tr>`;
+  }).join("") : `<tr class="empty-row"><td colspan="5">No builds match this view.</td></tr>`;
 
-  count.textContent = `${list.length} of ${rows.length}`;
-  document.querySelectorAll("thead th").forEach(th => {
+  count.textContent = list.length === base.length ? buildCount(base.length) : `${list.length} of ${base.length}`;
+  document.querySelectorAll("thead th[data-key]").forEach(th => {
     th.classList.toggle("sorted", th.dataset.key === sortKey);
     th.querySelector(".arrow").outerHTML = arrow(th.dataset.key);
   });
+  updateFades();
 }
 
-document.querySelectorAll("thead th").forEach(th => {
+document.querySelectorAll("thead th[data-key]").forEach(th => {
   th.addEventListener("click", () => {
     const k = th.dataset.key;
     if (sortKey === k) sortDir *= -1;
     else { sortKey = k; sortDir = k === "built" || k === "commit" || k === "lines" || k === "ver" ? -1 : 1; }
     render();
   });
+});
+
+document.getElementById("project-tabs").addEventListener("click", (e) => {
+  const tab = e.target.closest(".project-tab");
+  if (!tab) return;
+  selectedProject = tab.dataset.project;
+  try { localStorage.setItem("mr-project", selectedProject); } catch (err) {}
+  renderProjectTabs();
+  render();
 });
 
 let toastTimer;
@@ -426,7 +819,7 @@ function copyLine(tr) {
   const row = rows.find(r => r.tag === tag);
   if (!row) return;
   const n = versionOf[tag];
-  const line = `v${n} ${versionNames[n - 1]} · ${row.subject} (${row.built})`;
+  const line = `v${n} ${nameOf[tag]} · ${row.subject} (${row.built})`;
   showToast(line.length > 48 ? line.slice(0, 46) + "…" : line);
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(line).catch(() => legacyCopy(line));
@@ -451,7 +844,7 @@ function openNoteEditor(tag) {
   tagEl.title = tag;
   const name = document.createElement("span");
   name.className = "who-name";
-  name.textContent = versionNames[n - 1] + " · " + rows.find(r => r.tag === tag).subject;
+  name.textContent = nameOf[tag] + " · " + rows.find(r => r.tag === tag).subject;
   who.append(tagEl, name);
 
   const ta = document.createElement("textarea");
@@ -519,10 +912,14 @@ tbody.addEventListener("contextmenu", (e) => {
 q.addEventListener("input", render);
 
 (function signLine() {
-  const newest = versionNames[versionNames.length - 1].split(" ").slice(1).join(" ");
-  const oldest = versionNames[0].split(" ").slice(1).join(" ");
+  const handNames = versionNames
+    .map(full => splitVersionName(full))
+    .filter(([icon]) => icon)
+    .map(([, label]) => label);
+  const newest = handNames[handNames.length - 1] || "Dexterity";
+  const oldest = handNames[0] || "Carpal";
   const prodRow = rows.find(r => r.deployed.includes("prod"));
-  const prod = prodRow ? versionNames[rows.indexOf(prodRow)].split(" ").slice(1).join(" ") : newest;
+  const prod = prodRow ? splitVersionName(nameOf[prodRow.tag])[1] : newest;
   const lines = [
     `${rows.length} builds, every one named — <b>${oldest}</b> to <b>${newest}</b>, knuckle by knuckle.`,
     `A hand has ${rows.length} parts if you count them all. So does this ledger.`,
@@ -536,7 +933,103 @@ q.addEventListener("input", render);
   }, { once: false });
 })();
 
+let branchSnapshot = null, branchRequestFailed = false;
+const branchRows = document.getElementById('branch-rows');
+function renderBranches() {
+  const status = document.getElementById('branch-status');
+  if (!branchSnapshot) {
+    status.textContent = 'Branch data unavailable — waiting for the Mac sync';
+    status.classList.add('stale');
+    return;
+  }
+  const scanned = Date.parse(branchSnapshot.checked_at);
+  const age = Date.now() - scanned;
+  const stale = branchRequestFailed || !Number.isFinite(age) || age > 240000;
+  const problems = branchSnapshot.errors || [];
+  status.classList.toggle('stale', stale || problems.length > 0);
+  const prefix = stale ? 'Updates delayed · ' : problems.length ? 'Some repositories unavailable · ' : 'Auto-sync · ';
+  status.textContent = prefix + 'last scan ' + stamp(scanned);
+  status.title = problems.length ? 'Could not read: ' + problems.join(', ') : 'Scans every minute while the Mac is awake and connected. Cluster updates can take another two minutes.';
+  const needle = document.getElementById('branch-search').value.trim().toLowerCase();
+  const list = branchSnapshot.branches
+    .filter(b => [b.repository, b.name, b.subject, b.commit].join(' ').toLowerCase().includes(needle))
+    .sort((a, b) => (Date.parse(b.date) - Date.parse(a.date)) || a.repository.localeCompare(b.repository) || a.name.localeCompare(b.name));
+  branchRows.replaceChildren();
+  for (const b of list) {
+    const tr = document.createElement('tr');
+    const when = document.createElement('td');
+    when.className = 'when';
+    const parts = stamp(b.date).split(' ');
+    const date = document.createElement('span');
+    date.className = 'd';
+    date.textContent = parts[0];
+    const time = document.createElement('small');
+    time.textContent = parts[1] || '';
+    when.append(date, time);
+    const repo = document.createElement('td');
+    repo.className = 'repo';
+    repo.textContent = b.repository;
+    const branch = document.createElement('td');
+    const name = document.createElement('button');
+    name.className = 'branch-name';
+    name.textContent = b.name;
+    name.dataset.copy = b.name;
+    name.title = 'Copy branch name';
+    const subject = document.createElement('div');
+    subject.className = 'branch-subject';
+    subject.textContent = b.subject;
+    subject.title = b.commit;
+    branch.append(name, subject);
+    const state = document.createElement('td');
+    if (b.current) {
+      const s = document.createElement('span');
+      s.className = 'copy-state';
+      s.textContent = 'Checked out';
+      state.append(s);
+    } else {
+      const s = document.createElement('span');
+      s.className = 'dash';
+      s.textContent = '—';
+      state.append(s);
+    }
+    tr.append(when, repo, branch, state);
+    branchRows.append(tr);
+  }
+  document.getElementById('branch-count').textContent = list.length === branchSnapshot.branches.length
+    ? list.length + ' branches'
+    : list.length + ' of ' + branchSnapshot.branches.length;
+  document.getElementById('branch-empty').hidden = !!list.length;
+  updateFades();
+}
+async function refreshBranches() {
+  try {
+    const response = await fetch('/branches/branches.json', { cache: 'no-store', signal: AbortSignal.timeout(10000) });
+    if (!response.ok) throw Error('unavailable');
+    const data = await response.json();
+    if (data.schema !== 1 || !Array.isArray(data.branches) || !data.checked_at) throw Error('invalid');
+    branchSnapshot = data;
+    branchRequestFailed = false;
+  } catch { branchRequestFailed = true; }
+  renderBranches();
+}
+document.getElementById('branch-search').addEventListener('input', renderBranches);
+branchRows.addEventListener('click', e => { const el = e.target.closest('[data-copy]'); if (el) copyTag(el); });
+refreshBranches();
+setInterval(refreshBranches, 30000);
+
+const scrollers = [...document.querySelectorAll('.table-scroll')];
+function updateFades() {
+  for (const s of scrollers) {
+    const atEnd = s.scrollHeight - s.scrollTop - s.clientHeight < 24;
+    s.classList.toggle('at-end', atEnd);
+  }
+}
+for (const s of scrollers) s.addEventListener('scroll', updateFades, { passive: true });
+window.addEventListener('resize', updateFades);
+collectProjects();
+renderProjectTabs();
 render();
+updateFades();
 </script>
 </body>
 </html>
