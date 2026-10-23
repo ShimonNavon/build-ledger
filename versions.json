@@ -647,9 +647,7 @@
       "built": "2026-10-23 16:08",
       "commit": "2026-10-23 16:08",
       "subject": "BulkBuy project documentation and screenshot — cinematic integration preview",
-      "deployed": [
-        "my-projects"
-      ],
+      "deployed": [],
       "name": "Projects · 2026-10-23 16:08 BulkBuy editorial preview",
       "rolledBack": null
     },
@@ -701,9 +699,7 @@
       "built": "2026-10-23 13:52",
       "commit": "2026-10-23 16:52",
       "subject": "Screen Pointer — installed explicit point capture and MCP reader; live capture blocked by macOS Screen Recording permission",
-      "deployed": [
-        "screen-pointer-mac"
-      ],
+      "deployed": [],
       "name": "Screen Pointer · 2026-10-23 16:52 agent pointing preview",
       "meta": {
         "files": 8,
@@ -728,6 +724,29 @@
         "del": 4,
         "author": "Simon"
       },
+      "rolledBack": null
+    },
+    {
+      "tag": "d6a6247",
+      "built": "2026-10-23 14:32",
+      "commit": "2026-10-23 17:32",
+      "subject": "Screen Pointer — walkthrough recording preview, one-stroke marks, timestamped notes and OpenCode/MCP review; real capture remains blocked by macOS permission",
+      "deployed": [
+        "screen-pointer-mac",
+        "screen-pointer"
+      ],
+      "name": "Screen Pointer · 2026-10-23 17:32 annotated walkthrough preview",
+      "rolledBack": null
+    },
+    {
+      "tag": "9cd4c11",
+      "built": "2026-10-23 14:32",
+      "commit": "2026-10-23 17:32",
+      "subject": "Projects — Screen Pointer case study, promotional image, actual app preview and setup guide; demo recording pending permission",
+      "deployed": [
+        "my-projects"
+      ],
+      "name": "Projects · 2026-10-23 17:32 Screen Pointer guide",
       "rolledBack": null
     }
   ],
