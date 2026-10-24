@@ -809,6 +809,23 @@
         "author": "Simon"
       },
       "rolledBack": null
+    },
+    {
+      "tag": "b8308c0",
+      "built": "2026-10-24 11:42",
+      "commit": "2026-10-24 12:50",
+      "subject": "Letter email: right-to-left spacing, a right-aligned footer and room around the signature",
+      "deployed": [
+        "integration"
+      ],
+      "name": "🧷 Retinaculum",
+      "meta": {
+        "files": 1,
+        "ins": 9,
+        "del": 9,
+        "author": "Simon"
+      },
+      "rolledBack": null
     }
   ],
   "quips": [
