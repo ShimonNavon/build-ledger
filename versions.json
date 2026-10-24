@@ -792,6 +792,23 @@
         "author": "Simon"
       },
       "rolledBack": null
+    },
+    {
+      "tag": "0f34450",
+      "built": "2026-10-24 11:18",
+      "commit": "2026-10-24 12:22",
+      "subject": "Dress the summary email for the screen: roomier sections and the letter's blue",
+      "deployed": [
+        "integration"
+      ],
+      "name": "🎯 Trigger Finger",
+      "meta": {
+        "files": 1,
+        "ins": 10,
+        "del": 0,
+        "author": "Simon"
+      },
+      "rolledBack": null
     }
   ],
   "quips": [
