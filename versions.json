@@ -911,6 +911,23 @@
         "author": "Simon"
       },
       "rolledBack": null
+    },
+    {
+      "tag": "52b1558",
+      "built": "2026-10-24 14:53",
+      "commit": "2026-10-24 14:53",
+      "subject": "Send the letter as one HTML part: Zoho's boundary rewrite blanked it in Gmail",
+      "deployed": [
+        "integration"
+      ],
+      "name": "🦴 Scaphoid",
+      "meta": {
+        "files": 3,
+        "ins": 28,
+        "del": 6,
+        "author": "Simon"
+      },
+      "rolledBack": null
     }
   ],
   "quips": [
