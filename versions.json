@@ -826,6 +826,91 @@
         "author": "Simon"
       },
       "rolledBack": null
+    },
+    {
+      "tag": "c612776",
+      "built": "2026-10-24 13:05",
+      "commit": "2026-10-24 13:05",
+      "subject": "Drop the logo from the letter email and encode its parts as base64",
+      "deployed": [
+        "integration"
+      ],
+      "name": "🩹 Thenar",
+      "meta": {
+        "files": 2,
+        "ins": 3,
+        "del": 5,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "9669017",
+      "built": "2026-10-24 14:03",
+      "commit": "2026-10-24 14:03",
+      "subject": "Build the letter email from React Email and serve branding from one public route",
+      "deployed": [
+        "integration"
+      ],
+      "name": "🧵 Flexor",
+      "meta": {
+        "files": 12,
+        "ins": 4783,
+        "del": 173,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "8db94b2",
+      "built": "2026-10-24 14:10",
+      "commit": "2026-10-24 14:10",
+      "subject": "Compile the email into a file path, not a directory",
+      "deployed": [
+        "integration"
+      ],
+      "name": "🦴 Trapezium",
+      "meta": {
+        "files": 1,
+        "ins": 1,
+        "del": 1,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "f6ee057",
+      "built": "2026-10-24 14:17",
+      "commit": "2026-10-24 14:17",
+      "subject": "Serve the branding images under their file names",
+      "deployed": [
+        "integration"
+      ],
+      "name": "🦴 Capitate",
+      "meta": {
+        "files": 2,
+        "ins": 2,
+        "del": 1,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "bb07594",
+      "built": "2026-10-24 14:26",
+      "commit": "2026-10-24 14:26",
+      "subject": "Point the app's clinic mark at the same branding file as the emails",
+      "deployed": [
+        "integration"
+      ],
+      "name": "🫱 Hypothenar",
+      "meta": {
+        "files": 3,
+        "ins": 4,
+        "del": 1,
+        "author": "Simon"
+      },
+      "rolledBack": null
     }
   ],
   "quips": [
