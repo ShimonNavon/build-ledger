@@ -1,1050 +1,794 @@
 {
- "prod": "d86378a",
- "versions": [
-  {
-   "tag": "4dd897c",
-   "built": "2026-10-17 06:46",
-   "commit": "2026-10-17 09:45",
-   "subject": "Merge branch 'k8s-cicd' into test",
-   "deployed": [],
-   "name": "🦴 Carpal",
-   "meta": {
-    "files": 11,
-    "ins": 293,
-    "del": 365,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "8240868",
-   "built": "2026-10-17 06:59",
-   "commit": "2026-10-17 09:44",
-   "subject": "Find kubectl in ~/.local/bin on ubuntu02",
-   "deployed": [],
-   "name": "🦴 Metacarpal",
-   "meta": {
-    "files": 2,
-    "ins": 2,
-    "del": 1,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "ae0b0c8",
-   "built": "2026-10-17 07:20",
-   "commit": "2026-10-17 10:05",
-   "subject": "Merge origin/whatsapp into test",
-   "deployed": [],
-   "name": "🦴 Phalanx",
-   "meta": {
-    "files": 18,
-    "ins": 477,
-    "del": 156,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "dd58106",
-   "built": "2026-10-17 07:28",
-   "commit": "2026-10-17 10:26",
-   "subject": "Live transcription: audio+text per commit, redo broken answer by batch",
-   "deployed": [],
-   "name": "🧵 Tendon",
-   "meta": {
-    "files": 2,
-    "ins": 66,
-    "del": 4,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "fa5b2d1",
-   "built": "2026-10-17 07:41",
-   "commit": "2026-10-17 10:39",
-   "subject": "QA fake visit on every test/beta deploy, rollback on miss",
-   "deployed": [],
-   "name": "🪢 Ligament",
-   "meta": {
-    "files": 6,
-    "ins": 171,
-    "del": 10,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "90a52d8",
-   "built": "2026-10-17 07:45",
-   "commit": "2026-10-17 10:43",
-   "subject": "QA visit: retry socket while old pod leaves",
-   "deployed": [],
-   "name": "✊ Knuckle",
-   "meta": {
-    "files": 1,
-    "ins": 11,
-    "del": 1,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "d10eb63",
-   "built": "2026-10-17 07:53",
-   "commit": "2026-10-17 10:47",
-   "subject": "Rollout: wait for old pod before health check/QA",
-   "deployed": [],
-   "name": "🖐️ Palm",
-   "meta": {
-    "files": 1,
-    "ins": 7,
-    "del": 0,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "caca783",
-   "built": "2026-10-17 08:43",
-   "commit": "2026-10-17 11:30",
-   "subject": "Vocabulary from trigger-thumb test visit",
-   "deployed": [],
-   "name": "⌚ Wrist",
-   "meta": {
-    "files": 2,
-    "ins": 18,
-    "del": 4,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "18eb12b",
-   "built": "2026-10-17 08:48",
-   "commit": "2026-10-17 11:45",
-   "subject": "Vocabulary: 50 words Scribe mishears; QA accepts drug spellings",
-   "deployed": [],
-   "name": "👍 Thumb",
-   "meta": {
-    "files": 3,
-    "ins": 27,
-    "del": 14,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "142aed4",
-   "built": "2026-10-17 09:24",
-   "commit": "2026-10-17 12:13",
-   "subject": "Transcript: drop hesitations, fix visit 1002 mishearings",
-   "deployed": [],
-   "name": "☝️ Index",
-   "meta": {
-    "files": 2,
-    "ins": 29,
-    "del": 2,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "a58929a",
-   "built": "2026-10-17 09:42",
-   "commit": "2026-10-17 12:32",
-   "subject": "Alert Simon when site/AI/speech key down",
-   "deployed": [],
-   "name": "✋ Middle",
-   "meta": {
-    "files": 7,
-    "ins": 155,
-    "del": 9,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "b653c00",
-   "built": "2026-10-17 09:59",
-   "commit": "2026-10-17 12:57",
-   "subject": "Doctor feedback: headed printout sections, follow-up, injection, floating stop",
-   "deployed": [],
-   "name": "💍 Ring",
-   "meta": {
-    "files": 11,
-    "ins": 208,
-    "del": 54,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "3352d8a",
-   "built": "2026-10-17 10:11",
-   "commit": "2026-10-17 13:09",
-   "subject": "Printout/forms: ID, phone, DOB aligned right",
-   "deployed": [],
-   "name": "🤏 Pinky",
-   "meta": {
-    "files": 4,
-    "ins": 26,
-    "del": 3,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "4841ab3",
-   "built": "2026-10-17 10:17",
-   "commit": "2026-10-17 13:14",
-   "subject": "Summary: drug/test/structure names in English",
-   "deployed": [],
-   "name": "🦴 Scaphoid",
-   "meta": {
-    "files": 2,
-    "ins": 20,
-    "del": 15,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "b431cd1",
-   "built": "2026-10-17 11:14",
-   "commit": "2026-10-17 14:11",
-   "subject": "Email visit summary, signed and stamped",
-   "deployed": [],
-   "name": "🌙 Lunate",
-   "meta": {
-    "files": 10,
-    "ins": 135,
-    "del": 31,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "910049f",
-   "built": "2026-10-17 12:07",
-   "commit": "2026-10-17 14:53",
-   "subject": "Share button: summary as PDF via share menu",
-   "deployed": [],
-   "name": "🔺 Triquetrum",
-   "meta": {
-    "files": 6,
-    "ins": 513,
-    "del": 5,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "e47d1e8",
-   "built": "2026-10-17 12:44",
-   "commit": "2026-10-17 15:41",
-   "subject": "One Print/share button (print, PDF, email)",
-   "deployed": [],
-   "name": "🫘 Pisiform",
-   "meta": {
-    "files": 7,
-    "ins": 150,
-    "del": 65,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "fc93c57",
-   "built": "2026-10-17 12:59",
-   "commit": "2026-10-17 15:47",
-   "subject": "Doctor's stamp closes the letter",
-   "deployed": [],
-   "name": "🧩 Trapezium",
-   "meta": {
-    "files": 3,
-    "ins": 24,
-    "del": 3,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "5b78440",
-   "built": "2026-10-17 13:25",
-   "commit": "2026-10-17 16:22",
-   "subject": "Second round: ready-made sentences, several diagnoses, full details",
-   "deployed": [],
-   "name": "🔷 Trapezoid",
-   "meta": {
-    "files": 14,
-    "ins": 400,
-    "del": 34,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "300b461",
-   "built": "2026-10-17 13:40",
-   "commit": "2026-10-17 16:30",
-   "subject": "QA visit: ID as digits/words, spellings per visit part",
-   "deployed": [],
-   "name": "🗿 Capitate",
-   "meta": {
-    "files": 1,
-    "ins": 10,
-    "del": 2,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "50acd75",
-   "built": "2026-10-17 13:56",
-   "commit": "2026-10-17 16:46",
-   "subject": "No popup for missing details; quiet line instead",
-   "deployed": [],
-   "name": "🪝 Hamate",
-   "meta": {
-    "files": 3,
-    "ins": 27,
-    "del": 10,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "eaedf0d",
-   "built": "2026-10-17 14:19",
-   "commit": "2026-10-17 17:08",
-   "subject": "Speed: fast-model patient check, freed recorder, faster updates",
-   "deployed": [],
-   "name": "📏 Radius",
-   "meta": {
-    "files": 9,
-    "ins": 64,
-    "del": 20,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "dc31c1c",
-   "built": "2026-10-17 14:35",
-   "commit": "2026-10-17 17:23",
-   "subject": "Speed: last words cut at pauses, transcribed in parallel",
-   "deployed": [],
-   "name": "📐 Ulna",
-   "meta": {
-    "files": 3,
-    "ins": 51,
-    "del": 2,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "4e6baa3",
-   "built": "2026-10-20 16:03",
-   "commit": "2026-10-20 18:58",
-   "subject": "Refresh resumed summaries, actions and note shortcuts",
-   "deployed": [],
-   "name": "🪝 Flexor",
-   "meta": {
-    "files": 11,
-    "ins": 383,
-    "del": 53,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "90ccbc8",
-   "built": "2026-10-20 16:31",
-   "commit": "2026-10-20 19:25",
-   "subject": "Paginated A4 Hebrew clinic PDF",
-   "deployed": [],
-   "name": "🦾 Extensor",
-   "meta": {
-    "files": 23,
-    "ins": 598,
-    "del": 297,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "d0ddbb4",
-   "built": "2026-10-20 16:37",
-   "commit": "2026-10-20 19:32",
-   "subject": "Keep apostrophes in English terms in Hebrew PDFs",
-   "deployed": [],
-   "name": "⚡ Median nerve",
-   "meta": {
-    "files": 2,
-    "ins": 5,
-    "del": 1,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "1233436",
-   "built": "2026-10-20 16:43",
-   "commit": "2026-10-20 19:36",
-   "subject": "Full clinic contacts + signature on one page",
-   "deployed": [],
-   "name": "⚡ Ulnar nerve",
-   "meta": {
-    "files": 3,
-    "ins": 28,
-    "del": 5,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "3608da0",
-   "built": "2026-10-20 17:32",
-   "commit": "2026-10-20 20:07",
-   "subject": "Align diagnosis table columns, drop print timestamp",
-   "deployed": [],
-   "name": "🩹 Splint",
-   "meta": {
-    "files": 5,
-    "ins": 11,
-    "del": 12,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "39fb294",
-   "built": "2026-10-20 18:16",
-   "commit": "2026-10-20 20:52",
-   "subject": "Remove phrase length limit, inline editing",
-   "deployed": [],
-   "name": "🧤 Cast",
-   "meta": {
-    "files": 8,
-    "ins": 166,
-    "del": 19,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "a57b44c",
-   "built": "2026-10-20 19:05",
-   "commit": "2026-10-20 21:57",
-   "subject": "Simplify workspace, persistent controls, searchable phrases",
-   "deployed": [],
-   "name": "🧵 Suture",
-   "meta": {
-    "files": 4,
-    "ins": 255,
-    "del": 66,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "9631a1e",
-   "built": "2026-10-20 19:33",
-   "commit": "2026-10-20 22:28",
-   "subject": "Paginated patient-history previews in parallel",
-   "deployed": [],
-   "name": "🔪 Scalpel",
-   "meta": {
-    "files": 5,
-    "ins": 244,
-    "del": 13,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "97bf810",
-   "built": "2026-10-20 20:04",
-   "commit": "2026-10-20 23:00",
-   "subject": "Manual playback + seekable WAV downloads",
-   "deployed": [],
-   "name": "🩺 Stethoscope",
-   "meta": {
-    "files": 10,
-    "ins": 335,
-    "del": 7,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "c9fa92d",
-   "built": "2026-10-20 20:17",
-   "commit": "2026-10-20 23:13",
-   "subject": "Streamed MP3 recording downloads",
-   "deployed": [],
-   "name": "🩸 Tourniquet",
-   "meta": {
-    "files": 7,
-    "ins": 136,
-    "del": 8,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "81c12a9",
-   "built": "2026-10-21 08:43",
-   "commit": "2026-10-20 23:27",
-   "subject": "Versioned shared clinic logo URLs",
-   "deployed": [],
-   "name": "🩹 Graft",
-   "meta": {
-    "files": 1,
-    "ins": 5,
-    "del": 3,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "d86378a",
-   "built": "2026-10-21 09:09",
-   "commit": "2026-10-21 11:53",
-   "subject": "Deploy checks/watcher for prod, test, integration",
-   "deployed": [
-    "prod",
-    "integration"
-   ],
-   "name": "💪 Rehab",
-   "meta": {
-    "files": 4,
-    "ins": 14,
-    "del": 14,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "db76047",
-   "built": "2026-10-21 09:39",
-   "commit": "2026-10-21 12:34",
-   "subject": "Refine workspace, patient workflows, save feedback",
-   "deployed": [
-    "test"
-   ],
-   "name": "🤹 Dexterity",
-   "meta": {
-    "files": 9,
-    "ins": 3020,
-    "del": 647,
-    "author": "Simon"
-   },
-   "rolledBack": "🩹 Graft · Oct 20, 23:27"
-  },
-  {
-   "tag": "04b8d4b1d39d",
-   "built": "2026-10-23 13:17",
-   "commit": "2026-10-23 13:17",
-   "subject": "BulkBuy — launch operating hub, checklist, tracker templates and documentation",
-   "deployed": [],
-   "name": "SETA · 2026-10-23 13:17 launch",
-   "rolledBack": null
-  },
-  {
-   "tag": "b23840228554",
-   "built": "2026-10-23 13:17",
-   "commit": "2026-10-23 13:17",
-   "subject": "Project gallery — add BulkBuy and its documentation",
-   "deployed": [],
-   "name": "Projects · 2026-10-23 13:17 launch",
-   "rolledBack": null
-  },
-  {
-   "tag": "1a28858db86e",
-   "built": "2026-10-23 13:24",
-   "commit": "2026-10-23 13:24",
-   "subject": "BulkBuy — Hebrew website, documentation, RTL layout and Hebrew CSV headers",
-   "deployed": [],
-   "name": "SETA · 2026-10-23 13:24 Hebrew",
-   "rolledBack": null
-  },
-  {
-   "tag": "1b68a4567612",
-   "built": "2026-10-23 13:24",
-   "commit": "2026-10-23 13:24",
-   "subject": "BulkBuy project — Hebrew documentation and screenshot",
-   "deployed": [],
-   "name": "Projects · 2026-10-23 13:24 Hebrew",
-   "rolledBack": null
-  },
-  {
-   "tag": "38e1c84",
-   "built": "2026-10-23 10:27",
-   "commit": "2026-10-23 13:10",
-   "subject": "Integration wears a purple clinic mark, coloured site strip and named tab",
-   "deployed": [
-    "integration"
-   ],
-   "name": "✊ Grip",
-   "meta": {
-    "files": 5,
-    "ins": 31,
-    "del": 2,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "87198de",
-   "built": "2026-10-23 14:10",
-   "commit": "2026-10-23 14:10",
-   "subject": "BulkBuy — Hebrew salon website, persistent media uploads, integration preview and owner-controlled production publishing",
-   "deployed": [
-    "bulkbuy"
-   ],
-   "name": "SETA · 2026-10-23 14:10 media publishing",
-   "meta": {
-    "files": 27,
-    "ins": 1085,
-    "del": 0,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "77faf3053340",
-   "built": "2026-10-23 14:10",
-   "commit": "2026-10-23 14:10",
-   "subject": "BulkBuy project — staged publishing documentation and redesigned website screenshot",
-   "deployed": [],
-   "name": "Projects · 2026-10-23 14:10 BulkBuy publishing",
-   "rolledBack": null
-  },
-  {
-   "tag": "43896bb",
-   "built": "2026-10-23 16:08",
-   "commit": "2026-10-23 16:08",
-   "subject": "BulkBuy integration — cinematic Higgsfield hair film, Hebrew editorial homepage and verified mobile layout",
-   "deployed": [
-    "bulkbuy-integration"
-   ],
-   "name": "SETA · 2026-10-23 16:08 cinematic mobile preview",
-   "meta": {
-    "files": 12,
-    "ins": 78,
-    "del": 10,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "bulkbuy-editorial-docs-20261023",
-   "built": "2026-10-23 16:08",
-   "commit": "2026-10-23 16:08",
-   "subject": "BulkBuy project documentation and screenshot — cinematic integration preview",
-   "deployed": [],
-   "name": "Projects · 2026-10-23 16:08 BulkBuy editorial preview",
-   "rolledBack": null
-  },
-  {
-   "tag": "e1a9e8c93e14",
-   "built": "2026-10-23 17:16",
-   "commit": "2026-10-23 17:16",
-   "subject": "SETA — Romanian human hair brand, Hebrew catalog with branded product photography, inventory and wholesale pages",
-   "deployed": [
-    "bulkbuy-integration"
-   ],
-   "name": "SETA · 2026-10-23 17:16 brand rebuild",
-   "meta": {
-    "files": 8,
-    "ins": 1050,
-    "del": 23,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "ledger-tailnet-20261023",
-   "built": "2026-10-23 13:23",
-   "commit": "2026-10-23 16:23",
-   "subject": "Build ledger — private Tailscale HTTPS, public tunnel removed, authenticated gateway and automatic certificate renewal",
-   "deployed": [],
-   "name": "Build Ledger · 2026-10-23 16:23 Tailscale-only access",
-   "rolledBack": null
-  },
-  {
-   "tag": "e7ddb6e",
-   "built": "2026-10-23 13:33",
-   "commit": "2026-10-23 16:33",
-   "subject": "Build Ledger — automatic local Git branch discovery, search and stale-data status",
-   "deployed": [
-    "build-ledger"
-   ],
-   "name": "Build Ledger · 2026-10-23 16:33 automatic branches",
-   "meta": {
-    "files": 8,
-    "ins": 254,
-    "del": 11,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "ledger-visual-refresh-20261023",
-   "built": "2026-10-23 16:46",
-   "commit": "2026-10-23 16:46",
-   "subject": "Build Ledger — visual refresh: clearer hierarchy, compact build rows, responsive card layout",
-   "deployed": [
-    "build-ledger"
-   ],
-   "name": "Build Ledger · 2026-10-23 16:46 visual refresh",
-   "meta": {
-    "files": 1,
-    "ins": 544,
-    "del": 238,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "4c061e5",
-   "built": "2026-10-23 13:52",
-   "commit": "2026-10-23 16:52",
-   "subject": "Screen Pointer — installed explicit point capture and MCP reader; live capture blocked by macOS Screen Recording permission",
-   "deployed": [],
-   "name": "Screen Pointer · 2026-10-23 16:52 agent pointing preview",
-   "meta": {
-    "files": 8,
-    "ins": 275,
-    "del": 3,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "ledger-projects-20261023",
-   "built": "2026-10-23 16:57",
-   "commit": "2026-10-23 16:57",
-   "subject": "Build Ledger — project filters: per-project tabs, row labels and build counts",
-   "deployed": [
-    "build-ledger"
-   ],
-   "name": "Build Ledger · 2026-10-23 16:57 project filters",
-   "meta": {
-    "files": 1,
-    "ins": 108,
-    "del": 4,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "d6a6247",
-   "built": "2026-10-23 14:32",
-   "commit": "2026-10-23 17:32",
-   "subject": "Screen Pointer — walkthrough recording preview, one-stroke marks, timestamped notes and OpenCode/MCP review; real capture remains blocked by macOS permission",
-   "deployed": [
-    "screen-pointer"
-   ],
-   "name": "Screen Pointer · 2026-10-23 17:32 annotated walkthrough preview",
-   "rolledBack": null
-  },
-  {
-   "tag": "9cd4c11",
-   "built": "2026-10-23 14:32",
-   "commit": "2026-10-23 17:32",
-   "subject": "Projects — Screen Pointer case study, promotional image, actual app preview and setup guide; demo recording pending permission",
-   "deployed": [
-    "my-projects"
-   ],
-   "name": "Projects · 2026-10-23 17:32 Screen Pointer guide",
-   "rolledBack": null
-  },
-  {
-   "tag": "ledger-project-gallery-20261023",
-   "built": "2026-10-23 17:45",
-   "commit": "2026-10-23 17:45",
-   "subject": "Build Ledger — project gallery: portfolio-backed home grid with images, per-project build pages and project-aware MCP tools",
-   "deployed": [
-    "build-ledger"
-   ],
-   "name": "Build Ledger · 2026-10-23 17:45 project gallery",
-   "meta": {
-    "files": 5,
-    "ins": 1348,
-    "del": 70,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "ea0e0cf",
-   "built": "2026-10-23 14:45",
-   "commit": "2026-10-23 17:45",
-   "subject": "Screen Pointer — open the app and click Show something to my agent; five-second marked capture, point hotkey removed; capture permission still unverified",
-   "deployed": [
-    "screen-pointer-mac"
-   ],
-   "name": "Screen Pointer · 2026-10-23 17:45 button-first agent capture",
-   "rolledBack": null
-  },
-  {
-   "tag": "ledger-project-details-20261023",
-   "built": "2026-10-23 18:10",
-   "commit": "2026-10-23 18:10",
-   "subject": "Build Ledger — project pages show health, production, every environment, links, tags and build history",
-   "deployed": [
-    "build-ledger"
-   ],
-   "name": "Build Ledger · 2026-10-23 18:10 project details",
-   "meta": {
-    "files": 1,
-    "ins": 35,
-    "del": 15,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "ledger-fleet-20261023",
-   "built": "2026-10-23 19:12",
-   "commit": "2026-10-23 19:12",
-   "subject": "Build Ledger — live fleet: machine temperatures, sparklines and a fleet status pill proxied from Thermal Monitor",
-   "deployed": [
-    "build-ledger"
-   ],
-   "name": "Build Ledger · 2026-10-23 19:12 live fleet",
-   "meta": {
-    "files": 3,
-    "ins": 254,
-    "del": 1,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "projects-build-ledger-overview-20261023",
-   "built": "2026-10-23 22:28",
-   "commit": "2026-10-23 22:28",
-   "subject": "Projects — public Build Ledger overview with HyperFrames tour, real screenshots, reciprocal links, media deployment and narrow-window alignment",
-   "deployed": [
-    "my-projects"
-   ],
-   "name": "Projects · 2026-10-23 22:28 Build Ledger overview",
-   "meta": {
-    "files": 11,
-    "ins": 401,
-    "del": 7,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "ledger-public-overview-20261023",
-   "built": "2026-10-23 22:28",
-   "commit": "2026-10-23 22:28",
-   "subject": "Build Ledger — promote the portfolio link into the Projects toolbar and document the public overview",
-   "deployed": [
-    "build-ledger"
-   ],
-   "name": "Build Ledger · 2026-10-23 22:28 public overview",
-   "meta": {
-    "files": 2,
-    "ins": 8,
-    "del": 4,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "projects-build-names-20261024",
-   "built": "2026-10-24 04:44",
-   "commit": "2026-10-24 07:44",
-   "subject": "Projects — publish build-name feeds so a deployed app can show its ledger name",
-   "deployed": [
-    "my-projects"
-   ],
-   "name": "Projects · 2026-10-24 07:44 build-name feed",
-   "meta": {
-    "files": 5,
-    "ins": 20,
-    "del": 2,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "cc45a3d",
-   "built": "2026-10-24 04:52",
-   "commit": "2026-10-24 07:45",
-   "subject": "Badge shows the build's ledger name, not its image tag",
-   "deployed": [
-    "integration"
-   ],
-   "name": "🫱 Thenar",
-   "meta": {
-    "files": 1,
-    "ins": 27,
-    "del": 5,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "c7c9b98",
-   "built": "2026-10-24 05:04",
-   "commit": "2026-10-24 07:57",
-   "subject": "Badge names the branch in brackets after the build name",
-   "deployed": [
-    "integration"
-   ],
-   "name": "🦴 Sesamoid",
-   "meta": {
-    "files": 1,
-    "ins": 2,
-    "del": 2,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "projects-meeting-recorder-shot-20261024",
-   "built": "2026-10-24 05:21",
-   "commit": "2026-10-24 08:21",
-   "subject": "Projects — meeting-recorder page shows the real visit summary and patient letter",
-   "deployed": [
-    "my-projects"
-   ],
-   "name": "Projects · 2026-10-24 08:21 real screenshots",
-   "meta": {
-    "files": 2,
-    "ins": 2,
-    "del": 1,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "projects-seta-20261024",
-   "built": "2026-10-24 08:32",
-   "commit": "2026-10-24 08:32",
-   "subject": "Projects — SETA project name, the brand rebuild build and a real SETA homepage screenshot",
-   "deployed": [
-    "my-projects"
-   ],
-   "name": "Projects · 2026-10-24 08:32 SETA rename",
-   "meta": {
-    "files": 5,
-    "ins": 42,
-    "del": 8,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "seta-domain-20261024",
-   "built": "2026-10-24 08:49",
-   "commit": "2026-10-24 08:49",
-   "subject": "SETA — moves to seta.navonsimon.com and integration-seta.navonsimon.com, BulkBuy hostnames redirect, admin and docs renamed",
-   "deployed": [
-    "bulkbuy",
-    "bulkbuy-integration"
-   ],
-   "name": "SETA · 2026-10-24 08:49 new domain",
-   "meta": {
-    "files": 15,
-    "ins": 84,
-    "del": 38,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "projects-seta-domain-20261024",
-   "built": "2026-10-24 08:50",
-   "commit": "2026-10-24 08:50",
-   "subject": "Projects — SETA links production and integration at the new seta hostnames, with a fresh production screenshot",
-   "deployed": [
-    "my-projects"
-   ],
-   "name": "Projects · 2026-10-24 08:50 SETA domain",
-   "meta": {
-    "files": 6,
-    "ins": 24,
-    "del": 12,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "b6e521d",
-   "built": "2026-10-24 06:10",
-   "commit": "2026-10-24 09:04",
-   "subject": "Only email approved addresses on test sites",
-   "deployed": [
-    "integration"
-   ],
-   "name": "🫲 Hypothenar",
-   "meta": {
-    "files": 7,
-    "ins": 39,
-    "del": 1,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "5611bc5",
-   "built": "2026-10-24 06:36",
-   "commit": "2026-10-24 09:30",
-   "subject": "Name inline email images and document the Zoho mailbox",
-   "deployed": [
-    "integration"
-   ],
-   "name": "🫱 Opponens",
-   "meta": {
-    "files": 3,
-    "ins": 15,
-    "del": 3,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "d945161",
-   "built": "2026-10-24 09:30",
-   "commit": "2026-10-24 11:12",
-   "subject": "Redesign the letter email: right-to-left content on a clean card",
-   "deployed": [
-    "integration"
-   ],
-   "name": "🪢 A1 Pulley",
-   "meta": {
-    "files": 4,
-    "ins": 195,
-    "del": 2,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  }
- ],
- "quips": [
-  "hi there",
-  "glad you looked",
-  "still holding up",
-  "all thumbs, no bugs",
-  "handle with care",
-  "waving back",
-  "grip check",
-  "you found me",
-  "flexing",
-  "steady hands",
-  "that's the spot",
-  "nice to see you"
- ]
+  "prod": "d86378a",
+  "versions": [
+    {
+      "tag": "4dd897c",
+      "built": "2026-10-17 06:46",
+      "commit": "2026-10-17 09:45",
+      "subject": "Merge branch 'k8s-cicd' into test",
+      "deployed": [],
+      "name": "🦴 Carpal",
+      "meta": {
+        "files": 11,
+        "ins": 293,
+        "del": 365,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "8240868",
+      "built": "2026-10-17 06:59",
+      "commit": "2026-10-17 09:44",
+      "subject": "Find kubectl in ~/.local/bin on ubuntu02",
+      "deployed": [],
+      "name": "🦴 Metacarpal",
+      "meta": {
+        "files": 2,
+        "ins": 2,
+        "del": 1,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "ae0b0c8",
+      "built": "2026-10-17 07:20",
+      "commit": "2026-10-17 10:05",
+      "subject": "Merge origin/whatsapp into test",
+      "deployed": [],
+      "name": "🦴 Phalanx",
+      "meta": {
+        "files": 18,
+        "ins": 477,
+        "del": 156,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "dd58106",
+      "built": "2026-10-17 07:28",
+      "commit": "2026-10-17 10:26",
+      "subject": "Live transcription: audio+text per commit, redo broken answer by batch",
+      "deployed": [],
+      "name": "🧵 Tendon",
+      "meta": {
+        "files": 2,
+        "ins": 66,
+        "del": 4,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "fa5b2d1",
+      "built": "2026-10-17 07:41",
+      "commit": "2026-10-17 10:39",
+      "subject": "QA fake visit on every test/beta deploy, rollback on miss",
+      "deployed": [],
+      "name": "🪢 Ligament",
+      "meta": {
+        "files": 6,
+        "ins": 171,
+        "del": 10,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "90a52d8",
+      "built": "2026-10-17 07:45",
+      "commit": "2026-10-17 10:43",
+      "subject": "QA visit: retry socket while old pod leaves",
+      "deployed": [],
+      "name": "✊ Knuckle",
+      "meta": {
+        "files": 1,
+        "ins": 11,
+        "del": 1,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "d10eb63",
+      "built": "2026-10-17 07:53",
+      "commit": "2026-10-17 10:47",
+      "subject": "Rollout: wait for old pod before health check/QA",
+      "deployed": [],
+      "name": "🖐️ Palm",
+      "meta": {
+        "files": 1,
+        "ins": 7,
+        "del": 0,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "caca783",
+      "built": "2026-10-17 08:43",
+      "commit": "2026-10-17 11:30",
+      "subject": "Vocabulary from trigger-thumb test visit",
+      "deployed": [],
+      "name": "⌚ Wrist",
+      "meta": {
+        "files": 2,
+        "ins": 18,
+        "del": 4,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "18eb12b",
+      "built": "2026-10-17 08:48",
+      "commit": "2026-10-17 11:45",
+      "subject": "Vocabulary: 50 words Scribe mishears; QA accepts drug spellings",
+      "deployed": [],
+      "name": "👍 Thumb",
+      "meta": {
+        "files": 3,
+        "ins": 27,
+        "del": 14,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "142aed4",
+      "built": "2026-10-17 09:24",
+      "commit": "2026-10-17 12:13",
+      "subject": "Transcript: drop hesitations, fix visit 1002 mishearings",
+      "deployed": [],
+      "name": "☝️ Index",
+      "meta": {
+        "files": 2,
+        "ins": 29,
+        "del": 2,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "a58929a",
+      "built": "2026-10-17 09:42",
+      "commit": "2026-10-17 12:32",
+      "subject": "Alert Simon when site/AI/speech key down",
+      "deployed": [],
+      "name": "✋ Middle",
+      "meta": {
+        "files": 7,
+        "ins": 155,
+        "del": 9,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "b653c00",
+      "built": "2026-10-17 09:59",
+      "commit": "2026-10-17 12:57",
+      "subject": "Doctor feedback: headed printout sections, follow-up, injection, floating stop",
+      "deployed": [],
+      "name": "💍 Ring",
+      "meta": {
+        "files": 11,
+        "ins": 208,
+        "del": 54,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "3352d8a",
+      "built": "2026-10-17 10:11",
+      "commit": "2026-10-17 13:09",
+      "subject": "Printout/forms: ID, phone, DOB aligned right",
+      "deployed": [],
+      "name": "🤏 Pinky",
+      "meta": {
+        "files": 4,
+        "ins": 26,
+        "del": 3,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "4841ab3",
+      "built": "2026-10-17 10:17",
+      "commit": "2026-10-17 13:14",
+      "subject": "Summary: drug/test/structure names in English",
+      "deployed": [],
+      "name": "🦴 Scaphoid",
+      "meta": {
+        "files": 2,
+        "ins": 20,
+        "del": 15,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "b431cd1",
+      "built": "2026-10-17 11:14",
+      "commit": "2026-10-17 14:11",
+      "subject": "Email visit summary, signed and stamped",
+      "deployed": [],
+      "name": "🌙 Lunate",
+      "meta": {
+        "files": 10,
+        "ins": 135,
+        "del": 31,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "910049f",
+      "built": "2026-10-17 12:07",
+      "commit": "2026-10-17 14:53",
+      "subject": "Share button: summary as PDF via share menu",
+      "deployed": [],
+      "name": "🔺 Triquetrum",
+      "meta": {
+        "files": 6,
+        "ins": 513,
+        "del": 5,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "e47d1e8",
+      "built": "2026-10-17 12:44",
+      "commit": "2026-10-17 15:41",
+      "subject": "One Print/share button (print, PDF, email)",
+      "deployed": [],
+      "name": "🫘 Pisiform",
+      "meta": {
+        "files": 7,
+        "ins": 150,
+        "del": 65,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "fc93c57",
+      "built": "2026-10-17 12:59",
+      "commit": "2026-10-17 15:47",
+      "subject": "Doctor's stamp closes the letter",
+      "deployed": [],
+      "name": "🧩 Trapezium",
+      "meta": {
+        "files": 3,
+        "ins": 24,
+        "del": 3,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "5b78440",
+      "built": "2026-10-17 13:25",
+      "commit": "2026-10-17 16:22",
+      "subject": "Second round: ready-made sentences, several diagnoses, full details",
+      "deployed": [],
+      "name": "🔷 Trapezoid",
+      "meta": {
+        "files": 14,
+        "ins": 400,
+        "del": 34,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "300b461",
+      "built": "2026-10-17 13:40",
+      "commit": "2026-10-17 16:30",
+      "subject": "QA visit: ID as digits/words, spellings per visit part",
+      "deployed": [],
+      "name": "🗿 Capitate",
+      "meta": {
+        "files": 1,
+        "ins": 10,
+        "del": 2,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "50acd75",
+      "built": "2026-10-17 13:56",
+      "commit": "2026-10-17 16:46",
+      "subject": "No popup for missing details; quiet line instead",
+      "deployed": [],
+      "name": "🪝 Hamate",
+      "meta": {
+        "files": 3,
+        "ins": 27,
+        "del": 10,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "eaedf0d",
+      "built": "2026-10-17 14:19",
+      "commit": "2026-10-17 17:08",
+      "subject": "Speed: fast-model patient check, freed recorder, faster updates",
+      "deployed": [],
+      "name": "📏 Radius",
+      "meta": {
+        "files": 9,
+        "ins": 64,
+        "del": 20,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "dc31c1c",
+      "built": "2026-10-17 14:35",
+      "commit": "2026-10-17 17:23",
+      "subject": "Speed: last words cut at pauses, transcribed in parallel",
+      "deployed": [],
+      "name": "📐 Ulna",
+      "meta": {
+        "files": 3,
+        "ins": 51,
+        "del": 2,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "4e6baa3",
+      "built": "2026-10-20 16:03",
+      "commit": "2026-10-20 18:58",
+      "subject": "Refresh resumed summaries, actions and note shortcuts",
+      "deployed": [],
+      "name": "🪝 Flexor",
+      "meta": {
+        "files": 11,
+        "ins": 383,
+        "del": 53,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "90ccbc8",
+      "built": "2026-10-20 16:31",
+      "commit": "2026-10-20 19:25",
+      "subject": "Paginated A4 Hebrew clinic PDF",
+      "deployed": [],
+      "name": "🦾 Extensor",
+      "meta": {
+        "files": 23,
+        "ins": 598,
+        "del": 297,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "d0ddbb4",
+      "built": "2026-10-20 16:37",
+      "commit": "2026-10-20 19:32",
+      "subject": "Keep apostrophes in English terms in Hebrew PDFs",
+      "deployed": [],
+      "name": "⚡ Median nerve",
+      "meta": {
+        "files": 2,
+        "ins": 5,
+        "del": 1,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "1233436",
+      "built": "2026-10-20 16:43",
+      "commit": "2026-10-20 19:36",
+      "subject": "Full clinic contacts + signature on one page",
+      "deployed": [],
+      "name": "⚡ Ulnar nerve",
+      "meta": {
+        "files": 3,
+        "ins": 28,
+        "del": 5,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "3608da0",
+      "built": "2026-10-20 17:32",
+      "commit": "2026-10-20 20:07",
+      "subject": "Align diagnosis table columns, drop print timestamp",
+      "deployed": [],
+      "name": "🩹 Splint",
+      "meta": {
+        "files": 5,
+        "ins": 11,
+        "del": 12,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "39fb294",
+      "built": "2026-10-20 18:16",
+      "commit": "2026-10-20 20:52",
+      "subject": "Remove phrase length limit, inline editing",
+      "deployed": [],
+      "name": "🧤 Cast",
+      "meta": {
+        "files": 8,
+        "ins": 166,
+        "del": 19,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "a57b44c",
+      "built": "2026-10-20 19:05",
+      "commit": "2026-10-20 21:57",
+      "subject": "Simplify workspace, persistent controls, searchable phrases",
+      "deployed": [],
+      "name": "🧵 Suture",
+      "meta": {
+        "files": 4,
+        "ins": 255,
+        "del": 66,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "9631a1e",
+      "built": "2026-10-20 19:33",
+      "commit": "2026-10-20 22:28",
+      "subject": "Paginated patient-history previews in parallel",
+      "deployed": [],
+      "name": "🔪 Scalpel",
+      "meta": {
+        "files": 5,
+        "ins": 244,
+        "del": 13,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "97bf810",
+      "built": "2026-10-20 20:04",
+      "commit": "2026-10-20 23:00",
+      "subject": "Manual playback + seekable WAV downloads",
+      "deployed": [],
+      "name": "🩺 Stethoscope",
+      "meta": {
+        "files": 10,
+        "ins": 335,
+        "del": 7,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "c9fa92d",
+      "built": "2026-10-20 20:17",
+      "commit": "2026-10-20 23:13",
+      "subject": "Streamed MP3 recording downloads",
+      "deployed": [],
+      "name": "🩸 Tourniquet",
+      "meta": {
+        "files": 7,
+        "ins": 136,
+        "del": 8,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "81c12a9",
+      "built": "2026-10-21 08:43",
+      "commit": "2026-10-20 23:27",
+      "subject": "Versioned shared clinic logo URLs",
+      "deployed": [],
+      "name": "🩹 Graft",
+      "meta": {
+        "files": 1,
+        "ins": 5,
+        "del": 3,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "d86378a",
+      "built": "2026-10-21 09:09",
+      "commit": "2026-10-21 11:53",
+      "subject": "Deploy checks/watcher for prod, test, integration",
+      "deployed": [
+        "prod",
+        "integration"
+      ],
+      "name": "💪 Rehab",
+      "meta": {
+        "files": 4,
+        "ins": 14,
+        "del": 14,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "db76047",
+      "built": "2026-10-21 09:39",
+      "commit": "2026-10-21 12:34",
+      "subject": "Refine workspace, patient workflows, save feedback",
+      "deployed": [
+        "test"
+      ],
+      "name": "🤹 Dexterity",
+      "meta": {
+        "files": 9,
+        "ins": 3020,
+        "del": 647,
+        "author": "Simon"
+      },
+      "rolledBack": "🩹 Graft · Oct 20, 23:27"
+    },
+    {
+      "tag": "04b8d4b1d39d",
+      "built": "2026-10-23 13:17",
+      "commit": "2026-10-23 13:17",
+      "subject": "BulkBuy — launch operating hub, checklist, tracker templates and documentation",
+      "deployed": [],
+      "name": "BulkBuy · 2026-10-23 13:17 launch",
+      "rolledBack": null
+    },
+    {
+      "tag": "b23840228554",
+      "built": "2026-10-23 13:17",
+      "commit": "2026-10-23 13:17",
+      "subject": "Project gallery — add BulkBuy and its documentation",
+      "deployed": [],
+      "name": "Projects · 2026-10-23 13:17 launch",
+      "rolledBack": null
+    },
+    {
+      "tag": "1a28858db86e",
+      "built": "2026-10-23 13:24",
+      "commit": "2026-10-23 13:24",
+      "subject": "BulkBuy — Hebrew website, documentation, RTL layout and Hebrew CSV headers",
+      "deployed": [],
+      "name": "BulkBuy · 2026-10-23 13:24 Hebrew",
+      "rolledBack": null
+    },
+    {
+      "tag": "1b68a4567612",
+      "built": "2026-10-23 13:24",
+      "commit": "2026-10-23 13:24",
+      "subject": "BulkBuy project — Hebrew documentation and screenshot",
+      "deployed": [],
+      "name": "Projects · 2026-10-23 13:24 Hebrew",
+      "rolledBack": null
+    },
+    {
+      "tag": "38e1c84",
+      "built": "2026-10-23 10:27",
+      "commit": "2026-10-23 13:10",
+      "subject": "Integration wears a purple clinic mark, coloured site strip and named tab",
+      "deployed": [
+        "integration"
+      ],
+      "name": "✊ Grip",
+      "meta": {
+        "files": 5,
+        "ins": 31,
+        "del": 2,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "87198de",
+      "built": "2026-10-23 14:10",
+      "commit": "2026-10-23 14:10",
+      "subject": "BulkBuy — Hebrew salon website, persistent media uploads, integration preview and owner-controlled production publishing",
+      "deployed": [
+        "bulkbuy"
+      ],
+      "name": "BulkBuy · 2026-10-23 14:10 media publishing",
+      "meta": {
+        "files": 27,
+        "ins": 1085,
+        "del": 0,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "77faf3053340",
+      "built": "2026-10-23 14:10",
+      "commit": "2026-10-23 14:10",
+      "subject": "BulkBuy project — staged publishing documentation and redesigned website screenshot",
+      "deployed": [],
+      "name": "Projects · 2026-10-23 14:10 BulkBuy publishing",
+      "rolledBack": null
+    },
+    {
+      "tag": "43896bb",
+      "built": "2026-10-23 16:08",
+      "commit": "2026-10-23 16:08",
+      "subject": "BulkBuy integration — cinematic Higgsfield hair film, Hebrew editorial homepage and verified mobile layout",
+      "deployed": [
+        "bulkbuy-integration"
+      ],
+      "name": "BulkBuy · 2026-10-23 16:08 cinematic mobile preview",
+      "meta": {
+        "files": 12,
+        "ins": 78,
+        "del": 10,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "bulkbuy-editorial-docs-20261023",
+      "built": "2026-10-23 16:08",
+      "commit": "2026-10-23 16:08",
+      "subject": "BulkBuy project documentation and screenshot — cinematic integration preview",
+      "deployed": [],
+      "name": "Projects · 2026-10-23 16:08 BulkBuy editorial preview",
+      "rolledBack": null
+    },
+    {
+      "tag": "ledger-tailnet-20261023",
+      "built": "2026-10-23 13:23",
+      "commit": "2026-10-23 16:23",
+      "subject": "Build ledger — private Tailscale HTTPS, public tunnel removed, authenticated gateway and automatic certificate renewal",
+      "deployed": [],
+      "name": "Build Ledger · 2026-10-23 16:23 Tailscale-only access",
+      "rolledBack": null
+    },
+    {
+      "tag": "e7ddb6e",
+      "built": "2026-10-23 13:33",
+      "commit": "2026-10-23 16:33",
+      "subject": "Build Ledger — automatic local Git branch discovery, search and stale-data status",
+      "deployed": [
+        "build-ledger"
+      ],
+      "name": "Build Ledger · 2026-10-23 16:33 automatic branches",
+      "meta": {
+        "files": 8,
+        "ins": 254,
+        "del": 11,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "ledger-visual-refresh-20261023",
+      "built": "2026-10-23 16:46",
+      "commit": "2026-10-23 16:46",
+      "subject": "Build Ledger — visual refresh: clearer hierarchy, compact build rows, responsive card layout",
+      "deployed": [
+        "build-ledger"
+      ],
+      "name": "Build Ledger · 2026-10-23 16:46 visual refresh",
+      "meta": {
+        "files": 1,
+        "ins": 544,
+        "del": 238,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "4c061e5",
+      "built": "2026-10-23 13:52",
+      "commit": "2026-10-23 16:52",
+      "subject": "Screen Pointer — installed explicit point capture and MCP reader; live capture blocked by macOS Screen Recording permission",
+      "deployed": [],
+      "name": "Screen Pointer · 2026-10-23 16:52 agent pointing preview",
+      "meta": {
+        "files": 8,
+        "ins": 275,
+        "del": 3,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "ledger-projects-20261023",
+      "built": "2026-10-23 16:57",
+      "commit": "2026-10-23 16:57",
+      "subject": "Build Ledger — project filters: per-project tabs, row labels and build counts",
+      "deployed": [
+        "build-ledger"
+      ],
+      "name": "Build Ledger · 2026-10-23 16:57 project filters",
+      "meta": {
+        "files": 1,
+        "ins": 108,
+        "del": 4,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "d6a6247",
+      "built": "2026-10-23 14:32",
+      "commit": "2026-10-23 17:32",
+      "subject": "Screen Pointer — walkthrough recording preview, one-stroke marks, timestamped notes and OpenCode/MCP review; real capture remains blocked by macOS permission",
+      "deployed": [
+        "screen-pointer"
+      ],
+      "name": "Screen Pointer · 2026-10-23 17:32 annotated walkthrough preview",
+      "rolledBack": null
+    },
+    {
+      "tag": "9cd4c11",
+      "built": "2026-10-23 14:32",
+      "commit": "2026-10-23 17:32",
+      "subject": "Projects — Screen Pointer case study, promotional image, actual app preview and setup guide; demo recording pending permission",
+      "deployed": [
+        "my-projects"
+      ],
+      "name": "Projects · 2026-10-23 17:32 Screen Pointer guide",
+      "rolledBack": null
+    },
+    {
+      "tag": "ledger-project-gallery-20261023",
+      "built": "2026-10-23 17:45",
+      "commit": "2026-10-23 17:45",
+      "subject": "Build Ledger — project gallery: portfolio-backed home grid with images, per-project build pages and project-aware MCP tools",
+      "deployed": [
+        "build-ledger"
+      ],
+      "name": "Build Ledger · 2026-10-23 17:45 project gallery",
+      "meta": {
+        "files": 5,
+        "ins": 1348,
+        "del": 70,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "ea0e0cf",
+      "built": "2026-10-23 14:45",
+      "commit": "2026-10-23 17:45",
+      "subject": "Screen Pointer — open the app and click Show something to my agent; five-second marked capture, point hotkey removed; capture permission still unverified",
+      "deployed": [
+        "screen-pointer-mac"
+      ],
+      "name": "Screen Pointer · 2026-10-23 17:45 button-first agent capture",
+      "rolledBack": null
+    }
+  ],
+  "quips": [
+    "hi there",
+    "glad you looked",
+    "still holding up",
+    "all thumbs, no bugs",
+    "handle with care",
+    "waving back",
+    "grip check",
+    "you found me",
+    "flexing",
+    "steady hands",
+    "that's the spot",
+    "nice to see you"
+  ]
 }
