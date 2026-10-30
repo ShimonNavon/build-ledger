@@ -962,6 +962,40 @@
         "author": "Simon"
       },
       "rolledBack": null
+    },
+    {
+      "tag": "7cd91b2",
+      "built": "2026-10-30 12:10",
+      "commit": "2026-10-30 14:02",
+      "subject": "Doctor's third round: a clinic password, the summary emailed with its PDF, and the printout and visit page he asked for",
+      "deployed": [
+        "integration"
+      ],
+      "name": "🦴 Lunate",
+      "meta": {
+        "files": 19,
+        "ins": 763,
+        "del": 57,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "clinic-tickets-20261030-1408",
+      "built": "2026-10-30 12:08",
+      "commit": "",
+      "subject": "Clinic Tickets — the doctor's Hebrew request desk with screenshots, statuses and an agent API (MIT)",
+      "deployed": [
+        "clinic-tickets"
+      ],
+      "name": "Clinic Tickets · 2026-10-30 14:08 first deployment",
+      "meta": {
+        "files": 14,
+        "ins": 1210,
+        "del": 0,
+        "author": "Simon"
+      },
+      "rolledBack": null
     }
   ],
   "quips": [
