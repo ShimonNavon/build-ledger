@@ -94,6 +94,13 @@ Browsers that cached the former public endpoint can briefly show a Cloudflare
 error until DNS/connection caches expire. Do not re-enable Cloudflare proxying:
 the hostname must resolve directly to the tailnet address.
 
+## Public overview
+
+Anyone outside the tailnet who follows the portfolio's Build Ledger link lands on
+`https://projects.navonsimon.com/build-ledger.html`, a public showcase with a HyperFrames tour,
+real screenshots and a clear hand-off to the live app plus a return link. The app itself stays
+tailnet-only; no DNS or gateway change was needed for the overview.
+
 ## Automatic Git branch tracking
 
 The Git branches section reads a separate live snapshot from `/branches/branches.json` every 30 seconds. The macOS LaunchAgent `com.simon.build-ledger-branches` scans Git repositories immediately under `~/Developer` every 60 seconds while the user is logged in and the Mac is awake. It reports local branch names, latest commit time/subject/ID, and the currently checked-out branch. It never fetches, pushes, changes branches, reads file contents, or publishes repository paths or remote credentials. Remote-only branches appear once checked out locally. Linked worktrees are supported.
@@ -109,3 +116,21 @@ python3 tools/install_branch_sync.py
 ```
 
 The snapshot is a dedicated ConfigMap mounted by directory, so updates require no app restart. It inherits the existing private gateway protection. Logs and the local snapshot are under ignored `.private/`. Stop the job with `launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/com.simon.build-ledger-branches.plist`; reinstall to resume. Run the focused lifecycle test with `python3 -m unittest discover -s tests`.
+
+## Live fleet
+
+The home page ends with the five machines that run and build these projects: the MacBook Pro and
+ubuntu01–04. It borrows the thermal monitor's shape — a live status pill, online/hottest/average
+summary chips, and one card per machine with its CPU temperature, load, memory, disk, uptime, fans
+and a temperature sparkline. The temperature drives the colour: green is cool, blue normal, amber
+hot, red critical. A machine with no reading for 75 seconds is marked stale and its card dims.
+
+The browser fetches `/api/fleet`, which the nginx container proxies to the `thermal-monitor` Service
+in the cluster (`/api/temps`). That keeps it same-origin, avoids mixed content, and needs no Mac to
+be awake. The endpoint enforces the gateway header, so a direct NodePort request is rejected. nginx resolves the Service per request, so a missing thermal-monitor
+deployment cannot stop the ledger from starting.
+
+The fleet block is the one part of the page that is not self-contained: opened from a `file://` URL
+it shows "Fleet unavailable" and everything else still works. The nginx snippet lives in
+`deploy/backend.conf`; after changing it, update the rendered config in Secret `access` (gateway
+token from `.private/gateway-token`) and restart the deployment.

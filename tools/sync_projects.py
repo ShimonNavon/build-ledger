@@ -21,6 +21,12 @@ LEDGER_NAMES = {
     "Projects": "Projects",
 }
 
+# Renamed projects keep the slug their links and app URLs already use.
+SLUGS = {
+    "SETA": "seta",
+    "Nativ · נתיב": "imports-crm",
+}
+
 def entries(html: str) -> list[str]:
     i = html.index("const P = [")
     i = html.index("{", i)
@@ -73,7 +79,7 @@ def links(e: str) -> list[dict]:
 
 
 def slug(name: str) -> str:
-    base = LEDGER_NAMES.get(name, name)
+    base = SLUGS.get(name) or LEDGER_NAMES.get(name, name)
     s = re.sub(r"[^a-z0-9]+", "-", base.lower()).strip("-")
     return s or "project"
 

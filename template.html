@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Build Ledger · Builds & branches</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%23315fdc'/%3E%3Crect x='10' y='13' width='20' height='2.4' rx='1.2' fill='white'/%3E%3Crect x='10' y='19' width='14' height='2.4' rx='1.2' fill='white'/%3E%3Crect x='10' y='25' width='9' height='2.4' rx='1.2' fill='white'/%3E%3C/svg%3E">
 <style>
   :root {
     color-scheme: light dark;
@@ -28,7 +29,7 @@
     --del: #b42318;
     --del-bg: #fdecea;
     --p-meeting: #315fdc;
-    --p-bulkbuy: #b45309;
+    --p-seta: #b45309;
     --p-projects: #7c3aed;
     --p-ledger: #0e7490;
     --p-screen: #e11d48;
@@ -51,7 +52,7 @@
       --other: #cbd5e1; --other-bg: #242a33;
       --del: #fca5a5; --del-bg: #3a1716;
       --p-meeting: #7aa2ff;
-      --p-bulkbuy: #fbbf24;
+      --p-seta: #fbbf24;
       --p-projects: #c4b5fd;
       --p-ledger: #67e8f9;
       --p-screen: #fda4af;
@@ -242,7 +243,7 @@
   }
   .p-all { --p: var(--accent); }
   .p-meeting { --p: var(--p-meeting); }
-  .p-bulkbuy { --p: var(--p-bulkbuy); }
+  .p-seta { --p: var(--p-seta); }
   .p-projects { --p: var(--p-projects); }
   .p-ledger { --p: var(--p-ledger); }
   .p-screen { --p: var(--p-screen); }
@@ -491,7 +492,7 @@
   }
   .p-all { --p: var(--accent); }
   .p-meeting { --p: var(--p-meeting); }
-  .p-bulkbuy { --p: var(--p-bulkbuy); }
+  .p-seta { --p: var(--p-seta); }
   .p-projects { --p: var(--p-projects); }
   .p-ledger { --p: var(--p-ledger); }
   .p-screen { --p: var(--p-screen); }
@@ -512,9 +513,6 @@
   }
   .all-builds-link:hover { color: var(--accent); border-color: var(--line-strong); background: color-mix(in srgb, var(--accent) 6%, var(--card)); }
   .all-builds-link span { font-size: 10px; color: var(--faint); font-variant-numeric: tabular-nums; }
-  .home-portfolio { margin-top: 5px !important; font-size: 11.5px !important; }
-  .home-portfolio a { color: var(--accent); text-decoration: none; }
-  .home-portfolio a:hover { text-decoration: underline; }
   .project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 14px; }
   .pcard {
     display: flex; flex-direction: column; gap: 0; text-decoration: none; color: inherit;
@@ -624,6 +622,79 @@
     .home-tools { width: 100%; }
     .home-tools .search { width: 100%; flex: 1; }
   }
+
+  /* ---- live status pill */
+  .live-pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 5px 11px; border: 1px solid var(--line); border-radius: 999px;
+    background: var(--card); color: var(--muted);
+    font-size: 11.5px; font-weight: 600; white-space: nowrap;
+    box-shadow: var(--shadow); transition: border-color .2s ease, color .2s ease;
+    width: fit-content; max-width: 100%;
+  }
+  .live-pill .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--faint); flex: none; }
+  .live-pill.live .dot { background: var(--prod); box-shadow: 0 0 0 3px color-mix(in srgb, var(--prod) 18%, transparent); }
+  .live-pill.warn .dot { background: var(--test); box-shadow: 0 0 0 3px color-mix(in srgb, var(--test) 18%, transparent); }
+  .live-pill.down .dot { background: var(--del); box-shadow: 0 0 0 3px color-mix(in srgb, var(--del) 18%, transparent); }
+  .live-pill.live { color: var(--prod); }
+  a.live-pill { text-decoration: none; cursor: pointer; }
+  a.live-pill:hover { border-color: var(--line-strong); }
+  a.live-pill:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* ---- live fleet (temperatures & load) */
+  .fleet { margin-top: 26px; }
+  .fleet-side { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .fleet-summary { display: flex; gap: 8px; flex-wrap: wrap; }
+  .fleet-stat {
+    display: inline-flex; align-items: baseline; gap: 6px;
+    padding: 6px 11px; border: 1px solid var(--line); border-radius: 10px;
+    background: var(--card); box-shadow: var(--shadow);
+    font-size: 11.5px; color: var(--muted); white-space: nowrap;
+  }
+  .fleet-stat b { color: var(--ink); font-size: 14px; font-weight: 650; font-variant-numeric: tabular-nums; }
+  .fleet-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(224px, 1fr)); gap: 12px; }
+  .fcard {
+    position: relative; overflow: hidden;
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 15px 15px 12px; box-shadow: var(--shadow);
+    transition: opacity .2s ease, border-color .15s ease, transform .15s ease;
+  }
+  .fcard::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 2px; background: var(--heat, var(--line)); opacity: .5; }
+  .fcard:hover { transform: translateY(-1px); border-color: var(--line-strong); }
+  .fcard.stale { opacity: .58; }
+  .fcard.cool { --heat: var(--prod); }
+  .fcard.warm { --heat: var(--accent); }
+  .fcard.hot { --heat: var(--test); }
+  .fcard.critical { --heat: var(--del); }
+  .fcard-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+  .fcard-host { font-size: 12.5px; font-weight: 650; letter-spacing: -.01em; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .fcard-tag {
+    flex: none; font-size: 9.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--faint); border: 1px solid var(--line); border-radius: 999px; padding: 1px 6px;
+  }
+  .fcard.stale .fcard-tag { color: var(--test); border-color: color-mix(in srgb, var(--test) 42%, var(--line)); }
+  .ftemp { display: flex; align-items: flex-start; gap: 3px; margin-top: 10px; }
+  .fvalue { font-size: 38px; font-weight: 650; letter-spacing: -.045em; line-height: 1; font-variant-numeric: tabular-nums; color: var(--heat, var(--ink)); }
+  .funit { font-size: 13px; font-weight: 500; color: var(--muted); margin-top: 3px; }
+  .fmeta { display: flex; flex-wrap: wrap; gap: 2px 10px; margin-top: 7px; color: var(--muted); font-size: 10.5px; line-height: 1.5; }
+  .fmeta b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .fspark { display: block; width: 100%; height: 38px; margin-top: 8px; overflow: visible; color: var(--heat, var(--accent)); }
+  .fzones { display: grid; gap: 2px; margin-top: 9px; padding-top: 8px; border-top: 1px solid var(--line); }
+  .fzone { display: flex; justify-content: space-between; gap: 10px; font-size: 10.5px; color: var(--muted); }
+  .fzone b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .fleet-empty {
+    grid-column: 1 / -1; display: flex; align-items: center; gap: 8px;
+    padding: 20px 18px; border: 1px dashed var(--line-strong); border-radius: 12px;
+    color: var(--muted); font-size: 12.5px;
+  }
+  @media (max-width: 820px) {
+    .fleet-side { width: 100%; justify-content: space-between; }
+    .fleet-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 560px) {
+    .fleet-grid { grid-template-columns: 1fr; }
+    .fvalue { font-size: 34px; }
+  }
 </style>
 </head>
 <body>
@@ -638,6 +709,7 @@
       </div>
     </div>
     <div class="top-right">
+      <a class="live-pill" id="live-pill" href="#fleet" title="Thermal Monitor"><span class="dot"></span><span id="live-pill-text">Fleet connecting</span></a>
       __PROD_CARD__
       <div class="stats">
         <div class="stat" title="Builds recorded in the ledger"><b id="s-total">0</b><span>builds</span></div>
@@ -653,14 +725,28 @@
       <div>
         <h2 id="home-title">Projects</h2>
         <p id="home-sub">Every project I keep an eye on. Open one for its builds, production state and notes.</p>
-        <p class="home-portfolio"><a href="https://projects.navonsimon.com/" target="_blank" rel="noopener">Portfolio: projects.navonsimon.com ↗</a></p>
       </div>
       <div class="home-tools">
         <input id="pq" class="search" type="search" aria-label="Filter projects" placeholder="Filter projects…" autocomplete="off" spellcheck="false">
+        <a class="all-builds-link" href="https://projects.navonsimon.com/" target="_blank" rel="noopener">Portfolio ↗</a>
         <a class="all-builds-link" href="#/builds">All builds <span id="home-build-count">0</span> →</a>
       </div>
     </div>
     <div id="project-grid" class="project-grid"></div>
+
+    <section class="fleet" id="fleet" aria-labelledby="fleet-title">
+      <div class="section-head">
+        <div>
+          <h2 id="fleet-title">Fleet</h2>
+          <p>MacBook Pro + home lab · <span class="branch-status" id="fleet-status" role="status">connecting…</span></p>
+        </div>
+        <div class="fleet-side">
+          <div class="fleet-summary" id="fleet-summary"></div>
+          <a class="all-builds-link" href="http://ubuntu03:30100/" target="_blank" rel="noopener">Thermal Monitor ↗</a>
+        </div>
+      </div>
+      <div class="fleet-grid" id="fleet-cards"><div class="fleet-empty">Connecting to the thermal monitor…</div></div>
+    </section>
   </section>
 
   <div id="project-view" hidden>
@@ -680,7 +766,6 @@
       <div class="fact-grid" id="detail-facts"></div>
     </div>
       <div class="env-cards" id="env-cards"></div>
-    </div>
 
   <section class="card builds" aria-labelledby="builds-title">
     <div class="card-head">
@@ -745,13 +830,12 @@
       </div>
     </div>
 
-    </div>
-
-  <div class="sign" id="sign" title="the ledger says hello">
+    <div class="sign" id="sign" title="the ledger says hello">
       <span class="sign-hand">🖐️</span>
       <span id="sign-line"></span>
     </div>
   </footer>
+  </div>
 </div>
 
 <script>
@@ -765,7 +849,7 @@ const versionNames = __VERSIONNAMES__;
 
 const PROJECT_LABELS = { "Projects": "My projects" };
 const projectOfName = (full) => String(full).includes(" · ") ? String(full).split(" · ")[0].trim() : "Meeting recorder";
-const projectClassOf = (p) => ({ "Meeting recorder": "p-meeting", "BulkBuy": "p-bulkbuy", "Projects": "p-projects", "Build Ledger": "p-ledger", "Screen Pointer": "p-screen" }[p] || "p-other");
+const projectClassOf = (p) => ({ "Meeting recorder": "p-meeting", "SETA": "p-seta", "Projects": "p-projects", "Build Ledger": "p-ledger", "Screen Pointer": "p-screen" }[p] || "p-other");
 const projectLabelOf = (p) => PROJECT_LABELS[p] || p;
 const projectOfTag = Object.fromEntries(rows.map((r, i) => [r.tag, projectOfName(versionNames[i] || r.tag)]));
 
@@ -840,6 +924,17 @@ const buildCount = (n) => `${n} build${n === 1 ? "" : "s"}`;
 // ---------------------------------------------------------------- projects dashboard
 const ledgerNameOf = (p) => p.ledgerName || p.name;
 const buildsOf = (p) => rows.filter(r => projectOfTag[r.tag] === ledgerNameOf(p));
+const productionTargets = (p) => new Set(["prod", p.slug]);
+const productionBuildOf = (p) => buildsOf(p)
+  .filter(r => r.deployed.some(e => productionTargets(p).has(e)))
+  .sort((a, b) => b.built.localeCompare(a.built))[0];
+const TARGET_LABELS = {
+  prod: "Production", test: "Test", integration: "Integration",
+  seta: "SETA", "seta-integration": "SETA integration",
+  "my-projects": "My projects", "build-ledger": "Build Ledger",
+  "screen-pointer": "Screen Pointer", "screen-pointer-mac": "Screen Pointer (Mac)",
+};
+const targetLabel = (e) => TARGET_LABELS[e] || e;
 const STATIC_STATUS = { live: "live", code: "code", private: "private" };
 const CATEGORY_LABELS = { ai: "AI & agents", biz: "Business", web: "Web product", tools: "Tools & learning", sites: "Client site", personal: "Personal" };
 const STATUS_LABELS = { live: "Live", code: "Open source", private: "Private" };
@@ -850,7 +945,7 @@ const imageUrl = (img) => {
   if (!img) return "";
   return /^https?:\/\//i.test(img) ? img : GALLERY_BASE + String(img).replace(/^\/+/, "");
 };
-const GALLERY_MOSAIC = ["img/bulkbuy.jpg", "img/meeting-recorder.jpg", "img/builds.jpg", "img/screen-pointer.jpg"];
+const GALLERY_MOSAIC = ["img/seta.jpg", "img/meeting-recorder.jpg", "img/builds.jpg", "img/screen-pointer.jpg"];
 
 function projectMedia(p) {
   if (p.slug === "my-projects") {
@@ -865,10 +960,10 @@ function projectMedia(p) {
 
 function projectCard(p) {
   const builds = buildsOf(p);
-  const prod = builds.find(r => r.deployed.includes("prod"));
-  const newest = builds.slice().sort((a, b) => b.built.localeCompare(a.built))[0];
+  const prod = productionBuildOf(p);
+  const newest = latestBuildOf(builds);
   const foot = prod
-    ? `<span class="pcard-prod" title="Live on production">● ${esc(splitVersionName(nameOf[prod.tag])[1])}</span>`
+    ? `<span class="pcard-prod" title="Live on production">● ${esc(displayName(nameOf[prod.tag]))}</span>`
     : (builds.length ? `<span>no prod build</span>` : `<span class="dash">—</span>`);
   const meta = builds.length ? `${builds.length} build${builds.length === 1 ? "" : "s"}` : "no builds yet";
   const chips = (p.links || []).slice(0, 2)
@@ -913,13 +1008,25 @@ function setView(name) {
   document.querySelector(".sign")?.toggleAttribute("hidden", name === "home");
 }
 
+function renderProdCard(prod) {
+  const card = document.querySelector(".prod-card");
+  if (!card) return;
+  if (!prod) { card.hidden = true; return; }
+  card.hidden = false;
+  card.title = `Latest production build (${prod.tag})`;
+  card.querySelector(".prod-label").textContent = "Production";
+  card.querySelector(".prod-ver").textContent = displayName(nameOf[prod.tag]);
+  const [date, time] = prod.built.split(" ");
+  card.querySelector(".prod-meta").textContent = `${date}, ${time} build · ${prod.subject.slice(0, 64)}`;
+}
+
 function openProject(slug) {
   const p = projects.find(x => x.slug === slug);
   if (!p) { location.hash = "#/builds"; return; }
   setView("project");
   const builds = buildsOf(p);
   const latest = latestBuildOf(builds);
-  const prod = builds.find(r => r.deployed.includes("prod"));
+  const prod = productionBuildOf(p);
   const status = p.status || "private";
   const health = STATUS_LABELS[status] || "Unknown";
   const healthClass = status === "live" ? "ok" : status === "code" ? "info" : "warn";
@@ -948,13 +1055,12 @@ function openProject(slug) {
   noteEl.textContent = p.note || "";
   document.getElementById("detail-facts").innerHTML = `
     <div class="fact" title="Status from the project catalogue"><span class="fact-label">Health</span><span class="fact-value ${healthClass}">${esc(health)}</span></div>
-    <div class="fact"><span class="fact-label">Production</span><span class="fact-value ${prod ? "ok" : "muted"}">${prod ? esc(displayName(nameOf[prod.tag])) : "Not in prod"}</span></div>
+    <div class="fact"><span class="fact-label">Production</span><span class="fact-value ${prod ? "ok" : "muted"}">${prod ? esc(displayName(nameOf[prod.tag])) : "No production build"}</span></div>
     <div class="fact" title="${latest ? esc(latest.subject) : ""}"><span class="fact-label">Latest build</span><span class="fact-value">${latest ? esc(displayName(nameOf[latest.tag])) : "—"}</span><span class="env-meta">${latest ? esc(latest.built.slice(0, 10)) : "No builds yet"}</span></div>
     <div class="fact"><span class="fact-label">Builds</span><span class="fact-value">${builds.length}</span></div>
   `;
 
-  const prodCard = document.querySelector(".prod-card");
-  if (prodCard) prodCard.hidden = !prod;
+  renderProdCard(prod);
   renderEnvironments(p);
   selectedProject = ledgerNameOf(p);
   collectProjects();
@@ -974,7 +1080,7 @@ function renderEnvironments(p) {
     return `<div class="env-card ${badgeClass[e] || ""}">
       <span class="env-dot"></span>
       <div>
-        <div class="env-name">${esc(e)}</div>
+        <div class="env-name">${esc(targetLabel(e))}</div>
         <div class="env-build">${icon ? icon + " " : ""}${esc(displayName(raw))}</div>
         <div class="env-meta">${esc(r.built.slice(0, 10))} build</div>
       </div>
@@ -984,7 +1090,7 @@ function renderEnvironments(p) {
   for (const e of extra) {
     const r = latest[e];
     const [, raw] = splitVersionName(nameOf[r.tag] || r.tag);
-    chips.push(`<div class="env-card"><span class="env-dot"></span><div><div class="env-name">${esc(e)}</div><div class="env-build">${esc(displayName(raw))}</div><div class="env-meta">${esc(r.built.slice(0, 10))} build</div></div></div>`);
+    chips.push(`<div class="env-card"><span class="env-dot"></span><div><div class="env-name">${esc(targetLabel(e))}</div><div class="env-build">${esc(displayName(raw))}</div><div class="env-meta">${esc(r.built.slice(0, 10))} build</div></div></div>`);
   }
   el.innerHTML = chips.length ? chips.join("") : `<div class="env-empty">No deployments recorded for this project.</div>`;
 }
@@ -1013,7 +1119,7 @@ function showAllBuilds() {
     <div class="fact"><span class="fact-label">Rollbacks</span><span class="fact-value ${rollbacks ? "warn" : "muted"}">${rollbacks}</span></div>
   `;
   document.getElementById("env-cards").innerHTML = "";
-  document.querySelector(".prod-card")?.setAttribute("hidden", "");
+  renderProdCard(null);
   selectedProject = "all";
   collectProjects();
   render();
@@ -1023,7 +1129,7 @@ function route() {
   const h = location.hash || "#/";
   if (h.startsWith("#/p/")) openProject(decodeURIComponent(h.slice(4)));
   else if (h === "#/builds") showAllBuilds();
-  else { document.querySelector(".prod-card")?.setAttribute("hidden", ""); setView("home"); collectProjects(); renderHome(); }
+  else { renderProdCard(null); setView("home"); collectProjects(); renderHome(); }
 }
 
 
@@ -1354,6 +1460,137 @@ document.getElementById('branch-search').addEventListener('input', renderBranche
 branchRows.addEventListener('click', e => { const el = e.target.closest('[data-copy]'); if (el) copyTag(el); });
 refreshBranches();
 setInterval(refreshBranches, 30000);
+
+// ---------------------------------------------------------------- live fleet
+const FLEET_STALE_MS = 75000;
+let fleetSnapshot = null, fleetFailed = false;
+
+const heatOf = (v) => v == null ? "" : v >= 85 ? "critical" : v >= 70 ? "hot" : v >= 55 ? "warm" : "cool";
+const fmtTemp = (v) => v == null ? "—" : Number(v).toFixed(1);
+const fmtPct = (v) => v == null ? "—" : Math.round(v) + "%";
+const fmtLoad = (v) => v == null ? "—" : Number(v).toFixed(2);
+const fmtUptime = (s) => {
+  if (s == null) return "—";
+  const d = Math.floor(s / 86400), h = Math.floor((s % 86400) / 3600), m = Math.floor((s % 3600) / 60);
+  return d ? `${d}d ${h}h` : h ? `${h}h ${m}m` : `${m}m`;
+};
+const fanText = (n) => (n.fans || []).length ? n.fans.map(f => f.rpm.toLocaleString()).join(" · ") + " rpm" : "";
+const ZONE_LABELS = { x86_pkg_temp: "CPU package", pch_skylake: "PCH", "Package id 0": "CPU package" };
+const zoneLabel = (name) => ZONE_LABELS[name] || String(name).replace(/[_-]+/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+
+function agoLabel(ms) {
+  const s = Math.max(0, Math.round((Date.now() - ms) / 1000));
+  if (s < 10) return "just now";
+  if (s < 90) return s + "s ago";
+  const m = Math.round(s / 60);
+  return m < 60 ? m + "m ago" : Math.round(m / 60) + "h ago";
+}
+
+function fleetSpark(svg, values) {
+  const w = 300, h = 38, pad = 3;
+  if (!values || values.length < 2) { svg.innerHTML = ""; return; }
+  let min = Math.min(...values), max = Math.max(...values);
+  if (max - min < 1.5) { min -= 0.75; max += 0.75; }
+  const span = max - min || 1;
+  const step = (w - pad * 2) / (values.length - 1);
+  const pts = values.map((v, i) => [pad + i * step, h - pad - ((v - min) / span) * (h - pad * 2)]);
+  const line = pts.map((p, i) => (i ? "L" : "M") + p[0].toFixed(1) + " " + p[1].toFixed(1)).join(" ");
+  const last = pts[pts.length - 1];
+  svg.innerHTML =
+    `<path d="${line} L${w - pad} ${h} L${pad} ${h} Z" fill="currentColor" opacity="0.09"></path>` +
+    `<path d="${line}" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"></path>` +
+    `<circle cx="${last[0].toFixed(1)}" cy="${last[1].toFixed(1)}" r="2.2" fill="currentColor"></circle>`;
+}
+
+function fleetCard(n) {
+  const stale = Date.now() - n.ts_ms > FLEET_STALE_MS;
+  const meta = [];
+  const add = (html) => meta.push(`<span>${html}</span>`);
+  if (n.gpu_c != null) add(`GPU <b>${fmtTemp(n.gpu_c)} °C</b>`);
+  if (n.load1 != null) add(`<span title="1m ${fmtLoad(n.load1)} · 5m ${fmtLoad(n.load5)} · 15m ${fmtLoad(n.load15)}">Load <b>${fmtLoad(n.load1)}</b></span>`);
+  if (n.mem_used_pct != null) add(`<span title="${n.mem_total_gb ?? "?"} GB total">Mem <b>${fmtPct(n.mem_used_pct)}</b></span>`);
+  if (n.disk_used_pct != null) add(`<span title="${n.disk_total_gb ?? "?"} GB total">Disk <b>${fmtPct(n.disk_used_pct)}</b></span>`);
+  if (n.uptime_s != null) add(`Up <b>${fmtUptime(n.uptime_s)}</b>`);
+  if (n.cores) add(`<b>${n.cores}</b> cores${n.freq_mhz ? ` @ ${(n.freq_mhz / 1000).toFixed(1)} GHz` : ""}`);
+  if ((n.fans || []).length) add(`Fans <b>${fanText(n)}</b>`);
+  const zones = [...(n.zones || [])].sort((a, b) => b.temp_c - a.temp_c).slice(0, 2);
+  return `<article class="fcard ${heatOf(n.cpu_c)}${stale ? " stale" : ""}">
+    <div class="fcard-head">
+      <span class="fcard-host" title="${esc(n.host)}">${esc(n.host)}</span>
+      <span class="fcard-tag">${stale ? "stale" : esc(n.source || "agent")}</span>
+    </div>
+    <div class="ftemp"><span class="fvalue">${fmtTemp(n.cpu_c)}</span><span class="funit">°C</span></div>
+    <div class="fmeta">${meta.join("") || "<span>No stats yet</span>"}</div>
+    <svg class="fspark" data-host="${esc(n.host)}" viewBox="0 0 300 38" preserveAspectRatio="none" aria-hidden="true"></svg>
+    ${zones.length ? `<div class="fzones">${zones.map(z => `<div class="fzone"><span>${esc(zoneLabel(z.name))}</span><b>${fmtTemp(z.temp_c)} °C</b></div>`).join("")}</div>` : ""}
+  </article>`;
+}
+
+function renderFleet() {
+  const grid = document.getElementById("fleet-cards");
+  const summary = document.getElementById("fleet-summary");
+  const status = document.getElementById("fleet-status");
+  const pill = document.getElementById("live-pill");
+  const pillText = document.getElementById("live-pill-text");
+  if (!grid) return;
+
+  if (!fleetSnapshot) {
+    grid.innerHTML = `<div class="fleet-empty">${fleetFailed
+      ? "Fleet unavailable — the thermal monitor isn't responding. Retrying every 15 seconds."
+      : "Connecting to the thermal monitor…"}</div>`;
+    summary.innerHTML = "";
+    status.textContent = fleetFailed ? "thermal monitor unreachable" : "connecting…";
+    status.classList.toggle("stale", fleetFailed);
+    pill.className = "live-pill " + (fleetFailed ? "down" : "");
+    pillText.textContent = fleetFailed ? "Fleet offline" : "Fleet connecting";
+    pill.title = "Thermal Monitor";
+    return;
+  }
+
+  const nodes = fleetSnapshot.nodes || [];
+  const now = Date.now();
+  const online = nodes.filter(n => now - n.ts_ms <= FLEET_STALE_MS);
+  const newest = nodes.length ? Math.max(...nodes.map(n => n.ts_ms)) : now;
+  const temps = online.map(n => n.cpu_c).filter(v => v != null);
+  const hottest = [...online].sort((a, b) => (b.cpu_c ?? -1) - (a.cpu_c ?? -1))[0];
+  const avg = temps.length ? temps.reduce((a, v) => a + v, 0) / temps.length : null;
+  const delayed = fleetFailed || online.length < nodes.length;
+
+  summary.innerHTML = nodes.length ? [
+    `<span class="fleet-stat"><b>${online.length}/${nodes.length}</b> online</span>`,
+    hottest ? `<span class="fleet-stat">Hottest <b>${fmtTemp(hottest.cpu_c)} °C</b> ${esc(hottest.host)}</span>` : "",
+    avg != null ? `<span class="fleet-stat">Avg CPU <b>${fmtTemp(avg)} °C</b></span>` : "",
+  ].join("") : "";
+
+  status.textContent = `${nodes.length} machine${nodes.length === 1 ? "" : "s"} · ${fleetFailed ? "last sync failed · " : ""}sampled ${agoLabel(newest)}`;
+  status.classList.toggle("stale", delayed);
+  status.title = "The ledger proxies the thermal monitor's readings. Agents sample every 15 seconds.";
+
+  const allFresh = online.length === nodes.length;
+  pill.className = "live-pill " + (fleetFailed ? "warn" : allFresh ? "live" : "warn");
+  pillText.textContent = fleetFailed ? "Fleet delayed" : allFresh ? "Fleet live" : `Fleet ${online.length}/${nodes.length}`;
+  pill.title = `Thermal Monitor · ${nodes.length} machines · sampled ${agoLabel(newest)}`;
+
+  grid.innerHTML = nodes.map(fleetCard).join("");
+  for (const svg of grid.querySelectorAll(".fspark")) {
+    const history = fleetSnapshot.history?.[svg.dataset.host] || [];
+    fleetSpark(svg, history.map(p => p.cpu_c).filter(v => v != null).slice(-60));
+  }
+}
+
+async function refreshFleet() {
+  try {
+    const res = await fetch("/api/fleet", { cache: "no-store", signal: AbortSignal.timeout(10000) });
+    if (!res.ok) throw Error("unavailable");
+    const data = await res.json();
+    if (!Array.isArray(data.nodes)) throw Error("invalid");
+    fleetSnapshot = data;
+    fleetFailed = false;
+  } catch { fleetFailed = true; }
+  renderFleet();
+}
+refreshFleet();
+setInterval(() => { if (!document.hidden) refreshFleet(); }, 15000);
 
 const scrollers = [...document.querySelectorAll('.table-scroll')];
 function updateFades() {
