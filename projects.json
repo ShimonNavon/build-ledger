@@ -444,6 +444,35 @@
       "year": 2026
     },
     {
+      "slug": "naki",
+      "name": "Naki · נקי",
+      "ledgerName": "Naki · נקי",
+      "blurb": "An air-purifier import business run by an agent. A Hebrew storefront with AI-made product pages, one WhatsApp inbox for my own WhatsApp and the business number, and an agent that drafts every reply, makes the pages and reports to the Fedora laptop. Nothing is sent until I press Send.",
+      "category": "agents",
+      "status": "live",
+      "img": "img/naki.jpg",
+      "emoji": "",
+      "tags": [
+        "Agent",
+        "WhatsApp",
+        "Claude Sonnet 5.5",
+        "Hebrew RTL",
+        "Kubernetes"
+      ],
+      "links": [
+        {
+          "label": "Open the store",
+          "url": "https://naki.navonsimon.com/"
+        },
+        {
+          "label": "Ops (tailnet)",
+          "url": "http://ubuntu03:30109/ops"
+        }
+      ],
+      "note": "",
+      "year": 2026
+    },
+    {
       "slug": "third-screen",
       "name": "Third Screen",
       "ledgerName": "Third Screen",

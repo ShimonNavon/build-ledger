@@ -1035,6 +1035,23 @@
         "author": "Simon"
       },
       "rolledBack": null
+    },
+    {
+      "tag": "naki-20261031-1205",
+      "built": "2026-10-31 10:05",
+      "commit": "ccdc665",
+      "subject": "Naki — air-purifier import business run by an agent: Hebrew storefront, WhatsApp inbox (personal + Twilio), AI product pages, MCP",
+      "deployed": [
+        "naki"
+      ],
+      "name": "Naki · 2026-10-31 12:05 first deployment",
+      "meta": {
+        "files": 34,
+        "ins": 2289,
+        "del": 1,
+        "author": "Simon"
+      },
+      "rolledBack": null
     }
   ],
   "quips": [

@@ -25,6 +25,7 @@ LEDGER_NAMES = {
 SLUGS = {
     "SETA": "seta",
     "Nativ · נתיב": "imports-crm",
+    "Naki · נקי": "naki",
 }
 
 def entries(html: str) -> list[str]:
