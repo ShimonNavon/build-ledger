@@ -936,7 +936,7 @@ const TARGET_LABELS = {
 };
 const targetLabel = (e) => TARGET_LABELS[e] || e;
 const STATIC_STATUS = { live: "live", code: "code", private: "private" };
-const CATEGORY_LABELS = { ai: "AI & agents", biz: "Business", web: "Web product", tools: "Tools & learning", sites: "Client site", personal: "Personal" };
+const CATEGORY_LABELS = { agents: "Agent", projects: "Project", websites: "Website", personal: "Personal" };
 const STATUS_LABELS = { live: "Live", code: "Open source", private: "Private" };
 const statusClassOf = (s) => STATUS_LABELS[s] ? s : "";
 const latestBuildOf = (builds) => builds.slice().sort((a, b) => b.built.localeCompare(a.built))[0];
