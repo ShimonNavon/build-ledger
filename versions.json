@@ -1052,6 +1052,23 @@
         "author": "Simon"
       },
       "rolledBack": null
+    },
+    {
+      "tag": "ee1b754",
+      "built": "2026-10-31 11:12",
+      "commit": "2026-10-31 13:12",
+      "subject": "Projects — the site agent on the front page as an Ask the agent panel; the agent re-reads briefs every 10 minutes so new projects such as Naki are known",
+      "deployed": [
+        "my-projects"
+      ],
+      "name": "Projects · 2026-10-31 13:12 front-page agent",
+      "meta": {
+        "files": 5,
+        "ins": 352,
+        "del": 15,
+        "author": "Simon"
+      },
+      "rolledBack": null
     }
   ],
   "quips": [
