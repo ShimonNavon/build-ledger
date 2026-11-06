@@ -1069,6 +1069,94 @@
         "author": "Simon"
       },
       "rolledBack": null
+    },
+    {
+      "tag": "remodeling-first-20261031",
+      "built": "2026-10-31 13:22",
+      "commit": "2026-10-31 13:22",
+      "subject": "Persistent monitoring agent, shared project progress, documentation coverage and MCP tools; recurring checks disabled pending interval",
+      "deployed": [
+        "remodeling"
+      ],
+      "name": "Remodeling · 2026-10-31 13:22 project and documentation tracking",
+      "rolledBack": null
+    },
+    {
+      "tag": "projects-remodeling-20261031",
+      "built": "2026-10-31 13:22",
+      "commit": "2026-10-31 13:22",
+      "subject": "Remodeling tracker and self-documentation pages; shared tracking and read-only monitoring status",
+      "deployed": [
+        "my-projects"
+      ],
+      "name": "Projects · 2026-10-31 13:22 project and documentation tracking",
+      "rolledBack": null
+    },
+    {
+      "tag": "visual-lab-first-20261031",
+      "built": "2026-10-31 15:58",
+      "commit": "2026-10-31 15:58",
+      "subject": "Flint CLI and shared MCP image rendering, editable chart examples and Fedora display",
+      "deployed": [
+        "visual-lab"
+      ],
+      "name": "Visual Lab · 2026-10-31 15:58 visual conversation trial",
+      "rolledBack": null
+    },
+    {
+      "tag": "projects-visual-lab-20261031",
+      "built": "2026-10-31 15:58",
+      "commit": "2026-10-31 15:58",
+      "subject": "Visual Lab documentation, measured trials, screenshots and project brief",
+      "deployed": [
+        "my-projects"
+      ],
+      "name": "Projects · 2026-10-31 15:58 visual conversation trial",
+      "rolledBack": null
+    },
+    {
+      "tag": "remodeling-now-20261031",
+      "built": "2026-10-31 16:18",
+      "commit": "2026-10-31 16:18",
+      "subject": "Private tasks and evidence-backed results for five focus projects; owner joins, explicit public stories, documentation follow-ups and nightly SQLite backup",
+      "deployed": [
+        "remodeling"
+      ],
+      "name": "Remodeling · 2026-10-31 16:18 private Now workspace",
+      "rolledBack": null
+    },
+    {
+      "tag": "projects-outcomes-20261031",
+      "built": "2026-10-31 16:18",
+      "commit": "2026-10-31 16:18",
+      "subject": "Homepage private workspace link, public outcomes page and narrow projection, plus workspace guide and updated briefs",
+      "deployed": [
+        "my-projects"
+      ],
+      "name": "Projects · 2026-10-31 16:18 workspace and selected outcomes",
+      "rolledBack": null
+    },
+    {
+      "tag": "agent-habitat-live-desk-20261031",
+      "built": "2026-10-31 16:44",
+      "commit": "2026-10-31 16:44",
+      "subject": "Live desk: finds agent panes from tmux and the process table, accepts short status reports with a loopback/tailnet gate, and shows them as a readable desk; runs under launchd with a nightly SQLite backup. Hooks built and tested, install pending",
+      "deployed": [
+        "agent-habitat"
+      ],
+      "name": "Agent Habitat · 2026-10-31 16:44 Live Desk",
+      "rolledBack": null
+    },
+    {
+      "tag": "ai-dj-velvet-deck-20261106",
+      "built": "2026-11-06 12:45",
+      "commit": "2026-11-06 12:45",
+      "subject": "AI DJ Velvet Deck: two-deck web DJ player with real equal-power crossfades, Auto DJ, live crossfade meter, equalizer ring and DJ chatter. Single-file HTML, background-tab-safe fades, deployed to namespace ai-dj on NodePort 30119 (tailnet-only) with smoke tests in CI",
+      "deployed": [
+        "ai-dj"
+      ],
+      "name": "AI DJ · 2026-11-06 12:45 Velvet Deck",
+      "rolledBack": null
     }
   ],
   "quips": [
