@@ -1356,6 +1356,18 @@
       ],
       "name": "🦴 Pisiform",
       "rolledBack": null
+    },
+    {
+      "tag": "7894c1b",
+      "built": "2026-11-07 20:45",
+      "commit": "2026-11-07 18:30",
+      "subject": "The Mail tab becomes a mailbox the doctor can work in: folders with unread counts, paging, unread only, and his HTML letters rendered instead of a wall of stripped tags — on prod and test",
+      "deployed": [
+        "prod",
+        "test"
+      ],
+      "name": "🦴 Triquetrum",
+      "rolledBack": null
     }
   ],
   "quips": [
