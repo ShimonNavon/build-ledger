@@ -1,5 +1,5 @@
 {
-  "prod": "d86378a",
+  "prod": "c047c00",
   "versions": [
     {
       "tag": "4dd897c",
@@ -517,7 +517,7 @@
       "commit": "2026-10-21 11:53",
       "subject": "Deploy checks/watcher for prod, test, integration",
       "deployed": [
-        "prod",
+        "test",
         "integration"
       ],
       "name": "💪 Rehab",
@@ -534,9 +534,7 @@
       "built": "2026-10-21 09:39",
       "commit": "2026-10-21 12:34",
       "subject": "Refine workspace, patient workflows, save feedback",
-      "deployed": [
-        "test"
-      ],
+      "deployed": [],
       "name": "🤹 Dexterity",
       "meta": {
         "files": 9,
@@ -1156,6 +1154,194 @@
         "ai-dj"
       ],
       "name": "AI DJ · 2026-11-06 12:45 Velvet Deck",
+      "rolledBack": null
+    },
+    {
+      "tag": "ai-pricing-technical-film-20261106",
+      "built": "2026-11-06 15:07",
+      "commit": "2026-11-06 15:07",
+      "subject": "Technical review film: 2:52 Hebrew explainer of the read-only Paradox/SQL pipelines, DeepSeek-V4-Flash on RunPod and the six acceptance gates, posted on the home and battle views",
+      "deployed": [
+        "ai-pricing"
+      ],
+      "name": "AI Pricing · 2026-11-06 15:07 technical film",
+      "rolledBack": null
+    },
+    {
+      "tag": "ai-dj-velvet-station-20261106",
+      "built": "2026-11-06 15:28",
+      "commit": "2026-11-06 15:28",
+      "subject": "AI DJ 3.0 Velvet Station: hub owns one adaptive set with SQLite state, claim/lease clients, SSE commands with ack/retry, fast /state, real ducking, a single resolver with a 2GB media cache and Range serving, Apple Music taste import (hfma fail-soft + AppleScript), coding context and bounded mood, local BPM/beat/key/LUFS analysis with a librosa venv, phrase-aligned beatmatched transitions with a learning bandit, OpenRouter text and Velvet TTS, a rewritten single-file player served by the hub, native hub-v3 parity, Tailscale hosting at https://simons-macbook-pro.tail32418c.ts.net/ and a cluster landing page at ubuntu03:30119, with a Velvet Station app icon, favicon, touch icon and in-app mark",
+      "deployed": [
+        "ai-dj"
+      ],
+      "name": "AI DJ · 2026-11-06 15:28 Velvet Station",
+      "meta": {
+        "files": 50,
+        "ins": 8584,
+        "del": 1189,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "ai-dj-generated-originals-20261106",
+      "built": "2026-11-06 17:10",
+      "commit": "2026-11-06 17:10",
+      "subject": "Velvet composes its own instrumental tracks with Higgsfield Sonilo Music by default: 3-minute originals, two-track background buffer, taste/mood/BPM prompts, generated/mixed/library modes, web and native Generate controls, and fake-CLI generation tests",
+      "deployed": [
+        "ai-dj"
+      ],
+      "name": "AI DJ · 2026-11-06 17:10 Generated Originals",
+      "meta": {
+        "files": 14,
+        "ins": 1100,
+        "del": 20,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "ai-dj-sound-movements-20261106",
+      "built": "2026-11-06 17:30",
+      "commit": "2026-11-06 17:30",
+      "subject": "Velvet's generated set now moves through six sound palettes (warm organic, deep ambient, neon electronic, dusty groove, strings and space, sunlit house), rotating every 4 tracks or 15 minutes with a different lead instrument and texture every track; Shift sound in web/native/Dock/CLI/MCP",
+      "deployed": [
+        "ai-dj"
+      ],
+      "name": "AI DJ · 2026-11-06 17:30 Sound Movements",
+      "meta": {
+        "files": 8,
+        "ins": 500,
+        "del": 10,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "ai-dj-agent-mcp-20261106",
+      "built": "2026-11-06 17:50",
+      "commit": "2026-11-06 17:50",
+      "subject": "AI DJ has a Streamable HTTP MCP at /mcp with 27 tools and a one-call dj_station (mode, palette shift, mood, generate now), registered in the tailnet gateway as ai-dj over tailscale serve tcp 8766",
+      "deployed": [
+        "ai-dj"
+      ],
+      "name": "AI DJ · 2026-11-06 17:50 Agent MCP",
+      "meta": {
+        "files": 8,
+        "ins": 350,
+        "del": 10,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "ai-dj-rust-20261106",
+      "built": "2026-11-06 19:11",
+      "commit": "2026-11-06 19:11",
+      "subject": "AI DJ in Rust: a self-contained binary synthesises its own electronic tracks, plans harmonic sets on the Camelot wheel and mixes them forever in a two-deck browser player",
+      "deployed": [
+        "ai-dj-rust"
+      ],
+      "name": "AI DJ · 2026-11-06 19:11 Rustwave",
+      "meta": {
+        "files": 18,
+        "ins": 3100,
+        "del": 0,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "ai-pricing-day-report-20261106",
+      "built": "2026-11-06 22:12",
+      "commit": "2026-11-06 22:12",
+      "subject": "Day report (review #12): the work actually built on 6 Nov (reviews #8-#11, three films, two podcasts, two decks, the Magic-to-Postgres copy code) plus a 3-hour cost forecast; the agents/cost tab now shows real $23.18 OpenRouter spend to 22:04 with ~$7 for 3 more hours (~$30 day)",
+      "deployed": [
+        "ai-pricing"
+      ],
+      "name": "AI Pricing · 2026-11-06 22:12 day report",
+      "rolledBack": null
+    },
+    {
+      "tag": "planin-brief-20261107",
+      "built": "2026-11-07 12:45",
+      "commit": "2026-11-07 12:45",
+      "subject": "Planin Brief: a plan becomes a 36-second narrated explainer from OpenRouter storyboard, Higgsfield stills and voice, and an ffmpeg edit with captions, for 2.8 credits (~$0.14)",
+      "deployed": [
+        "local"
+      ],
+      "name": "Planin Brief · 2026-11-07 12:45 First film",
+      "meta": {
+        "files": 22,
+        "ins": 1546,
+        "del": 0,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "agent-link-20261107",
+      "built": "2026-11-07 15:01",
+      "commit": "2026-11-07 15:01",
+      "subject": "Agent Bus task board: a read-only dashboard over the Agent Link queue showing tasks date-first with sender, recipients and open/acked state, agent filters, and MCP tools board_tasks, board_agents, board_summary and board_task, live at ubuntu03:30124",
+      "deployed": [
+        "agent-link"
+      ],
+      "name": "Agent Link · 2026-11-07 15:01 task board",
+      "meta": {
+        "files": 10,
+        "ins": 1100,
+        "del": 46,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "planin-brief-podcast-20261107",
+      "built": "2026-11-07 15:08",
+      "commit": "2026-11-07 15:08",
+      "subject": "Podcast with slides: a host script from OpenRouter, Higgsfield voice, local presentation slides and a live waveform; five chapters for 3.75 credits (~$0.19)",
+      "deployed": [
+        "local"
+      ],
+      "name": "Planin Brief · 2026-11-07 15:08 Podcast with slides",
+      "meta": {
+        "files": 9,
+        "ins": 451,
+        "del": 107,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "agent-tracker-20261107",
+      "built": "2026-11-07 16:55",
+      "commit": "e37ee7d",
+      "subject": "Task <-> agent tracker: a Python stdlib service with a JSON API, MCP and a CLI; agents report progress, the public host is a read-only view.",
+      "deployed": [
+        "kubernetes:ns agent-tracker (NodePort 30126)",
+        "agents.navonsimon.com"
+      ],
+      "name": "Agent Tracker · 2026-11-07 16:55 task-agent tracker",
+      "meta": {
+        "files": 14,
+        "ins": 0,
+        "del": 0,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "c047c00",
+      "built": "2026-11-07 15:12",
+      "commit": "2026-11-07 17:17",
+      "subject": "Clinic password, the summary emailed with its PDF, the printout he asked for, and the integration site dressed as production — go-live",
+      "deployed": [
+        "prod",
+        "integration"
+      ],
+      "name": "🖐️ Dexterity",
       "rolledBack": null
     }
   ],
