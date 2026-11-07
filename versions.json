@@ -1381,10 +1381,10 @@
    "rolledBack": null
   },
   {
-   "tag": "475aeeb",
-   "built": "2026-11-07 23:30",
+   "tag": "cc6e3d1",
+   "built": "2026-11-07 23:35",
    "commit": "2026-11-08 01:30",
-   "subject": "MCP Registry — compact mode (the rolodex): the gateway indexes every server and loads one on demand, so a session starts with 14 tools instead of 121; registry__search_servers and registry__mcp_use, the same index on HTTP (/servers/search, /servers/use, /tools/...), a searchable registry page, and the project page and brief rewritten around it",
+   "subject": "MCP Registry — compact mode (the rolodex): the gateway indexes every server and loads one on demand, so a session starts with 14 tools instead of 121; registry__search_servers and registry__mcp_use, the same index on HTTP (/servers/search, /servers/use, /tools/...), a searchable registry page, and a loaded server drops out again after half an hour without a call",
    "deployed": [
     "mcp-registry",
     "my-projects"
@@ -1392,8 +1392,8 @@
    "name": "MCP Registry · 2026-11-07 23:30 the rolodex",
    "meta": {
     "files": 10,
-    "ins": 574,
-    "del": 59,
+    "ins": 645,
+    "del": 86,
     "author": "Simon"
    },
    "rolledBack": null
