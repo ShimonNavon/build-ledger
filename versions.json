@@ -1343,6 +1343,19 @@
       ],
       "name": "🖐️ Dexterity",
       "rolledBack": null
+    },
+    {
+      "tag": "e65f966",
+      "built": "2026-11-07 19:35",
+      "commit": "2026-11-07 19:18",
+      "subject": "The clinical workspace redesign and the fourth round: detail capture survives a reconnect, wider identity parsing, request #14's hint captions removed — on prod, test and integration",
+      "deployed": [
+        "prod",
+        "test",
+        "integration"
+      ],
+      "name": "🦴 Pisiform",
+      "rolledBack": null
     }
   ],
   "quips": [
