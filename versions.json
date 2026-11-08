@@ -1414,6 +1414,23 @@
         "del": 45,
         "author": "Simon"
       }
+    },
+    {
+      "tag": "4e24dcd",
+      "built": "2026-11-08 10:40",
+      "commit": "2026-11-08 10:34",
+      "subject": "The mailbox tab is out of the app and the client card is in: every meeting's summary and letter printable from the client, what was emailed to whom and when, and the clients seen last as one-tap chips — on integration",
+      "deployed": [
+        "integration"
+      ],
+      "name": "🦾 Opponens",
+      "rolledBack": null,
+      "meta": {
+        "files": 14,
+        "ins": 254,
+        "del": 743,
+        "author": "Simon"
+      }
     }
   ],
   "quips": [
