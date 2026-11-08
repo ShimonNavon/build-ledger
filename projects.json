@@ -23,6 +23,180 @@
       "year": 2026
     },
     {
+      "slug": "magic-cockpit",
+      "name": "Magic Cockpit · קוקפיט מג׳יק",
+      "ledgerName": "Magic Cockpit · קוקפיט מג׳יק",
+      "blurb": "The first real replacement of the Magic/Hafill cockpit screens: a Hebrew, read-only web app over a typed PostgreSQL mirror of the office database — works, artists, companies, discs, 1.46M plays, the ten report types, corrections and an audit log, with the entity map built in the mapping pass.",
+      "category": "projects",
+      "status": "live",
+      "img": "img/magic-cockpit.jpg",
+      "emoji": "🎛️",
+      "tags": [
+        "Hebrew UI",
+        "PostgreSQL",
+        "Kubernetes",
+        "Python",
+        "Tailnet"
+      ],
+      "links": [
+        {
+          "label": "Open (tailnet)",
+          "url": "http://ubuntu03:30122/"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/ShimonNavon/magic-cockpit"
+        }
+      ],
+      "note": "Read-only · tailnet only",
+      "year": 2026
+    },
+    {
+      "slug": "agent-tracker",
+      "name": "Agent Tracker",
+      "ledgerName": "Agent Tracker",
+      "blurb": "One place that maps every task to the agent that owns it: who owns it, that agent\\u2019s live state, the task status and the latest note. A small Python service serves the board, a JSON API and MCP; agents report progress through the agent-tracker CLI or an MCP tool call, and the public subdomain is a read-only view.",
+      "category": "projects",
+      "status": "live",
+      "img": "img/agent-tracker.jpg",
+      "emoji": "🧭",
+      "tags": [
+        "Python",
+        "MCP",
+        "CLI",
+        "SQLite",
+        "Kubernetes"
+      ],
+      "links": [
+        {
+          "label": "How it works",
+          "url": "https://projects.navonsimon.com/agent-tracker.html"
+        },
+        {
+          "label": "Open",
+          "url": "https://agents.navonsimon.com/"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/ShimonNavon/agent-tracker"
+        }
+      ],
+      "note": "Read-only publicly \\u00b7 agents write over the tailnet",
+      "year": 2026
+    },
+    {
+      "slug": "visual-lab",
+      "name": "Visual Lab",
+      "ledgerName": "Visual Lab",
+      "blurb": "Fast visual conversations: charts through a CLI and shared MCP, Archify diagrams and Python plots. Real trials, editable specifications and Fedora display.",
+      "category": "projects",
+      "status": "live",
+      "img": "img/visual-lab.jpg?v=20261031",
+      "emoji": "📊",
+      "tags": [
+        "Visualization",
+        "CLI",
+        "MCP",
+        "Flint",
+        "Archify"
+      ],
+      "links": [
+        {
+          "label": "Documentation and trials",
+          "url": "https://projects.navonsimon.com/visual-lab"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/ShimonNavon/visual-lab"
+        }
+      ],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "superset-reporting-layer",
+      "name": "Superset Reporting Layer",
+      "ledgerName": "Superset Reporting Layer",
+      "blurb": "Apache Superset chosen as the reporting and visualization layer over the royalty office’s read-only Postgres copies, with Evidence as the MIT fallback. The visible end of a staged AI transformation: one producer’s records in one picture, every number carrying its source. Chosen, not built yet.",
+      "category": "projects",
+      "status": "private",
+      "img": "",
+      "emoji": "📊",
+      "tags": [
+        "Apache Superset",
+        "PostgreSQL",
+        "BI",
+        "Dashboards",
+        "Apache-2.0"
+      ],
+      "links": [
+        {
+          "label": "Explainer video",
+          "url": "https://ai-pricing.navonsimon.com/media/superset-postgres.mp4"
+        },
+        {
+          "label": "News post",
+          "url": "https://projects.navonsimon.com/news"
+        }
+      ],
+      "note": "Decision · not built yet",
+      "year": 2026
+    },
+    {
+      "slug": "remodeling",
+      "name": "Remodeling",
+      "ledgerName": "Remodeling",
+      "blurb": "Care for the projects directory itself: shared project progress, next steps, documentation coverage, and a persistent cluster agent that checks site health and security basics. Every check leaves a record; changes in findings reach my Fedora screen.",
+      "category": "agents",
+      "status": "live",
+      "img": "img/remodeling.jpg",
+      "emoji": "🛠️",
+      "tags": [
+        "Project tracking",
+        "Documentation",
+        "Site health",
+        "MCP",
+        "Kubernetes"
+      ],
+      "links": [
+        {
+          "label": "Project tracker",
+          "url": "https://projects.navonsimon.com/tracker"
+        },
+        {
+          "label": "Documentation",
+          "url": "https://projects.navonsimon.com/remodeling"
+        }
+      ],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "planin-brief",
+      "name": "Planin Brief",
+      "ledgerName": "Planin Brief",
+      "blurb": "A CLI and skill that turns a written plan into a short narrated podcast with a presentation: OpenRouter writes a host script and slide bullets, Higgsfield voices it, and the deck, title card and live waveform are built locally with Chrome and ffmpeg. A cinematic cut swaps the slides for AI stills. A five-chapter episode costs about 19 cents, under a hard one-dollar cap, with a cost ledger for every render.",
+      "category": "projects",
+      "status": "private",
+      "img": "img/planin-brief.jpg?v=20261107b",
+      "emoji": "🎬",
+      "tags": [
+        "Podcast",
+        "Slides",
+        "OpenRouter",
+        "Higgsfield",
+        "ffmpeg"
+      ],
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://projects.navonsimon.com/repo/planin-brief"
+        }
+      ],
+      "note": "Local CLI · skill",
+      "year": 2026
+    },
+    {
       "slug": "mellow",
       "name": "Mellow",
       "ledgerName": "Mellow",
@@ -46,6 +220,70 @@
         {
           "label": "GitHub",
           "url": "https://github.com/ShimonNavon/mellow"
+        }
+      ],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "ai-dj-velvet-station",
+      "name": "AI DJ · Velvet Station",
+      "ledgerName": "AI DJ · Velvet Station",
+      "blurb": "Velvet composes its own instrumental tracks — three-minute originals made with Sonilo Music — then blends them on phrase boundaries. The sound moves through six palettes (warm organic, deep ambient, neon electronic, dusty groove, strings and space, sunlit house) and changes the lead instrument every track, so a long set never sits on one timbre. It keeps a two-track buffer with real tracks as fallback and has a DJ who picks the music and occasionally says something. The hub runs on the Mac; the single-file player is served by that hub over Tailscale, and a 27-tool MCP lets other agents change the station in one call.",
+      "category": "projects",
+      "status": "live",
+      "img": "img/ai-dj.jpg",
+      "emoji": "🎙️",
+      "tags": [
+        "Generated originals",
+        "Sound movements",
+        "Agent MCP",
+        "Sonilo Music",
+        "Beatmatched transitions",
+        "Velvet voice",
+        "Tailscale"
+      ],
+      "links": [
+        {
+          "label": "Open the player (tailnet)",
+          "url": "https://simons-macbook-pro.tail32418c.ts.net/"
+        },
+        {
+          "label": "Landing page",
+          "url": "http://ubuntu03:30119/"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/ShimonNavon/ai-dj"
+        }
+      ],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "ai-dj-rustwave",
+      "name": "AI DJ · Rustwave",
+      "ledgerName": "AI DJ · Rustwave",
+      "blurb": "The AI DJ rebuilt in Rust as one self-contained binary. It composes every track itself — kick, hats, sub bass, pads and arps synthesised from a key, tempo and energy — then plans a set on the Camelot wheel and mixes it forever on two Web Audio decks with equal-power crossfades. Six palettes from deep house to acid and trance, a live spectrum ring and waveform, a set arc, and DJ notes that explain each harmonic move. No samples, no streaming, no media library.",
+      "category": "projects",
+      "status": "live",
+      "img": "img/ai-dj-rust.jpg",
+      "emoji": "🎛️",
+      "tags": [
+        "Rust",
+        "Generative audio",
+        "Camelot mixing",
+        "Web Audio",
+        "Kubernetes"
+      ],
+      "links": [
+        {
+          "label": "Open the player (tailnet)",
+          "url": "http://ubuntu03:30120/"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/ShimonNavon/ai-dj-rust"
         }
       ],
       "note": "",
@@ -277,10 +515,10 @@
       "slug": "mcp-registry",
       "name": "MCP Registry",
       "ledgerName": "MCP Registry",
-      "blurb": "One MCP endpoint for every agent on my tailnet. Claude Code, Codex, OpenCode and Hermes connect to a single URL and get every shared MCP server through it; a server added to the registry reaches all of them within a minute, and a new machine joins with one command. It runs as a small gateway on my Kubernetes cluster and also lists the servers that only run on one machine.",
+      "blurb": "One MCP endpoint for every agent on my tailnet, run as a rolodex. Claude Code, Codex, OpenCode and Hermes connect to a single URL, which holds an index of every shared server instead of loading all of their tools at once: a session starts with 14 tools rather than 121, finds what it needs by search, and pulls in one server at a time. A server added to the registry is searchable everywhere within a minute, a new machine joins with one command, and machine-local servers are listed with the line to connect them.",
       "category": "agents",
       "status": "live",
-      "img": "img/mcp-registry.jpg",
+      "img": "img/mcp-registry-rolodex.jpg",
       "emoji": "",
       "tags": [
         "MCP",
@@ -318,6 +556,7 @@
         "MCP",
         "HTTP API",
         "CLI",
+        "Task board",
         "Tailscale",
         "Kubernetes"
       ],
@@ -325,6 +564,10 @@
         {
           "label": "How it works",
           "url": "https://projects.navonsimon.com/agent-link.html"
+        },
+        {
+          "label": "Task board",
+          "url": "http://ubuntu03:30124/"
         },
         {
           "label": "Live bus",
@@ -335,7 +578,42 @@
           "url": "https://github.com/ShimonNavon/agent-link"
         }
       ],
-      "note": "Bus on my tailnet",
+      "note": "Bus + task board on my tailnet",
+      "year": 2026
+    },
+    {
+      "slug": "the-wall",
+      "name": "The Wall",
+      "ledgerName": "The Wall",
+      "blurb": "My review screen as a service, and now a screen that talks back. A stdlib MCP server on the Fedora laptop turns any diagram, report or dashboard into a fullscreen page in about a second — cursor hidden, no tabs, newest page wins — while the same laptop keeps the tmux rooms where agents work and runs an ambient board. The voice layer wakes on “hey jarvis”, transcribes with local whisper, answers from a fast router or a tool-only cloud brain, and speaks through Piper, drawing its listening/speaking state as a bottom bar. Audio never leaves the laptop; only text reaches the model. Track it with voice status, voice watch and voice logs, or fedora__voice_status and the other voice tools from any agent.",
+      "category": "agents",
+      "status": "live",
+      "img": "img/wall-voice.jpg",
+      "emoji": "",
+      "tags": [
+        "MCP",
+        "Chromium kiosk",
+        "Voice",
+        "whisper",
+        "Piper",
+        "openWakeWord",
+        "Tailscale"
+      ],
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://projects.navonsimon.com/repo/wall"
+        },
+        {
+          "label": "Voice CLI & MCP",
+          "url": "https://projects.navonsimon.com/wall-voice-tools.html"
+        },
+        {
+          "label": "Voice architecture",
+          "url": "https://projects.navonsimon.com/wall-voice.html"
+        }
+      ],
+      "note": "Live on the Fedora laptop · voice assistant",
       "year": 2026
     },
     {
@@ -364,6 +642,45 @@
         }
       ],
       "note": "Preview · recording verification pending",
+      "year": 2026
+    },
+    {
+      "slug": "voice-desk",
+      "name": "Voice Desk",
+      "ledgerName": "Voice Desk",
+      "blurb": "Talk to my coding agent instead of typing: one shortcut starts listening, whisper transcribes on the Mac, opencode answers in the project’s own voice session, and the reply is spoken as it streams. Common Mac commands run instantly — open apps, volume, screenshots, lock — and saying “work on Screen Pointer” switches repository. A small card shows the exchange.",
+      "category": "projects",
+      "status": "live",
+      "img": "img/voice-desk.jpg",
+      "emoji": "🎙️",
+      "tags": [
+        "Voice",
+        "whisper.cpp",
+        "opencode",
+        "macOS",
+        "Hands-free"
+      ],
+      "links": [],
+      "note": "Local Mac app · runs on my Mac",
+      "year": 2026
+    },
+    {
+      "slug": "gpu-link",
+      "name": "GPU Link",
+      "ledgerName": "GPU Link",
+      "blurb": "A Mac menu bar chip and floating pill that show whether you are connected to a rented Vast.ai GPU, for how long and at what cost, with a one-click disconnect that verifies the instance is really gone.",
+      "category": "projects",
+      "status": "live",
+      "img": "img/gpu-link.jpg?v=2",
+      "emoji": "",
+      "tags": [
+        "macOS",
+        "Vast.ai",
+        "Menu bar",
+        "Swift"
+      ],
+      "links": [],
+      "note": "Local app · tested with no instance rented",
       "year": 2026
     },
     {
@@ -956,6 +1273,222 @@
       "year": 2026
     },
     {
+      "slug": "ai-pricing-options",
+      "name": "AI Pricing Options",
+      "ledgerName": "AI Pricing Options",
+      "blurb": "A Hebrew, RTL briefing page built for an office CEO: the full picture of six AI options (personal accounts, suite AI, business chat, enterprise, private cloud, local server) with year-one and three-year costs, security trade-offs, and prioritised recommendations, drawn from two source reports.",
+      "category": "websites",
+      "status": "live",
+      "img": "img/ai-pricing.jpg?v=20261102",
+      "emoji": "",
+      "tags": [
+        "Hebrew RTL",
+        "Kubernetes",
+        "nginx"
+      ],
+      "links": [
+        {
+          "label": "Open",
+          "url": "https://ai-pricing.navonsimon.com/"
+        }
+      ],
+      "note": "",
+      "year": 2026
+    },
+    {
+      "slug": "pil-office-ai-transformation",
+      "name": "PIL Office · AI Transformation",
+      "ledgerName": "PIL Office · AI Transformation",
+      "blurb": "The AI transformation of the PIL royalty office: read-only copies of Barak and Magic, a dated decision log and a recorded reporting decision. The Magic/Hafill SQL Server is now copied into PostgreSQL — 558 tables, 94 million rows and 28 years of history — and the reporting layer is Apache Superset (Apache-2.0), with Evidence as the MIT alternative.",
+      "category": "projects",
+      "status": "live",
+      "img": "img/pil-office.jpg",
+      "emoji": "",
+      "tags": [
+        "PostgreSQL",
+        "Barak CRM",
+        "Magic/Hafill",
+        "Superset",
+        "Windows",
+        "AI"
+      ],
+      "links": [
+        {
+          "label": "Review site",
+          "url": "https://ai-pricing.navonsimon.com/"
+        },
+        {
+          "label": "PIL in numbers",
+          "url": "https://ai-pricing.navonsimon.com/files/pil-numbers.html"
+        },
+        {
+          "label": "Reporting video",
+          "url": "https://ai-pricing.navonsimon.com/media/superset-postgres.mp4"
+        }
+      ],
+      "note": "Internal office workflow · read-only copies, no writes to the record systems",
+      "year": 2026
+    },
+    {
+      "slug": "pil-magic-ui-ux-replacement",
+      "name": "PIL Magic · UI/UX Replacement",
+      "ledgerName": "PIL Magic · UI/UX Replacement",
+      "blurb": "A face-lift that preserves the old information architecture preserves the old limits. This is the evidence for the opposite: the Magic/Hafill royalty engine (Magic xpa 9.4, Hafill 3.4.24) was fully copied into PostgreSQL — 29 databases, 59 GB, 94,032,648 rows, zero failures — while its cockpit was documented from scratch. The analysis maps eight functional modules, ten report types, 46 saved report sets and roughly 345 stored routines, and finds zero documented screens and no API. The decision: replace the cockpit with a Postgres-backed system of record in five gated stages, with Magic read-only until each module passes parity. The 44-second film is the summary; review #13 is the detail.",
+      "category": "projects",
+      "status": "private",
+      "img": "img/pil-magic.jpg",
+      "emoji": "",
+      "tags": [
+        "Magic/Hafill",
+        "PostgreSQL",
+        "Hebrew RTL",
+        "UI/UX",
+        "HyperFrames",
+        "Read-only"
+      ],
+      "links": [
+        {
+          "label": "Watch the film",
+          "url": "https://ai-pricing.navonsimon.com/media/magic-uiux.mp4"
+        },
+        {
+          "label": "Review #13",
+          "url": "https://ai-pricing.navonsimon.com/#/magic"
+        },
+        {
+          "label": "PIL office",
+          "url": "https://projects.navonsimon.com/p/pil-office"
+        }
+      ],
+      "note": "Internal office work · the source systems were read-only; the replacement has not been built yet.",
+      "year": 2026
+    },
+    {
+      "slug": "pil-barak-read-only-front-office",
+      "name": "PIL Barak · Read-only Front Office",
+      "ledgerName": "PIL Barak · Read-only Front Office",
+      "blurb": "A read-only map of the office front office that became a working read model, a Hebrew app and an MCP server for agents. Barak is Tevel 11.35 on 37 live dBase/BDE tables — 1,409 clients, 47,870 active register rows — beside 51.3 GB of documents. The copy is complete (70,923 objects, 0 failures); PostgreSQL holds 80,820 raw rows and a 70,923-file index (47,683 linked; 168 missing; 17 outside; 2 drift; 5,695 unregistered). The RTL Barak 360 app runs read-only on the Mac over a SELECT-only role, and 10 read-only MCP tools (meta, clients, client, pipeline, activities, documents, document_exceptions, unregistered, search, staff) give agents the same picture through the shared gateway as pil__*. Identity is masked and the app plus the 10 pil MCP tools serve metadata only, while the official RustFS MCP (rustfs-mcp, 6 S3 tools on a loopback tunnel to win01:9000) can list buckets and pull an object on request; Barak stays the record and Excel stays the royalty engine.",
+      "category": "projects",
+      "status": "private",
+      "img": "img/pil-barak.jpg",
+      "emoji": "📋",
+      "tags": [
+        "Barak CRM",
+        "DBF/BDE",
+        "RustFS",
+        "RustFS MCP",
+        "PostgreSQL",
+        "FastAPI",
+        "MCP",
+        "Hebrew RTL",
+        "Read-only"
+      ],
+      "links": [
+        {
+          "label": "Review #16",
+          "url": "https://ai-pricing.navonsimon.com/#/barak360"
+        },
+        {
+          "label": "PIL office",
+          "url": "https://projects.navonsimon.com/p/pil-office"
+        }
+      ],
+      "note": "Internal office work · Barak stays read-only · read model built, Barak 360 and its MCP server live on the Mac · RustFS MCP connected · second copy verifying.",
+      "year": 2026
+    },
+    {
+      "slug": "pil-live-sync-magic-postgresql",
+      "name": "PIL live sync · Magic → PostgreSQL",
+      "ledgerName": "PIL live sync · Magic → PostgreSQL",
+      "blurb": "A read-only service on the office Windows box keeps PostgreSQL in step with Magic without ever touching Magic. Magic has no change feed to offer — SQL Server Express, 558 tables, no primary keys, no rowversion, no CDC — so the service detects changes itself: an identity/import tail catches new rows in seconds, and a cheap DMV change detector decides which table to re-read and diff (minutes for edits). All source access is SELECT … WITH (NOLOCK) plus read-only DMV queries; writes go only to PostgreSQL live_shdb*, deletes are archived in _deleted_at, and Superset reads the live mirror. A weekend full reconcile verifies all 558 tables.",
+      "category": "projects",
+      "status": "live",
+      "img": "img/pil-live-sync.jpg",
+      "emoji": "🔄",
+      "tags": [
+        "PostgreSQL",
+        "SQL Server",
+        "Read-only",
+        "Sync",
+        "Windows",
+        "Magic/Hafill"
+      ],
+      "links": [
+        {
+          "label": "Review #14",
+          "url": "https://ai-pricing.navonsimon.com/#/sync"
+        },
+        {
+          "label": "PIL office",
+          "url": "https://projects.navonsimon.com/p/pil-office"
+        }
+      ],
+      "note": "Internal office infrastructure · read-only from Magic, writes only to PostgreSQL · running 2026-11-06",
+      "year": 2026
+    },
+    {
+      "slug": "pil-dashboards-windows-pil",
+      "name": "PIL Dashboards · windows-pil",
+      "ledgerName": "PIL Dashboards · windows-pil",
+      "blurb": "One read-only window onto every store behind the office transformation, at windows-pil.navonsimon.com: the data-stores inventory (PostgreSQL 1,178 objects, RustFS 70,926 objects, SQL Server 558 tables, legacy Barak 81,050 records) and a database-and-PC health view. The collector runs on the office Windows box (win01) next to the data, reads it locally with no SSH, and pushes snapshots over the tailnet to the cluster, which keeps the last snapshot on a volume and serves the pages behind an access key — so the dashboards stay up when win01 reboots or the Mac is off. A read-only MCP (health, inventory, section, live, security) and the windows-pil CLI read the same store.",
+      "category": "projects",
+      "status": "live",
+      "img": "img/windows-pil.jpg",
+      "emoji": "📊",
+      "tags": [
+        "FastAPI",
+        "Kubernetes",
+        "PostgreSQL",
+        "RustFS",
+        "MCP",
+        "Read-only"
+      ],
+      "links": [
+        {
+          "label": "Open",
+          "url": "https://windows-pil.navonsimon.com/"
+        },
+        {
+          "label": "PIL office",
+          "url": "https://projects.navonsimon.com/p/pil-office"
+        }
+      ],
+      "note": "Read-only · access-key gate · collector on win01, cluster keeps the last snapshot",
+      "year": 2026
+    },
+    {
+      "slug": "pil-dataflow-office-it-oversight",
+      "name": "PIL Dataflow · office IT oversight",
+      "ledgerName": "PIL Dataflow · office IT oversight",
+      "blurb": "The CEO/CTO page for the PIL office IT estate at pil-dataflow.navonsimon.com: what data we hold, whether it is protected, and what proves it. Six labelled stages from classification to the cold copy, each with the same eight fields so a gap is visible rather than implied; a register schema (asset, job, snapshot, verify, restore_drill, offline_medium, alert, decision plus a coverage view) for the service that will feed it; four trust boundaries with the credential custody table; the upstream sources and downstream consumers; and the open decisions with owner and date. Read-only, counts and ages only, password gated in the app behind the edge.",
+      "category": "projects",
+      "status": "live",
+      "img": "img/pil-dataflow.jpg",
+      "emoji": "🧭",
+      "tags": [
+        "Python",
+        "Kubernetes",
+        "PostgreSQL",
+        "Cloudflare Tunnel"
+      ],
+      "links": [
+        {
+          "label": "Open",
+          "url": "https://pil-dataflow.navonsimon.com/?k=Nmpil777"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/ShimonNavon/pil-dataflow"
+        },
+        {
+          "label": "PIL office",
+          "url": "https://projects.navonsimon.com/p/pil-office"
+        }
+      ],
+      "note": "Read-only oversight · password gate in the app · register service next",
+      "year": 2026
+    },
+    {
       "slug": "mia-dynamics",
       "name": "Mia Dynamics",
       "ledgerName": "Mia Dynamics",
@@ -1141,6 +1674,20 @@
       "links": [],
       "note": "",
       "year": 2022
+    },
+    {
+      "slug": "application-json",
+      "name": "application/json",
+      "ledgerName": "application/json",
+      "blurb": "",
+      "category": "",
+      "status": " ? ",
+      "img": "",
+      "emoji": "",
+      "tags": [],
+      "links": [],
+      "note": "",
+      "year": null
     }
   ]
 }
