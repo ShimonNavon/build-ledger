@@ -2,6 +2,23 @@
   "prod": "664192b",
   "versions": [
     {
+      "tag": "ai-pricing-readability-20261109",
+      "built": "2026-11-09 12:42",
+      "commit": "2026-11-09 12:42",
+      "subject": "Readability pass on the office review site: embedded diagrams now size their iframe to their own content (fitMapFrames) so the legend, cards and node index are readable in the page instead of behind an inner 780px scroll; the four checklist boxes on reviews #19 and #20 go single-column so long Hebrew lines stop breaking mid-word around LTR identifiers; the #20 heading corrected to the four gaps it lists; the cards in both maps rewritten as short one-line bullets and both diagrams re-rendered",
+      "deployed": [
+        "ai-pricing"
+      ],
+      "name": "AI Pricing \u00b7 2026-11-09 12:42 readability pass",
+      "meta": {
+        "files": 3,
+        "ins": 54,
+        "del": 31,
+        "author": "OpenCode"
+      },
+      "rolledBack": null
+    },
+    {
       "tag": "ai-pricing-pil-local-server-01-20261109",
       "built": "2026-11-09 12:35",
       "commit": "2026-11-09 12:35",
