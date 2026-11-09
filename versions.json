@@ -2,6 +2,23 @@
   "prod": "664192b",
   "versions": [
     {
+      "tag": "pil-second-source-cluster-20261109",
+      "built": "2026-11-09 14:30",
+      "commit": "2026-11-09 14:30",
+      "subject": "Second source standing on the cluster: PostgreSQL 17 in namespace pil-postgres on ubuntu01 (NodePort 30140, 170 Gi local-path volume, restore-phase settings so a 95 GB load is not hours of fsync) and RustFS 1.0.4 in namespace pil-rustfs on ubuntu02 (S3 30141, console 30142, 90 Gi). Both pods running and checked; the RustFS image runs as UID 10001 so an init container chowns the data root, and its logs moved to an emptyDir because a log directory inside the data root showed up as a stray bucket. The unattended chain on ubuntu03 waits for both 95.23 GB dumps, verifies each SHA-256 against the hash written on win01, deletes them from win01 only after both pass, then runs the restore drill and mirrors the three buckets with a per-object SHA-256 check against win01's own 70,923-entry manifest. The three stub dumps were already copied, verified and removed (win01 free 1.18 -> 41.2 GB). Nothing reads from the old office server \\\\sql.",
+      "deployed": [
+        "ai-pricing"
+      ],
+      "name": "PIL \\u00b7 2026-11-09 14:30 second source on the cluster",
+      "meta": {
+        "files": 10,
+        "ins": 659,
+        "del": 12,
+        "author": "OpenCode"
+      },
+      "rolledBack": null
+    },
+    {
       "tag": "ai-pricing-plan-execution-ready-20261109",
       "built": "2026-11-09 13:33",
       "commit": "2026-11-09 13:33",
