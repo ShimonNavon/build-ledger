@@ -1,6 +1,25 @@
 {
-  "prod": "c047c00",
+  "prod": "664192b",
   "versions": [
+    {
+      "tag": "664192b",
+      "built": "2026-11-09 09:48",
+      "commit": "2026-11-09 09:48",
+      "subject": "Mailbox tab out, client card in; production feeds both review sites",
+      "deployed": [
+        "prod",
+        "test",
+        "integration"
+      ],
+      "name": "🫱 Pronation",
+      "meta": {
+        "files": 78,
+        "ins": 78,
+        "del": 33,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
     {
       "tag": "4dd897c",
       "built": "2026-10-17 06:46",
