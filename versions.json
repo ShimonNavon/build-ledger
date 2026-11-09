@@ -2,6 +2,23 @@
   "prod": "664192b",
   "versions": [
     {
+      "tag": "ai-pricing-no-touch-oldsrv-20261109",
+      "built": "2026-11-09 13:28",
+      "commit": "2026-11-09 13:28",
+      "subject": "Review #20 now proves the plan never touches the OLD Windows server: a boundary box with the verified evidence (29 Magic databases / 558 tables / 94,032,648 rows copied to win01 on 11-06 21:53-22:17, raw_barak 37 tables, RustFS 70,923 objects / 51.27 GB each with SHA-256) and the explicit deferral of anything newer than 11-07 plus the five unmeasured shares. On win01 the ten scheduled tasks that could reach \\sql (barak-copy-nightly, map-barak, list-barak, verify-barak, MagicSyncTails/Diffs, MagicReconcile, MagicRecon0-2) were disabled on 9 Nov so the old machine gets no traffic; re-enabling is one command each. Also corrected the RustFS object count and bucket split (70,923 objects: 53,378 docs + 17,545 tables) on the #20 page and both maps",
+      "deployed": [
+        "ai-pricing"
+      ],
+      "name": "AI Pricing \u00b7 2026-11-09 13:28 no-touch boundary",
+      "meta": {
+        "files": 3,
+        "ins": 22,
+        "del": 6,
+        "author": "OpenCode"
+      },
+      "rolledBack": null
+    },
+    {
       "tag": "ai-pricing-plan-section-20261109",
       "built": "2026-11-09 12:50",
       "commit": "2026-11-09 12:50",
