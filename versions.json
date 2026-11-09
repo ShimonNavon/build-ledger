@@ -2,6 +2,23 @@
   "prod": "664192b",
   "versions": [
     {
+      "tag": "ai-pricing-pil-local-server-01-20261109",
+      "built": "2026-11-09 12:35",
+      "commit": "2026-11-09 12:35",
+      "subject": "Review #20 on the office review site: win01 reviewed as a candidate local server (PIL-Local-Server01) \u2014 Windows 11 Pro on an i5-14400 / 15.8 GB / one 500 GB NVMe with 1.06 GB free; six services that already behave like a server (PostgreSQL 17 on loopback with six roles, RustFS 48.4 GB / 71,335 objects, OfficeWeb on :80, OpenSSH on the tailnet, Chrome CDP, the windows-pil collector); five of eight scheduled jobs failing or stopped; Windows-MCP (:8000) and agent-desktop (:8001) down; the Mac tunnel dependency; and the two deciding changes (a copy off the box, boot-time services). New files-big3 ConfigMap + nginx alias for the 766 KB map",
+      "deployed": [
+        "ai-pricing"
+      ],
+      "name": "AI Pricing \u00b7 2026-11-09 12:35 PIL-Local-Server01",
+      "meta": {
+        "files": 6,
+        "ins": 13950,
+        "del": 5,
+        "author": "OpenCode"
+      },
+      "rolledBack": null
+    },
+    {
       "tag": "ai-pricing-oldsrv-inventory-20261109",
       "built": "2026-11-09 12:19",
       "commit": "2026-11-09 12:19",
