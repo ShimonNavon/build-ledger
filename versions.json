@@ -2,6 +2,23 @@
   "prod": "664192b",
   "versions": [
     {
+      "tag": "ai-pricing-plan-execution-ready-20261109",
+      "built": "2026-11-09 13:33",
+      "commit": "2026-11-09 13:33",
+      "subject": "The win01 plan refined for execution: step 0 prerequisites (a target dir on ubuntu03, 406 GB free of 466, an SSH key from win01 for scp over the tailnet, a 1 GB throughput test before 191 GB, one maintenance window for the PostgreSQL restart); each step now carries concrete actions, the gate that proves it and the risk with its way back. Step 1 deletes the 41.0 GB truncated dump first, then moves both complete dumps and verifies each SHA-256 before deleting; step 2 flags that a failed WAL archive is itself a disk-filling risk. Review correction: the Nov 7 and Nov 8 dumps are not duplicates (same 95,230,922,328 bytes, different SHA-256), so both are kept off-box. The nightly pg_dumpall task was disabled on win01 (it filled the volume); PostgreSQL, RustFS, OpenSSH and Tailscale already start at boot",
+      "deployed": [
+        "ai-pricing"
+      ],
+      "name": "AI Pricing \u00b7 2026-11-09 13:33 execution-ready plan",
+      "meta": {
+        "files": 1,
+        "ins": 43,
+        "del": 12,
+        "author": "OpenCode"
+      },
+      "rolledBack": null
+    },
+    {
       "tag": "ai-pricing-no-touch-oldsrv-20261109",
       "built": "2026-11-09 13:28",
       "commit": "2026-11-09 13:28",
