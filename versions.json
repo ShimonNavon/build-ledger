@@ -2,6 +2,23 @@
   "prod": "664192b",
   "versions": [
     {
+      "tag": "ai-pricing-oldsrv-inventory-20261109",
+      "built": "2026-11-09 12:19",
+      "commit": "2026-11-09 12:19",
+      "subject": "Review #19 on the office review site: the Windows Server OLD inventory \u2014 29 Magic databases / 558 tables, BarakT\\DATA 37 DBF tables, QUOT 53,378 files / 29.83 GB, files\\\u05d7\u05dc\u05d5\u05e7\u05d5\u05ea 17,308 xlsx / 21.05 GB and the MAGIC share, each item with a two-line description, plus the five shares that could not be opened and the three broken pipes (file copy, Magic sync, local pg_dumpall on a single C: volume); new files-big2 ConfigMap + nginx alias because files-big already holds barak-pipeline.html",
+      "deployed": [
+        "ai-pricing"
+      ],
+      "name": "AI Pricing \u00b7 2026-11-09 12:19 Windows Server OLD inventory",
+      "meta": {
+        "files": 6,
+        "ins": 14091,
+        "del": 7,
+        "author": "OpenCode"
+      },
+      "rolledBack": null
+    },
+    {
       "tag": "664192b",
       "built": "2026-11-09 09:48",
       "commit": "2026-11-09 09:48",
