@@ -2,6 +2,22 @@
  "prod": "664192b",
  "versions": [
   {
+   "tag": "resources-first-20261118",
+   "built": "2026-11-18 21:56",
+   "commit": "a316af4 2026-11-18 21:55",
+   "subject": "resources.navonsimon.com is live in Hebrew: one view is my recommendation (three sources now, business websites after that, municipal letters in parallel, each with what it feeds in outreach360, the effort and the yield, plus the pipeline and a field-by-field rule for where a value may and may never come from), the other is the full catalogue of 33 sources with the real access state, endpoint, fields and the number each call actually returned. A star marks the sources Simon wants built next; the marks are stored server-side over a WebSocket because Cloudflare blocks POST, and readable by the agent with kubectl. outreach360's sources tab now links here. NodePort 30146 was already taken by PIL DB 360, so this sits on 30147.",
+   "deployed": [
+    "resources",
+    "outreach360",
+    "my-projects"
+   ],
+   "name": "resources · 2026-11-18 source catalogue live",
+   "meta": {
+    "files": 13,
+    "shortstat": "13 files changed, 1781 insertions(+)"
+   }
+  },
+  {
    "tag": "outreach360-docs-20261118",
    "built": "2026-11-18 21:45",
    "commit": "5651877 2026-11-18 21:44",
