@@ -2,6 +2,21 @@
   "prod": "664192b",
   "versions": [
     {
+      "tag": "mike-karoutchi-cluster-20261116",
+      "built": "2026-11-16 17:52",
+      "commit": "4be2784 2026-11-16 17:52",
+      "subject": "Mike Karoutchi back online on the cluster, with media served from the repository. debian02 and its RustFS bucket were gone, so the six approved previews and the 19.2 MB stage film now stream from media/ through the same versioned range routes, and object storage plus its credentials and seeding step left the project. A build Job clones GitHub main over a read-only deploy key, runs npm ci and next build onto a 6 GiB local-path volume, and a Deployment serves the standalone output on NodePort 30127; edge nginx on ubuntu01 proxies mike-karoutchi.navonsimon.com and the DNS CNAME moved from the dead debian02 tunnel to the ubuntu01 one. Also raised the my-projects image buckets from five to seven so its screenshots fit under the ConfigMap limit.",
+      "deployed": [
+        "mike-karoutchi",
+        "my-projects"
+      ],
+      "name": "Mike Karoutchi · 2026-11-16 17:52 back on the cluster",
+      "meta": {
+        "files": 25,
+        "shortstat": "25 files changed, 706 insertions(+), 2364 deletions(-)"
+      }
+    },
+    {
       "tag": "pil-second-source-cluster-20261109",
       "built": "2026-11-09 14:30",
       "commit": "2026-11-09 14:30",
@@ -26,7 +41,7 @@
       "deployed": [
         "ai-pricing"
       ],
-      "name": "AI Pricing \u00b7 2026-11-09 13:33 execution-ready plan",
+      "name": "AI Pricing · 2026-11-09 13:33 execution-ready plan",
       "meta": {
         "files": 1,
         "ins": 43,
@@ -43,7 +58,7 @@
       "deployed": [
         "ai-pricing"
       ],
-      "name": "AI Pricing \u00b7 2026-11-09 13:28 no-touch boundary",
+      "name": "AI Pricing · 2026-11-09 13:28 no-touch boundary",
       "meta": {
         "files": 3,
         "ins": 22,
@@ -60,7 +75,7 @@
       "deployed": [
         "ai-pricing"
       ],
-      "name": "AI Pricing \u00b7 2026-11-09 12:50 plan section",
+      "name": "AI Pricing · 2026-11-09 12:50 plan section",
       "meta": {
         "files": 1,
         "ins": 41,
@@ -77,7 +92,7 @@
       "deployed": [
         "ai-pricing"
       ],
-      "name": "AI Pricing \u00b7 2026-11-09 12:42 readability pass",
+      "name": "AI Pricing · 2026-11-09 12:42 readability pass",
       "meta": {
         "files": 3,
         "ins": 54,
@@ -90,11 +105,11 @@
       "tag": "ai-pricing-pil-local-server-01-20261109",
       "built": "2026-11-09 12:35",
       "commit": "2026-11-09 12:35",
-      "subject": "Review #20 on the office review site: win01 reviewed as a candidate local server (PIL-Local-Server01) \u2014 Windows 11 Pro on an i5-14400 / 15.8 GB / one 500 GB NVMe with 1.06 GB free; six services that already behave like a server (PostgreSQL 17 on loopback with six roles, RustFS 48.4 GB / 71,335 objects, OfficeWeb on :80, OpenSSH on the tailnet, Chrome CDP, the windows-pil collector); five of eight scheduled jobs failing or stopped; Windows-MCP (:8000) and agent-desktop (:8001) down; the Mac tunnel dependency; and the two deciding changes (a copy off the box, boot-time services). New files-big3 ConfigMap + nginx alias for the 766 KB map",
+      "subject": "Review #20 on the office review site: win01 reviewed as a candidate local server (PIL-Local-Server01) — Windows 11 Pro on an i5-14400 / 15.8 GB / one 500 GB NVMe with 1.06 GB free; six services that already behave like a server (PostgreSQL 17 on loopback with six roles, RustFS 48.4 GB / 71,335 objects, OfficeWeb on :80, OpenSSH on the tailnet, Chrome CDP, the windows-pil collector); five of eight scheduled jobs failing or stopped; Windows-MCP (:8000) and agent-desktop (:8001) down; the Mac tunnel dependency; and the two deciding changes (a copy off the box, boot-time services). New files-big3 ConfigMap + nginx alias for the 766 KB map",
       "deployed": [
         "ai-pricing"
       ],
-      "name": "AI Pricing \u00b7 2026-11-09 12:35 PIL-Local-Server01",
+      "name": "AI Pricing · 2026-11-09 12:35 PIL-Local-Server01",
       "meta": {
         "files": 6,
         "ins": 13950,
@@ -107,11 +122,11 @@
       "tag": "ai-pricing-oldsrv-inventory-20261109",
       "built": "2026-11-09 12:19",
       "commit": "2026-11-09 12:19",
-      "subject": "Review #19 on the office review site: the Windows Server OLD inventory \u2014 29 Magic databases / 558 tables, BarakT\\DATA 37 DBF tables, QUOT 53,378 files / 29.83 GB, files\\\u05d7\u05dc\u05d5\u05e7\u05d5\u05ea 17,308 xlsx / 21.05 GB and the MAGIC share, each item with a two-line description, plus the five shares that could not be opened and the three broken pipes (file copy, Magic sync, local pg_dumpall on a single C: volume); new files-big2 ConfigMap + nginx alias because files-big already holds barak-pipeline.html",
+      "subject": "Review #19 on the office review site: the Windows Server OLD inventory — 29 Magic databases / 558 tables, BarakT\\DATA 37 DBF tables, QUOT 53,378 files / 29.83 GB, files\\חלוקות 17,308 xlsx / 21.05 GB and the MAGIC share, each item with a two-line description, plus the five shares that could not be opened and the three broken pipes (file copy, Magic sync, local pg_dumpall on a single C: volume); new files-big2 ConfigMap + nginx alias because files-big already holds barak-pipeline.html",
       "deployed": [
         "ai-pricing"
       ],
-      "name": "AI Pricing \u00b7 2026-11-09 12:19 Windows Server OLD inventory",
+      "name": "AI Pricing · 2026-11-09 12:19 Windows Server OLD inventory",
       "meta": {
         "files": 6,
         "ins": 14091,
@@ -1569,6 +1584,23 @@
         "del": 743,
         "author": "Simon"
       }
+    },
+    {
+      "tag": "pil-barak360-cluster-20261118",
+      "built": "2026-11-18 13:00",
+      "commit": "2026-11-18 12:58",
+      "subject": "barak360.navonsimon.com back up on the cluster, from the archive that was already there: pil-rustfs held the full 70,923 objects / 51.27 GB, so the read model was rebuilt inside the cluster (37 raw tables / 80,820 rows, 1,409 clients, 457 open activities, register 47,870 -> 47,683 linked, 168 missing, 17 outside, 2 drift, 5,695 unregistered, 187 exceptions) into pil-postgres and the app + its 10-tool MCP now run as deployment barak360 (NodePort 30143 web, 30144 MCP) behind the ubuntu01 edge, with the app streaming document bytes from the cluster RustFS. Neither the Mac nor win01 has to be awake: the outage was the disabled launch agent on the Mac plus win01 going offline. Every one of the 70,923 objects is SHA-256 hashed in docs.file; the pipeline is env-driven (read-model/LINUX.md) and the manifest is rebuilt from the buckets because the copier's manifest died with win01",
+      "deployed": [
+        "barak360"
+      ],
+      "name": "PIL · 2026-11-18 barak360 on the cluster",
+      "meta": {
+        "files": 18,
+        "ins": 973,
+        "del": 86,
+        "author": "OpenCode"
+      },
+      "rolledBack": null
     }
   ],
   "quips": [
