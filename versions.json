@@ -2,6 +2,21 @@
  "prod": "664192b",
  "versions": [
   {
+   "tag": "outreach360-docs-20261118",
+   "built": "2026-11-18 21:45",
+   "commit": "5651877 2026-11-18 21:44",
+   "subject": "outreach360 is documented end to end: docs/discovery.md in the repo records every source with the number it actually returned, the blocks with their HTTP status, the five decisions that came out of the research, what is live, what does not exist yet, and the commands that reproduce the findings. The same story is a visual page at projects.navonsimon.com/outreach360.html with the source map, the measured OpenStreetMap coverage per sector and per city, the pipeline marked built/next/planned honestly, and the two lists that matter: what is missing, and what must happen before any real contact data goes near the host. Card on the portfolio now links to it.",
+   "deployed": [
+    "outreach360",
+    "my-projects"
+   ],
+   "name": "outreach360 · 2026-11-18 documented",
+   "meta": {
+    "files": 2,
+    "shortstat": "2 files changed, 273 insertions(+)"
+   }
+  },
+  {
    "tag": "outreach360-sources-20261118",
    "built": "2026-11-18 21:04",
    "commit": "8f9dc16 2026-11-18 21:04",
