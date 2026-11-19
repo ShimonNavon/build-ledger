@@ -2,6 +2,22 @@
  "prod": "664192b",
  "versions": [
   {
+   "tag": "outreach360-categories-20261119",
+   "built": "2026-11-19 14:05",
+   "commit": "04e665d 2026-11-19 14:02",
+   "subject": "The sector rail now covers every category PIL charges for: all 44 categories from PIL's own tariff page, not just hair salons, gyms, bars, hotels and Pilates. Event halls, pools, cafes, shops, parking, fuel stations, clubs and discos, radio and municipalities each became one config entry with sub-types, licence kinds, a size label and range, name words and city weights, so a new category is data, not code. The rail is a single scrollable row (44 buttons no longer push the table down), keeps its place when a sector is picked, and the summary compares the top 14 with a note pointing at the rest. The sources tab, marks API and collector from the retired resources site ship in the same page, and resources.navonsimon.com redirects here.",
+   "deployed": [
+    "outreach360",
+    "resources",
+    "my-projects"
+   ],
+   "name": "outreach360 · 2026-11-19 all PIL tariff categories",
+   "meta": {
+    "files": 15,
+    "shortstat": "15 files changed, 4687 insertions(+), 76 deletions(-)"
+   }
+  },
+  {
    "tag": "pil-db-360-status-20261119",
    "built": "2026-11-19 14:02",
    "commit": "be94d9b 2026-11-19 14:02",
