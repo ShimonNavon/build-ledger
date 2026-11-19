@@ -2,6 +2,21 @@
  "prod": "664192b",
  "versions": [
   {
+   "tag": "pil-db-360-status-20261119",
+   "built": "2026-11-19 14:02",
+   "commit": "be94d9b 2026-11-19 14:02",
+   "subject": "The PIL review portal now opens on the money chain and gives Magic 360 and Barak a status page each, written for the board rather than for engineers. Every page exists in Hebrew and English at its own address (/magic and /en/magic), with a flag control in the header that stays on the page being read; the language follows the URL, then the cookie, then the browser. Magic 360: 94,030,707 rows over 28 years, 206,781 artists and 5,839 companies, with duplicates, zero foreign keys and no scheduled backup ranked by royalty risk. Barak: 71,287 documents and 51.3 GB, 99.6% of records resolving to a file, but sharing permissions and a plaintext password stand in for access control. Every figure carries its source and measured date and a test fails on one without. The overview chain runs Outreach 360, Barak, Magic 360, royalties, with the licensing event named as the missing link.",
+   "deployed": [
+    "pil-db-360",
+    "my-projects"
+   ],
+   "name": "PIL DB 360 · two system status pages, Hebrew and English",
+   "meta": {
+    "files": 10,
+    "shortstat": "10 files changed, 1830 insertions(+), 313 deletions(-)"
+   }
+  },
+  {
    "tag": "resources-first-20261118",
    "built": "2026-11-18 21:56",
    "commit": "a316af4 2026-11-18 21:55",
