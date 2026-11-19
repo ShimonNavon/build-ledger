@@ -1,11 +1,11 @@
 {
-  "prod": "1f7ea78",
+  "prod": "c1559d5",
   "versions": [
     {
       "tag": "outreach360-real-data-20261119",
-      "built": "2026-11-19 16:45",
-      "commit": "1f7ea78 2026-11-19 16:41:53 +0200",
-      "subject": "The screen stopped showing generated records and now runs on collected ones: 24,883 businesses from Be'er Sheva's business licensing and sign survey, Haifa's hotel list and the OpenStreetMap Israel extract, merged into Postgres with the source of every field kept. 2,483 have a phone and 1,559 an email. A weekly CronJob reads all four sources on Saturday at 22:00 UTC, keeps a failing source's old rows untouched, and hides a business only after two consecutive missed runs. The shared password moved server-side (SHA-256 in a Secret, HTTP-only session, rate-limited login) and the page carries no data: the API answers 401 without a session. Same login for the team, a name badge per browser, each caller picks their sectors, first tap claims a business, and calls are append-only events with the badge name. Postgres in the namespace, a nightly pg_dump with a tested restore, and a build gate that fails on the word 'demo' or a password hash left in the HTML.",
+      "built": "2026-11-19 17:05",
+      "commit": "c1559d5 2026-11-19 17:03:58 +0200",
+      "subject": "The screen stopped showing generated records and now runs on collected ones: 24,883 businesses from Be'er Sheva's business licensing and sign survey, Haifa's hotel list and the OpenStreetMap Israel extract, merged into Postgres with the source of every field kept. 2,483 have a phone and 1,559 an email. A weekly CronJob reads all four sources on Saturday at 22:00 UTC, keeps a failing source's old rows untouched, and hides a business only after two consecutive missed runs. The shared password moved server-side (SHA-256 in a Secret, HTTP-only session, rate-limited login) and the page carries no data: the API answers 401 without a session. Same login for the team, a name badge per browser, each caller picks their sectors, first tap claims a business, and calls are append-only events with the badge name. Postgres in the namespace, a nightly pg_dump with a tested restore, and a build gate that fails on the word 'demo' or a password hash left in the HTML. A source that returns half its usual rows is recorded as partial and never advances the miss counter, so a truncated pull cannot look like a city closing.",
       "project": "outreach360",
       "url": "https://outreach360.navonsimon.com/",
       "deployed": [
