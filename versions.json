@@ -1,6 +1,23 @@
 {
-  "prod": "c1559d5",
+  "prod": "d5ca8c8",
   "versions": [
+    {
+      "tag": "outreach360-supervisor-view-20261119",
+      "built": "2026-11-19 17:25",
+      "commit": "d5ca8c8 2026-11-19 17:25:02 +0200",
+      "subject": "The name badge can now be skipped. A supervisor opens the page, presses 'דלג · צפייה בכל העסקים' and gets every sector in one list — 24,883 businesses ordered by priority, all the filters, the CSV, the summary — labelled 'תצוגת מנהל', and the choice survives a reload. The rail also gained a 'הכל' button for anyone who already has a name. A name is now needed only to write: claiming or logging a call opens the badge and asks for one instead of failing.",
+      "project": "outreach360",
+      "url": "https://outreach360.navonsimon.com/",
+      "deployed": [
+        "outreach360"
+      ],
+      "name": "outreach360 · 2026-11-19 supervisor view",
+      "notes": "Namespace outreach360, NodePort 30145. /api/sectors now also returns the visible total for the הכל button.",
+      "meta": {
+        "files": 6,
+        "shortstat": "6 files changed, 152 insertions(+), 69 deletions(-)"
+      }
+    },
     {
       "tag": "outreach360-real-data-20261119",
       "built": "2026-11-19 17:05",
