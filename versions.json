@@ -1,6 +1,22 @@
 {
-  "prod": "0191eeb",
+  "prod": "e831de5",
   "versions": [
+    {
+      "tag": "outreach360-badge-skip-amber-20261119",
+      "built": "2026-11-19 17:38",
+      "commit": "e831de5 2026-11-19 17:38 +0200",
+      "subject": "The badge's skip ('דלג · צפייה בכל העסקים') now stands out: amber text and outline, a faint amber fill and glow, and a brighter hover/focus state, instead of the quiet grey ghost button it was. It reads as a real second way in next to 'מי אתם?'.",
+      "project": "outreach360",
+      "url": "https://outreach360.navonsimon.com/",
+      "deployed": [
+        "outreach360"
+      ],
+      "name": "outreach360 · 2026-11-19 amber skip",
+      "notes": "Namespace outreach360, NodePort 30145. Colour only — the skip behaviour and the 520x520 card are unchanged.",
+      "meta": {
+        "files": 1
+      }
+    },
     {
       "tag": "outreach360-badge-square-home-20261119",
       "built": "2026-11-19 17:32",
