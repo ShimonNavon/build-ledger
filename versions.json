@@ -1,6 +1,22 @@
 {
-  "prod": "d5ca8c8",
+  "prod": "0191eeb",
   "versions": [
+    {
+      "tag": "outreach360-badge-square-home-20261119",
+      "built": "2026-11-19 17:32",
+      "commit": "0191eeb 2026-11-19 17:32 +0200",
+      "subject": "The badge pop-up became a fixed 520x520 square: 'דלג · צפייה בכל העסקים' now sits at the top beside 'מי אתם?', the name and the sector chips scroll inside the middle of the card, and 'שמירה' is pinned in a footer that stays put. The logo in the header is now a home button: it closes the drawer and badge, clears the search, city, music, contact, owner, status and sort, goes back to the businesses tab at the top and reloads the default list — a caller's own first sector, or everything for the supervisor view.",
+      "project": "outreach360",
+      "url": "https://outreach360.navonsimon.com/",
+      "deployed": [
+        "outreach360"
+      ],
+      "name": "outreach360 · 2026-11-19 square badge and home logo",
+      "notes": "Namespace outreach360, NodePort 30145. Headless check asserts the card is 520x520, the save button stays visible while the middle scrolls, and the home button resets every filter.",
+      "meta": {
+        "files": 4
+      }
+    },
     {
       "tag": "outreach360-supervisor-view-20261119",
       "built": "2026-11-19 17:25",
