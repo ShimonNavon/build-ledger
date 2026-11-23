@@ -2,6 +2,17 @@
  "prod": "e831de5",
  "versions": [
   {
+   "tag": "pil-sort-game-hebrew-20261123",
+   "built": "2026-11-23 12:50",
+   "commit": "2414444 2026-11-23 12:47 +0200",
+   "subject": "Double Take in Hebrew: the whole game right-to-left — levels, witness lamps, hints, run card, badges and board — plus the option to type the name you think is right and merge both spellings under it, and Hebrew badge labels. The example sorter name is יונתן.",
+   "project": "pil-sort-game",
+   "url": "https://pil-sort-game.navonsimon.com/",
+   "deployed": ["pil-sort-game"],
+   "name": "Double Take · 2026-11-23 Hebrew sort",
+   "notes": "Same pile and same export. Typed canonical names are stored as the merge target, so decisions.csv can carry a name that is on neither card; verified through the tunnel (merge with a typed Hebrew name, export row, undo) and at desktop and phone width. Badge labels now come from the server in Hebrew."
+  },
+  {
    "tag": "pil-sort-game-double-take-20261123",
    "built": "2026-11-23 12:41",
    "commit": "21dc7f6 2026-11-23 12:30 +0200",
