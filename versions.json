@@ -4,7 +4,7 @@
   {
    "tag": "moti-zayed-first-live-20261123",
    "built": "2026-11-23 12:17",
-   "commit": "c44c204 2026-11-23 12:15 +0200",
+   "commit": "d0e0ef5 2026-11-23 12:35 +0200",
    "subject": "The office's first live version: the מקטע 1.2 file as a working tool — parcels, ownership shares and measurements in, the re-parcellation table out with the workbook's exact arithmetic (מקדם התמרה, הפרשה, מטרוקה, שווי משתתף, שווי מגרש), plot 312 split above and below the line, integrity checks the spreadsheet never ran, document uploads per file/parcel/plot, and an Excel export with live formulas plus an A4 print view.",
    "project": "moti-zayed-office",
    "url": "https://mz-office.navonsimon.com/",
@@ -12,7 +12,7 @@
     "moti-zayed-office"
    ],
    "name": "מוטי זייד · 2026-11-23 first live version",
-   "notes": "Namespace moti-zayed-office, NodePort 30148, SQLite + documents on a 2Gi PVC, nightly backup on ubuntu03. Seeded from the office workbook (גיליון2 + מקטע 1.2; גיליון1 is the old scope and is ignored). 20 unit tests pin the numbers to the sheet; plots 909/910 stay unassigned on purpose because the workbook leaves them blank.",
+   "notes": "Namespace moti-zayed-office, NodePort 30148, SQLite + documents on a 2Gi PVC, nightly backup on ubuntu03. Seeded from the office workbook (גיליון2 + מקטע 1.2; גיליון1 is the old scope and is ignored). 20 unit tests pin the numbers to the sheet; plots 909/910 stay unassigned on purpose because the workbook leaves them blank. Browser pass after the first deploy: CSP-safe confirm dialogs, document upload/delete through the page, no step traps on numeric cells, partial saves never blank a field.",
    "meta": {
     "files": 21,
     "insertions": 5234,
