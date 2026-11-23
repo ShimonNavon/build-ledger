@@ -2,6 +2,17 @@
  "prod": "e831de5",
  "versions": [
   {
+   "tag": "pil-sort-game-double-take-20261123",
+   "built": "2026-11-23 12:41",
+   "commit": "21dc7f6 2026-11-23 12:30 +0200",
+   "subject": "Double Take, the duplicate sorting game: the 53,356 pairs from the cleanup pass as cards — two names, the three witnesses that scored them (bge-m3 meaning, trigram spelling, business evidence), what a merge touches, points by difficulty, 20-card runs, undo, badges, a leaderboard per sorter, and an export in the exact CSV shape that applies merges to map.value_map.",
+   "project": "pil-sort-game",
+   "url": "https://pil-sort-game.navonsimon.com/",
+   "deployed": ["pil-sort-game"],
+   "name": "Double Take · 2026-11-23 first live version",
+   "notes": "Namespace pil-sort-game, NodePort 30149, Python stdlib server + SQLite on a 1Gi PVC, nightly backup CronJob keeping 7 dumps. Pile matches the cleanup workbook exactly: 235 warm-up, 8,707 near certain, 21,640 likely, 22,774 judgement, in 8,602 families. Decisions are idempotent GETs with a rid because Cloudflare blocks POST and the edge forwards GET/HEAD; the app is behind an access key and noindex, and never writes to new_pil_db. Verified live through the tunnel at desktop and phone width, one merge + keep + undo exercised end to end, board and run card checked."
+  },
+  {
    "tag": "moti-zayed-first-live-20261123",
    "built": "2026-11-23 12:17",
    "commit": "d0e0ef5 2026-11-23 12:35 +0200",
