@@ -1718,6 +1718,36 @@
    "links": [],
    "note": "",
    "year": null
+  },
+  {
+   "slug": "superset",
+   "name": "PIL Superset · BI over Magic",
+   "ledgerName": "PIL Superset",
+   "blurb": "Apache Superset 6 on the cluster, connected to the live Magic copy in pil-postgres: 29 year schemas and 558 tables, SQL Lab and dashboards, a SELECT-only role and no route to Barak. Two doors — the office password at the edge, then a Superset login.",
+   "category": "projects",
+   "status": "live",
+   "img": "img/superset.jpg",
+   "emoji": "📊",
+   "tags": [
+    "Apache Superset",
+    "Magic/Hafill",
+    "PostgreSQL",
+    "Kubernetes",
+    "Read-only",
+    "Cloudflare Tunnel"
+   ],
+   "links": [
+    {
+     "label": "Open",
+     "url": "https://bi-superset.navonsimon.com/"
+    },
+    {
+     "label": "Deploy notes",
+     "url": "https://projects.navonsimon.com/context/superset.md"
+    }
+   ],
+   "note": "Office password · Magic only · read-only role",
+   "year": 2026
   }
  ]
 }

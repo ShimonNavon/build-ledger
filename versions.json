@@ -2,6 +2,19 @@
  "prod": "e831de5",
  "versions": [
   {
+   "tag": "superset-magic-20261124",
+   "built": "2026-11-24 22:20",
+   "commit": "2ffc01a 2026-11-24 22:16:44 +0200 Superset on the cluster, connected to Magic only: manifests, read-only role notes, edge gate, metadata backup, connect script",
+   "subject": "Apache Superset 6.0.0 on the cluster, connected to the live Magic mirror (magic_raw): a SELECT-only superset_ro role over the 29 live_shdb* schemas and 558 tables, the data source registered in Superset with DML/CTAS/CVAS off, bi-superset.navonsimon.com behind the office password and its own login, and a nightly metadata dump.",
+   "project": "superset",
+   "url": "https://bi-superset.navonsimon.com/",
+   "deployed": [
+    "superset"
+   ],
+   "name": "PIL Superset · 2026-11-24 Magic connected",
+   "notes": "Barak (new_pil_db) deliberately not registered; superset_ro has no grants there and no write anywhere. Verified: read test 558 tables / 29 schemas, write refused by the DML guard, public login and SQL Lab through the tunnel, metadata backup written and pruned. The manifests live in ~/Developer/pil/superset."
+  },
+  {
    "tag": "pil-sort-game-hebrew-20261123",
    "built": "2026-11-23 12:50",
    "commit": "2414444 2026-11-23 12:47 +0200",
