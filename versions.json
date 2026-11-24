@@ -2,6 +2,19 @@
  "prod": "e831de5",
  "versions": [
   {
+   "tag": "superset-dashboards-20261125",
+   "built": "2026-11-24 23:40",
+   "commit": "72ec192 2026-11-24 23:35:50 +0200 Superset: royalty and data-health dashboards as code — datasets, charts, layout, docs and screenshots",
+   "subject": "Two dashboards on PIL BI, built as code: royalty 2026 (Magic's price per work x organisation x use type x 30-day period, rolled up by period, organisation, use type, company and work) and data health (exact tables and rows per year from the copy ledger, plus the empty-table gaps).",
+   "project": "superset",
+   "url": "https://bi-superset.navonsimon.com/superset/dashboard/pil-royalty/",
+   "deployed": [
+    "superset"
+   ],
+   "name": "PIL Superset · 2026-11-24 two dashboards",
+   "notes": "build_dashboards.py owns eight virtual datasets, fifteen charts and the two dashboard layouts, and is idempotent; ./deploy.sh dashboards rebuilds them. Verified in a browser: 9,116,806 royalty over nine periods, 3.34B plays, 60,503 works; the copy holds 558 tables and 94M rows. Each chart is linked to its dashboard explicitly because position_json alone leaves the panels empty."
+  },
+  {
    "tag": "superset-gate-20261124",
    "built": "2026-11-24 23:00",
    "commit": "7bc981f 2026-11-24 23:00:02 +0200 Superset: one password, no username — password gate at the edge, session handed to the browser, docs and screenshots",
