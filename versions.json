@@ -8,7 +8,9 @@
    "subject": "Double Take in Hebrew: the whole game right-to-left — levels, witness lamps, hints, run card, badges and board — plus the option to type the name you think is right and merge both spellings under it, and Hebrew badge labels. The example sorter name is יונתן.",
    "project": "pil-sort-game",
    "url": "https://pil-sort-game.navonsimon.com/",
-   "deployed": ["pil-sort-game"],
+   "deployed": [
+    "pil-sort-game"
+   ],
    "name": "Double Take · 2026-11-23 Hebrew sort",
    "notes": "Same pile and same export. Typed canonical names are stored as the merge target, so decisions.csv can carry a name that is on neither card; verified through the tunnel (merge with a typed Hebrew name, export row, undo) and at desktop and phone width. Badge labels now come from the server in Hebrew."
   },
@@ -19,7 +21,9 @@
    "subject": "Double Take, the duplicate sorting game: the 53,356 pairs from the cleanup pass as cards — two names, the three witnesses that scored them (bge-m3 meaning, trigram spelling, business evidence), what a merge touches, points by difficulty, 20-card runs, undo, badges, a leaderboard per sorter, and an export in the exact CSV shape that applies merges to map.value_map.",
    "project": "pil-sort-game",
    "url": "https://pil-sort-game.navonsimon.com/",
-   "deployed": ["pil-sort-game"],
+   "deployed": [
+    "pil-sort-game"
+   ],
    "name": "Double Take · 2026-11-23 first live version",
    "notes": "Namespace pil-sort-game, NodePort 30149, Python stdlib server + SQLite on a 1Gi PVC, nightly backup CronJob keeping 7 dumps. Pile matches the cleanup workbook exactly: 235 warm-up, 8,707 near certain, 21,640 likely, 22,774 judgement, in 8,602 families. Decisions are idempotent GETs with a rid because Cloudflare blocks POST and the edge forwards GET/HEAD; the app is behind an access key and noindex, and never writes to new_pil_db. Verified live through the tunnel at desktop and phone width, one merge + keep + undo exercised end to end, board and run card checked."
   },
@@ -1843,6 +1847,20 @@
     "author": "OpenCode"
    },
    "rolledBack": null
+  },
+  {
+   "tag": "pil-bi-pilot-20261124",
+   "built": "2026-11-24 21:00",
+   "commit": "d14cd52 2026-11-24 21:00:06 +0200 Safer deploy, no-store assets and API, header layout, stamp from the snapshot",
+   "subject": "Pilot: the office's BI over new_pil_db — a nightly read-only job builds one SQLite snapshot (10 query files), FastAPI serves it behind the office password, and a Hebrew RTL UI covers overview, artists, works and royalties. Plus the missing nightly pg_dump of new_pil_db.",
+   "project": "pil-bi",
+   "url": "https://pil-bi.navonsimon.com/",
+   "deployed": [
+    "pil-bi",
+    "pil-postgres"
+   ],
+   "name": "PIL BI · 2026-11-24 Pilot",
+   "notes": "Namespace pil-bi, NodePort 30150, edge nginx on ubuntu01, tunnel route + CNAME. Snapshot 3.1 MB built in 136s; plays de-duplicated to 7.75M inside 2021-2025. Backup CronJob pil-db-backup in pil-postgres (100Gi PVC)."
   }
  ],
  "quips": [
