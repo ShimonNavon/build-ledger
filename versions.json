@@ -2,6 +2,19 @@
  "prod": "e831de5",
  "versions": [
   {
+   "tag": "superset-gate-20261124",
+   "built": "2026-11-24 23:00",
+   "commit": "7bc981f 2026-11-24 23:00:02 +0200 Superset: one password, no username — password gate at the edge, session handed to the browser, docs and screenshots",
+   "subject": "One password at bi-superset.navonsimon.com: a small edge gate asks for the office password only, logs in to Superset server-side and hands the browser its session cookie, so the username field is gone. The app, the read-only Magic role and the nightly metadata dump are unchanged.",
+   "project": "superset",
+   "url": "https://bi-superset.navonsimon.com/",
+   "deployed": [
+    "superset"
+   ],
+   "name": "PIL Superset · 2026-11-24 one password",
+   "notes": "Verified in a browser: one field, wrong password refused, right password opens the welcome page and SQL Lab; the gate cookie and Superset session last 30 days. The gate is a 120-line stdlib service in namespace superset (NodePort 30151); nginx asks /verify on every request."
+  },
+  {
    "tag": "superset-magic-20261124",
    "built": "2026-11-24 22:20",
    "commit": "2ffc01a 2026-11-24 22:16:44 +0200 Superset on the cluster, connected to Magic only: manifests, read-only role notes, edge gate, metadata backup, connect script",
