@@ -1,1919 +1,1933 @@
 {
- "prod": "e831de5",
- "versions": [
-  {
-   "tag": "superset-dashboards-20261125",
-   "built": "2026-11-24 23:40",
-   "commit": "72ec192 2026-11-24 23:35:50 +0200 Superset: royalty and data-health dashboards as code — datasets, charts, layout, docs and screenshots",
-   "subject": "Two dashboards on PIL BI, built as code: royalty 2026 (Magic's price per work x organisation x use type x 30-day period, rolled up by period, organisation, use type, company and work) and data health (exact tables and rows per year from the copy ledger, plus the empty-table gaps).",
-   "project": "superset",
-   "url": "https://bi-superset.navonsimon.com/superset/dashboard/pil-royalty/",
-   "deployed": [
-    "superset"
-   ],
-   "name": "PIL Superset · 2026-11-24 two dashboards",
-   "notes": "build_dashboards.py owns eight virtual datasets, fifteen charts and the two dashboard layouts, and is idempotent; ./deploy.sh dashboards rebuilds them. Verified in a browser: 9,116,806 royalty over nine periods, 3.34B plays, 60,503 works; the copy holds 558 tables and 94M rows. Each chart is linked to its dashboard explicitly because position_json alone leaves the panels empty."
-  },
-  {
-   "tag": "superset-gate-20261124",
-   "built": "2026-11-24 23:00",
-   "commit": "7bc981f 2026-11-24 23:00:02 +0200 Superset: one password, no username — password gate at the edge, session handed to the browser, docs and screenshots",
-   "subject": "One password at bi-superset.navonsimon.com: a small edge gate asks for the office password only, logs in to Superset server-side and hands the browser its session cookie, so the username field is gone. The app, the read-only Magic role and the nightly metadata dump are unchanged.",
-   "project": "superset",
-   "url": "https://bi-superset.navonsimon.com/",
-   "deployed": [
-    "superset"
-   ],
-   "name": "PIL Superset · 2026-11-24 one password",
-   "notes": "Verified in a browser: one field, wrong password refused, right password opens the welcome page and SQL Lab; the gate cookie and Superset session last 30 days. The gate is a 120-line stdlib service in namespace superset (NodePort 30151); nginx asks /verify on every request."
-  },
-  {
-   "tag": "superset-magic-20261124",
-   "built": "2026-11-24 22:20",
-   "commit": "2ffc01a 2026-11-24 22:16:44 +0200 Superset on the cluster, connected to Magic only: manifests, read-only role notes, edge gate, metadata backup, connect script",
-   "subject": "Apache Superset 6.0.0 on the cluster, connected to the live Magic mirror (magic_raw): a SELECT-only superset_ro role over the 29 live_shdb* schemas and 558 tables, the data source registered in Superset with DML/CTAS/CVAS off, bi-superset.navonsimon.com behind the office password and its own login, and a nightly metadata dump.",
-   "project": "superset",
-   "url": "https://bi-superset.navonsimon.com/",
-   "deployed": [
-    "superset"
-   ],
-   "name": "PIL Superset · 2026-11-24 Magic connected",
-   "notes": "Barak (new_pil_db) deliberately not registered; superset_ro has no grants there and no write anywhere. Verified: read test 558 tables / 29 schemas, write refused by the DML guard, public login and SQL Lab through the tunnel, metadata backup written and pruned. The manifests live in ~/Developer/pil/superset."
-  },
-  {
-   "tag": "pil-sort-game-hebrew-20261123",
-   "built": "2026-11-23 12:50",
-   "commit": "2414444 2026-11-23 12:47 +0200",
-   "subject": "Double Take in Hebrew: the whole game right-to-left — levels, witness lamps, hints, run card, badges and board — plus the option to type the name you think is right and merge both spellings under it, and Hebrew badge labels. The example sorter name is יונתן.",
-   "project": "pil-sort-game",
-   "url": "https://pil-sort-game.navonsimon.com/",
-   "deployed": [
-    "pil-sort-game"
-   ],
-   "name": "Double Take · 2026-11-23 Hebrew sort",
-   "notes": "Same pile and same export. Typed canonical names are stored as the merge target, so decisions.csv can carry a name that is on neither card; verified through the tunnel (merge with a typed Hebrew name, export row, undo) and at desktop and phone width. Badge labels now come from the server in Hebrew."
-  },
-  {
-   "tag": "pil-sort-game-double-take-20261123",
-   "built": "2026-11-23 12:41",
-   "commit": "21dc7f6 2026-11-23 12:30 +0200",
-   "subject": "Double Take, the duplicate sorting game: the 53,356 pairs from the cleanup pass as cards — two names, the three witnesses that scored them (bge-m3 meaning, trigram spelling, business evidence), what a merge touches, points by difficulty, 20-card runs, undo, badges, a leaderboard per sorter, and an export in the exact CSV shape that applies merges to map.value_map.",
-   "project": "pil-sort-game",
-   "url": "https://pil-sort-game.navonsimon.com/",
-   "deployed": [
-    "pil-sort-game"
-   ],
-   "name": "Double Take · 2026-11-23 first live version",
-   "notes": "Namespace pil-sort-game, NodePort 30149, Python stdlib server + SQLite on a 1Gi PVC, nightly backup CronJob keeping 7 dumps. Pile matches the cleanup workbook exactly: 235 warm-up, 8,707 near certain, 21,640 likely, 22,774 judgement, in 8,602 families. Decisions are idempotent GETs with a rid because Cloudflare blocks POST and the edge forwards GET/HEAD; the app is behind an access key and noindex, and never writes to new_pil_db. Verified live through the tunnel at desktop and phone width, one merge + keep + undo exercised end to end, board and run card checked."
-  },
-  {
-   "tag": "moti-zayed-first-live-20261123",
-   "built": "2026-11-23 12:17",
-   "commit": "d0e0ef5 2026-11-23 12:35 +0200",
-   "subject": "The office's first live version: the מקטע 1.2 file as a working tool — parcels, ownership shares and measurements in, the re-parcellation table out with the workbook's exact arithmetic (מקדם התמרה, הפרשה, מטרוקה, שווי משתתף, שווי מגרש), plot 312 split above and below the line, integrity checks the spreadsheet never ran, document uploads per file/parcel/plot, and an Excel export with live formulas plus an A4 print view.",
-   "project": "moti-zayed-office",
-   "url": "https://mz-office.navonsimon.com/",
-   "deployed": [
-    "moti-zayed-office"
-   ],
-   "name": "מוטי זייד · 2026-11-23 first live version",
-   "notes": "Namespace moti-zayed-office, NodePort 30148, SQLite + documents on a 2Gi PVC, nightly backup on ubuntu03. Seeded from the office workbook (גיליון2 + מקטע 1.2; גיליון1 is the old scope and is ignored). 20 unit tests pin the numbers to the sheet; plots 909/910 stay unassigned on purpose because the workbook leaves them blank. Browser pass after the first deploy: CSP-safe confirm dialogs, document upload/delete through the page, no step traps on numeric cells, partial saves never blank a field.",
-   "meta": {
-    "files": 21,
-    "insertions": 5234,
-    "deletions": 0
-   }
-  },
-  {
-   "tag": "pil-portal-first-live-20261119",
-   "built": "2026-11-20 00:02",
-   "commit": "3b784d6 2026-11-20 00:02 +0200",
-   "subject": "The office portal's first live version: one door (Cloudflare Access on @pil.org.il), one shelf of the six apps that already exist, search over the office data that answers with the row it came from, and an IT support queue instead of WhatsApp. Read-only towards the office systems; the portal writes only its own tickets and question log.",
-   "project": "pil-portal",
-   "url": "https://pil.navonsimon.com/",
-   "deployed": [
-    "pil-portal"
-   ],
-   "name": "PIL Portal · 2026-11-19 first live version",
-   "notes": "Namespace pil-portal, NodePort 30147 on ubuntu03/04. The ask layer is search with citations, not an LLM yet. Open: the office OTP address book, merging the ai-desk queue, and SSO into the four apps.",
-   "meta": {
-    "files": 22,
-    "insertions": 1764,
-    "deletions": 0
-   }
-  },
-  {
-   "tag": "outreach360-badge-skip-amber-20261119",
-   "built": "2026-11-19 17:38",
-   "commit": "e831de5 2026-11-19 17:38 +0200",
-   "subject": "The badge's skip ('דלג · צפייה בכל העסקים') now stands out: amber text and outline, a faint amber fill and glow, and a brighter hover/focus state, instead of the quiet grey ghost button it was. It reads as a real second way in next to 'מי אתם?'.",
-   "project": "outreach360",
-   "url": "https://outreach360.navonsimon.com/",
-   "deployed": [
-    "outreach360"
-   ],
-   "name": "outreach360 · 2026-11-19 amber skip",
-   "notes": "Namespace outreach360, NodePort 30145. Colour only — the skip behaviour and the 520x520 card are unchanged.",
-   "meta": {
-    "files": 1
-   }
-  },
-  {
-   "tag": "outreach360-badge-square-home-20261119",
-   "built": "2026-11-19 17:32",
-   "commit": "0191eeb 2026-11-19 17:32 +0200",
-   "subject": "The badge pop-up became a fixed 520x520 square: 'דלג · צפייה בכל העסקים' now sits at the top beside 'מי אתם?', the name and the sector chips scroll inside the middle of the card, and 'שמירה' is pinned in a footer that stays put. The logo in the header is now a home button: it closes the drawer and badge, clears the search, city, music, contact, owner, status and sort, goes back to the businesses tab at the top and reloads the default list — a caller's own first sector, or everything for the supervisor view.",
-   "project": "outreach360",
-   "url": "https://outreach360.navonsimon.com/",
-   "deployed": [
-    "outreach360"
-   ],
-   "name": "outreach360 · 2026-11-19 square badge and home logo",
-   "notes": "Namespace outreach360, NodePort 30145. Headless check asserts the card is 520x520, the save button stays visible while the middle scrolls, and the home button resets every filter.",
-   "meta": {
-    "files": 4
-   }
-  },
-  {
-   "tag": "outreach360-supervisor-view-20261119",
-   "built": "2026-11-19 17:25",
-   "commit": "d5ca8c8 2026-11-19 17:25:02 +0200",
-   "subject": "The name badge can now be skipped. A supervisor opens the page, presses 'דלג · צפייה בכל העסקים' and gets every sector in one list — 24,883 businesses ordered by priority, all the filters, the CSV, the summary — labelled 'תצוגת מנהל', and the choice survives a reload. The rail also gained a 'הכל' button for anyone who already has a name. A name is now needed only to write: claiming or logging a call opens the badge and asks for one instead of failing.",
-   "project": "outreach360",
-   "url": "https://outreach360.navonsimon.com/",
-   "deployed": [
-    "outreach360"
-   ],
-   "name": "outreach360 · 2026-11-19 supervisor view",
-   "notes": "Namespace outreach360, NodePort 30145. /api/sectors now also returns the visible total for the הכל button.",
-   "meta": {
-    "files": 6,
-    "shortstat": "6 files changed, 152 insertions(+), 69 deletions(-)"
-   }
-  },
-  {
-   "tag": "outreach360-real-data-20261119",
-   "built": "2026-11-19 17:05",
-   "commit": "c1559d5 2026-11-19 17:03:58 +0200",
-   "subject": "The screen stopped showing generated records and now runs on collected ones: 24,883 businesses from Be'er Sheva's business licensing and sign survey, Haifa's hotel list and the OpenStreetMap Israel extract, merged into Postgres with the source of every field kept. 2,483 have a phone and 1,559 an email. A weekly CronJob reads all four sources on Saturday at 22:00 UTC, keeps a failing source's old rows untouched, and hides a business only after two consecutive missed runs. The shared password moved server-side (SHA-256 in a Secret, HTTP-only session, rate-limited login) and the page carries no data: the API answers 401 without a session. Same login for the team, a name badge per browser, each caller picks their sectors, first tap claims a business, and calls are append-only events with the badge name. Postgres in the namespace, a nightly pg_dump with a tested restore, and a build gate that fails on the word 'demo' or a password hash left in the HTML. A source that returns half its usual rows is recorded as partial and never advances the miss counter, so a truncated pull cannot look like a city closing.",
-   "project": "outreach360",
-   "url": "https://outreach360.navonsimon.com/",
-   "deployed": [
-    "outreach360",
-    "my-projects"
-   ],
-   "name": "outreach360 · 2026-11-19 real data and a shared workflow",
-   "notes": "Namespace outreach360, NodePort 30145. Postgres Deployment with a 4 GiB PVC; collect CronJob weekly, backup nightly. Rollback is a git checkout of the previous commit plus a redeploy; data comes back from the dump.",
-   "meta": {
-    "files": 33,
-    "shortstat": "33 files changed, 4802 insertions(+), 3851 deletions(-)"
-   }
-  },
-  {
-   "tag": "pil-db-360-lang-switch-20261119",
-   "built": "2026-11-19 14:35",
-   "commit": "4eb5a5e 2026-11-19 14:34:29 +0200",
-   "subject": "The language switch now works in both directions. Hebrew had no path prefix, so the Hebrew link pointed at the same address the cookie already answered and English -> Hebrew did nothing. The Hebrew link now carries ?lang=he, the server sets the cookie and redirects to the clean address. Verified on the live site: four clicks alternated Hebrew and English, and /en/magic switched to /magic.",
-   "project": "pil-db-360",
-   "url": "https://pil-db-360.navonsimon.com/",
-   "notes": "Portal, namespace pil-db-360, NodePort 30146. Read-only; only notes, votes and decisions are written."
-  },
-  {
-   "tag": "outreach360-categories-20261119",
-   "built": "2026-11-19 14:05",
-   "commit": "04e665d 2026-11-19 14:02",
-   "subject": "The sector rail now covers every category PIL charges for: all 44 categories from PIL's own tariff page, not just hair salons, gyms, bars, hotels and Pilates. Event halls, pools, cafes, shops, parking, fuel stations, clubs and discos, radio and municipalities each became one config entry with sub-types, licence kinds, a size label and range, name words and city weights, so a new category is data, not code. The rail is a single scrollable row (44 buttons no longer push the table down), keeps its place when a sector is picked, and the summary compares the top 14 with a note pointing at the rest. The sources tab, marks API and collector from the retired resources site ship in the same page, and resources.navonsimon.com redirects here.",
-   "deployed": [
-    "outreach360",
-    "resources",
-    "my-projects"
-   ],
-   "name": "outreach360 · 2026-11-19 all PIL tariff categories",
-   "meta": {
-    "files": 15,
-    "shortstat": "15 files changed, 4687 insertions(+), 76 deletions(-)"
-   }
-  },
-  {
-   "tag": "pil-db-360-status-20261119",
-   "built": "2026-11-19 14:02",
-   "commit": "be94d9b 2026-11-19 14:02",
-   "subject": "The PIL review portal now opens on the money chain and gives Magic 360 and Barak a status page each, written for the board rather than for engineers. Every page exists in Hebrew and English at its own address (/magic and /en/magic), with a flag control in the header that stays on the page being read; the language follows the URL, then the cookie, then the browser. Magic 360: 94,030,707 rows over 28 years, 206,781 artists and 5,839 companies, with duplicates, zero foreign keys and no scheduled backup ranked by royalty risk. Barak: 71,287 documents and 51.3 GB, 99.6% of records resolving to a file, but sharing permissions and a plaintext password stand in for access control. Every figure carries its source and measured date and a test fails on one without. The overview chain runs Outreach 360, Barak, Magic 360, royalties, with the licensing event named as the missing link.",
-   "deployed": [
-    "pil-db-360",
-    "my-projects"
-   ],
-   "name": "PIL DB 360 · two system status pages, Hebrew and English",
-   "meta": {
-    "files": 10,
-    "shortstat": "10 files changed, 1830 insertions(+), 313 deletions(-)"
-   }
-  },
-  {
-   "tag": "resources-first-20261118",
-   "built": "2026-11-18 21:56",
-   "commit": "a316af4 2026-11-18 21:55",
-   "subject": "resources.navonsimon.com is live in Hebrew: one view is my recommendation (three sources now, business websites after that, municipal letters in parallel, each with what it feeds in outreach360, the effort and the yield, plus the pipeline and a field-by-field rule for where a value may and may never come from), the other is the full catalogue of 33 sources with the real access state, endpoint, fields and the number each call actually returned. A star marks the sources Simon wants built next; the marks are stored server-side over a WebSocket because Cloudflare blocks POST, and readable by the agent with kubectl. outreach360's sources tab now links here. NodePort 30146 was already taken by PIL DB 360, so this sits on 30147.",
-   "deployed": [
-    "resources",
-    "outreach360",
-    "my-projects"
-   ],
-   "name": "resources · 2026-11-18 source catalogue live",
-   "meta": {
-    "files": 13,
-    "shortstat": "13 files changed, 1781 insertions(+)"
-   }
-  },
-  {
-   "tag": "outreach360-docs-20261118",
-   "built": "2026-11-18 21:45",
-   "commit": "5651877 2026-11-18 21:44",
-   "subject": "outreach360 is documented end to end: docs/discovery.md in the repo records every source with the number it actually returned, the blocks with their HTTP status, the five decisions that came out of the research, what is live, what does not exist yet, and the commands that reproduce the findings. The same story is a visual page at projects.navonsimon.com/outreach360.html with the source map, the measured OpenStreetMap coverage per sector and per city, the pipeline marked built/next/planned honestly, and the two lists that matter: what is missing, and what must happen before any real contact data goes near the host. Card on the portfolio now links to it.",
-   "deployed": [
-    "outreach360",
-    "my-projects"
-   ],
-   "name": "outreach360 · 2026-11-18 documented",
-   "meta": {
-    "files": 2,
-    "shortstat": "2 files changed, 273 insertions(+)"
-   }
-  },
-  {
-   "tag": "outreach360-sources-20261118",
-   "built": "2026-11-18 21:04",
-   "commit": "8f9dc16 2026-11-18 21:04",
-   "subject": "Source map verified, by two agents: I checked the registers, mac-opencode-2 parsed the full OpenStreetMap extract. The answers are now on the sources tab, measured rather than guessed — Be'er Sheva is the only city publishing business licensing (3,124 rows, 212 salons, 82 phones), Haifa publishes 14 hotels with a phone, the companies registrar has 733,887 entities with addresses but no phone, the fire authority has 21,967 category requirements and no per-business occupancy, and Tel Aviv's licensing map is a viewer with no service behind it. OpenStreetMap turns out to hold 578 hair salons nationally, 71 with a phone, against those 212 licensed in Be'er Sheva alone, so no public source gives a national list; Petah Tikva has 80 mapped salons and one phone. Overpass was queued or dead on every mirror, so bulk collection now rides the daily Geofabrik extract (116 MB, parsed locally in under three minutes) with Overpass kept for single-city refreshes.",
-   "deployed": [
-    "outreach360"
-   ],
-   "name": "outreach360 · 2026-11-18 sources measured",
-   "meta": {
-    "files": 15,
-    "shortstat": "15 files changed, 2710 insertions(+), 12 deletions(-)"
-   }
-  },
-  {
-   "tag": "outreach360-first-20261118",
-   "built": "2026-11-18 20:31",
-   "commit": "855428a 2026-11-18 20:31",
-   "subject": "outreach360, the first working screen for PIL business discovery, is live behind HTTP basic auth. One static page in namespace outreach360 on NodePort 30145 serves five sector configs (hair salons, gyms, bars, hotels, Pilates), a filterable Hebrew RTL list, a per-business drawer that names the source of every field, a computed summary of fill rates and priority bands, and a sources page that states what each source really yields and where it is blocked. Outreach priority and data completeness are two separate scores, unknown values stay empty, and every record is labelled demo data because no source is connected yet. Access is a one-field password gate inside the page (SHA-256 compared in the browser, no username, no server credential) through the ubuntu01 edge and the Cloudflare tunnel at outreach360.navonsimon.com.",
-   "deployed": [
-    "outreach360",
-    "my-projects"
-   ],
-   "name": "outreach360 · 2026-11-18 first live prototype",
-   "meta": {
-    "files": 3,
-    "shortstat": "3 files changed, 11 insertions(+), 10 deletions(-)"
-   }
-  },
-  {
-   "tag": "mike-karoutchi-cluster-20261116",
-   "built": "2026-11-16 17:52",
-   "commit": "4be2784 2026-11-16 17:52",
-   "subject": "Mike Karoutchi back online on the cluster, with media served from the repository. debian02 and its RustFS bucket were gone, so the six approved previews and the 19.2 MB stage film now stream from media/ through the same versioned range routes, and object storage plus its credentials and seeding step left the project. A build Job clones GitHub main over a read-only deploy key, runs npm ci and next build onto a 6 GiB local-path volume, and a Deployment serves the standalone output on NodePort 30127; edge nginx on ubuntu01 proxies mike-karoutchi.navonsimon.com and the DNS CNAME moved from the dead debian02 tunnel to the ubuntu01 one. Also raised the my-projects image buckets from five to seven so its screenshots fit under the ConfigMap limit.",
-   "deployed": [
-    "mike-karoutchi",
-    "my-projects"
-   ],
-   "name": "Mike Karoutchi · 2026-11-16 17:52 back on the cluster",
-   "meta": {
-    "files": 25,
-    "shortstat": "25 files changed, 706 insertions(+), 2364 deletions(-)"
-   }
-  },
-  {
-   "tag": "pil-second-source-cluster-20261109",
-   "built": "2026-11-09 14:30",
-   "commit": "2026-11-09 14:30",
-   "subject": "Second source standing on the cluster: PostgreSQL 17 in namespace pil-postgres on ubuntu01 (NodePort 30140, 170 Gi local-path volume, restore-phase settings so a 95 GB load is not hours of fsync) and RustFS 1.0.4 in namespace pil-rustfs on ubuntu02 (S3 30141, console 30142, 90 Gi). Both pods running and checked; the RustFS image runs as UID 10001 so an init container chowns the data root, and its logs moved to an emptyDir because a log directory inside the data root showed up as a stray bucket. The unattended chain on ubuntu03 waits for both 95.23 GB dumps, verifies each SHA-256 against the hash written on win01, deletes them from win01 only after both pass, then runs the restore drill and mirrors the three buckets with a per-object SHA-256 check against win01's own 70,923-entry manifest. The three stub dumps were already copied, verified and removed (win01 free 1.18 -> 41.2 GB). Nothing reads from the old office server \\\\sql.",
-   "deployed": [
-    "ai-pricing"
-   ],
-   "name": "PIL \\u00b7 2026-11-09 14:30 second source on the cluster",
-   "meta": {
-    "files": 10,
-    "ins": 659,
-    "del": 12,
-    "author": "OpenCode"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "ai-pricing-plan-execution-ready-20261109",
-   "built": "2026-11-09 13:33",
-   "commit": "2026-11-09 13:33",
-   "subject": "The win01 plan refined for execution: step 0 prerequisites (a target dir on ubuntu03, 406 GB free of 466, an SSH key from win01 for scp over the tailnet, a 1 GB throughput test before 191 GB, one maintenance window for the PostgreSQL restart); each step now carries concrete actions, the gate that proves it and the risk with its way back. Step 1 deletes the 41.0 GB truncated dump first, then moves both complete dumps and verifies each SHA-256 before deleting; step 2 flags that a failed WAL archive is itself a disk-filling risk. Review correction: the Nov 7 and Nov 8 dumps are not duplicates (same 95,230,922,328 bytes, different SHA-256), so both are kept off-box. The nightly pg_dumpall task was disabled on win01 (it filled the volume); PostgreSQL, RustFS, OpenSSH and Tailscale already start at boot",
-   "deployed": [
-    "ai-pricing"
-   ],
-   "name": "AI Pricing · 2026-11-09 13:33 execution-ready plan",
-   "meta": {
-    "files": 1,
-    "ins": 43,
-    "del": 12,
-    "author": "OpenCode"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "ai-pricing-no-touch-oldsrv-20261109",
-   "built": "2026-11-09 13:28",
-   "commit": "2026-11-09 13:28",
-   "subject": "Review #20 now proves the plan never touches the OLD Windows server: a boundary box with the verified evidence (29 Magic databases / 558 tables / 94,032,648 rows copied to win01 on 11-06 21:53-22:17, raw_barak 37 tables, RustFS 70,923 objects / 51.27 GB each with SHA-256) and the explicit deferral of anything newer than 11-07 plus the five unmeasured shares. On win01 the ten scheduled tasks that could reach \\sql (barak-copy-nightly, map-barak, list-barak, verify-barak, MagicSyncTails/Diffs, MagicReconcile, MagicRecon0-2) were disabled on 9 Nov so the old machine gets no traffic; re-enabling is one command each. Also corrected the RustFS object count and bucket split (70,923 objects: 53,378 docs + 17,545 tables) on the #20 page and both maps",
-   "deployed": [
-    "ai-pricing"
-   ],
-   "name": "AI Pricing · 2026-11-09 13:28 no-touch boundary",
-   "meta": {
-    "files": 3,
-    "ins": 22,
-    "del": 6,
-    "author": "OpenCode"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "ai-pricing-plan-section-20261109",
-   "built": "2026-11-09 12:50",
-   "commit": "2026-11-09 12:50",
-   "subject": "Review #20 turns its decision into an explicit plan: four numbered step cards with a 'what you see at the end' gate each (free space without deleting a single copy; get the backup off win01 to ubuntu03; make it a server with boot-time services, monitoring and RDP closed to the tailnet; keep watching with a monthly restore drill) plus four rules that do not move, set at 18px titles and 15.5px/1.95 body text",
-   "deployed": [
-    "ai-pricing"
-   ],
-   "name": "AI Pricing · 2026-11-09 12:50 plan section",
-   "meta": {
-    "files": 1,
-    "ins": 41,
-    "del": 10,
-    "author": "OpenCode"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "ai-pricing-readability-20261109",
-   "built": "2026-11-09 12:42",
-   "commit": "2026-11-09 12:42",
-   "subject": "Readability pass on the office review site: embedded diagrams now size their iframe to their own content (fitMapFrames) so the legend, cards and node index are readable in the page instead of behind an inner 780px scroll; the four checklist boxes on reviews #19 and #20 go single-column so long Hebrew lines stop breaking mid-word around LTR identifiers; the #20 heading corrected to the four gaps it lists; the cards in both maps rewritten as short one-line bullets and both diagrams re-rendered",
-   "deployed": [
-    "ai-pricing"
-   ],
-   "name": "AI Pricing · 2026-11-09 12:42 readability pass",
-   "meta": {
-    "files": 3,
-    "ins": 54,
-    "del": 31,
-    "author": "OpenCode"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "ai-pricing-pil-local-server-01-20261109",
-   "built": "2026-11-09 12:35",
-   "commit": "2026-11-09 12:35",
-   "subject": "Review #20 on the office review site: win01 reviewed as a candidate local server (PIL-Local-Server01) — Windows 11 Pro on an i5-14400 / 15.8 GB / one 500 GB NVMe with 1.06 GB free; six services that already behave like a server (PostgreSQL 17 on loopback with six roles, RustFS 48.4 GB / 71,335 objects, OfficeWeb on :80, OpenSSH on the tailnet, Chrome CDP, the windows-pil collector); five of eight scheduled jobs failing or stopped; Windows-MCP (:8000) and agent-desktop (:8001) down; the Mac tunnel dependency; and the two deciding changes (a copy off the box, boot-time services). New files-big3 ConfigMap + nginx alias for the 766 KB map",
-   "deployed": [
-    "ai-pricing"
-   ],
-   "name": "AI Pricing · 2026-11-09 12:35 PIL-Local-Server01",
-   "meta": {
-    "files": 6,
-    "ins": 13950,
-    "del": 5,
-    "author": "OpenCode"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "ai-pricing-oldsrv-inventory-20261109",
-   "built": "2026-11-09 12:19",
-   "commit": "2026-11-09 12:19",
-   "subject": "Review #19 on the office review site: the Windows Server OLD inventory — 29 Magic databases / 558 tables, BarakT\\DATA 37 DBF tables, QUOT 53,378 files / 29.83 GB, files\\חלוקות 17,308 xlsx / 21.05 GB and the MAGIC share, each item with a two-line description, plus the five shares that could not be opened and the three broken pipes (file copy, Magic sync, local pg_dumpall on a single C: volume); new files-big2 ConfigMap + nginx alias because files-big already holds barak-pipeline.html",
-   "deployed": [
-    "ai-pricing"
-   ],
-   "name": "AI Pricing · 2026-11-09 12:19 Windows Server OLD inventory",
-   "meta": {
-    "files": 6,
-    "ins": 14091,
-    "del": 7,
-    "author": "OpenCode"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "664192b",
-   "built": "2026-11-09 09:48",
-   "commit": "2026-11-09 09:48",
-   "subject": "Mailbox tab out, client card in; production feeds both review sites",
-   "deployed": [
-    "prod",
-    "test",
-    "integration"
-   ],
-   "name": "🫱 Pronation",
-   "meta": {
-    "files": 78,
-    "ins": 78,
-    "del": 33,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "4dd897c",
-   "built": "2026-10-17 06:46",
-   "commit": "2026-10-17 09:45",
-   "subject": "Merge branch 'k8s-cicd' into test",
-   "deployed": [],
-   "name": "🦴 Carpal",
-   "meta": {
-    "files": 11,
-    "ins": 293,
-    "del": 365,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "8240868",
-   "built": "2026-10-17 06:59",
-   "commit": "2026-10-17 09:44",
-   "subject": "Find kubectl in ~/.local/bin on ubuntu02",
-   "deployed": [],
-   "name": "🦴 Metacarpal",
-   "meta": {
-    "files": 2,
-    "ins": 2,
-    "del": 1,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "ae0b0c8",
-   "built": "2026-10-17 07:20",
-   "commit": "2026-10-17 10:05",
-   "subject": "Merge origin/whatsapp into test",
-   "deployed": [],
-   "name": "🦴 Phalanx",
-   "meta": {
-    "files": 18,
-    "ins": 477,
-    "del": 156,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "dd58106",
-   "built": "2026-10-17 07:28",
-   "commit": "2026-10-17 10:26",
-   "subject": "Live transcription: audio+text per commit, redo broken answer by batch",
-   "deployed": [],
-   "name": "🧵 Tendon",
-   "meta": {
-    "files": 2,
-    "ins": 66,
-    "del": 4,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "fa5b2d1",
-   "built": "2026-10-17 07:41",
-   "commit": "2026-10-17 10:39",
-   "subject": "QA fake visit on every test/beta deploy, rollback on miss",
-   "deployed": [],
-   "name": "🪢 Ligament",
-   "meta": {
-    "files": 6,
-    "ins": 171,
-    "del": 10,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "90a52d8",
-   "built": "2026-10-17 07:45",
-   "commit": "2026-10-17 10:43",
-   "subject": "QA visit: retry socket while old pod leaves",
-   "deployed": [],
-   "name": "✊ Knuckle",
-   "meta": {
-    "files": 1,
-    "ins": 11,
-    "del": 1,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "d10eb63",
-   "built": "2026-10-17 07:53",
-   "commit": "2026-10-17 10:47",
-   "subject": "Rollout: wait for old pod before health check/QA",
-   "deployed": [],
-   "name": "🖐️ Palm",
-   "meta": {
-    "files": 1,
-    "ins": 7,
-    "del": 0,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "caca783",
-   "built": "2026-10-17 08:43",
-   "commit": "2026-10-17 11:30",
-   "subject": "Vocabulary from trigger-thumb test visit",
-   "deployed": [],
-   "name": "⌚ Wrist",
-   "meta": {
-    "files": 2,
-    "ins": 18,
-    "del": 4,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "18eb12b",
-   "built": "2026-10-17 08:48",
-   "commit": "2026-10-17 11:45",
-   "subject": "Vocabulary: 50 words Scribe mishears; QA accepts drug spellings",
-   "deployed": [],
-   "name": "👍 Thumb",
-   "meta": {
-    "files": 3,
-    "ins": 27,
-    "del": 14,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "142aed4",
-   "built": "2026-10-17 09:24",
-   "commit": "2026-10-17 12:13",
-   "subject": "Transcript: drop hesitations, fix visit 1002 mishearings",
-   "deployed": [],
-   "name": "☝️ Index",
-   "meta": {
-    "files": 2,
-    "ins": 29,
-    "del": 2,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "a58929a",
-   "built": "2026-10-17 09:42",
-   "commit": "2026-10-17 12:32",
-   "subject": "Alert Simon when site/AI/speech key down",
-   "deployed": [],
-   "name": "✋ Middle",
-   "meta": {
-    "files": 7,
-    "ins": 155,
-    "del": 9,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "b653c00",
-   "built": "2026-10-17 09:59",
-   "commit": "2026-10-17 12:57",
-   "subject": "Doctor feedback: headed printout sections, follow-up, injection, floating stop",
-   "deployed": [],
-   "name": "💍 Ring",
-   "meta": {
-    "files": 11,
-    "ins": 208,
-    "del": 54,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "3352d8a",
-   "built": "2026-10-17 10:11",
-   "commit": "2026-10-17 13:09",
-   "subject": "Printout/forms: ID, phone, DOB aligned right",
-   "deployed": [],
-   "name": "🤏 Pinky",
-   "meta": {
-    "files": 4,
-    "ins": 26,
-    "del": 3,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "4841ab3",
-   "built": "2026-10-17 10:17",
-   "commit": "2026-10-17 13:14",
-   "subject": "Summary: drug/test/structure names in English",
-   "deployed": [],
-   "name": "🦴 Scaphoid",
-   "meta": {
-    "files": 2,
-    "ins": 20,
-    "del": 15,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "b431cd1",
-   "built": "2026-10-17 11:14",
-   "commit": "2026-10-17 14:11",
-   "subject": "Email visit summary, signed and stamped",
-   "deployed": [],
-   "name": "🌙 Lunate",
-   "meta": {
-    "files": 10,
-    "ins": 135,
-    "del": 31,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "910049f",
-   "built": "2026-10-17 12:07",
-   "commit": "2026-10-17 14:53",
-   "subject": "Share button: summary as PDF via share menu",
-   "deployed": [],
-   "name": "🔺 Triquetrum",
-   "meta": {
-    "files": 6,
-    "ins": 513,
-    "del": 5,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "e47d1e8",
-   "built": "2026-10-17 12:44",
-   "commit": "2026-10-17 15:41",
-   "subject": "One Print/share button (print, PDF, email)",
-   "deployed": [],
-   "name": "🫘 Pisiform",
-   "meta": {
-    "files": 7,
-    "ins": 150,
-    "del": 65,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "fc93c57",
-   "built": "2026-10-17 12:59",
-   "commit": "2026-10-17 15:47",
-   "subject": "Doctor's stamp closes the letter",
-   "deployed": [],
-   "name": "🧩 Trapezium",
-   "meta": {
-    "files": 3,
-    "ins": 24,
-    "del": 3,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "5b78440",
-   "built": "2026-10-17 13:25",
-   "commit": "2026-10-17 16:22",
-   "subject": "Second round: ready-made sentences, several diagnoses, full details",
-   "deployed": [],
-   "name": "🔷 Trapezoid",
-   "meta": {
-    "files": 14,
-    "ins": 400,
-    "del": 34,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "300b461",
-   "built": "2026-10-17 13:40",
-   "commit": "2026-10-17 16:30",
-   "subject": "QA visit: ID as digits/words, spellings per visit part",
-   "deployed": [],
-   "name": "🗿 Capitate",
-   "meta": {
-    "files": 1,
-    "ins": 10,
-    "del": 2,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "50acd75",
-   "built": "2026-10-17 13:56",
-   "commit": "2026-10-17 16:46",
-   "subject": "No popup for missing details; quiet line instead",
-   "deployed": [],
-   "name": "🪝 Hamate",
-   "meta": {
-    "files": 3,
-    "ins": 27,
-    "del": 10,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "eaedf0d",
-   "built": "2026-10-17 14:19",
-   "commit": "2026-10-17 17:08",
-   "subject": "Speed: fast-model patient check, freed recorder, faster updates",
-   "deployed": [],
-   "name": "📏 Radius",
-   "meta": {
-    "files": 9,
-    "ins": 64,
-    "del": 20,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "dc31c1c",
-   "built": "2026-10-17 14:35",
-   "commit": "2026-10-17 17:23",
-   "subject": "Speed: last words cut at pauses, transcribed in parallel",
-   "deployed": [],
-   "name": "📐 Ulna",
-   "meta": {
-    "files": 3,
-    "ins": 51,
-    "del": 2,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "4e6baa3",
-   "built": "2026-10-20 16:03",
-   "commit": "2026-10-20 18:58",
-   "subject": "Refresh resumed summaries, actions and note shortcuts",
-   "deployed": [],
-   "name": "🪝 Flexor",
-   "meta": {
-    "files": 11,
-    "ins": 383,
-    "del": 53,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "90ccbc8",
-   "built": "2026-10-20 16:31",
-   "commit": "2026-10-20 19:25",
-   "subject": "Paginated A4 Hebrew clinic PDF",
-   "deployed": [],
-   "name": "🦾 Extensor",
-   "meta": {
-    "files": 23,
-    "ins": 598,
-    "del": 297,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "d0ddbb4",
-   "built": "2026-10-20 16:37",
-   "commit": "2026-10-20 19:32",
-   "subject": "Keep apostrophes in English terms in Hebrew PDFs",
-   "deployed": [],
-   "name": "⚡ Median nerve",
-   "meta": {
-    "files": 2,
-    "ins": 5,
-    "del": 1,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "1233436",
-   "built": "2026-10-20 16:43",
-   "commit": "2026-10-20 19:36",
-   "subject": "Full clinic contacts + signature on one page",
-   "deployed": [],
-   "name": "⚡ Ulnar nerve",
-   "meta": {
-    "files": 3,
-    "ins": 28,
-    "del": 5,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "3608da0",
-   "built": "2026-10-20 17:32",
-   "commit": "2026-10-20 20:07",
-   "subject": "Align diagnosis table columns, drop print timestamp",
-   "deployed": [],
-   "name": "🩹 Splint",
-   "meta": {
-    "files": 5,
-    "ins": 11,
-    "del": 12,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "39fb294",
-   "built": "2026-10-20 18:16",
-   "commit": "2026-10-20 20:52",
-   "subject": "Remove phrase length limit, inline editing",
-   "deployed": [],
-   "name": "🧤 Cast",
-   "meta": {
-    "files": 8,
-    "ins": 166,
-    "del": 19,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "a57b44c",
-   "built": "2026-10-20 19:05",
-   "commit": "2026-10-20 21:57",
-   "subject": "Simplify workspace, persistent controls, searchable phrases",
-   "deployed": [],
-   "name": "🧵 Suture",
-   "meta": {
-    "files": 4,
-    "ins": 255,
-    "del": 66,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "9631a1e",
-   "built": "2026-10-20 19:33",
-   "commit": "2026-10-20 22:28",
-   "subject": "Paginated patient-history previews in parallel",
-   "deployed": [],
-   "name": "🔪 Scalpel",
-   "meta": {
-    "files": 5,
-    "ins": 244,
-    "del": 13,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "97bf810",
-   "built": "2026-10-20 20:04",
-   "commit": "2026-10-20 23:00",
-   "subject": "Manual playback + seekable WAV downloads",
-   "deployed": [],
-   "name": "🩺 Stethoscope",
-   "meta": {
-    "files": 10,
-    "ins": 335,
-    "del": 7,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "c9fa92d",
-   "built": "2026-10-20 20:17",
-   "commit": "2026-10-20 23:13",
-   "subject": "Streamed MP3 recording downloads",
-   "deployed": [],
-   "name": "🩸 Tourniquet",
-   "meta": {
-    "files": 7,
-    "ins": 136,
-    "del": 8,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "81c12a9",
-   "built": "2026-10-21 08:43",
-   "commit": "2026-10-20 23:27",
-   "subject": "Versioned shared clinic logo URLs",
-   "deployed": [],
-   "name": "🩹 Graft",
-   "meta": {
-    "files": 1,
-    "ins": 5,
-    "del": 3,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "d86378a",
-   "built": "2026-10-21 09:09",
-   "commit": "2026-10-21 11:53",
-   "subject": "Deploy checks/watcher for prod, test, integration",
-   "deployed": [
-    "test",
-    "integration"
-   ],
-   "name": "💪 Rehab",
-   "meta": {
-    "files": 4,
-    "ins": 14,
-    "del": 14,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "db76047",
-   "built": "2026-10-21 09:39",
-   "commit": "2026-10-21 12:34",
-   "subject": "Refine workspace, patient workflows, save feedback",
-   "deployed": [],
-   "name": "🤹 Dexterity",
-   "meta": {
-    "files": 9,
-    "ins": 3020,
-    "del": 647,
-    "author": "Simon"
-   },
-   "rolledBack": "🩹 Graft · Oct 20, 23:27"
-  },
-  {
-   "tag": "04b8d4b1d39d",
-   "built": "2026-10-23 13:17",
-   "commit": "2026-10-23 13:17",
-   "subject": "SETA — launch operating hub, checklist, tracker templates and documentation",
-   "deployed": [],
-   "name": "SETA · 2026-10-23 13:17 launch",
-   "rolledBack": null
-  },
-  {
-   "tag": "b23840228554",
-   "built": "2026-10-23 13:17",
-   "commit": "2026-10-23 13:17",
-   "subject": "Project gallery — add SETA and its documentation",
-   "deployed": [],
-   "name": "Projects · 2026-10-23 13:17 launch",
-   "rolledBack": null
-  },
-  {
-   "tag": "1a28858db86e",
-   "built": "2026-10-23 13:24",
-   "commit": "2026-10-23 13:24",
-   "subject": "SETA — Hebrew website, documentation, RTL layout and Hebrew CSV headers",
-   "deployed": [],
-   "name": "SETA · 2026-10-23 13:24 Hebrew",
-   "rolledBack": null
-  },
-  {
-   "tag": "1b68a4567612",
-   "built": "2026-10-23 13:24",
-   "commit": "2026-10-23 13:24",
-   "subject": "SETA project — Hebrew documentation and screenshot",
-   "deployed": [],
-   "name": "Projects · 2026-10-23 13:24 Hebrew",
-   "rolledBack": null
-  },
-  {
-   "tag": "38e1c84",
-   "built": "2026-10-23 10:27",
-   "commit": "2026-10-23 13:10",
-   "subject": "Integration wears a purple clinic mark, coloured site strip and named tab",
-   "deployed": [
-    "integration"
-   ],
-   "name": "✊ Grip",
-   "meta": {
-    "files": 5,
-    "ins": 31,
-    "del": 2,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "87198de",
-   "built": "2026-10-23 14:10",
-   "commit": "2026-10-23 14:10",
-   "subject": "SETA — Hebrew salon website, persistent media uploads, integration preview and owner-controlled production publishing",
-   "deployed": [
-    "seta"
-   ],
-   "name": "SETA · 2026-10-23 14:10 media publishing",
-   "meta": {
-    "files": 27,
-    "ins": 1085,
-    "del": 0,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "77faf3053340",
-   "built": "2026-10-23 14:10",
-   "commit": "2026-10-23 14:10",
-   "subject": "SETA project — staged publishing documentation and redesigned website screenshot",
-   "deployed": [],
-   "name": "Projects · 2026-10-23 14:10 SETA publishing",
-   "rolledBack": null
-  },
-  {
-   "tag": "43896bb",
-   "built": "2026-10-23 16:08",
-   "commit": "2026-10-23 16:08",
-   "subject": "SETA integration — cinematic Higgsfield hair film, Hebrew editorial homepage and verified mobile layout",
-   "deployed": [
-    "seta-integration"
-   ],
-   "name": "SETA · 2026-10-23 16:08 cinematic mobile preview",
-   "meta": {
-    "files": 12,
-    "ins": 78,
-    "del": 10,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "seta-editorial-docs-20261023",
-   "built": "2026-10-23 16:08",
-   "commit": "2026-10-23 16:08",
-   "subject": "SETA project documentation and screenshot — cinematic integration preview",
-   "deployed": [],
-   "name": "Projects · 2026-10-23 16:08 SETA editorial preview",
-   "rolledBack": null
-  },
-  {
-   "tag": "ledger-tailnet-20261023",
-   "built": "2026-10-23 13:23",
-   "commit": "2026-10-23 16:23",
-   "subject": "Build ledger — private Tailscale HTTPS, public tunnel removed, authenticated gateway and automatic certificate renewal",
-   "deployed": [],
-   "name": "Build Ledger · 2026-10-23 16:23 Tailscale-only access",
-   "rolledBack": null
-  },
-  {
-   "tag": "e7ddb6e",
-   "built": "2026-10-23 13:33",
-   "commit": "2026-10-23 16:33",
-   "subject": "Build Ledger — automatic local Git branch discovery, search and stale-data status",
-   "deployed": [
-    "build-ledger"
-   ],
-   "name": "Build Ledger · 2026-10-23 16:33 automatic branches",
-   "meta": {
-    "files": 8,
-    "ins": 254,
-    "del": 11,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "ledger-visual-refresh-20261023",
-   "built": "2026-10-23 16:46",
-   "commit": "2026-10-23 16:46",
-   "subject": "Build Ledger — visual refresh: clearer hierarchy, compact build rows, responsive card layout",
-   "deployed": [
-    "build-ledger"
-   ],
-   "name": "Build Ledger · 2026-10-23 16:46 visual refresh",
-   "meta": {
-    "files": 1,
-    "ins": 544,
-    "del": 238,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "4c061e5",
-   "built": "2026-10-23 13:52",
-   "commit": "2026-10-23 16:52",
-   "subject": "Screen Pointer — installed explicit point capture and MCP reader; live capture blocked by macOS Screen Recording permission",
-   "deployed": [],
-   "name": "Screen Pointer · 2026-10-23 16:52 agent pointing preview",
-   "meta": {
-    "files": 8,
-    "ins": 275,
-    "del": 3,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "ledger-projects-20261023",
-   "built": "2026-10-23 16:57",
-   "commit": "2026-10-23 16:57",
-   "subject": "Build Ledger — project filters: per-project tabs, row labels and build counts",
-   "deployed": [
-    "build-ledger"
-   ],
-   "name": "Build Ledger · 2026-10-23 16:57 project filters",
-   "meta": {
-    "files": 1,
-    "ins": 108,
-    "del": 4,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "d6a6247",
-   "built": "2026-10-23 14:32",
-   "commit": "2026-10-23 17:32",
-   "subject": "Screen Pointer — walkthrough recording preview, one-stroke marks, timestamped notes and OpenCode/MCP review; real capture remains blocked by macOS permission",
-   "deployed": [
-    "screen-pointer"
-   ],
-   "name": "Screen Pointer · 2026-10-23 17:32 annotated walkthrough preview",
-   "rolledBack": null
-  },
-  {
-   "tag": "9cd4c11",
-   "built": "2026-10-23 14:32",
-   "commit": "2026-10-23 17:32",
-   "subject": "Projects — Screen Pointer case study, promotional image, actual app preview and setup guide; demo recording pending permission",
-   "deployed": [
-    "my-projects"
-   ],
-   "name": "Projects · 2026-10-23 17:32 Screen Pointer guide",
-   "rolledBack": null
-  },
-  {
-   "tag": "ledger-project-gallery-20261023",
-   "built": "2026-10-23 17:45",
-   "commit": "2026-10-23 17:45",
-   "subject": "Build Ledger — project gallery: portfolio-backed home grid with images, per-project build pages and project-aware MCP tools",
-   "deployed": [
-    "build-ledger"
-   ],
-   "name": "Build Ledger · 2026-10-23 17:45 project gallery",
-   "meta": {
-    "files": 5,
-    "ins": 1348,
-    "del": 70,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "ea0e0cf",
-   "built": "2026-10-23 14:45",
-   "commit": "2026-10-23 17:45",
-   "subject": "Screen Pointer — open the app and click Show something to my agent; five-second marked capture, point hotkey removed; capture permission still unverified",
-   "deployed": [
-    "screen-pointer-mac"
-   ],
-   "name": "Screen Pointer · 2026-10-23 17:45 button-first agent capture",
-   "rolledBack": null
-  },
-  {
-   "tag": "d945161",
-   "built": "2026-10-24 09:30",
-   "commit": "2026-10-24 11:12",
-   "subject": "Redesign the letter email: right-to-left content on a clean card",
-   "deployed": [
-    "integration"
-   ],
-   "name": "🪢 A1 Pulley",
-   "meta": {
-    "files": 4,
-    "ins": 195,
-    "del": 2,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "0f34450",
-   "built": "2026-10-24 11:18",
-   "commit": "2026-10-24 12:22",
-   "subject": "Dress the summary email for the screen: roomier sections and the letter's blue",
-   "deployed": [
-    "integration"
-   ],
-   "name": "🎯 Trigger Finger",
-   "meta": {
-    "files": 1,
-    "ins": 10,
-    "del": 0,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "b8308c0",
-   "built": "2026-10-24 11:42",
-   "commit": "2026-10-24 12:50",
-   "subject": "Letter email: right-to-left spacing, a right-aligned footer and room around the signature",
-   "deployed": [
-    "integration"
-   ],
-   "name": "🧷 Retinaculum",
-   "meta": {
-    "files": 1,
-    "ins": 9,
-    "del": 9,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "c612776",
-   "built": "2026-10-24 13:05",
-   "commit": "2026-10-24 13:05",
-   "subject": "Drop the logo from the letter email and encode its parts as base64",
-   "deployed": [
-    "integration"
-   ],
-   "name": "🩹 Thenar",
-   "meta": {
-    "files": 2,
-    "ins": 3,
-    "del": 5,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "9669017",
-   "built": "2026-10-24 14:03",
-   "commit": "2026-10-24 14:03",
-   "subject": "Build the letter email from React Email and serve branding from one public route",
-   "deployed": [
-    "integration"
-   ],
-   "name": "🧵 Flexor",
-   "meta": {
-    "files": 12,
-    "ins": 4783,
-    "del": 173,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "8db94b2",
-   "built": "2026-10-24 14:10",
-   "commit": "2026-10-24 14:10",
-   "subject": "Compile the email into a file path, not a directory",
-   "deployed": [
-    "integration"
-   ],
-   "name": "🦴 Trapezium",
-   "meta": {
-    "files": 1,
-    "ins": 1,
-    "del": 1,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "f6ee057",
-   "built": "2026-10-24 14:17",
-   "commit": "2026-10-24 14:17",
-   "subject": "Serve the branding images under their file names",
-   "deployed": [
-    "integration"
-   ],
-   "name": "🦴 Capitate",
-   "meta": {
-    "files": 2,
-    "ins": 2,
-    "del": 1,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "bb07594",
-   "built": "2026-10-24 14:26",
-   "commit": "2026-10-24 14:26",
-   "subject": "Point the app's clinic mark at the same branding file as the emails",
-   "deployed": [
-    "integration"
-   ],
-   "name": "🫱 Hypothenar",
-   "meta": {
-    "files": 3,
-    "ins": 4,
-    "del": 1,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "52b1558",
-   "built": "2026-10-24 14:53",
-   "commit": "2026-10-24 14:53",
-   "subject": "Send the letter as one HTML part: Zoho's boundary rewrite blanked it in Gmail",
-   "deployed": [
-    "integration"
-   ],
-   "name": "🦴 Scaphoid",
-   "meta": {
-    "files": 3,
-    "ins": 28,
-    "del": 6,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "d76548a",
-   "built": "2026-10-27 10:47",
-   "commit": "2026-10-27 12:47",
-   "subject": "MCP Registry — one gateway endpoint for every agent on the tailnet: registry API, MCP gateway with live tools/list_changed, one-line installer; serves project-context, lists the Mac-local servers",
-   "deployed": [
-    "mcp-registry"
-   ],
-   "name": "MCP Registry · 2026-10-27 12:47 first gateway",
-   "meta": {
-    "files": 10,
-    "ins": 1404,
-    "del": 0,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "1a93987",
-   "built": "2026-10-27 10:46",
-   "commit": "2026-10-27 12:46",
-   "subject": "Projects — MCP Registry overview page, project card and brief; project-context MCP can read the published site",
-   "deployed": [
-    "my-projects"
-   ],
-   "name": "Projects · 2026-10-27 12:46 MCP Registry page",
-   "meta": {
-    "files": 10,
-    "ins": 1007,
-    "del": 1,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "6e63949",
-   "built": "2026-10-29 19:37",
-   "commit": "2026-10-29 21:37",
-   "subject": "Nativ import CRM demo — Hebrew RTL, live WhatsApp translation, Tugi sales chatbot, imports-crm.navonsimon.com",
-   "deployed": [
-    "imports-crm"
-   ],
-   "name": "Nativ · 2026-10-29 21:37 first demo for the importer",
-   "meta": {
-    "files": 30,
-    "ins": 3760,
-    "del": 0,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "way-forward-20261030-0915",
-   "built": "2026-10-30 07:15",
-   "commit": "",
-   "subject": "Way Forward — first personal planning workspace with CLI and MCP tools",
-   "deployed": [
-    "way-forward"
-   ],
-   "name": "Way Forward · 2026-10-30 09:15 first deployment",
-   "rolledBack": null
-  },
-  {
-   "tag": "life-admin-20261030-1405",
-   "built": "2026-10-30 14:05",
-   "commit": "",
-   "subject": "Life Admin — private vault with cited facts, deadlines, cases, audit and four MCP tools",
-   "deployed": [
-    "life-admin"
-   ],
-   "name": "Life Admin · 2026-10-30 14:05 first deployment",
-   "rolledBack": null
-  },
-  {
-   "tag": "7cd91b2",
-   "built": "2026-10-30 12:10",
-   "commit": "2026-10-30 14:02",
-   "subject": "Doctor's third round: a clinic password, the summary emailed with its PDF, and the printout and visit page he asked for",
-   "deployed": [
-    "integration"
-   ],
-   "name": "🦴 Lunate",
-   "meta": {
-    "files": 19,
-    "ins": 763,
-    "del": 57,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "clinic-tickets-20261030-1408",
-   "built": "2026-10-30 12:08",
-   "commit": "",
-   "subject": "Clinic Tickets — the doctor's Hebrew request desk with screenshots, statuses and an agent API (MIT)",
-   "deployed": [
-    "clinic-tickets"
-   ],
-   "name": "Clinic Tickets · 2026-10-30 14:08 first deployment",
-   "meta": {
-    "files": 14,
-    "ins": 1210,
-    "del": 0,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "naki-20261031-1205",
-   "built": "2026-10-31 10:05",
-   "commit": "ccdc665",
-   "subject": "Naki — air-purifier import business run by an agent: Hebrew storefront, WhatsApp inbox (personal + Twilio), AI product pages, MCP",
-   "deployed": [
-    "naki"
-   ],
-   "name": "Naki · 2026-10-31 12:05 first deployment",
-   "meta": {
-    "files": 34,
-    "ins": 2289,
-    "del": 1,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "ee1b754",
-   "built": "2026-10-31 11:12",
-   "commit": "2026-10-31 13:12",
-   "subject": "Projects — the site agent on the front page as an Ask the agent panel; the agent re-reads briefs every 10 minutes so new projects such as Naki are known",
-   "deployed": [
-    "my-projects"
-   ],
-   "name": "Projects · 2026-10-31 13:12 front-page agent",
-   "meta": {
-    "files": 5,
-    "ins": 352,
-    "del": 15,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "remodeling-first-20261031",
-   "built": "2026-10-31 13:22",
-   "commit": "2026-10-31 13:22",
-   "subject": "Persistent monitoring agent, shared project progress, documentation coverage and MCP tools; recurring checks disabled pending interval",
-   "deployed": [
-    "remodeling"
-   ],
-   "name": "Remodeling · 2026-10-31 13:22 project and documentation tracking",
-   "rolledBack": null
-  },
-  {
-   "tag": "projects-remodeling-20261031",
-   "built": "2026-10-31 13:22",
-   "commit": "2026-10-31 13:22",
-   "subject": "Remodeling tracker and self-documentation pages; shared tracking and read-only monitoring status",
-   "deployed": [
-    "my-projects"
-   ],
-   "name": "Projects · 2026-10-31 13:22 project and documentation tracking",
-   "rolledBack": null
-  },
-  {
-   "tag": "visual-lab-first-20261031",
-   "built": "2026-10-31 15:58",
-   "commit": "2026-10-31 15:58",
-   "subject": "Flint CLI and shared MCP image rendering, editable chart examples and Fedora display",
-   "deployed": [
-    "visual-lab"
-   ],
-   "name": "Visual Lab · 2026-10-31 15:58 visual conversation trial",
-   "rolledBack": null
-  },
-  {
-   "tag": "projects-visual-lab-20261031",
-   "built": "2026-10-31 15:58",
-   "commit": "2026-10-31 15:58",
-   "subject": "Visual Lab documentation, measured trials, screenshots and project brief",
-   "deployed": [
-    "my-projects"
-   ],
-   "name": "Projects · 2026-10-31 15:58 visual conversation trial",
-   "rolledBack": null
-  },
-  {
-   "tag": "remodeling-now-20261031",
-   "built": "2026-10-31 16:18",
-   "commit": "2026-10-31 16:18",
-   "subject": "Private tasks and evidence-backed results for five focus projects; owner joins, explicit public stories, documentation follow-ups and nightly SQLite backup",
-   "deployed": [
-    "remodeling"
-   ],
-   "name": "Remodeling · 2026-10-31 16:18 private Now workspace",
-   "rolledBack": null
-  },
-  {
-   "tag": "projects-outcomes-20261031",
-   "built": "2026-10-31 16:18",
-   "commit": "2026-10-31 16:18",
-   "subject": "Homepage private workspace link, public outcomes page and narrow projection, plus workspace guide and updated briefs",
-   "deployed": [
-    "my-projects"
-   ],
-   "name": "Projects · 2026-10-31 16:18 workspace and selected outcomes",
-   "rolledBack": null
-  },
-  {
-   "tag": "agent-habitat-live-desk-20261031",
-   "built": "2026-10-31 16:44",
-   "commit": "2026-10-31 16:44",
-   "subject": "Live desk: finds agent panes from tmux and the process table, accepts short status reports with a loopback/tailnet gate, and shows them as a readable desk; runs under launchd with a nightly SQLite backup. Hooks built and tested, install pending",
-   "deployed": [
-    "agent-habitat"
-   ],
-   "name": "Agent Habitat · 2026-10-31 16:44 Live Desk",
-   "rolledBack": null
-  },
-  {
-   "tag": "ai-dj-velvet-deck-20261106",
-   "built": "2026-11-06 12:45",
-   "commit": "2026-11-06 12:45",
-   "subject": "AI DJ Velvet Deck: two-deck web DJ player with real equal-power crossfades, Auto DJ, live crossfade meter, equalizer ring and DJ chatter. Single-file HTML, background-tab-safe fades, deployed to namespace ai-dj on NodePort 30119 (tailnet-only) with smoke tests in CI",
-   "deployed": [
-    "ai-dj"
-   ],
-   "name": "AI DJ · 2026-11-06 12:45 Velvet Deck",
-   "rolledBack": null
-  },
-  {
-   "tag": "ai-pricing-technical-film-20261106",
-   "built": "2026-11-06 15:07",
-   "commit": "2026-11-06 15:07",
-   "subject": "Technical review film: 2:52 Hebrew explainer of the read-only Paradox/SQL pipelines, DeepSeek-V4-Flash on RunPod and the six acceptance gates, posted on the home and battle views",
-   "deployed": [
-    "ai-pricing"
-   ],
-   "name": "AI Pricing · 2026-11-06 15:07 technical film",
-   "rolledBack": null
-  },
-  {
-   "tag": "ai-dj-velvet-station-20261106",
-   "built": "2026-11-06 15:28",
-   "commit": "2026-11-06 15:28",
-   "subject": "AI DJ 3.0 Velvet Station: hub owns one adaptive set with SQLite state, claim/lease clients, SSE commands with ack/retry, fast /state, real ducking, a single resolver with a 2GB media cache and Range serving, Apple Music taste import (hfma fail-soft + AppleScript), coding context and bounded mood, local BPM/beat/key/LUFS analysis with a librosa venv, phrase-aligned beatmatched transitions with a learning bandit, OpenRouter text and Velvet TTS, a rewritten single-file player served by the hub, native hub-v3 parity, Tailscale hosting at https://simons-macbook-pro.tail32418c.ts.net/ and a cluster landing page at ubuntu03:30119, with a Velvet Station app icon, favicon, touch icon and in-app mark",
-   "deployed": [
-    "ai-dj"
-   ],
-   "name": "AI DJ · 2026-11-06 15:28 Velvet Station",
-   "meta": {
-    "files": 50,
-    "ins": 8584,
-    "del": 1189,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "ai-dj-generated-originals-20261106",
-   "built": "2026-11-06 17:10",
-   "commit": "2026-11-06 17:10",
-   "subject": "Velvet composes its own instrumental tracks with Higgsfield Sonilo Music by default: 3-minute originals, two-track background buffer, taste/mood/BPM prompts, generated/mixed/library modes, web and native Generate controls, and fake-CLI generation tests",
-   "deployed": [
-    "ai-dj"
-   ],
-   "name": "AI DJ · 2026-11-06 17:10 Generated Originals",
-   "meta": {
-    "files": 14,
-    "ins": 1100,
-    "del": 20,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "ai-dj-sound-movements-20261106",
-   "built": "2026-11-06 17:30",
-   "commit": "2026-11-06 17:30",
-   "subject": "Velvet's generated set now moves through six sound palettes (warm organic, deep ambient, neon electronic, dusty groove, strings and space, sunlit house), rotating every 4 tracks or 15 minutes with a different lead instrument and texture every track; Shift sound in web/native/Dock/CLI/MCP",
-   "deployed": [
-    "ai-dj"
-   ],
-   "name": "AI DJ · 2026-11-06 17:30 Sound Movements",
-   "meta": {
-    "files": 8,
-    "ins": 500,
-    "del": 10,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "ai-dj-agent-mcp-20261106",
-   "built": "2026-11-06 17:50",
-   "commit": "2026-11-06 17:50",
-   "subject": "AI DJ has a Streamable HTTP MCP at /mcp with 27 tools and a one-call dj_station (mode, palette shift, mood, generate now), registered in the tailnet gateway as ai-dj over tailscale serve tcp 8766",
-   "deployed": [
-    "ai-dj"
-   ],
-   "name": "AI DJ · 2026-11-06 17:50 Agent MCP",
-   "meta": {
-    "files": 8,
-    "ins": 350,
-    "del": 10,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "ai-dj-rust-20261106",
-   "built": "2026-11-06 19:11",
-   "commit": "2026-11-06 19:11",
-   "subject": "AI DJ in Rust: a self-contained binary synthesises its own electronic tracks, plans harmonic sets on the Camelot wheel and mixes them forever in a two-deck browser player",
-   "deployed": [
-    "ai-dj-rust"
-   ],
-   "name": "AI DJ · 2026-11-06 19:11 Rustwave",
-   "meta": {
-    "files": 18,
-    "ins": 3100,
-    "del": 0,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "ai-pricing-day-report-20261106",
-   "built": "2026-11-06 22:12",
-   "commit": "2026-11-06 22:12",
-   "subject": "Day report (review #12): the work actually built on 6 Nov (reviews #8-#11, three films, two podcasts, two decks, the Magic-to-Postgres copy code) plus a 3-hour cost forecast; the agents/cost tab now shows real $23.18 OpenRouter spend to 22:04 with ~$7 for 3 more hours (~$30 day)",
-   "deployed": [
-    "ai-pricing"
-   ],
-   "name": "AI Pricing · 2026-11-06 22:12 day report",
-   "rolledBack": null
-  },
-  {
-   "tag": "planin-brief-20261107",
-   "built": "2026-11-07 12:45",
-   "commit": "2026-11-07 12:45",
-   "subject": "Planin Brief: a plan becomes a 36-second narrated explainer from OpenRouter storyboard, Higgsfield stills and voice, and an ffmpeg edit with captions, for 2.8 credits (~$0.14)",
-   "deployed": [
-    "local"
-   ],
-   "name": "Planin Brief · 2026-11-07 12:45 First film",
-   "meta": {
-    "files": 22,
-    "ins": 1546,
-    "del": 0,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "agent-link-20261107",
-   "built": "2026-11-07 15:01",
-   "commit": "2026-11-07 15:01",
-   "subject": "Agent Bus task board: a read-only dashboard over the Agent Link queue showing tasks date-first with sender, recipients and open/acked state, agent filters, and MCP tools board_tasks, board_agents, board_summary and board_task, live at ubuntu03:30124",
-   "deployed": [
-    "agent-link"
-   ],
-   "name": "Agent Link · 2026-11-07 15:01 task board",
-   "meta": {
-    "files": 10,
-    "ins": 1100,
-    "del": 46,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "planin-brief-podcast-20261107",
-   "built": "2026-11-07 15:08",
-   "commit": "2026-11-07 15:08",
-   "subject": "Podcast with slides: a host script from OpenRouter, Higgsfield voice, local presentation slides and a live waveform; five chapters for 3.75 credits (~$0.19)",
-   "deployed": [
-    "local"
-   ],
-   "name": "Planin Brief · 2026-11-07 15:08 Podcast with slides",
-   "meta": {
-    "files": 9,
-    "ins": 451,
-    "del": 107,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "agent-tracker-20261107",
-   "built": "2026-11-07 16:55",
-   "commit": "e37ee7d",
-   "subject": "Task <-> agent tracker: a Python stdlib service with a JSON API, MCP and a CLI; agents report progress, the public host is a read-only view.",
-   "deployed": [
-    "kubernetes:ns agent-tracker (NodePort 30126)",
-    "agents.navonsimon.com"
-   ],
-   "name": "Agent Tracker · 2026-11-07 16:55 task-agent tracker",
-   "meta": {
-    "files": 14,
-    "ins": 0,
-    "del": 0,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "c047c00",
-   "built": "2026-11-07 15:12",
-   "commit": "2026-11-07 17:17",
-   "subject": "Clinic password, the summary emailed with its PDF, the printout he asked for, and the integration site dressed as production — go-live",
-   "deployed": [
-    "prod",
-    "integration"
-   ],
-   "name": "🖐️ Dexterity",
-   "rolledBack": null
-  },
-  {
-   "tag": "e65f966",
-   "built": "2026-11-07 19:35",
-   "commit": "2026-11-07 19:18",
-   "subject": "The clinical workspace redesign and the fourth round: detail capture survives a reconnect, wider identity parsing, request #14's hint captions removed — on prod, test and integration",
-   "deployed": [
-    "prod",
-    "test",
-    "integration"
-   ],
-   "name": "🦴 Pisiform",
-   "rolledBack": null
-  },
-  {
-   "tag": "7894c1b",
-   "built": "2026-11-07 20:45",
-   "commit": "2026-11-07 18:30",
-   "subject": "The Mail tab becomes a mailbox the doctor can work in: folders with unread counts, paging, unread only, and his HTML letters rendered instead of a wall of stripped tags — on prod and test",
-   "deployed": [
-    "prod",
-    "test"
-   ],
-   "name": "🦴 Triquetrum",
-   "rolledBack": null
-  },
-  {
-   "tag": "78b3fba",
-   "built": "2026-11-07 21:16",
-   "commit": "2026-11-07 21:10",
-   "subject": "The clinic boundary: a clinic table and a clinic_id on every patient, visit and sentence, seeded from the environment and adopted in place, so prod's real patients upgrade without loss",
-   "deployed": [
-    "integration"
-   ],
-   "name": "🦴 Scaphoid",
-   "rolledBack": null
-  },
-  {
-   "tag": "cc6e3d1",
-   "built": "2026-11-07 23:35",
-   "commit": "2026-11-08 01:30",
-   "subject": "MCP Registry — compact mode (the rolodex): the gateway indexes every server and loads one on demand, so a session starts with 14 tools instead of 121; registry__search_servers and registry__mcp_use, the same index on HTTP (/servers/search, /servers/use, /tools/...), a searchable registry page, and a loaded server drops out again after half an hour without a call",
-   "deployed": [
-    "mcp-registry",
-    "my-projects"
-   ],
-   "name": "MCP Registry · 2026-11-07 23:30 the rolodex",
-   "meta": {
-    "files": 10,
-    "ins": 645,
-    "del": 86,
-    "author": "Simon"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "d902f3c",
-   "built": "2026-11-08 00:07",
-   "commit": "2026-11-07 23:53",
-   "subject": "Detail capture survives a reconnect: one lock per visit and a summary that waits for the words still being written, sharper patient identity parsing, and request #14's hint captions gone — on integration",
-   "deployed": [
-    "integration"
-   ],
-   "name": "✋ Lumbrical",
-   "rolledBack": null,
-   "meta": {
-    "files": 12,
-    "ins": 474,
-    "del": 45,
-    "author": "Simon"
-   }
-  },
-  {
-   "tag": "4e24dcd",
-   "built": "2026-11-08 10:40",
-   "commit": "2026-11-08 10:34",
-   "subject": "The mailbox tab is out of the app and the client card is in: every meeting's summary and letter printable from the client, what was emailed to whom and when, and the clients seen last as one-tap chips — on integration",
-   "deployed": [
-    "integration"
-   ],
-   "name": "🦾 Opponens",
-   "rolledBack": null,
-   "meta": {
-    "files": 14,
-    "ins": 254,
-    "del": 743,
-    "author": "Simon"
-   }
-  },
-  {
-   "tag": "pil-barak360-cluster-20261118",
-   "built": "2026-11-18 13:00",
-   "commit": "2026-11-18 12:58",
-   "subject": "barak360.navonsimon.com back up on the cluster, from the archive that was already there: pil-rustfs held the full 70,923 objects / 51.27 GB, so the read model was rebuilt inside the cluster (37 raw tables / 80,820 rows, 1,409 clients, 457 open activities, register 47,870 -> 47,683 linked, 168 missing, 17 outside, 2 drift, 5,695 unregistered, 187 exceptions) into pil-postgres and the app + its 10-tool MCP now run as deployment barak360 (NodePort 30143 web, 30144 MCP) behind the ubuntu01 edge, with the app streaming document bytes from the cluster RustFS. Neither the Mac nor win01 has to be awake: the outage was the disabled launch agent on the Mac plus win01 going offline. Every one of the 70,923 objects is SHA-256 hashed in docs.file; the pipeline is env-driven (read-model/LINUX.md) and the manifest is rebuilt from the buckets because the copier's manifest died with win01",
-   "deployed": [
-    "barak360"
-   ],
-   "name": "PIL · 2026-11-18 barak360 on the cluster",
-   "meta": {
-    "files": 18,
-    "ins": 973,
-    "del": 86,
-    "author": "OpenCode"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "pil-db-360-portal-20261118",
-   "built": "2026-11-18 21:00",
-   "commit": "2026-11-18 20:52",
-   "subject": "pil-db-360.navonsimon.com: the review portal where the office sees its own database before anything is changed. Read-only towards Magic — the app holds no office DSN, no SQL Server driver and no row; its content is a metadata catalog (29 databases, 558 tables, 94M rows, 68 live tables / 643 columns, 43 proven joins, 14 rejected, 28 untestable, 0 primary and 0 foreign keys) generated from the 2026-11-06 mapping pass. 25 findings, each with its measured evidence, our proposal and the one question the business must answer; eight module pages with the gap in each; a schema browser and a joins page. Departments respond on a shared board — name + department, agree/park, notes, decisions — stored in the portal's own postgres:17 (namespace pil-db-360, NodePort 30146) with writes over a WebSocket at /live because Cloudflare does not forward browser POSTs. Password-only gate (?k=), Hebrew RTL with an English toggle, edge nginx on ubuntu01, Cloudflare tunnel route and proxied CNAME. Tests assert the catalogue matches the mapping pass and that no credential or office address ships.",
-   "deployed": [
-    "pil-db-360"
-   ],
-   "name": "PIL · 2026-11-18 database review portal",
-   "meta": {
-    "files": 23,
-    "ins": 3656,
-    "del": 0,
-    "author": "OpenCode"
-   },
-   "rolledBack": null
-  },
-  {
-   "tag": "pil-bi-pilot-20261124",
-   "built": "2026-11-24 21:00",
-   "commit": "d14cd52 2026-11-24 21:00:06 +0200 Safer deploy, no-store assets and API, header layout, stamp from the snapshot",
-   "subject": "Pilot: the office's BI over new_pil_db — a nightly read-only job builds one SQLite snapshot (10 query files), FastAPI serves it behind the office password, and a Hebrew RTL UI covers overview, artists, works and royalties. Plus the missing nightly pg_dump of new_pil_db.",
-   "project": "pil-bi",
-   "url": "https://pil-bi.navonsimon.com/",
-   "deployed": [
-    "pil-bi",
-    "pil-postgres"
-   ],
-   "name": "PIL BI · 2026-11-24 Pilot",
-   "notes": "Namespace pil-bi, NodePort 30150, edge nginx on ubuntu01, tunnel route + CNAME. Snapshot 3.1 MB built in 136s; plays de-duplicated to 7.75M inside 2021-2025. Backup CronJob pil-db-backup in pil-postgres (100Gi PVC)."
-  }
- ],
- "quips": [
-  "hi there",
-  "glad you looked",
-  "still holding up",
-  "all thumbs, no bugs",
-  "handle with care",
-  "waving back",
-  "grip check",
-  "you found me",
-  "flexing",
-  "steady hands",
-  "that's the spot",
-  "nice to see you"
- ]
+  "prod": "e831de5",
+  "versions": [
+    {
+      "tag": "metabase-20261124",
+      "built": "2026-11-24 23:55",
+      "commit": "b65b64a 2026-11-24 23:52:00 +0200 Metabase over new_pil_db: bi read layer, one-password gate, two dashboards",
+      "subject": "Self-hosted Metabase over the better PIL database: a bi read layer (plays de-duplicated across the overlapping yearly files, artist/year/work/year-total materialized views with SELECT for pil_ro), Metabase v0.65.7 with its own app database, and a one-field office gate that logs in server-side so there is no Metabase account.",
+      "project": "metabase",
+      "url": "https://pil-metabase.navonsimon.com/",
+      "deployed": [
+        "metabase",
+        "pil-postgres"
+      ],
+      "name": "PIL Metabase · 2026-11-24 plays and artists",
+      "notes": "Two dashboards: 'פיי 2024 — מי מתנגן' (7.87B reported plays in 2024, growth since 2020, top-10 artists and works) and 'אמנים לאורך זמן' (eight artists 2021-2024, share of year, 2023 to 2024 movers). Reads new_pil_db as pil_ro; the bi views rebuild at 03:10 Asia/Jerusalem. Verified in a headless browser through the public gate."
+    },
+    {
+      "tag": "superset-dashboards-20261125",
+      "built": "2026-11-24 23:40",
+      "commit": "72ec192 2026-11-24 23:35:50 +0200 Superset: royalty and data-health dashboards as code — datasets, charts, layout, docs and screenshots",
+      "subject": "Two dashboards on PIL BI, built as code: royalty 2026 (Magic's price per work x organisation x use type x 30-day period, rolled up by period, organisation, use type, company and work) and data health (exact tables and rows per year from the copy ledger, plus the empty-table gaps).",
+      "project": "superset",
+      "url": "https://bi-superset.navonsimon.com/superset/dashboard/pil-royalty/",
+      "deployed": [
+        "superset"
+      ],
+      "name": "PIL Superset · 2026-11-24 two dashboards",
+      "notes": "build_dashboards.py owns eight virtual datasets, fifteen charts and the two dashboard layouts, and is idempotent; ./deploy.sh dashboards rebuilds them. Verified in a browser: 9,116,806 royalty over nine periods, 3.34B plays, 60,503 works; the copy holds 558 tables and 94M rows. Each chart is linked to its dashboard explicitly because position_json alone leaves the panels empty."
+    },
+    {
+      "tag": "superset-gate-20261124",
+      "built": "2026-11-24 23:00",
+      "commit": "7bc981f 2026-11-24 23:00:02 +0200 Superset: one password, no username — password gate at the edge, session handed to the browser, docs and screenshots",
+      "subject": "One password at bi-superset.navonsimon.com: a small edge gate asks for the office password only, logs in to Superset server-side and hands the browser its session cookie, so the username field is gone. The app, the read-only Magic role and the nightly metadata dump are unchanged.",
+      "project": "superset",
+      "url": "https://bi-superset.navonsimon.com/",
+      "deployed": [
+        "superset"
+      ],
+      "name": "PIL Superset · 2026-11-24 one password",
+      "notes": "Verified in a browser: one field, wrong password refused, right password opens the welcome page and SQL Lab; the gate cookie and Superset session last 30 days. The gate is a 120-line stdlib service in namespace superset (NodePort 30151); nginx asks /verify on every request."
+    },
+    {
+      "tag": "superset-magic-20261124",
+      "built": "2026-11-24 22:20",
+      "commit": "2ffc01a 2026-11-24 22:16:44 +0200 Superset on the cluster, connected to Magic only: manifests, read-only role notes, edge gate, metadata backup, connect script",
+      "subject": "Apache Superset 6.0.0 on the cluster, connected to the live Magic mirror (magic_raw): a SELECT-only superset_ro role over the 29 live_shdb* schemas and 558 tables, the data source registered in Superset with DML/CTAS/CVAS off, bi-superset.navonsimon.com behind the office password and its own login, and a nightly metadata dump.",
+      "project": "superset",
+      "url": "https://bi-superset.navonsimon.com/",
+      "deployed": [
+        "superset"
+      ],
+      "name": "PIL Superset · 2026-11-24 Magic connected",
+      "notes": "Barak (new_pil_db) deliberately not registered; superset_ro has no grants there and no write anywhere. Verified: read test 558 tables / 29 schemas, write refused by the DML guard, public login and SQL Lab through the tunnel, metadata backup written and pruned. The manifests live in ~/Developer/pil/superset."
+    },
+    {
+      "tag": "pil-bi-pilot-20261124",
+      "built": "2026-11-24 21:00",
+      "commit": "d14cd52 2026-11-24 21:00:06 +0200 Safer deploy, no-store assets and API, header layout, stamp from the snapshot",
+      "subject": "Pilot: the office's BI over new_pil_db — a nightly read-only job builds one SQLite snapshot (10 query files), FastAPI serves it behind the office password, and a Hebrew RTL UI covers overview, artists, works and royalties. Plus the missing nightly pg_dump of new_pil_db.",
+      "project": "pil-bi",
+      "url": "https://pil-bi.navonsimon.com/",
+      "deployed": [
+        "pil-bi",
+        "pil-postgres"
+      ],
+      "name": "PIL BI · 2026-11-24 Pilot",
+      "notes": "Namespace pil-bi, NodePort 30150, edge nginx on ubuntu01, tunnel route + CNAME. Snapshot 3.1 MB built in 136s; plays de-duplicated to 7.75M inside 2021-2025. Backup CronJob pil-db-backup in pil-postgres (100Gi PVC)."
+    },
+    {
+      "tag": "pil-sort-game-hebrew-20261123",
+      "built": "2026-11-23 12:50",
+      "commit": "2414444 2026-11-23 12:47 +0200",
+      "subject": "Double Take in Hebrew: the whole game right-to-left — levels, witness lamps, hints, run card, badges and board — plus the option to type the name you think is right and merge both spellings under it, and Hebrew badge labels. The example sorter name is יונתן.",
+      "project": "pil-sort-game",
+      "url": "https://pil-sort-game.navonsimon.com/",
+      "deployed": [
+        "pil-sort-game"
+      ],
+      "name": "Double Take · 2026-11-23 Hebrew sort",
+      "notes": "Same pile and same export. Typed canonical names are stored as the merge target, so decisions.csv can carry a name that is on neither card; verified through the tunnel (merge with a typed Hebrew name, export row, undo) and at desktop and phone width. Badge labels now come from the server in Hebrew."
+    },
+    {
+      "tag": "pil-sort-game-double-take-20261123",
+      "built": "2026-11-23 12:41",
+      "commit": "21dc7f6 2026-11-23 12:30 +0200",
+      "subject": "Double Take, the duplicate sorting game: the 53,356 pairs from the cleanup pass as cards — two names, the three witnesses that scored them (bge-m3 meaning, trigram spelling, business evidence), what a merge touches, points by difficulty, 20-card runs, undo, badges, a leaderboard per sorter, and an export in the exact CSV shape that applies merges to map.value_map.",
+      "project": "pil-sort-game",
+      "url": "https://pil-sort-game.navonsimon.com/",
+      "deployed": [
+        "pil-sort-game"
+      ],
+      "name": "Double Take · 2026-11-23 first live version",
+      "notes": "Namespace pil-sort-game, NodePort 30149, Python stdlib server + SQLite on a 1Gi PVC, nightly backup CronJob keeping 7 dumps. Pile matches the cleanup workbook exactly: 235 warm-up, 8,707 near certain, 21,640 likely, 22,774 judgement, in 8,602 families. Decisions are idempotent GETs with a rid because Cloudflare blocks POST and the edge forwards GET/HEAD; the app is behind an access key and noindex, and never writes to new_pil_db. Verified live through the tunnel at desktop and phone width, one merge + keep + undo exercised end to end, board and run card checked."
+    },
+    {
+      "tag": "moti-zayed-first-live-20261123",
+      "built": "2026-11-23 12:17",
+      "commit": "d0e0ef5 2026-11-23 12:35 +0200",
+      "subject": "The office's first live version: the מקטע 1.2 file as a working tool — parcels, ownership shares and measurements in, the re-parcellation table out with the workbook's exact arithmetic (מקדם התמרה, הפרשה, מטרוקה, שווי משתתף, שווי מגרש), plot 312 split above and below the line, integrity checks the spreadsheet never ran, document uploads per file/parcel/plot, and an Excel export with live formulas plus an A4 print view.",
+      "project": "moti-zayed-office",
+      "url": "https://mz-office.navonsimon.com/",
+      "deployed": [
+        "moti-zayed-office"
+      ],
+      "name": "מוטי זייד · 2026-11-23 first live version",
+      "notes": "Namespace moti-zayed-office, NodePort 30148, SQLite + documents on a 2Gi PVC, nightly backup on ubuntu03. Seeded from the office workbook (גיליון2 + מקטע 1.2; גיליון1 is the old scope and is ignored). 20 unit tests pin the numbers to the sheet; plots 909/910 stay unassigned on purpose because the workbook leaves them blank. Browser pass after the first deploy: CSP-safe confirm dialogs, document upload/delete through the page, no step traps on numeric cells, partial saves never blank a field.",
+      "meta": {
+        "files": 21,
+        "insertions": 5234,
+        "deletions": 0
+      }
+    },
+    {
+      "tag": "pil-portal-first-live-20261119",
+      "built": "2026-11-20 00:02",
+      "commit": "3b784d6 2026-11-20 00:02 +0200",
+      "subject": "The office portal's first live version: one door (Cloudflare Access on @pil.org.il), one shelf of the six apps that already exist, search over the office data that answers with the row it came from, and an IT support queue instead of WhatsApp. Read-only towards the office systems; the portal writes only its own tickets and question log.",
+      "project": "pil-portal",
+      "url": "https://pil.navonsimon.com/",
+      "deployed": [
+        "pil-portal"
+      ],
+      "name": "PIL Portal · 2026-11-19 first live version",
+      "notes": "Namespace pil-portal, NodePort 30147 on ubuntu03/04. The ask layer is search with citations, not an LLM yet. Open: the office OTP address book, merging the ai-desk queue, and SSO into the four apps.",
+      "meta": {
+        "files": 22,
+        "insertions": 1764,
+        "deletions": 0
+      }
+    },
+    {
+      "tag": "outreach360-badge-skip-amber-20261119",
+      "built": "2026-11-19 17:38",
+      "commit": "e831de5 2026-11-19 17:38 +0200",
+      "subject": "The badge's skip ('דלג · צפייה בכל העסקים') now stands out: amber text and outline, a faint amber fill and glow, and a brighter hover/focus state, instead of the quiet grey ghost button it was. It reads as a real second way in next to 'מי אתם?'.",
+      "project": "outreach360",
+      "url": "https://outreach360.navonsimon.com/",
+      "deployed": [
+        "outreach360"
+      ],
+      "name": "outreach360 · 2026-11-19 amber skip",
+      "notes": "Namespace outreach360, NodePort 30145. Colour only — the skip behaviour and the 520x520 card are unchanged.",
+      "meta": {
+        "files": 1
+      }
+    },
+    {
+      "tag": "outreach360-badge-square-home-20261119",
+      "built": "2026-11-19 17:32",
+      "commit": "0191eeb 2026-11-19 17:32 +0200",
+      "subject": "The badge pop-up became a fixed 520x520 square: 'דלג · צפייה בכל העסקים' now sits at the top beside 'מי אתם?', the name and the sector chips scroll inside the middle of the card, and 'שמירה' is pinned in a footer that stays put. The logo in the header is now a home button: it closes the drawer and badge, clears the search, city, music, contact, owner, status and sort, goes back to the businesses tab at the top and reloads the default list — a caller's own first sector, or everything for the supervisor view.",
+      "project": "outreach360",
+      "url": "https://outreach360.navonsimon.com/",
+      "deployed": [
+        "outreach360"
+      ],
+      "name": "outreach360 · 2026-11-19 square badge and home logo",
+      "notes": "Namespace outreach360, NodePort 30145. Headless check asserts the card is 520x520, the save button stays visible while the middle scrolls, and the home button resets every filter.",
+      "meta": {
+        "files": 4
+      }
+    },
+    {
+      "tag": "outreach360-supervisor-view-20261119",
+      "built": "2026-11-19 17:25",
+      "commit": "d5ca8c8 2026-11-19 17:25:02 +0200",
+      "subject": "The name badge can now be skipped. A supervisor opens the page, presses 'דלג · צפייה בכל העסקים' and gets every sector in one list — 24,883 businesses ordered by priority, all the filters, the CSV, the summary — labelled 'תצוגת מנהל', and the choice survives a reload. The rail also gained a 'הכל' button for anyone who already has a name. A name is now needed only to write: claiming or logging a call opens the badge and asks for one instead of failing.",
+      "project": "outreach360",
+      "url": "https://outreach360.navonsimon.com/",
+      "deployed": [
+        "outreach360"
+      ],
+      "name": "outreach360 · 2026-11-19 supervisor view",
+      "notes": "Namespace outreach360, NodePort 30145. /api/sectors now also returns the visible total for the הכל button.",
+      "meta": {
+        "files": 6,
+        "shortstat": "6 files changed, 152 insertions(+), 69 deletions(-)"
+      }
+    },
+    {
+      "tag": "outreach360-real-data-20261119",
+      "built": "2026-11-19 17:05",
+      "commit": "c1559d5 2026-11-19 17:03:58 +0200",
+      "subject": "The screen stopped showing generated records and now runs on collected ones: 24,883 businesses from Be'er Sheva's business licensing and sign survey, Haifa's hotel list and the OpenStreetMap Israel extract, merged into Postgres with the source of every field kept. 2,483 have a phone and 1,559 an email. A weekly CronJob reads all four sources on Saturday at 22:00 UTC, keeps a failing source's old rows untouched, and hides a business only after two consecutive missed runs. The shared password moved server-side (SHA-256 in a Secret, HTTP-only session, rate-limited login) and the page carries no data: the API answers 401 without a session. Same login for the team, a name badge per browser, each caller picks their sectors, first tap claims a business, and calls are append-only events with the badge name. Postgres in the namespace, a nightly pg_dump with a tested restore, and a build gate that fails on the word 'demo' or a password hash left in the HTML. A source that returns half its usual rows is recorded as partial and never advances the miss counter, so a truncated pull cannot look like a city closing.",
+      "project": "outreach360",
+      "url": "https://outreach360.navonsimon.com/",
+      "deployed": [
+        "outreach360",
+        "my-projects"
+      ],
+      "name": "outreach360 · 2026-11-19 real data and a shared workflow",
+      "notes": "Namespace outreach360, NodePort 30145. Postgres Deployment with a 4 GiB PVC; collect CronJob weekly, backup nightly. Rollback is a git checkout of the previous commit plus a redeploy; data comes back from the dump.",
+      "meta": {
+        "files": 33,
+        "shortstat": "33 files changed, 4802 insertions(+), 3851 deletions(-)"
+      }
+    },
+    {
+      "tag": "pil-db-360-lang-switch-20261119",
+      "built": "2026-11-19 14:35",
+      "commit": "4eb5a5e 2026-11-19 14:34:29 +0200",
+      "subject": "The language switch now works in both directions. Hebrew had no path prefix, so the Hebrew link pointed at the same address the cookie already answered and English -> Hebrew did nothing. The Hebrew link now carries ?lang=he, the server sets the cookie and redirects to the clean address. Verified on the live site: four clicks alternated Hebrew and English, and /en/magic switched to /magic.",
+      "project": "pil-db-360",
+      "url": "https://pil-db-360.navonsimon.com/",
+      "notes": "Portal, namespace pil-db-360, NodePort 30146. Read-only; only notes, votes and decisions are written."
+    },
+    {
+      "tag": "outreach360-categories-20261119",
+      "built": "2026-11-19 14:05",
+      "commit": "04e665d 2026-11-19 14:02",
+      "subject": "The sector rail now covers every category PIL charges for: all 44 categories from PIL's own tariff page, not just hair salons, gyms, bars, hotels and Pilates. Event halls, pools, cafes, shops, parking, fuel stations, clubs and discos, radio and municipalities each became one config entry with sub-types, licence kinds, a size label and range, name words and city weights, so a new category is data, not code. The rail is a single scrollable row (44 buttons no longer push the table down), keeps its place when a sector is picked, and the summary compares the top 14 with a note pointing at the rest. The sources tab, marks API and collector from the retired resources site ship in the same page, and resources.navonsimon.com redirects here.",
+      "deployed": [
+        "outreach360",
+        "resources",
+        "my-projects"
+      ],
+      "name": "outreach360 · 2026-11-19 all PIL tariff categories",
+      "meta": {
+        "files": 15,
+        "shortstat": "15 files changed, 4687 insertions(+), 76 deletions(-)"
+      }
+    },
+    {
+      "tag": "pil-db-360-status-20261119",
+      "built": "2026-11-19 14:02",
+      "commit": "be94d9b 2026-11-19 14:02",
+      "subject": "The PIL review portal now opens on the money chain and gives Magic 360 and Barak a status page each, written for the board rather than for engineers. Every page exists in Hebrew and English at its own address (/magic and /en/magic), with a flag control in the header that stays on the page being read; the language follows the URL, then the cookie, then the browser. Magic 360: 94,030,707 rows over 28 years, 206,781 artists and 5,839 companies, with duplicates, zero foreign keys and no scheduled backup ranked by royalty risk. Barak: 71,287 documents and 51.3 GB, 99.6% of records resolving to a file, but sharing permissions and a plaintext password stand in for access control. Every figure carries its source and measured date and a test fails on one without. The overview chain runs Outreach 360, Barak, Magic 360, royalties, with the licensing event named as the missing link.",
+      "deployed": [
+        "pil-db-360",
+        "my-projects"
+      ],
+      "name": "PIL DB 360 · two system status pages, Hebrew and English",
+      "meta": {
+        "files": 10,
+        "shortstat": "10 files changed, 1830 insertions(+), 313 deletions(-)"
+      }
+    },
+    {
+      "tag": "resources-first-20261118",
+      "built": "2026-11-18 21:56",
+      "commit": "a316af4 2026-11-18 21:55",
+      "subject": "resources.navonsimon.com is live in Hebrew: one view is my recommendation (three sources now, business websites after that, municipal letters in parallel, each with what it feeds in outreach360, the effort and the yield, plus the pipeline and a field-by-field rule for where a value may and may never come from), the other is the full catalogue of 33 sources with the real access state, endpoint, fields and the number each call actually returned. A star marks the sources Simon wants built next; the marks are stored server-side over a WebSocket because Cloudflare blocks POST, and readable by the agent with kubectl. outreach360's sources tab now links here. NodePort 30146 was already taken by PIL DB 360, so this sits on 30147.",
+      "deployed": [
+        "resources",
+        "outreach360",
+        "my-projects"
+      ],
+      "name": "resources · 2026-11-18 source catalogue live",
+      "meta": {
+        "files": 13,
+        "shortstat": "13 files changed, 1781 insertions(+)"
+      }
+    },
+    {
+      "tag": "outreach360-docs-20261118",
+      "built": "2026-11-18 21:45",
+      "commit": "5651877 2026-11-18 21:44",
+      "subject": "outreach360 is documented end to end: docs/discovery.md in the repo records every source with the number it actually returned, the blocks with their HTTP status, the five decisions that came out of the research, what is live, what does not exist yet, and the commands that reproduce the findings. The same story is a visual page at projects.navonsimon.com/outreach360.html with the source map, the measured OpenStreetMap coverage per sector and per city, the pipeline marked built/next/planned honestly, and the two lists that matter: what is missing, and what must happen before any real contact data goes near the host. Card on the portfolio now links to it.",
+      "deployed": [
+        "outreach360",
+        "my-projects"
+      ],
+      "name": "outreach360 · 2026-11-18 documented",
+      "meta": {
+        "files": 2,
+        "shortstat": "2 files changed, 273 insertions(+)"
+      }
+    },
+    {
+      "tag": "outreach360-sources-20261118",
+      "built": "2026-11-18 21:04",
+      "commit": "8f9dc16 2026-11-18 21:04",
+      "subject": "Source map verified, by two agents: I checked the registers, mac-opencode-2 parsed the full OpenStreetMap extract. The answers are now on the sources tab, measured rather than guessed — Be'er Sheva is the only city publishing business licensing (3,124 rows, 212 salons, 82 phones), Haifa publishes 14 hotels with a phone, the companies registrar has 733,887 entities with addresses but no phone, the fire authority has 21,967 category requirements and no per-business occupancy, and Tel Aviv's licensing map is a viewer with no service behind it. OpenStreetMap turns out to hold 578 hair salons nationally, 71 with a phone, against those 212 licensed in Be'er Sheva alone, so no public source gives a national list; Petah Tikva has 80 mapped salons and one phone. Overpass was queued or dead on every mirror, so bulk collection now rides the daily Geofabrik extract (116 MB, parsed locally in under three minutes) with Overpass kept for single-city refreshes.",
+      "deployed": [
+        "outreach360"
+      ],
+      "name": "outreach360 · 2026-11-18 sources measured",
+      "meta": {
+        "files": 15,
+        "shortstat": "15 files changed, 2710 insertions(+), 12 deletions(-)"
+      }
+    },
+    {
+      "tag": "pil-db-360-portal-20261118",
+      "built": "2026-11-18 21:00",
+      "commit": "2026-11-18 20:52",
+      "subject": "pil-db-360.navonsimon.com: the review portal where the office sees its own database before anything is changed. Read-only towards Magic — the app holds no office DSN, no SQL Server driver and no row; its content is a metadata catalog (29 databases, 558 tables, 94M rows, 68 live tables / 643 columns, 43 proven joins, 14 rejected, 28 untestable, 0 primary and 0 foreign keys) generated from the 2026-11-06 mapping pass. 25 findings, each with its measured evidence, our proposal and the one question the business must answer; eight module pages with the gap in each; a schema browser and a joins page. Departments respond on a shared board — name + department, agree/park, notes, decisions — stored in the portal's own postgres:17 (namespace pil-db-360, NodePort 30146) with writes over a WebSocket at /live because Cloudflare does not forward browser POSTs. Password-only gate (?k=), Hebrew RTL with an English toggle, edge nginx on ubuntu01, Cloudflare tunnel route and proxied CNAME. Tests assert the catalogue matches the mapping pass and that no credential or office address ships.",
+      "deployed": [
+        "pil-db-360"
+      ],
+      "name": "PIL · 2026-11-18 database review portal",
+      "meta": {
+        "files": 23,
+        "ins": 3656,
+        "del": 0,
+        "author": "OpenCode"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "outreach360-first-20261118",
+      "built": "2026-11-18 20:31",
+      "commit": "855428a 2026-11-18 20:31",
+      "subject": "outreach360, the first working screen for PIL business discovery, is live behind HTTP basic auth. One static page in namespace outreach360 on NodePort 30145 serves five sector configs (hair salons, gyms, bars, hotels, Pilates), a filterable Hebrew RTL list, a per-business drawer that names the source of every field, a computed summary of fill rates and priority bands, and a sources page that states what each source really yields and where it is blocked. Outreach priority and data completeness are two separate scores, unknown values stay empty, and every record is labelled demo data because no source is connected yet. Access is a one-field password gate inside the page (SHA-256 compared in the browser, no username, no server credential) through the ubuntu01 edge and the Cloudflare tunnel at outreach360.navonsimon.com.",
+      "deployed": [
+        "outreach360",
+        "my-projects"
+      ],
+      "name": "outreach360 · 2026-11-18 first live prototype",
+      "meta": {
+        "files": 3,
+        "shortstat": "3 files changed, 11 insertions(+), 10 deletions(-)"
+      }
+    },
+    {
+      "tag": "pil-barak360-cluster-20261118",
+      "built": "2026-11-18 13:00",
+      "commit": "2026-11-18 12:58",
+      "subject": "barak360.navonsimon.com back up on the cluster, from the archive that was already there: pil-rustfs held the full 70,923 objects / 51.27 GB, so the read model was rebuilt inside the cluster (37 raw tables / 80,820 rows, 1,409 clients, 457 open activities, register 47,870 -> 47,683 linked, 168 missing, 17 outside, 2 drift, 5,695 unregistered, 187 exceptions) into pil-postgres and the app + its 10-tool MCP now run as deployment barak360 (NodePort 30143 web, 30144 MCP) behind the ubuntu01 edge, with the app streaming document bytes from the cluster RustFS. Neither the Mac nor win01 has to be awake: the outage was the disabled launch agent on the Mac plus win01 going offline. Every one of the 70,923 objects is SHA-256 hashed in docs.file; the pipeline is env-driven (read-model/LINUX.md) and the manifest is rebuilt from the buckets because the copier's manifest died with win01",
+      "deployed": [
+        "barak360"
+      ],
+      "name": "PIL · 2026-11-18 barak360 on the cluster",
+      "meta": {
+        "files": 18,
+        "ins": 973,
+        "del": 86,
+        "author": "OpenCode"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "mike-karoutchi-cluster-20261116",
+      "built": "2026-11-16 17:52",
+      "commit": "4be2784 2026-11-16 17:52",
+      "subject": "Mike Karoutchi back online on the cluster, with media served from the repository. debian02 and its RustFS bucket were gone, so the six approved previews and the 19.2 MB stage film now stream from media/ through the same versioned range routes, and object storage plus its credentials and seeding step left the project. A build Job clones GitHub main over a read-only deploy key, runs npm ci and next build onto a 6 GiB local-path volume, and a Deployment serves the standalone output on NodePort 30127; edge nginx on ubuntu01 proxies mike-karoutchi.navonsimon.com and the DNS CNAME moved from the dead debian02 tunnel to the ubuntu01 one. Also raised the my-projects image buckets from five to seven so its screenshots fit under the ConfigMap limit.",
+      "deployed": [
+        "mike-karoutchi",
+        "my-projects"
+      ],
+      "name": "Mike Karoutchi · 2026-11-16 17:52 back on the cluster",
+      "meta": {
+        "files": 25,
+        "shortstat": "25 files changed, 706 insertions(+), 2364 deletions(-)"
+      }
+    },
+    {
+      "tag": "pil-second-source-cluster-20261109",
+      "built": "2026-11-09 14:30",
+      "commit": "2026-11-09 14:30",
+      "subject": "Second source standing on the cluster: PostgreSQL 17 in namespace pil-postgres on ubuntu01 (NodePort 30140, 170 Gi local-path volume, restore-phase settings so a 95 GB load is not hours of fsync) and RustFS 1.0.4 in namespace pil-rustfs on ubuntu02 (S3 30141, console 30142, 90 Gi). Both pods running and checked; the RustFS image runs as UID 10001 so an init container chowns the data root, and its logs moved to an emptyDir because a log directory inside the data root showed up as a stray bucket. The unattended chain on ubuntu03 waits for both 95.23 GB dumps, verifies each SHA-256 against the hash written on win01, deletes them from win01 only after both pass, then runs the restore drill and mirrors the three buckets with a per-object SHA-256 check against win01's own 70,923-entry manifest. The three stub dumps were already copied, verified and removed (win01 free 1.18 -> 41.2 GB). Nothing reads from the old office server \\\\sql.",
+      "deployed": [
+        "ai-pricing"
+      ],
+      "name": "PIL \\u00b7 2026-11-09 14:30 second source on the cluster",
+      "meta": {
+        "files": 10,
+        "ins": 659,
+        "del": 12,
+        "author": "OpenCode"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "ai-pricing-plan-execution-ready-20261109",
+      "built": "2026-11-09 13:33",
+      "commit": "2026-11-09 13:33",
+      "subject": "The win01 plan refined for execution: step 0 prerequisites (a target dir on ubuntu03, 406 GB free of 466, an SSH key from win01 for scp over the tailnet, a 1 GB throughput test before 191 GB, one maintenance window for the PostgreSQL restart); each step now carries concrete actions, the gate that proves it and the risk with its way back. Step 1 deletes the 41.0 GB truncated dump first, then moves both complete dumps and verifies each SHA-256 before deleting; step 2 flags that a failed WAL archive is itself a disk-filling risk. Review correction: the Nov 7 and Nov 8 dumps are not duplicates (same 95,230,922,328 bytes, different SHA-256), so both are kept off-box. The nightly pg_dumpall task was disabled on win01 (it filled the volume); PostgreSQL, RustFS, OpenSSH and Tailscale already start at boot",
+      "deployed": [
+        "ai-pricing"
+      ],
+      "name": "AI Pricing · 2026-11-09 13:33 execution-ready plan",
+      "meta": {
+        "files": 1,
+        "ins": 43,
+        "del": 12,
+        "author": "OpenCode"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "ai-pricing-no-touch-oldsrv-20261109",
+      "built": "2026-11-09 13:28",
+      "commit": "2026-11-09 13:28",
+      "subject": "Review #20 now proves the plan never touches the OLD Windows server: a boundary box with the verified evidence (29 Magic databases / 558 tables / 94,032,648 rows copied to win01 on 11-06 21:53-22:17, raw_barak 37 tables, RustFS 70,923 objects / 51.27 GB each with SHA-256) and the explicit deferral of anything newer than 11-07 plus the five unmeasured shares. On win01 the ten scheduled tasks that could reach \\sql (barak-copy-nightly, map-barak, list-barak, verify-barak, MagicSyncTails/Diffs, MagicReconcile, MagicRecon0-2) were disabled on 9 Nov so the old machine gets no traffic; re-enabling is one command each. Also corrected the RustFS object count and bucket split (70,923 objects: 53,378 docs + 17,545 tables) on the #20 page and both maps",
+      "deployed": [
+        "ai-pricing"
+      ],
+      "name": "AI Pricing · 2026-11-09 13:28 no-touch boundary",
+      "meta": {
+        "files": 3,
+        "ins": 22,
+        "del": 6,
+        "author": "OpenCode"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "ai-pricing-plan-section-20261109",
+      "built": "2026-11-09 12:50",
+      "commit": "2026-11-09 12:50",
+      "subject": "Review #20 turns its decision into an explicit plan: four numbered step cards with a 'what you see at the end' gate each (free space without deleting a single copy; get the backup off win01 to ubuntu03; make it a server with boot-time services, monitoring and RDP closed to the tailnet; keep watching with a monthly restore drill) plus four rules that do not move, set at 18px titles and 15.5px/1.95 body text",
+      "deployed": [
+        "ai-pricing"
+      ],
+      "name": "AI Pricing · 2026-11-09 12:50 plan section",
+      "meta": {
+        "files": 1,
+        "ins": 41,
+        "del": 10,
+        "author": "OpenCode"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "ai-pricing-readability-20261109",
+      "built": "2026-11-09 12:42",
+      "commit": "2026-11-09 12:42",
+      "subject": "Readability pass on the office review site: embedded diagrams now size their iframe to their own content (fitMapFrames) so the legend, cards and node index are readable in the page instead of behind an inner 780px scroll; the four checklist boxes on reviews #19 and #20 go single-column so long Hebrew lines stop breaking mid-word around LTR identifiers; the #20 heading corrected to the four gaps it lists; the cards in both maps rewritten as short one-line bullets and both diagrams re-rendered",
+      "deployed": [
+        "ai-pricing"
+      ],
+      "name": "AI Pricing · 2026-11-09 12:42 readability pass",
+      "meta": {
+        "files": 3,
+        "ins": 54,
+        "del": 31,
+        "author": "OpenCode"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "ai-pricing-pil-local-server-01-20261109",
+      "built": "2026-11-09 12:35",
+      "commit": "2026-11-09 12:35",
+      "subject": "Review #20 on the office review site: win01 reviewed as a candidate local server (PIL-Local-Server01) — Windows 11 Pro on an i5-14400 / 15.8 GB / one 500 GB NVMe with 1.06 GB free; six services that already behave like a server (PostgreSQL 17 on loopback with six roles, RustFS 48.4 GB / 71,335 objects, OfficeWeb on :80, OpenSSH on the tailnet, Chrome CDP, the windows-pil collector); five of eight scheduled jobs failing or stopped; Windows-MCP (:8000) and agent-desktop (:8001) down; the Mac tunnel dependency; and the two deciding changes (a copy off the box, boot-time services). New files-big3 ConfigMap + nginx alias for the 766 KB map",
+      "deployed": [
+        "ai-pricing"
+      ],
+      "name": "AI Pricing · 2026-11-09 12:35 PIL-Local-Server01",
+      "meta": {
+        "files": 6,
+        "ins": 13950,
+        "del": 5,
+        "author": "OpenCode"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "ai-pricing-oldsrv-inventory-20261109",
+      "built": "2026-11-09 12:19",
+      "commit": "2026-11-09 12:19",
+      "subject": "Review #19 on the office review site: the Windows Server OLD inventory — 29 Magic databases / 558 tables, BarakT\\DATA 37 DBF tables, QUOT 53,378 files / 29.83 GB, files\\חלוקות 17,308 xlsx / 21.05 GB and the MAGIC share, each item with a two-line description, plus the five shares that could not be opened and the three broken pipes (file copy, Magic sync, local pg_dumpall on a single C: volume); new files-big2 ConfigMap + nginx alias because files-big already holds barak-pipeline.html",
+      "deployed": [
+        "ai-pricing"
+      ],
+      "name": "AI Pricing · 2026-11-09 12:19 Windows Server OLD inventory",
+      "meta": {
+        "files": 6,
+        "ins": 14091,
+        "del": 7,
+        "author": "OpenCode"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "664192b",
+      "built": "2026-11-09 09:48",
+      "commit": "2026-11-09 09:48",
+      "subject": "Mailbox tab out, client card in; production feeds both review sites",
+      "deployed": [
+        "prod",
+        "test",
+        "integration"
+      ],
+      "name": "🫱 Pronation",
+      "meta": {
+        "files": 78,
+        "ins": 78,
+        "del": 33,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "4e24dcd",
+      "built": "2026-11-08 10:40",
+      "commit": "2026-11-08 10:34",
+      "subject": "The mailbox tab is out of the app and the client card is in: every meeting's summary and letter printable from the client, what was emailed to whom and when, and the clients seen last as one-tap chips — on integration",
+      "deployed": [
+        "integration"
+      ],
+      "name": "🦾 Opponens",
+      "rolledBack": null,
+      "meta": {
+        "files": 14,
+        "ins": 254,
+        "del": 743,
+        "author": "Simon"
+      }
+    },
+    {
+      "tag": "d902f3c",
+      "built": "2026-11-08 00:07",
+      "commit": "2026-11-07 23:53",
+      "subject": "Detail capture survives a reconnect: one lock per visit and a summary that waits for the words still being written, sharper patient identity parsing, and request #14's hint captions gone — on integration",
+      "deployed": [
+        "integration"
+      ],
+      "name": "✋ Lumbrical",
+      "rolledBack": null,
+      "meta": {
+        "files": 12,
+        "ins": 474,
+        "del": 45,
+        "author": "Simon"
+      }
+    },
+    {
+      "tag": "cc6e3d1",
+      "built": "2026-11-07 23:35",
+      "commit": "2026-11-08 01:30",
+      "subject": "MCP Registry — compact mode (the rolodex): the gateway indexes every server and loads one on demand, so a session starts with 14 tools instead of 121; registry__search_servers and registry__mcp_use, the same index on HTTP (/servers/search, /servers/use, /tools/...), a searchable registry page, and a loaded server drops out again after half an hour without a call",
+      "deployed": [
+        "mcp-registry",
+        "my-projects"
+      ],
+      "name": "MCP Registry · 2026-11-07 23:30 the rolodex",
+      "meta": {
+        "files": 10,
+        "ins": 645,
+        "del": 86,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "78b3fba",
+      "built": "2026-11-07 21:16",
+      "commit": "2026-11-07 21:10",
+      "subject": "The clinic boundary: a clinic table and a clinic_id on every patient, visit and sentence, seeded from the environment and adopted in place, so prod's real patients upgrade without loss",
+      "deployed": [
+        "integration"
+      ],
+      "name": "🦴 Scaphoid",
+      "rolledBack": null
+    },
+    {
+      "tag": "7894c1b",
+      "built": "2026-11-07 20:45",
+      "commit": "2026-11-07 18:30",
+      "subject": "The Mail tab becomes a mailbox the doctor can work in: folders with unread counts, paging, unread only, and his HTML letters rendered instead of a wall of stripped tags — on prod and test",
+      "deployed": [
+        "prod",
+        "test"
+      ],
+      "name": "🦴 Triquetrum",
+      "rolledBack": null
+    },
+    {
+      "tag": "e65f966",
+      "built": "2026-11-07 19:35",
+      "commit": "2026-11-07 19:18",
+      "subject": "The clinical workspace redesign and the fourth round: detail capture survives a reconnect, wider identity parsing, request #14's hint captions removed — on prod, test and integration",
+      "deployed": [
+        "prod",
+        "test",
+        "integration"
+      ],
+      "name": "🦴 Pisiform",
+      "rolledBack": null
+    },
+    {
+      "tag": "agent-tracker-20261107",
+      "built": "2026-11-07 16:55",
+      "commit": "e37ee7d",
+      "subject": "Task <-> agent tracker: a Python stdlib service with a JSON API, MCP and a CLI; agents report progress, the public host is a read-only view.",
+      "deployed": [
+        "kubernetes:ns agent-tracker (NodePort 30126)",
+        "agents.navonsimon.com"
+      ],
+      "name": "Agent Tracker · 2026-11-07 16:55 task-agent tracker",
+      "meta": {
+        "files": 14,
+        "ins": 0,
+        "del": 0,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "c047c00",
+      "built": "2026-11-07 15:12",
+      "commit": "2026-11-07 17:17",
+      "subject": "Clinic password, the summary emailed with its PDF, the printout he asked for, and the integration site dressed as production — go-live",
+      "deployed": [
+        "prod",
+        "integration"
+      ],
+      "name": "🖐️ Dexterity",
+      "rolledBack": null
+    },
+    {
+      "tag": "planin-brief-podcast-20261107",
+      "built": "2026-11-07 15:08",
+      "commit": "2026-11-07 15:08",
+      "subject": "Podcast with slides: a host script from OpenRouter, Higgsfield voice, local presentation slides and a live waveform; five chapters for 3.75 credits (~$0.19)",
+      "deployed": [
+        "local"
+      ],
+      "name": "Planin Brief · 2026-11-07 15:08 Podcast with slides",
+      "meta": {
+        "files": 9,
+        "ins": 451,
+        "del": 107,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "agent-link-20261107",
+      "built": "2026-11-07 15:01",
+      "commit": "2026-11-07 15:01",
+      "subject": "Agent Bus task board: a read-only dashboard over the Agent Link queue showing tasks date-first with sender, recipients and open/acked state, agent filters, and MCP tools board_tasks, board_agents, board_summary and board_task, live at ubuntu03:30124",
+      "deployed": [
+        "agent-link"
+      ],
+      "name": "Agent Link · 2026-11-07 15:01 task board",
+      "meta": {
+        "files": 10,
+        "ins": 1100,
+        "del": 46,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "planin-brief-20261107",
+      "built": "2026-11-07 12:45",
+      "commit": "2026-11-07 12:45",
+      "subject": "Planin Brief: a plan becomes a 36-second narrated explainer from OpenRouter storyboard, Higgsfield stills and voice, and an ffmpeg edit with captions, for 2.8 credits (~$0.14)",
+      "deployed": [
+        "local"
+      ],
+      "name": "Planin Brief · 2026-11-07 12:45 First film",
+      "meta": {
+        "files": 22,
+        "ins": 1546,
+        "del": 0,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "ai-pricing-day-report-20261106",
+      "built": "2026-11-06 22:12",
+      "commit": "2026-11-06 22:12",
+      "subject": "Day report (review #12): the work actually built on 6 Nov (reviews #8-#11, three films, two podcasts, two decks, the Magic-to-Postgres copy code) plus a 3-hour cost forecast; the agents/cost tab now shows real $23.18 OpenRouter spend to 22:04 with ~$7 for 3 more hours (~$30 day)",
+      "deployed": [
+        "ai-pricing"
+      ],
+      "name": "AI Pricing · 2026-11-06 22:12 day report",
+      "rolledBack": null
+    },
+    {
+      "tag": "ai-dj-rust-20261106",
+      "built": "2026-11-06 19:11",
+      "commit": "2026-11-06 19:11",
+      "subject": "AI DJ in Rust: a self-contained binary synthesises its own electronic tracks, plans harmonic sets on the Camelot wheel and mixes them forever in a two-deck browser player",
+      "deployed": [
+        "ai-dj-rust"
+      ],
+      "name": "AI DJ · 2026-11-06 19:11 Rustwave",
+      "meta": {
+        "files": 18,
+        "ins": 3100,
+        "del": 0,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "ai-dj-agent-mcp-20261106",
+      "built": "2026-11-06 17:50",
+      "commit": "2026-11-06 17:50",
+      "subject": "AI DJ has a Streamable HTTP MCP at /mcp with 27 tools and a one-call dj_station (mode, palette shift, mood, generate now), registered in the tailnet gateway as ai-dj over tailscale serve tcp 8766",
+      "deployed": [
+        "ai-dj"
+      ],
+      "name": "AI DJ · 2026-11-06 17:50 Agent MCP",
+      "meta": {
+        "files": 8,
+        "ins": 350,
+        "del": 10,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "ai-dj-sound-movements-20261106",
+      "built": "2026-11-06 17:30",
+      "commit": "2026-11-06 17:30",
+      "subject": "Velvet's generated set now moves through six sound palettes (warm organic, deep ambient, neon electronic, dusty groove, strings and space, sunlit house), rotating every 4 tracks or 15 minutes with a different lead instrument and texture every track; Shift sound in web/native/Dock/CLI/MCP",
+      "deployed": [
+        "ai-dj"
+      ],
+      "name": "AI DJ · 2026-11-06 17:30 Sound Movements",
+      "meta": {
+        "files": 8,
+        "ins": 500,
+        "del": 10,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "ai-dj-generated-originals-20261106",
+      "built": "2026-11-06 17:10",
+      "commit": "2026-11-06 17:10",
+      "subject": "Velvet composes its own instrumental tracks with Higgsfield Sonilo Music by default: 3-minute originals, two-track background buffer, taste/mood/BPM prompts, generated/mixed/library modes, web and native Generate controls, and fake-CLI generation tests",
+      "deployed": [
+        "ai-dj"
+      ],
+      "name": "AI DJ · 2026-11-06 17:10 Generated Originals",
+      "meta": {
+        "files": 14,
+        "ins": 1100,
+        "del": 20,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "ai-dj-velvet-station-20261106",
+      "built": "2026-11-06 15:28",
+      "commit": "2026-11-06 15:28",
+      "subject": "AI DJ 3.0 Velvet Station: hub owns one adaptive set with SQLite state, claim/lease clients, SSE commands with ack/retry, fast /state, real ducking, a single resolver with a 2GB media cache and Range serving, Apple Music taste import (hfma fail-soft + AppleScript), coding context and bounded mood, local BPM/beat/key/LUFS analysis with a librosa venv, phrase-aligned beatmatched transitions with a learning bandit, OpenRouter text and Velvet TTS, a rewritten single-file player served by the hub, native hub-v3 parity, Tailscale hosting at https://simons-macbook-pro.tail32418c.ts.net/ and a cluster landing page at ubuntu03:30119, with a Velvet Station app icon, favicon, touch icon and in-app mark",
+      "deployed": [
+        "ai-dj"
+      ],
+      "name": "AI DJ · 2026-11-06 15:28 Velvet Station",
+      "meta": {
+        "files": 50,
+        "ins": 8584,
+        "del": 1189,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "ai-pricing-technical-film-20261106",
+      "built": "2026-11-06 15:07",
+      "commit": "2026-11-06 15:07",
+      "subject": "Technical review film: 2:52 Hebrew explainer of the read-only Paradox/SQL pipelines, DeepSeek-V4-Flash on RunPod and the six acceptance gates, posted on the home and battle views",
+      "deployed": [
+        "ai-pricing"
+      ],
+      "name": "AI Pricing · 2026-11-06 15:07 technical film",
+      "rolledBack": null
+    },
+    {
+      "tag": "ai-dj-velvet-deck-20261106",
+      "built": "2026-11-06 12:45",
+      "commit": "2026-11-06 12:45",
+      "subject": "AI DJ Velvet Deck: two-deck web DJ player with real equal-power crossfades, Auto DJ, live crossfade meter, equalizer ring and DJ chatter. Single-file HTML, background-tab-safe fades, deployed to namespace ai-dj on NodePort 30119 (tailnet-only) with smoke tests in CI",
+      "deployed": [
+        "ai-dj"
+      ],
+      "name": "AI DJ · 2026-11-06 12:45 Velvet Deck",
+      "rolledBack": null
+    },
+    {
+      "tag": "agent-habitat-live-desk-20261031",
+      "built": "2026-10-31 16:44",
+      "commit": "2026-10-31 16:44",
+      "subject": "Live desk: finds agent panes from tmux and the process table, accepts short status reports with a loopback/tailnet gate, and shows them as a readable desk; runs under launchd with a nightly SQLite backup. Hooks built and tested, install pending",
+      "deployed": [
+        "agent-habitat"
+      ],
+      "name": "Agent Habitat · 2026-10-31 16:44 Live Desk",
+      "rolledBack": null
+    },
+    {
+      "tag": "remodeling-now-20261031",
+      "built": "2026-10-31 16:18",
+      "commit": "2026-10-31 16:18",
+      "subject": "Private tasks and evidence-backed results for five focus projects; owner joins, explicit public stories, documentation follow-ups and nightly SQLite backup",
+      "deployed": [
+        "remodeling"
+      ],
+      "name": "Remodeling · 2026-10-31 16:18 private Now workspace",
+      "rolledBack": null
+    },
+    {
+      "tag": "projects-outcomes-20261031",
+      "built": "2026-10-31 16:18",
+      "commit": "2026-10-31 16:18",
+      "subject": "Homepage private workspace link, public outcomes page and narrow projection, plus workspace guide and updated briefs",
+      "deployed": [
+        "my-projects"
+      ],
+      "name": "Projects · 2026-10-31 16:18 workspace and selected outcomes",
+      "rolledBack": null
+    },
+    {
+      "tag": "visual-lab-first-20261031",
+      "built": "2026-10-31 15:58",
+      "commit": "2026-10-31 15:58",
+      "subject": "Flint CLI and shared MCP image rendering, editable chart examples and Fedora display",
+      "deployed": [
+        "visual-lab"
+      ],
+      "name": "Visual Lab · 2026-10-31 15:58 visual conversation trial",
+      "rolledBack": null
+    },
+    {
+      "tag": "projects-visual-lab-20261031",
+      "built": "2026-10-31 15:58",
+      "commit": "2026-10-31 15:58",
+      "subject": "Visual Lab documentation, measured trials, screenshots and project brief",
+      "deployed": [
+        "my-projects"
+      ],
+      "name": "Projects · 2026-10-31 15:58 visual conversation trial",
+      "rolledBack": null
+    },
+    {
+      "tag": "remodeling-first-20261031",
+      "built": "2026-10-31 13:22",
+      "commit": "2026-10-31 13:22",
+      "subject": "Persistent monitoring agent, shared project progress, documentation coverage and MCP tools; recurring checks disabled pending interval",
+      "deployed": [
+        "remodeling"
+      ],
+      "name": "Remodeling · 2026-10-31 13:22 project and documentation tracking",
+      "rolledBack": null
+    },
+    {
+      "tag": "projects-remodeling-20261031",
+      "built": "2026-10-31 13:22",
+      "commit": "2026-10-31 13:22",
+      "subject": "Remodeling tracker and self-documentation pages; shared tracking and read-only monitoring status",
+      "deployed": [
+        "my-projects"
+      ],
+      "name": "Projects · 2026-10-31 13:22 project and documentation tracking",
+      "rolledBack": null
+    },
+    {
+      "tag": "ee1b754",
+      "built": "2026-10-31 11:12",
+      "commit": "2026-10-31 13:12",
+      "subject": "Projects — the site agent on the front page as an Ask the agent panel; the agent re-reads briefs every 10 minutes so new projects such as Naki are known",
+      "deployed": [
+        "my-projects"
+      ],
+      "name": "Projects · 2026-10-31 13:12 front-page agent",
+      "meta": {
+        "files": 5,
+        "ins": 352,
+        "del": 15,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "naki-20261031-1205",
+      "built": "2026-10-31 10:05",
+      "commit": "ccdc665",
+      "subject": "Naki — air-purifier import business run by an agent: Hebrew storefront, WhatsApp inbox (personal + Twilio), AI product pages, MCP",
+      "deployed": [
+        "naki"
+      ],
+      "name": "Naki · 2026-10-31 12:05 first deployment",
+      "meta": {
+        "files": 34,
+        "ins": 2289,
+        "del": 1,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "life-admin-20261030-1405",
+      "built": "2026-10-30 14:05",
+      "commit": "",
+      "subject": "Life Admin — private vault with cited facts, deadlines, cases, audit and four MCP tools",
+      "deployed": [
+        "life-admin"
+      ],
+      "name": "Life Admin · 2026-10-30 14:05 first deployment",
+      "rolledBack": null
+    },
+    {
+      "tag": "7cd91b2",
+      "built": "2026-10-30 12:10",
+      "commit": "2026-10-30 14:02",
+      "subject": "Doctor's third round: a clinic password, the summary emailed with its PDF, and the printout and visit page he asked for",
+      "deployed": [
+        "integration"
+      ],
+      "name": "🦴 Lunate",
+      "meta": {
+        "files": 19,
+        "ins": 763,
+        "del": 57,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "clinic-tickets-20261030-1408",
+      "built": "2026-10-30 12:08",
+      "commit": "",
+      "subject": "Clinic Tickets — the doctor's Hebrew request desk with screenshots, statuses and an agent API (MIT)",
+      "deployed": [
+        "clinic-tickets"
+      ],
+      "name": "Clinic Tickets · 2026-10-30 14:08 first deployment",
+      "meta": {
+        "files": 14,
+        "ins": 1210,
+        "del": 0,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "way-forward-20261030-0915",
+      "built": "2026-10-30 07:15",
+      "commit": "",
+      "subject": "Way Forward — first personal planning workspace with CLI and MCP tools",
+      "deployed": [
+        "way-forward"
+      ],
+      "name": "Way Forward · 2026-10-30 09:15 first deployment",
+      "rolledBack": null
+    },
+    {
+      "tag": "6e63949",
+      "built": "2026-10-29 19:37",
+      "commit": "2026-10-29 21:37",
+      "subject": "Nativ import CRM demo — Hebrew RTL, live WhatsApp translation, Tugi sales chatbot, imports-crm.navonsimon.com",
+      "deployed": [
+        "imports-crm"
+      ],
+      "name": "Nativ · 2026-10-29 21:37 first demo for the importer",
+      "meta": {
+        "files": 30,
+        "ins": 3760,
+        "del": 0,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "d76548a",
+      "built": "2026-10-27 10:47",
+      "commit": "2026-10-27 12:47",
+      "subject": "MCP Registry — one gateway endpoint for every agent on the tailnet: registry API, MCP gateway with live tools/list_changed, one-line installer; serves project-context, lists the Mac-local servers",
+      "deployed": [
+        "mcp-registry"
+      ],
+      "name": "MCP Registry · 2026-10-27 12:47 first gateway",
+      "meta": {
+        "files": 10,
+        "ins": 1404,
+        "del": 0,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "1a93987",
+      "built": "2026-10-27 10:46",
+      "commit": "2026-10-27 12:46",
+      "subject": "Projects — MCP Registry overview page, project card and brief; project-context MCP can read the published site",
+      "deployed": [
+        "my-projects"
+      ],
+      "name": "Projects · 2026-10-27 12:46 MCP Registry page",
+      "meta": {
+        "files": 10,
+        "ins": 1007,
+        "del": 1,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "52b1558",
+      "built": "2026-10-24 14:53",
+      "commit": "2026-10-24 14:53",
+      "subject": "Send the letter as one HTML part: Zoho's boundary rewrite blanked it in Gmail",
+      "deployed": [
+        "integration"
+      ],
+      "name": "🦴 Scaphoid",
+      "meta": {
+        "files": 3,
+        "ins": 28,
+        "del": 6,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "bb07594",
+      "built": "2026-10-24 14:26",
+      "commit": "2026-10-24 14:26",
+      "subject": "Point the app's clinic mark at the same branding file as the emails",
+      "deployed": [
+        "integration"
+      ],
+      "name": "🫱 Hypothenar",
+      "meta": {
+        "files": 3,
+        "ins": 4,
+        "del": 1,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "f6ee057",
+      "built": "2026-10-24 14:17",
+      "commit": "2026-10-24 14:17",
+      "subject": "Serve the branding images under their file names",
+      "deployed": [
+        "integration"
+      ],
+      "name": "🦴 Capitate",
+      "meta": {
+        "files": 2,
+        "ins": 2,
+        "del": 1,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "8db94b2",
+      "built": "2026-10-24 14:10",
+      "commit": "2026-10-24 14:10",
+      "subject": "Compile the email into a file path, not a directory",
+      "deployed": [
+        "integration"
+      ],
+      "name": "🦴 Trapezium",
+      "meta": {
+        "files": 1,
+        "ins": 1,
+        "del": 1,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "9669017",
+      "built": "2026-10-24 14:03",
+      "commit": "2026-10-24 14:03",
+      "subject": "Build the letter email from React Email and serve branding from one public route",
+      "deployed": [
+        "integration"
+      ],
+      "name": "🧵 Flexor",
+      "meta": {
+        "files": 12,
+        "ins": 4783,
+        "del": 173,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "c612776",
+      "built": "2026-10-24 13:05",
+      "commit": "2026-10-24 13:05",
+      "subject": "Drop the logo from the letter email and encode its parts as base64",
+      "deployed": [
+        "integration"
+      ],
+      "name": "🩹 Thenar",
+      "meta": {
+        "files": 2,
+        "ins": 3,
+        "del": 5,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "b8308c0",
+      "built": "2026-10-24 11:42",
+      "commit": "2026-10-24 12:50",
+      "subject": "Letter email: right-to-left spacing, a right-aligned footer and room around the signature",
+      "deployed": [
+        "integration"
+      ],
+      "name": "🧷 Retinaculum",
+      "meta": {
+        "files": 1,
+        "ins": 9,
+        "del": 9,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "0f34450",
+      "built": "2026-10-24 11:18",
+      "commit": "2026-10-24 12:22",
+      "subject": "Dress the summary email for the screen: roomier sections and the letter's blue",
+      "deployed": [
+        "integration"
+      ],
+      "name": "🎯 Trigger Finger",
+      "meta": {
+        "files": 1,
+        "ins": 10,
+        "del": 0,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "d945161",
+      "built": "2026-10-24 09:30",
+      "commit": "2026-10-24 11:12",
+      "subject": "Redesign the letter email: right-to-left content on a clean card",
+      "deployed": [
+        "integration"
+      ],
+      "name": "🪢 A1 Pulley",
+      "meta": {
+        "files": 4,
+        "ins": 195,
+        "del": 2,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "ledger-project-gallery-20261023",
+      "built": "2026-10-23 17:45",
+      "commit": "2026-10-23 17:45",
+      "subject": "Build Ledger — project gallery: portfolio-backed home grid with images, per-project build pages and project-aware MCP tools",
+      "deployed": [
+        "build-ledger"
+      ],
+      "name": "Build Ledger · 2026-10-23 17:45 project gallery",
+      "meta": {
+        "files": 5,
+        "ins": 1348,
+        "del": 70,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "ledger-projects-20261023",
+      "built": "2026-10-23 16:57",
+      "commit": "2026-10-23 16:57",
+      "subject": "Build Ledger — project filters: per-project tabs, row labels and build counts",
+      "deployed": [
+        "build-ledger"
+      ],
+      "name": "Build Ledger · 2026-10-23 16:57 project filters",
+      "meta": {
+        "files": 1,
+        "ins": 108,
+        "del": 4,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "ledger-visual-refresh-20261023",
+      "built": "2026-10-23 16:46",
+      "commit": "2026-10-23 16:46",
+      "subject": "Build Ledger — visual refresh: clearer hierarchy, compact build rows, responsive card layout",
+      "deployed": [
+        "build-ledger"
+      ],
+      "name": "Build Ledger · 2026-10-23 16:46 visual refresh",
+      "meta": {
+        "files": 1,
+        "ins": 544,
+        "del": 238,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "43896bb",
+      "built": "2026-10-23 16:08",
+      "commit": "2026-10-23 16:08",
+      "subject": "SETA integration — cinematic Higgsfield hair film, Hebrew editorial homepage and verified mobile layout",
+      "deployed": [
+        "seta-integration"
+      ],
+      "name": "SETA · 2026-10-23 16:08 cinematic mobile preview",
+      "meta": {
+        "files": 12,
+        "ins": 78,
+        "del": 10,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "seta-editorial-docs-20261023",
+      "built": "2026-10-23 16:08",
+      "commit": "2026-10-23 16:08",
+      "subject": "SETA project documentation and screenshot — cinematic integration preview",
+      "deployed": [],
+      "name": "Projects · 2026-10-23 16:08 SETA editorial preview",
+      "rolledBack": null
+    },
+    {
+      "tag": "ea0e0cf",
+      "built": "2026-10-23 14:45",
+      "commit": "2026-10-23 17:45",
+      "subject": "Screen Pointer — open the app and click Show something to my agent; five-second marked capture, point hotkey removed; capture permission still unverified",
+      "deployed": [
+        "screen-pointer-mac"
+      ],
+      "name": "Screen Pointer · 2026-10-23 17:45 button-first agent capture",
+      "rolledBack": null
+    },
+    {
+      "tag": "d6a6247",
+      "built": "2026-10-23 14:32",
+      "commit": "2026-10-23 17:32",
+      "subject": "Screen Pointer — walkthrough recording preview, one-stroke marks, timestamped notes and OpenCode/MCP review; real capture remains blocked by macOS permission",
+      "deployed": [
+        "screen-pointer"
+      ],
+      "name": "Screen Pointer · 2026-10-23 17:32 annotated walkthrough preview",
+      "rolledBack": null
+    },
+    {
+      "tag": "9cd4c11",
+      "built": "2026-10-23 14:32",
+      "commit": "2026-10-23 17:32",
+      "subject": "Projects — Screen Pointer case study, promotional image, actual app preview and setup guide; demo recording pending permission",
+      "deployed": [
+        "my-projects"
+      ],
+      "name": "Projects · 2026-10-23 17:32 Screen Pointer guide",
+      "rolledBack": null
+    },
+    {
+      "tag": "87198de",
+      "built": "2026-10-23 14:10",
+      "commit": "2026-10-23 14:10",
+      "subject": "SETA — Hebrew salon website, persistent media uploads, integration preview and owner-controlled production publishing",
+      "deployed": [
+        "seta"
+      ],
+      "name": "SETA · 2026-10-23 14:10 media publishing",
+      "meta": {
+        "files": 27,
+        "ins": 1085,
+        "del": 0,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "77faf3053340",
+      "built": "2026-10-23 14:10",
+      "commit": "2026-10-23 14:10",
+      "subject": "SETA project — staged publishing documentation and redesigned website screenshot",
+      "deployed": [],
+      "name": "Projects · 2026-10-23 14:10 SETA publishing",
+      "rolledBack": null
+    },
+    {
+      "tag": "4c061e5",
+      "built": "2026-10-23 13:52",
+      "commit": "2026-10-23 16:52",
+      "subject": "Screen Pointer — installed explicit point capture and MCP reader; live capture blocked by macOS Screen Recording permission",
+      "deployed": [],
+      "name": "Screen Pointer · 2026-10-23 16:52 agent pointing preview",
+      "meta": {
+        "files": 8,
+        "ins": 275,
+        "del": 3,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "e7ddb6e",
+      "built": "2026-10-23 13:33",
+      "commit": "2026-10-23 16:33",
+      "subject": "Build Ledger — automatic local Git branch discovery, search and stale-data status",
+      "deployed": [
+        "build-ledger"
+      ],
+      "name": "Build Ledger · 2026-10-23 16:33 automatic branches",
+      "meta": {
+        "files": 8,
+        "ins": 254,
+        "del": 11,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "1a28858db86e",
+      "built": "2026-10-23 13:24",
+      "commit": "2026-10-23 13:24",
+      "subject": "SETA — Hebrew website, documentation, RTL layout and Hebrew CSV headers",
+      "deployed": [],
+      "name": "SETA · 2026-10-23 13:24 Hebrew",
+      "rolledBack": null
+    },
+    {
+      "tag": "1b68a4567612",
+      "built": "2026-10-23 13:24",
+      "commit": "2026-10-23 13:24",
+      "subject": "SETA project — Hebrew documentation and screenshot",
+      "deployed": [],
+      "name": "Projects · 2026-10-23 13:24 Hebrew",
+      "rolledBack": null
+    },
+    {
+      "tag": "ledger-tailnet-20261023",
+      "built": "2026-10-23 13:23",
+      "commit": "2026-10-23 16:23",
+      "subject": "Build ledger — private Tailscale HTTPS, public tunnel removed, authenticated gateway and automatic certificate renewal",
+      "deployed": [],
+      "name": "Build Ledger · 2026-10-23 16:23 Tailscale-only access",
+      "rolledBack": null
+    },
+    {
+      "tag": "04b8d4b1d39d",
+      "built": "2026-10-23 13:17",
+      "commit": "2026-10-23 13:17",
+      "subject": "SETA — launch operating hub, checklist, tracker templates and documentation",
+      "deployed": [],
+      "name": "SETA · 2026-10-23 13:17 launch",
+      "rolledBack": null
+    },
+    {
+      "tag": "b23840228554",
+      "built": "2026-10-23 13:17",
+      "commit": "2026-10-23 13:17",
+      "subject": "Project gallery — add SETA and its documentation",
+      "deployed": [],
+      "name": "Projects · 2026-10-23 13:17 launch",
+      "rolledBack": null
+    },
+    {
+      "tag": "38e1c84",
+      "built": "2026-10-23 10:27",
+      "commit": "2026-10-23 13:10",
+      "subject": "Integration wears a purple clinic mark, coloured site strip and named tab",
+      "deployed": [
+        "integration"
+      ],
+      "name": "✊ Grip",
+      "meta": {
+        "files": 5,
+        "ins": 31,
+        "del": 2,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "db76047",
+      "built": "2026-10-21 09:39",
+      "commit": "2026-10-21 12:34",
+      "subject": "Refine workspace, patient workflows, save feedback",
+      "deployed": [],
+      "name": "🤹 Dexterity",
+      "meta": {
+        "files": 9,
+        "ins": 3020,
+        "del": 647,
+        "author": "Simon"
+      },
+      "rolledBack": "🩹 Graft · Oct 20, 23:27"
+    },
+    {
+      "tag": "d86378a",
+      "built": "2026-10-21 09:09",
+      "commit": "2026-10-21 11:53",
+      "subject": "Deploy checks/watcher for prod, test, integration",
+      "deployed": [
+        "test",
+        "integration"
+      ],
+      "name": "💪 Rehab",
+      "meta": {
+        "files": 4,
+        "ins": 14,
+        "del": 14,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "81c12a9",
+      "built": "2026-10-21 08:43",
+      "commit": "2026-10-20 23:27",
+      "subject": "Versioned shared clinic logo URLs",
+      "deployed": [],
+      "name": "🩹 Graft",
+      "meta": {
+        "files": 1,
+        "ins": 5,
+        "del": 3,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "c9fa92d",
+      "built": "2026-10-20 20:17",
+      "commit": "2026-10-20 23:13",
+      "subject": "Streamed MP3 recording downloads",
+      "deployed": [],
+      "name": "🩸 Tourniquet",
+      "meta": {
+        "files": 7,
+        "ins": 136,
+        "del": 8,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "97bf810",
+      "built": "2026-10-20 20:04",
+      "commit": "2026-10-20 23:00",
+      "subject": "Manual playback + seekable WAV downloads",
+      "deployed": [],
+      "name": "🩺 Stethoscope",
+      "meta": {
+        "files": 10,
+        "ins": 335,
+        "del": 7,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "9631a1e",
+      "built": "2026-10-20 19:33",
+      "commit": "2026-10-20 22:28",
+      "subject": "Paginated patient-history previews in parallel",
+      "deployed": [],
+      "name": "🔪 Scalpel",
+      "meta": {
+        "files": 5,
+        "ins": 244,
+        "del": 13,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "a57b44c",
+      "built": "2026-10-20 19:05",
+      "commit": "2026-10-20 21:57",
+      "subject": "Simplify workspace, persistent controls, searchable phrases",
+      "deployed": [],
+      "name": "🧵 Suture",
+      "meta": {
+        "files": 4,
+        "ins": 255,
+        "del": 66,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "39fb294",
+      "built": "2026-10-20 18:16",
+      "commit": "2026-10-20 20:52",
+      "subject": "Remove phrase length limit, inline editing",
+      "deployed": [],
+      "name": "🧤 Cast",
+      "meta": {
+        "files": 8,
+        "ins": 166,
+        "del": 19,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "3608da0",
+      "built": "2026-10-20 17:32",
+      "commit": "2026-10-20 20:07",
+      "subject": "Align diagnosis table columns, drop print timestamp",
+      "deployed": [],
+      "name": "🩹 Splint",
+      "meta": {
+        "files": 5,
+        "ins": 11,
+        "del": 12,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "1233436",
+      "built": "2026-10-20 16:43",
+      "commit": "2026-10-20 19:36",
+      "subject": "Full clinic contacts + signature on one page",
+      "deployed": [],
+      "name": "⚡ Ulnar nerve",
+      "meta": {
+        "files": 3,
+        "ins": 28,
+        "del": 5,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "d0ddbb4",
+      "built": "2026-10-20 16:37",
+      "commit": "2026-10-20 19:32",
+      "subject": "Keep apostrophes in English terms in Hebrew PDFs",
+      "deployed": [],
+      "name": "⚡ Median nerve",
+      "meta": {
+        "files": 2,
+        "ins": 5,
+        "del": 1,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "90ccbc8",
+      "built": "2026-10-20 16:31",
+      "commit": "2026-10-20 19:25",
+      "subject": "Paginated A4 Hebrew clinic PDF",
+      "deployed": [],
+      "name": "🦾 Extensor",
+      "meta": {
+        "files": 23,
+        "ins": 598,
+        "del": 297,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "4e6baa3",
+      "built": "2026-10-20 16:03",
+      "commit": "2026-10-20 18:58",
+      "subject": "Refresh resumed summaries, actions and note shortcuts",
+      "deployed": [],
+      "name": "🪝 Flexor",
+      "meta": {
+        "files": 11,
+        "ins": 383,
+        "del": 53,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "dc31c1c",
+      "built": "2026-10-17 14:35",
+      "commit": "2026-10-17 17:23",
+      "subject": "Speed: last words cut at pauses, transcribed in parallel",
+      "deployed": [],
+      "name": "📐 Ulna",
+      "meta": {
+        "files": 3,
+        "ins": 51,
+        "del": 2,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "eaedf0d",
+      "built": "2026-10-17 14:19",
+      "commit": "2026-10-17 17:08",
+      "subject": "Speed: fast-model patient check, freed recorder, faster updates",
+      "deployed": [],
+      "name": "📏 Radius",
+      "meta": {
+        "files": 9,
+        "ins": 64,
+        "del": 20,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "50acd75",
+      "built": "2026-10-17 13:56",
+      "commit": "2026-10-17 16:46",
+      "subject": "No popup for missing details; quiet line instead",
+      "deployed": [],
+      "name": "🪝 Hamate",
+      "meta": {
+        "files": 3,
+        "ins": 27,
+        "del": 10,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "300b461",
+      "built": "2026-10-17 13:40",
+      "commit": "2026-10-17 16:30",
+      "subject": "QA visit: ID as digits/words, spellings per visit part",
+      "deployed": [],
+      "name": "🗿 Capitate",
+      "meta": {
+        "files": 1,
+        "ins": 10,
+        "del": 2,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "5b78440",
+      "built": "2026-10-17 13:25",
+      "commit": "2026-10-17 16:22",
+      "subject": "Second round: ready-made sentences, several diagnoses, full details",
+      "deployed": [],
+      "name": "🔷 Trapezoid",
+      "meta": {
+        "files": 14,
+        "ins": 400,
+        "del": 34,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "fc93c57",
+      "built": "2026-10-17 12:59",
+      "commit": "2026-10-17 15:47",
+      "subject": "Doctor's stamp closes the letter",
+      "deployed": [],
+      "name": "🧩 Trapezium",
+      "meta": {
+        "files": 3,
+        "ins": 24,
+        "del": 3,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "e47d1e8",
+      "built": "2026-10-17 12:44",
+      "commit": "2026-10-17 15:41",
+      "subject": "One Print/share button (print, PDF, email)",
+      "deployed": [],
+      "name": "🫘 Pisiform",
+      "meta": {
+        "files": 7,
+        "ins": 150,
+        "del": 65,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "910049f",
+      "built": "2026-10-17 12:07",
+      "commit": "2026-10-17 14:53",
+      "subject": "Share button: summary as PDF via share menu",
+      "deployed": [],
+      "name": "🔺 Triquetrum",
+      "meta": {
+        "files": 6,
+        "ins": 513,
+        "del": 5,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "b431cd1",
+      "built": "2026-10-17 11:14",
+      "commit": "2026-10-17 14:11",
+      "subject": "Email visit summary, signed and stamped",
+      "deployed": [],
+      "name": "🌙 Lunate",
+      "meta": {
+        "files": 10,
+        "ins": 135,
+        "del": 31,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "4841ab3",
+      "built": "2026-10-17 10:17",
+      "commit": "2026-10-17 13:14",
+      "subject": "Summary: drug/test/structure names in English",
+      "deployed": [],
+      "name": "🦴 Scaphoid",
+      "meta": {
+        "files": 2,
+        "ins": 20,
+        "del": 15,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "3352d8a",
+      "built": "2026-10-17 10:11",
+      "commit": "2026-10-17 13:09",
+      "subject": "Printout/forms: ID, phone, DOB aligned right",
+      "deployed": [],
+      "name": "🤏 Pinky",
+      "meta": {
+        "files": 4,
+        "ins": 26,
+        "del": 3,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "b653c00",
+      "built": "2026-10-17 09:59",
+      "commit": "2026-10-17 12:57",
+      "subject": "Doctor feedback: headed printout sections, follow-up, injection, floating stop",
+      "deployed": [],
+      "name": "💍 Ring",
+      "meta": {
+        "files": 11,
+        "ins": 208,
+        "del": 54,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "a58929a",
+      "built": "2026-10-17 09:42",
+      "commit": "2026-10-17 12:32",
+      "subject": "Alert Simon when site/AI/speech key down",
+      "deployed": [],
+      "name": "✋ Middle",
+      "meta": {
+        "files": 7,
+        "ins": 155,
+        "del": 9,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "142aed4",
+      "built": "2026-10-17 09:24",
+      "commit": "2026-10-17 12:13",
+      "subject": "Transcript: drop hesitations, fix visit 1002 mishearings",
+      "deployed": [],
+      "name": "☝️ Index",
+      "meta": {
+        "files": 2,
+        "ins": 29,
+        "del": 2,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "18eb12b",
+      "built": "2026-10-17 08:48",
+      "commit": "2026-10-17 11:45",
+      "subject": "Vocabulary: 50 words Scribe mishears; QA accepts drug spellings",
+      "deployed": [],
+      "name": "👍 Thumb",
+      "meta": {
+        "files": 3,
+        "ins": 27,
+        "del": 14,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "caca783",
+      "built": "2026-10-17 08:43",
+      "commit": "2026-10-17 11:30",
+      "subject": "Vocabulary from trigger-thumb test visit",
+      "deployed": [],
+      "name": "⌚ Wrist",
+      "meta": {
+        "files": 2,
+        "ins": 18,
+        "del": 4,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "d10eb63",
+      "built": "2026-10-17 07:53",
+      "commit": "2026-10-17 10:47",
+      "subject": "Rollout: wait for old pod before health check/QA",
+      "deployed": [],
+      "name": "🖐️ Palm",
+      "meta": {
+        "files": 1,
+        "ins": 7,
+        "del": 0,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "90a52d8",
+      "built": "2026-10-17 07:45",
+      "commit": "2026-10-17 10:43",
+      "subject": "QA visit: retry socket while old pod leaves",
+      "deployed": [],
+      "name": "✊ Knuckle",
+      "meta": {
+        "files": 1,
+        "ins": 11,
+        "del": 1,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "fa5b2d1",
+      "built": "2026-10-17 07:41",
+      "commit": "2026-10-17 10:39",
+      "subject": "QA fake visit on every test/beta deploy, rollback on miss",
+      "deployed": [],
+      "name": "🪢 Ligament",
+      "meta": {
+        "files": 6,
+        "ins": 171,
+        "del": 10,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "dd58106",
+      "built": "2026-10-17 07:28",
+      "commit": "2026-10-17 10:26",
+      "subject": "Live transcription: audio+text per commit, redo broken answer by batch",
+      "deployed": [],
+      "name": "🧵 Tendon",
+      "meta": {
+        "files": 2,
+        "ins": 66,
+        "del": 4,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "ae0b0c8",
+      "built": "2026-10-17 07:20",
+      "commit": "2026-10-17 10:05",
+      "subject": "Merge origin/whatsapp into test",
+      "deployed": [],
+      "name": "🦴 Phalanx",
+      "meta": {
+        "files": 18,
+        "ins": 477,
+        "del": 156,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "8240868",
+      "built": "2026-10-17 06:59",
+      "commit": "2026-10-17 09:44",
+      "subject": "Find kubectl in ~/.local/bin on ubuntu02",
+      "deployed": [],
+      "name": "🦴 Metacarpal",
+      "meta": {
+        "files": 2,
+        "ins": 2,
+        "del": 1,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    },
+    {
+      "tag": "4dd897c",
+      "built": "2026-10-17 06:46",
+      "commit": "2026-10-17 09:45",
+      "subject": "Merge branch 'k8s-cicd' into test",
+      "deployed": [],
+      "name": "🦴 Carpal",
+      "meta": {
+        "files": 11,
+        "ins": 293,
+        "del": 365,
+        "author": "Simon"
+      },
+      "rolledBack": null
+    }
+  ],
+  "quips": [
+    "hi there",
+    "glad you looked",
+    "still holding up",
+    "all thumbs, no bugs",
+    "handle with care",
+    "waving back",
+    "grip check",
+    "you found me",
+    "flexing",
+    "steady hands",
+    "that's the spot",
+    "nice to see you"
+  ]
 }
