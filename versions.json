@@ -2,6 +2,20 @@
  "prod": "e831de5",
  "versions": [
   {
+   "tag": "brand-studio-trial-20261126",
+   "built": "2026-11-26 20:20",
+   "commit": "ee73b9b 2026-11-26 20:19:34 +0200 A doctor starts by himself: 30-day trial, a generated logo, a site with no borrowed photo",
+   "subject": "Self-serve trials: the marketing form opens the studio, a 30-day counter, a generated logo per doctor, a site built only from his answers with no photograph, and a lock Simon releases after payment.",
+   "project": "brand-studio",
+   "url": "https://brand.handclinic.co.il/start",
+   "deployed": [
+    "brand-studio",
+    "medscribe-saas"
+   ],
+   "name": "HandClinic Studio · 2026-11-26 a doctor starts by himself",
+   "notes": "handclinic.co.il's demo form now posts to /lead (no email field); the thank-you page starts a trial. The pick generates a mark (Gemini image ~$0.07, traced with potracer, monogram fallback), builds the kit and publishes <slug>.handclinic.co.il through one wildcard. Trial sites carry no photograph and no reference-doctor copy — a test greps for both. Day 31 locks every kit route; admin release reopens it. 30 tests, CI green."
+  },
+  {
    "tag": "brand-studio-20261126",
    "built": "2026-11-26 18:38",
    "commit": "1c78af3 2026-11-26 18:37:47 +0200 Tests for the composer: a kit, a site, a zip, and paths instead of text",
