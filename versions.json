@@ -2,6 +2,20 @@
  "prod": "e831de5",
  "versions": [
   {
+   "tag": "brand-studio-live-20261126",
+   "built": "2026-11-26 21:36",
+   "commit": "142433d 2026-11-26 21:36:34 +0200 He picks the address, gets the sheet, and is live: no approval, no directions link, a WhatsApp booking button",
+   "subject": "Pick your address, get your space: the doctor names the subdomain on the intake, the kit page embeds the brand sheet, the site is live with a WhatsApp booking button and no approval anywhere.",
+   "project": "brand-studio",
+   "url": "https://brand.handclinic.co.il/start",
+   "deployed": [
+    "brand-studio",
+    "medscribe-saas"
+   ],
+   "name": "HandClinic Studio · 2026-11-26 live without approval",
+   "notes": "A trial doctor edits `site_slug` on the intake (unique, cookie re-issued), picks a direction and is live at his own subdomain in ~10s. The kit page drops the directions link, embeds brand-sheet.html, and carries a dark 'your space is live' banner. Every asset URL is versioned by the sites checksum after Cloudflare served a stale PNG once. The clinic site's CTAs are the doctor's phone and wa.me link. Verified end to end: dr-tal-barak.handclinic.co.il with his own generated mark."
+  },
+  {
    "tag": "brand-studio-trial-20261126",
    "built": "2026-11-26 20:20",
    "commit": "ee73b9b 2026-11-26 20:19:34 +0200 A doctor starts by himself: 30-day trial, a generated logo, a site with no borrowed photo",
