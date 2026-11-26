@@ -1959,6 +1959,18 @@
    ],
    "name": "🖐️ Thenar",
    "rolledBack": null
+  },
+  {
+   "tag": "9eed664",
+   "built": "2026-11-26 16:58",
+   "commit": "9eed664 2026-11-26 16:58:00 +0200 Summaries go through OpenRouter (anthropic/claude-sonnet-4.5)",
+   "subject": "Go-live of the doctor's 13 Nov list plus OpenRouter: follow-up visits carry the previous visit and the sheet names it; one diagnosis table at the top of the new patient file sheet; visits headed by date with delete; the full doctor title with its short fallback; names kept as spoken; one email per visit; summaries through OpenRouter (claude-sonnet-4.5) after both OpenAI and Anthropic keys came back 401",
+   "deployed": [
+    "prod",
+    "integration"
+   ],
+   "name": "🖐️ Metacarpal",
+   "rolledBack": null
   }
  ],
  "quips": [
