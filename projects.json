@@ -1748,6 +1748,35 @@
    ],
    "note": "Office password · Magic only · read-only role",
    "year": 2026
+  },
+  {
+   "slug": "public-projects",
+   "name": "Public Work · Simon Navon",
+   "ledgerName": "Public Projects",
+   "blurb": "The public portfolio: 21 systems, four case studies, English and Hebrew. Generated from a public-facts layer with an audit gate; served as a static site from the cluster.",
+   "category": "websites",
+   "status": "live",
+   "img": "img/public-projects.jpg",
+   "emoji": "🌐",
+   "tags": [
+    "Public portfolio",
+    "English + Hebrew",
+    "Static nginx",
+    "Kubernetes",
+    "Audit gate"
+   ],
+   "links": [
+    {
+     "label": "Open",
+     "url": "https://public-projects.navonsimon.com/"
+    },
+    {
+     "label": "GitHub",
+     "url": "https://github.com/ShimonNavon/public-projects"
+    }
+   ],
+   "note": "Public · generated from a public-facts layer",
+   "year": 2026
   }
  ]
 }
