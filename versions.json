@@ -1914,6 +1914,51 @@
     "author": "Simon"
    },
    "rolledBack": null
+  },
+  {
+   "tag": "2ac4a50",
+   "built": "2026-11-26 15:38",
+   "commit": "2026-11-26 15:38",
+   "subject": "Public portfolio: 21 systems, four case studies, English and Hebrew",
+   "deployed": [
+    "public-projects"
+   ],
+   "name": "Public Projects · First Light",
+   "meta": {
+    "files": 108,
+    "ins": 14906,
+    "del": 0,
+    "author": "Simon"
+   },
+   "rolledBack": null
+  },
+  {
+   "tag": "5938870",
+   "built": "2026-11-26 16:06",
+   "commit": "2026-11-26 16:06",
+   "subject": "Homepage: pinned work, every project and live counters",
+   "deployed": [
+    "public-projects"
+   ],
+   "name": "Public Projects · Spotlight",
+   "meta": {
+    "files": 58,
+    "ins": 789,
+    "del": 434,
+    "author": "Simon"
+   },
+   "rolledBack": null
+  },
+  {
+   "tag": "bf79e2a",
+   "built": "2026-11-26 15:59",
+   "commit": "bf79e2a 2026-11-26 15:59:00 +0200 Doctor's 13 Nov fixes: follow-up history, one diagnosis, dated visits, titles, names, one email",
+   "subject": "The doctor's 13 Nov list: a follow-up visit hands the summarizer the previous visit and the sheet names it; one diagnosis table at the top of the new patient file sheet; visits headed by date with delete; the full doctor title with its short form; names kept as spoken so a typed name finds the card; one email per visit (the letter)",
+   "deployed": [
+    "integration"
+   ],
+   "name": "🖐️ Thenar",
+   "rolledBack": null
   }
  ],
  "quips": [
